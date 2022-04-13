@@ -1,0 +1,348 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Inter:wght@300&family=Nunito+Sans:wght@300&family=Poppins:wght@200;300&family=Roboto&family=Roboto+Serif:wght@300&family=Ubuntu:wght@300&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+.App {
+  height: fit-content;
+  width: 100%;
+}
+
+/*Reusable components*/
+
+.footer-wrapper {
+  height: 50px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.99);
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.footer-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  padding-top: 10px;
+}
+
+.footer-link {
+  margin-left: 25px;
+  font-size: 0.8rem;
+  text-decoration-line: none;
+  color: whitesmoke;
+}
+
+.footer-link:hover {
+  color: gray;
+}
+
+.page-wrapper {
+  height: fit-content;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.nav-wrapper {
+  height: fit-content;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.large-box {
+  height: 450px;
+  width: fit-content;
+  display: inline-block;
+  margin: 20px;
+  background-size: cver;
+  background-repeat: no-repeat;
+}
+
+.medium-box-photo,
+.medium-box-text {
+  display: inline-block;
+  overflow: hidden;
+  height: 400px;
+  width: 600px;
+  margin-left: 35px;
+  box-shadow: 2px 4px 10px 2px whitesmoke;
+  border-radius: 5px;
+}
+
+img {
+  height: 400px;
+  width: 600px;
+  background-position: center;
+  margin-left: 0px;
+}
+
+h1,
+h3, h5 {
+  text-align: center;
+  font-size: 40px;
+  line-height: 11vh;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Login component */
+
+.login-wrapper {
+  height: 507px;
+  width: 100%;
+  padding-top: 40px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+}
+
+/* Register component */
+
+.page-wrapper-form {
+  height: fit-content;
+  width: 100%;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+}
+
+.registration-form, .signup-form, .update-form {
+  display: block;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: whitesmoke;
+  width: 450px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  /* margin-left: 33%; */
+}
+
+.registration-form label, .signup-form label, .update-form label,
+.registration-form input, .signup-form input, .update-form input,
+.registration-form select, .update-form select{
+  display: block;
+  margin: 3px;
+  margin-left: calc(
+    (100px - 3px) / 2
+  ); /* because we have 97px of space left in this form's width: Margin 3px has set marginleft by 3px already*/
+  width: 350px;
+  font-size: 1rem;
+  border: 1px solid whitesmoke;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+#register-btn, #signup-btn, #update-btn {
+  width: 130px;
+  padding: 4px;
+  margin-left: 56px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  border: 1px solid gray;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.link{
+  display: inline-block;
+  text-align: center;
+  width: 225px;
+  margin-bottom: 8px;
+  margin-right: 100px;
+  margin-top: 20px;
+  font-size: 15px;
+  color: whitesmoke;
+  font-weight: 600;
+}
+
+.link:hover{
+  color: white;
+}
+.signup-form{
+  margin-bottom: 53px;
+}
+
+/*Users component*/
+.users-wrapper {
+  height: 600px;
+  width: 100%;
+  padding-top: 0px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+}
+
+.login-signup{
+  height: 505px;
+  display: block;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: whitesmoke;
+  width: 450px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+#users-link-holder{
+  height: 60px;
+  width: 100%;
+  background-color: rgb(39, 34, 34);
+  display: block;
+  color: whitesmoke;
+}
+
+.users-link-btn1, .users-link-btn2 {
+  background-color: rgb(39, 34, 34);
+  width: calc(450px / 2);
+  border: none;
+  padding: 4px;
+}
+/*Vendors component*/
+
+.page-wrapper-vendors {
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  padding-top: 40px;
+}
+
+#search-category,
+.search-label {
+  display: block;
+  margin: 5px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+#category {
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.links {
+  color: white;
+  text-decoration-line: none;
+}
+
+.data-table {
+  width: 100%;
+  font-size: 14px;
+}
+
+.search {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin-left: 38.5%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  outline: none;
+}
+
+.page-wrapper label {
+  border: 1px solid transparent;
+}
+
+.table-horizontal-scroll {
+  overflow-x: scroll;
+  width: 100%;
+}
+
+/*Vendor display components*/
+
+.vendor-display-wrapper {
+  height: fit-content;
+  width: fit-content;
+  overflow: hidden;
+  display: inline-block;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.one-vendor {
+  height: 400px;
+  width: 550px;
+  display: inline-block;
+  border: 1px solid whitesmoke;
+  overflow: hidden;
+  margin-left: 6%;
+  margin-bottom: 3%;
+  border-radius: 15px;
+  box-shadow: 2px 4px 10px 2px whitesmoke;
+}
+
+hr{
+  border: 1px solid rgba(212, 210, 210, 0.727);
+}
+
+.one-vendor-carousel img {
+  height: 100px;
+  width: 140px;
+  /* border: 1px solid brown; */
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  background-size: cover;
+}
+
+.one-vendor-image-area {
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  background-color: white;
+  padding-top: 5px;
+  width: 100%;
+  height: fit-content;
+}
+
+.one-vendor-carousel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+}
+
+.one-vendor-image-area::-webkit-scrollbar {
+  display: none;
+}
+
+.vendor-list{
+  list-style-type:none;
+  font-size: 17px;
+}
+
+.vendor-list li{
+  line-height: 6vh;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* .toggle-to-edit{
+  position: fixed;
+} */
+
+a{
+  color: black;
+  text-decoration-line: none;
+}
