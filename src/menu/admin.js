@@ -70,6 +70,7 @@ const Admin = () => {
                     color: "white",
                     marginLeft: "0px",
                     fontSize: "10px",
+                    backgroundColor: "#25D366"
                   }}
                 >
                   <Link to={`/edit-vendor/${item._id}`} className="links">

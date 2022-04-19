@@ -22,8 +22,9 @@ const EditVendor = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/register/`, {ID: params.ID})
+      .get(`http://localhost:8080/register/${params.ID}`)
       .then((res) => {
+        console.log({ID: params.ID})
         const vendorData = res.data;
         console.log(vendorData);
         setVendorID(vendorData.ID);
@@ -41,10 +42,10 @@ const EditVendor = () => {
       });
   }, [params.ID]);
 
-  const handleUpdate = (id, e) => {
+  const handleUpdate = ( e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/register/${ID}`, {
+      .put(`http://localhost:8080/register/${params.ID}`, {
         ID,
         firstName,
         lastName,

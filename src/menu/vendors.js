@@ -105,7 +105,7 @@ const Vendors = () => {
                     <strong>Address</strong>: {business.address}
                   </li>
                   <li>
-                    <strong>Email:</strong>:{business.email}
+                    <strong>Email:</strong> {business.email}
                     {"      "}
                     <Button size="sm" className="contact-btn" style={buttonStyle}>
                       {" "}
@@ -113,7 +113,7 @@ const Vendors = () => {
                     </Button>
                   </li>
                   <li>
-                    <strong>Phone</strong>:{business.businessPhone} {"      "}
+                    <strong>Phone</strong>: {business.businessPhone} {"      "}
                     <Button size="sm" className="contact-btn" style={buttonStyle}>
                       <a href={`tel:${business.businessPhone}`}>Call</a>
                     </Button>

@@ -34,10 +34,8 @@ exports.create = (req, res) => {
 
 //Read (all data)
 exports.findAll = (req, res) => {
-  const vendorID = req.query.ID;
-  var condition = vendorID
-    ? { vendorID: { $regex: new RegExp(vendorID), $options: "i" } }
-    : {};
+  const vendorID = req.query.id;
+  var condition = vendorID ? { vendorID: { $regex: new RegExp(vendorID), $options: "i" } } : {}
   Registered.find(condition)
     .then((data) => {
       res.json(data);
@@ -52,7 +50,7 @@ exports.findAll = (req, res) => {
 //Read (by ID)
 
 exports.findOne = (req, res) => {
-  const id = req.params._id;
+  const id = req.params.id;
   Registered.findById(id).then((data) => {
     !data
       ? res.status(500).json({ message: `Vendor not found!` })
@@ -62,8 +60,7 @@ exports.findOne = (req, res) => {
 
 //Update
 exports.update = (req, res) => {
-  const id = req.params._id;
-
+  const id = req.params.id;
   Registered.findByIdAndUpdate(id, { $set: req.body }, (err, data, next) => {
     if (err) {
       console.log(err);
