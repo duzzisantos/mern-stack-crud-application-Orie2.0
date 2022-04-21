@@ -68,9 +68,8 @@ const EditVendor = () => {
   return (
     <div
       className="page-wrapper-form"
-      onSubmit={(ID, e) => handleUpdate(ID, e)}
     >
-      <form className="update-form" encType="multipart/form-data">
+      <form className="update-form" encType="multipart/form-data" onSubmit={(ID, e) => handleUpdate(ID, e)}>
         <h3>Update Form (Admin)</h3>
         <label htmlFor="vendorID">Your ID:</label>
         <input
