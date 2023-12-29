@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-
 
 const cors = require("cors");
 const db = require("./models");
@@ -10,11 +10,10 @@ const mongoSanitize = require("express-mongo-sanitize");
 const bodyParser = require("body-parser"),
   fs = require("fs"),
   multer = require("multer");
-const jsxViews = require("express-react-views");
 
 //database connection settings
 db.mongoose
-  .connect(db.url, {
+  .connect(db.url ?? process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -79,11 +78,6 @@ app.use(
 app.use(helmet.noSniff()); //mitigates data sniffing by hackers
 app.use(helmet.xssFilter()); //prevents cross-site scripting
 
-//React view engine
-app.set("views", __dirname + "/views");
-app.set("view engine", "jsx");
-app.engine("jsx", jsxViews.createEngine());
-
 app.post("/menu", (req, res) => {
   res.render("menu");
 });
@@ -94,8 +88,6 @@ app.get("/", (req, res) => {
     Author: "Duzie Uche-Abba",
   });
 });
-
-
 
 //http requests
 
@@ -137,8 +129,8 @@ app.post("/register/photos", upload.single("photos"), (req, res, next) => {
 
 //REST API routes
 require("./routes/register")(app);
-require("./routes/user")(app);
-require("./routes/login")(app);
+require("./routes/signup")(app);
+// require("./routes/login")(app);
 
 const PORT = 8080;
 app.listen(PORT, (err) => {

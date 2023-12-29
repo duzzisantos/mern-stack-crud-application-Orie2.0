@@ -1,20 +1,30 @@
-module.exports = (mongoose) => {
-  const RegisterVendor = mongoose.model(
-    "register",
-    mongoose.Schema(
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const RegisterVendor = new Schema(
+  {
+    ID: Number,
+    firstName: String,
+    lastName: String,
+    businessName: String,
+    address: String,
+    email: String,
+    businessPhone: Number,
+    category: String,
+    photos: [
       {
-        ID: Number,
-        firstName: String,
-        lastName: String,
-        businessName: String,
-        address: String,
-        email: String,
-        businessPhone: Number,
-        category: String,
-        photos: String,
+        _id: {
+          type: Schema.Types.ObjectId,
+          default: mongoose.Types.ObjectId,
+        },
+        url: {
+          type: String,
+          required: false,
+        },
       },
-      { timestamps: true }
-    )
-  );
-  return RegisterVendor;
-};
+    ],
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("registered-business", RegisterVendor);
