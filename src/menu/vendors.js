@@ -7,20 +7,19 @@ import { Button } from "react-bootstrap";
 const Vendors = () => {
   const [vendor, setVendor] = useState([]);
   const [search, setSearch] = useState("");
-  const getVendorData = async () => {
-    try {
-      const res = await axios.get("http://localhost:8080/register");
-      console.log(res.statusText);
-      setVendor(res.data);
-
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
+    const getVendorData = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/api/register");
+        console.log(res.statusText);
+        setVendor(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     getVendorData();
-  });
+  }, []);
 
   const buttonStyle = {
     backgroundColor: "transparent",
@@ -30,9 +29,9 @@ const Vendors = () => {
     width: "80px",
     color: "gray",
     marginLeft: "10px",
-    fontSize: "12px"
-  }
-  
+    fontSize: "12px",
+  };
+
   return (
     <div className="page-wrapper-vendors">
       <h3>Search for vendors</h3>
@@ -107,14 +106,22 @@ const Vendors = () => {
                   <li>
                     <strong>Email:</strong> {business.email}
                     {"      "}
-                    <Button size="sm" className="contact-btn" style={buttonStyle}>
+                    <Button
+                      size="sm"
+                      className="contact-btn"
+                      style={buttonStyle}
+                    >
                       {" "}
                       <a href={`mailto:${business.email}`}>Send</a>
                     </Button>
                   </li>
                   <li>
                     <strong>Phone</strong>: {business.businessPhone} {"      "}
-                    <Button size="sm" className="contact-btn" style={buttonStyle}>
+                    <Button
+                      size="sm"
+                      className="contact-btn"
+                      style={buttonStyle}
+                    >
                       <a href={`tel:${business.businessPhone}`}>Call</a>
                     </Button>
                   </li>

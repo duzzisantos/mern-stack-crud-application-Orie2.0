@@ -1,7 +1,8 @@
 module.exports = (app) => {
   var router = require("express").Router();
-  const registration = require("../models/register");
+  const registration = require("../controllers/register");
 
   router.post("/", registration.create);
-  app.use("/api/signup", router);
+  router.get("/", registration.findAll);
+  app.use("/api/register", router);
 };

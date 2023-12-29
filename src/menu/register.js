@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "react-bootstrap";
 import axios from "axios";
 import "../App.css";
-import qs from "qs";
 
 const Register = () => {
   const [vendor, setVendor] = useState({
@@ -17,9 +16,10 @@ const Register = () => {
     photos: "",
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios
-      .post("http://localhost:8080/register", qs.stringify(vendor))
+      .post("http://localhost:8080/api/register", vendor)
       .then((res) => {
         console.log(res.data);
         console.log(vendor);

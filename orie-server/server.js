@@ -30,7 +30,7 @@ db.mongoose
     }
   });
 var corsOptions = {
-  origin: "http://localhost:8080",
+  origin: "http://localhost:3000/",
 };
 
 //s*8#e%^#c*/u65)r(_+i@#t*/*/(y@^& parameters

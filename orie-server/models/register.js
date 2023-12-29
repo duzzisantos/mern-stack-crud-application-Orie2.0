@@ -11,18 +11,19 @@ const RegisterVendor = new Schema(
     email: String,
     businessPhone: Number,
     category: String,
-    photos: [
-      {
-        _id: {
-          type: Schema.Types.ObjectId,
-          default: mongoose.Types.ObjectId,
-        },
-        url: {
-          type: String,
-          required: false,
-        },
-      },
-    ],
+    photos: String,
+    // photos: [
+    //   {
+    //     _id: {
+    //       type: Schema.Types.ObjectId,
+    //       default: mongoose.Types.ObjectId,
+    //     },
+    //     url: {
+    //       type: String,
+    //       required: false,
+    //     },
+    //   },
+    // ],
   },
   { timestamps: true }
 );

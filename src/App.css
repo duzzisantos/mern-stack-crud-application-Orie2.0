@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Inter:wght@300&family=Nunito+Sans:wght@300&family=Poppins:wght@200;300&family=Roboto&family=Roboto+Serif:wght@300&family=Ubuntu:wght@300&display=swap");
 
 * {
-  font-family: "Inter", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 .App {
   height: fit-content;
@@ -14,7 +14,7 @@
 .footer-wrapper {
   height: 50px;
   width: 100%;
-  background-color: rgba(32,45,49);
+  background-color: rgba(32, 45, 49);
   list-style-type: none;
   overflow: hidden;
 }
@@ -81,7 +81,8 @@ img {
 }
 
 h1,
-h3, h5 {
+h3,
+h5 {
   text-align: center;
   font-size: 40px;
   line-height: 11vh;
@@ -115,7 +116,9 @@ h3, h5 {
   bottom: 0;
 }
 
-.registration-form, .signup-form, .update-form {
+.registration-form,
+.signup-form,
+.update-form {
   display: block;
   color: rgba(0, 0, 0, 0.9);
   background-color: whitesmoke;
@@ -125,9 +128,14 @@ h3, h5 {
   /* margin-left: 33%; */
 }
 
-.registration-form label, .signup-form label, .update-form label,
-.registration-form input, .signup-form input, .update-form input,
-.registration-form select, .update-form select{
+.registration-form label,
+.signup-form label,
+.update-form label,
+.registration-form input,
+.signup-form input,
+.update-form input,
+.registration-form select,
+.update-form select {
   display: block;
   margin: 3px;
   margin-left: calc(
@@ -140,7 +148,9 @@ h3, h5 {
   border-radius: 10px;
 }
 
-#register-btn, #signup-btn, #update-btn {
+#register-btn,
+#signup-btn,
+#update-btn {
   width: 130px;
   padding: 4px;
   margin-left: 56px;
@@ -152,7 +162,7 @@ h3, h5 {
   font-size: 1rem;
 }
 
-.link{
+.link {
   display: inline-block;
   text-align: center;
   width: 225px;
@@ -164,10 +174,10 @@ h3, h5 {
   font-weight: 600;
 }
 
-.link:hover{
+.link:hover {
   color: white;
 }
-.signup-form{
+.signup-form {
   margin-bottom: 53px;
 }
 
@@ -184,7 +194,7 @@ h3, h5 {
   bottom: 0;
 }
 
-.login-signup{
+.login-signup {
   height: 505px;
   display: block;
   color: rgba(0, 0, 0, 0.9);
@@ -194,7 +204,7 @@ h3, h5 {
   margin-bottom: 30px;
 }
 
-#users-link-holder{
+#users-link-holder {
   height: 60px;
   width: 100%;
   background-color: rgb(39, 34, 34);
@@ -202,7 +212,8 @@ h3, h5 {
   color: whitesmoke;
 }
 
-.users-link-btn1, .users-link-btn2 {
+.users-link-btn1,
+.users-link-btn2 {
   background-color: rgb(39, 34, 34);
   width: calc(450px / 2);
   border: none;
@@ -292,7 +303,7 @@ h3, h5 {
   box-shadow: 2px 4px 10px 2px whitesmoke;
 }
 
-hr{
+hr {
   border: 1px solid rgba(212, 210, 210, 0.727);
 }
 
@@ -328,12 +339,12 @@ hr{
   display: none;
 }
 
-.vendor-list{
-  list-style-type:none;
+.vendor-list {
+  list-style-type: none;
   font-size: 17px;
 }
 
-.vendor-list li{
+.vendor-list li {
   line-height: 6vh;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -342,7 +353,7 @@ hr{
   position: fixed;
 } */
 
-a{
+a {
   color: black;
   text-decoration-line: none;
 }

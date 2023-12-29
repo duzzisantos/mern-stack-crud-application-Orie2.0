@@ -1,5 +1,4 @@
-const db = require("../models");
-const Registered = db.register;
+const Registered = require("../models/register");
 
 exports.create = (req, res) => {
   if (!req.body) {
@@ -35,7 +34,9 @@ exports.create = (req, res) => {
 //Read (all data)
 exports.findAll = (req, res) => {
   const vendorID = req.query.id;
-  var condition = vendorID ? { vendorID: { $regex: new RegExp(vendorID), $options: "i" } } : {}
+  var condition = vendorID
+    ? { vendorID: { $regex: new RegExp(vendorID), $options: "i" } }
+    : {};
   Registered.find(condition)
     .then((data) => {
       res.json(data);
@@ -67,9 +68,7 @@ exports.update = (req, res) => {
       return next(err);
     } else {
       res.status(200).json(data);
-      console.log(
-        `Vendor information was updated successfully!`
-      );
+      console.log(`Vendor information was updated successfully!`);
     }
   });
 };
@@ -81,10 +80,8 @@ exports.delete = (req, res) => {
     .then((data) => {
       !data
         ? res.status(404).json({ message: `ID ${id} not found!` })
-        : res
-            .status(200)
-            .json(data);
-            console.log("Vendor information was deleted successfully!")
+        : res.status(200).json(data);
+      console.log("Vendor information was deleted successfully!");
     })
     .catch((err) => {
       res.status(500).json({
