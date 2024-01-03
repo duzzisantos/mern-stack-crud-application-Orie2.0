@@ -1,30 +1,53 @@
 import "./App.css";
 import "react-bootstrap";
 import React from "react";
-import NavBarComponent from "./reusable-comps/navbar";
-
+import Navigation from "./authentication/Navigation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./authentication/firebase";
 import Home from "./menu/home";
-import Register from "./menu/register";
 import Vendors from "./menu/vendors";
+import Register from "./menu/register";
 import FooterComponent from "./reusable-comps/footer";
 import Admin from "./menu/admin";
 import Users from "./menu/users";
 import EditVendor from "./menu/edit-vendor";
+import Login from "./authentication/Login";
+import Signup from "./authentication/Signup";
 
 function App() {
+  const [user] = useAuthState(auth);
+  const { pathname } = window.location;
+
+  console.log(user);
   return (
     <BrowserRouter>
-      <div className="App">
-        <NavBarComponent />
+      <div className="App vh-100">
+        {user && <Navigation />}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="home" element={<Home />} />
           <Route path="users/*" element={<Users />} />
-          <Route path="register" element={<Register />} />
           <Route path="vendors" element={<Vendors />} />
-          <Route path="admin/*" element={ < Admin />} />
+          <Route path="admin/*" element={<Admin />} />
           <Route path="/edit-vendor/:ID" element={<EditVendor />} />
+          {!user && pathname === "/login" ? (
+            <Route path="/login" element={<Login />} />
+          ) : !user && pathname === "/signup" ? (
+            <Route path="/signup" element={<Signup />} />
+          ) : !user && pathname === "/" ? (
+            <Route path="/" element={<Home />} />
+          ) : (
+            user && (
+              <>
+                {" "}
+                <Route path="home" element={<Home />} />
+                <Route path="register" element={<Register />} />
+                <Route path="users/*" element={<Users />} />
+                <Route path="vendors" element={<Vendors />} />
+                <Route path="admin/*" element={<Admin />} />
+                <Route path="/edit-vendor/:ID" element={<EditVendor />} />
+              </>
+            )
+          )}
         </Routes>
 
         <FooterComponent />
