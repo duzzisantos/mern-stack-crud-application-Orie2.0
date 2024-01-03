@@ -8,8 +8,8 @@ const NavBarComponent = () => {
     <>
       <Navbar bg="warning" fixed>
         <Container>
-          <Navbar.Brand as={Link} to="home" style={{ fontSize: "30px" }}>
-            ⓄRIE
+          <Navbar.Brand as={Link} to="home" className="fs-2">
+            Dugam
           </Navbar.Brand>
           <Navbar.Toggle />
           <Nav className="me-auto fw-bold">
