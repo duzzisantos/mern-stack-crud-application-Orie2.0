@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Inter:wght@300&family=Nunito+Sans:wght@300&family=Poppins:wght@200;300&family=Roboto&family=Roboto+Serif:wght@300&family=Ubuntu:wght@300&display=swap");
 
 * {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
 }
 .App {
   height: fit-content;
