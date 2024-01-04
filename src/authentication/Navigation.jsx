@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Link } from "react-router-dom";
 
 const Navigation = () => {
@@ -36,13 +37,21 @@ const Navigation = () => {
   //   const loginDate = Number(user.reloadUserInfo.lastLoginAt);
   return (
     <>
-      <Navbar bg="warning" fixed>
+      <Navbar bg="warning" className="py-0" sticky="top">
         <Container>
           <Navbar.Brand as={Link} to="home" className="fs-2">
             Dugam
+            <span className=" position-relative">
+              <Brilliance className="fs-2" />
+              <Brilliance
+                className="fs-2"
+                style={{ marginTop: "-24px", marginLeft: "-8.5px" }}
+              />
+              <Brilliance className="fs-2" style={{ marginLeft: "-11px" }} />
+            </span>
           </Navbar.Brand>
           <Navbar.Toggle />
-          <Nav className="me-auto fw-bold">
+          <Nav className="me-auto fw-bold hstack">
             <Nav.Link as={Link} to="home">
               Home
             </Nav.Link>
@@ -55,8 +64,12 @@ const Navigation = () => {
             <Nav.Link as={Link} to="admin">
               Admin
             </Nav.Link>
+          </Nav>
+          <div>
             <span>{name}</span>
             <Button
+              variant="dark"
+              className="mx-auto"
               onClick={() => {
                 logout();
                 navigate("/");
@@ -64,7 +77,7 @@ const Navigation = () => {
             >
               Logout
             </Button>
-          </Nav>
+          </div>
         </Container>
       </Navbar>
     </>

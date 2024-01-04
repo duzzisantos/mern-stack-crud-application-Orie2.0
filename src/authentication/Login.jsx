@@ -16,25 +16,26 @@ const Login = () => {
     if (loading) {
       return;
     }
-    if (user) navigate("/profile");
+    if (user) navigate("/home");
   });
   return (
-    <div>
-      <div className="me-auto mx-3 d-flex">
-        <a href="/" className="btn bg-transparent border border-secondary">
+    <div className="col-12">
+      <div className="mx-5 pt-3 d-flex">
+        <a href="/" className="text-decoration-none text-dark">
           <ArrowLeft /> Home
         </a>
       </div>
-      <div className="d-flex justify-content-center align-items-center vh-100">
+      <div className="d-flex flex-column justify-content-center align-items-center vh-100">
         <Form
-          className="col-lg-5 col-md-4 p-4 shadow-sm border rounded-3 text-secondary"
+          className="col-lg-5 col-md-4 p-4 shadow-sm border rounded-3 text-dark"
           style={{ height: "fit-content" }}
         >
           <div className="justify-content-start d-flex flex-column">
-            <h3 className="fw-bold">Login to Ventorify</h3>
+            <h3 className="fw-bold">Login to Dugam</h3>
             <Form.Label htmlFor="login-email">Email</Form.Label>
             <Form.Control
               type="text"
+              placeholder="Eg: john.doe@example.net"
               id="login-email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -45,6 +46,7 @@ const Login = () => {
             <Form.Label htmlFor="login-password">Password</Form.Label>
             <Form.Control
               type="password"
+              placeholder="Must be at least 6 characters"
               id="login-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -54,8 +56,8 @@ const Login = () => {
 
           <Button
             size="md"
-            variant="success"
-            className="mt-3 d-block"
+            variant="warning"
+            className="mt-4 d-block"
             onClick={() => {
               logInWithEmailAndPassword(email, password);
               navigate("/home");
@@ -65,7 +67,7 @@ const Login = () => {
             Login
           </Button>
 
-          <div className="hstack gap-2 d-flex mt-5 justify-content-between">
+          <div className="hstack gap-2 d-flex mt-4 justify-content-between">
             <Button
               onClick={() => {
                 signInWithGoogle();

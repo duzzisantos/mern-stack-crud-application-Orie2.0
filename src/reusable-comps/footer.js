@@ -1,25 +1,20 @@
 import "../App.css";
 import React from "react";
-import {Link} from "react-router-dom"
+
 // import Home from "../menu/home";
 // import Admin from "../menu/admin";
 
 const FooterComponent = () => {
   return (
-    <div className="footer-wrapper">
-      <ul className="footer-list">
-          <li><Link to="admin" className="footer-link">Partners</Link></li>
-          <li><Link to="home" className="footer-link">Terms & conditions</Link></li>
-          <li><Link to="home" className="footer-link">Privacy policy</Link></li>
-      </ul>
-      {/* make sure you edit these routes */}
-      {/* <Routes>
-          <Route path="admin" element={<Admin/>}/>
-          <Route path="home" element={<Home/>}/>
-          <Route path="home" element={<Home/>}/>
-      </Routes> */}
+    <div className="col-12 bg-black py-3 text-light">
+      <div className="d-flex flex-row justify-content-center hstack gap-4">
+        <small>Partners</small>
+        <small>Terms & conditions</small>
+        <small>Privacy policy</small>
+        <small>Designed by Duzie Uche-Abba &copy; 2022</small>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default FooterComponent
+export default FooterComponent;

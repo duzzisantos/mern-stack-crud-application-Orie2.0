@@ -29,22 +29,23 @@ const Signup = () => {
   });
 
   return (
-    <div>
-      <div className="me-auto mx-3 d-flex">
-        <a href="/" className="btn bg-transparent border border-secondary">
+    <div className="col-12">
+      <div className="mx-5 d-flex pt-3">
+        <a href="/" className="text-decoration-none text-dark">
           <ArrowLeft /> Home
         </a>
       </div>
       <div className="d-flex flex-column justify-content-center align-items-center vh-100">
         <Form
-          className="col-lg-5 col-md-4 p-4 shadow-sm border rounded-3 text-secondary"
+          className="col-lg-5 col-md-4 p-4 shadow-sm border rounded-3 text-dark"
           style={{ height: "fit-content" }}
         >
           <div className="justify-content-start d-flex flex-column">
-            <h3 className="fw-bold">Sign up</h3>
+            <h3 className="fw-bold">Sign up to Dugam</h3>
             <Form.Label htmlFor="fullName">Full Name</Form.Label>
             <Form.Control
               type="text"
+              placeholder="Eg: John Doe"
               id="fullName"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -53,7 +54,8 @@ const Signup = () => {
           <div className="justify-content-start d-flex flex-column">
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
+              placeholder="Eg: john.doe@example.net"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -63,23 +65,24 @@ const Signup = () => {
             <Form.Label htmlFor="password">Password</Form.Label>
             <Form.Control
               type="password"
+              placeholder="Must contain at least 6 characters"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <div className="hstack gap-2 d-flex mt-5 justify-content-between">
-            <Button className="btn-success" onClick={register}>
+          <div className="vstack gap-2 mt-4">
+            <Button className="btn-warning w-25" onClick={register}>
               Signup
             </Button>
-            <span className="register-span">
-              Already have an account?{" "}
-              <a href="/login" className="link">
+            <div className="text-dark hstack gap-3">
+              <span>Already have an account? </span>
+              <a href="/login" className="text-primary">
                 Login
               </a>{" "}
               now.
-            </span>
+            </div>
           </div>
         </Form>
       </div>
