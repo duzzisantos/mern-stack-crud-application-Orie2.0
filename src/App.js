@@ -10,7 +10,7 @@ import Vendors from "./menu/vendors";
 import Register from "./menu/register";
 import FooterComponent from "./reusable-comps/footer";
 import Admin from "./menu/admin";
-
+import Connect from "./menu/Connect";
 import EditVendor from "./menu/edit-vendor";
 import Login from "./authentication/Login";
 import Signup from "./authentication/Signup";
@@ -35,8 +35,9 @@ function App() {
               <>
                 {" "}
                 <Route path="home" element={<Home />} />
-                <Route path="register" element={<Register />} />
+                <Route path="register" element={<Register user={user} />} />
                 <Route path="vendors" element={<Vendors />} />
+                <Route path="connect" element={<Connect user={user} />} />
                 <Route path="admin/*" element={<Admin />} />
                 <Route path="/edit-vendor/:ID" element={<EditVendor />} />
               </>

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { auth } from "../authentication/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import "react-bootstrap";
 import axios from "axios";
 import "../App.css";
 import { Button, Container, Form } from "react-bootstrap";
 
-const Register = () => {
-  const [user] = useAuthState(auth);
+const Register = ({ user }) => {
   const [userId, setUserId] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
@@ -32,7 +29,6 @@ const Register = () => {
     getCustomer();
   }, [user.email]);
 
-  console.log(userId, userEmail, userName);
   //Form input states for updating user account with newly registered business
   const [vendor, setVendor] = useState({
     businessID: `${Date.now()}`,
@@ -91,7 +87,7 @@ const Register = () => {
   return (
     <Container fluid className="col-12 px-0 d-flex justify-content-center">
       <div className="mt-3 py-5 col-lg-6 col-sm-12 col-md-10">
-        <h1>Register a business</h1>
+        <h1>Add Business</h1>
         <Form
           onSubmit={handleSubmit}
           encType="multipart/form-data"

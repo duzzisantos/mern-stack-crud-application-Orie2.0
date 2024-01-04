@@ -9,11 +9,11 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Link } from "react-router-dom";
 import {
+  BuildingUp,
   CartCheck,
-  Gear,
   House,
   PencilSquare,
-  PlusSquare,
+  PlusCircle,
 } from "react-bootstrap-icons";
 
 const Navigation = () => {
@@ -81,16 +81,16 @@ const Navigation = () => {
               <House /> Home
             </Nav.Link>
             <Nav.Link as={Link} to="register">
-              <PencilSquare /> Register
+              <PencilSquare /> Add Business
             </Nav.Link>
             <Nav.Link as={Link} to="vendors">
               <CartCheck /> Vendors
             </Nav.Link>
-            <Nav.Link as={Link} to="admin">
-              <PlusSquare /> Connect
+            <Nav.Link as={Link} to="connect">
+              <PlusCircle /> Connect
             </Nav.Link>
             <Nav.Link as={Link} to="admin">
-              <Gear /> Admin
+              <BuildingUp /> My Business
             </Nav.Link>
           </Nav>
           <div className="hstack gap-2">
