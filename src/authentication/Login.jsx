@@ -56,8 +56,7 @@ const Login = () => {
 
           <Button
             size="md"
-            variant="warning"
-            className="mt-4 d-block"
+            className="mt-4 d-block custom-purple border-0"
             onClick={() => {
               logInWithEmailAndPassword(email, password);
               navigate("/home");

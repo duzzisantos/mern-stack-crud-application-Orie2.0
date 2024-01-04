@@ -1,6 +1,6 @@
-import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { db, auth, logout } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [user, loading] = useAuthState(auth);
+  const [customerData, setCustomerData] = useState([]);
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -34,10 +35,27 @@ const Navigation = () => {
     }
   }, [loading, user, navigate]);
 
-  //   const loginDate = Number(user.reloadUserInfo.lastLoginAt);
+  useEffect(() => {
+    const getCustomer = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/api/signup?userEmail=${user.email}`
+        );
+        if (res.status !== 200) {
+          throw new Error(`${res.status} ${res.statusText}`);
+        } else {
+          setCustomerData(res.data);
+        }
+      } catch (err) {
+        console.warn(err.response);
+      }
+    };
+    getCustomer();
+  }, [user.email]);
+
   return (
-    <>
-      <Navbar bg="warning" className="py-0" sticky="top">
+    <Container fluid className="col-12 px-0">
+      <Navbar className="py-0 custom-yellow" sticky="top">
         <Container>
           <Navbar.Brand as={Link} to="home" className="fs-2">
             Dugam
@@ -65,11 +83,11 @@ const Navigation = () => {
               Admin
             </Nav.Link>
           </Nav>
-          <div>
-            <span>{name}</span>
+          <div className="hstack gap-2">
+            <small>{customerData[0]?.userName ?? name}</small>
             <Button
-              variant="dark"
-              className="mx-auto"
+              size="sm"
+              className="mx-auto custom-purple border-0"
               onClick={() => {
                 logout();
                 navigate("/");
@@ -80,7 +98,7 @@ const Navigation = () => {
           </div>
         </Container>
       </Navbar>
-    </>
+    </Container>
   );
 };
 

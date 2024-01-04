@@ -5,6 +5,7 @@ import { auth, registerWithEmailAndPassword } from "./firebase";
 import "../App.css";
 import { Button, Form } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
+import axios from "axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,19 @@ const Signup = () => {
     } else {
       registerWithEmailAndPassword(name, email, password);
     }
+  };
+
+  const handleRegisterClient = () => {
+    const postObject = {
+      userId: `${Date.now()}`,
+      userEmail: email,
+      userName: name,
+    };
+
+    axios
+      .post("http://localhost:8080/api/signup", postObject)
+      .then((res) => console.log(res.statusText))
+      .catch((err) => console.log(err.message));
   };
 
   useEffect(() => {
@@ -54,7 +68,7 @@ const Signup = () => {
           <div className="justify-content-start d-flex flex-column">
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
-              type="email"
+              type="text"
               placeholder="Eg: john.doe@example.net"
               id="email"
               value={email}
@@ -73,7 +87,13 @@ const Signup = () => {
           </div>
 
           <div className="vstack gap-2 mt-4">
-            <Button className="btn-warning w-25" onClick={register}>
+            <Button
+              className="custom-purple border-0 w-25"
+              onClick={() => {
+                register();
+                handleRegisterClient();
+              }}
+            >
               Signup
             </Button>
             <div className="text-dark hstack gap-3">

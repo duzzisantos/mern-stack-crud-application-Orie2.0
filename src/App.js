@@ -19,7 +19,6 @@ function App() {
   const [user] = useAuthState(auth);
   const { pathname } = window.location;
 
-  console.log(user);
   return (
     <BrowserRouter>
       <div className="App vh-100">
