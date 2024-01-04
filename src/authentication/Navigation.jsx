@@ -8,6 +8,13 @@ import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Link } from "react-router-dom";
+import {
+  CartCheck,
+  Gear,
+  House,
+  PencilSquare,
+  PlusSquare,
+} from "react-bootstrap-icons";
 
 const Navigation = () => {
   const [user, loading] = useAuthState(auth);
@@ -71,16 +78,19 @@ const Navigation = () => {
           <Navbar.Toggle />
           <Nav className="me-auto fw-bold hstack">
             <Nav.Link as={Link} to="home">
-              Home
+              <House /> Home
             </Nav.Link>
             <Nav.Link as={Link} to="register">
-              Register
+              <PencilSquare /> Register
             </Nav.Link>
             <Nav.Link as={Link} to="vendors">
-              Vendors
+              <CartCheck /> Vendors
             </Nav.Link>
             <Nav.Link as={Link} to="admin">
-              Admin
+              <PlusSquare /> Connect
+            </Nav.Link>
+            <Nav.Link as={Link} to="admin">
+              <Gear /> Admin
             </Nav.Link>
           </Nav>
           <div className="hstack gap-2">
