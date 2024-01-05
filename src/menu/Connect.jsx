@@ -1,8 +1,36 @@
+import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { PlusCircle } from "react-bootstrap-icons";
 import SuggestedFollows from "../reusable-comps/SuggestedFollows";
+import axios from "axios";
 
 const Connect = ({ user }) => {
+  const [businesses, setBusinesses] = useState([]);
+
+  useEffect(() => {
+    const getBusinesses = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/register`);
+        if (response.status !== 200) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        } else {
+          setBusinesses(response.data);
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+    getBusinesses();
+  }, []);
+
+  const suggestedBusinesses = () => {
+    const result = [];
+    businesses.forEach((company) => {
+      result.push(company[0]);
+    });
+    return result;
+  };
+
   return (
     <Container
       fluid
@@ -20,8 +48,15 @@ const Connect = ({ user }) => {
         <div className="bg-secondary bg-opacity-10 w-100 p-1  rounded-top-2">
           <h2 className="fs-6 fw-semibold ">Suggested customers</h2>
         </div>
-        <div className="col-12 px-3">
-          <SuggestedFollows user={user} />
+        <div className="col-12 px-3 gap-3 vstack">
+          {suggestedBusinesses().map((item, i) => (
+            <SuggestedFollows
+              key={i}
+              user={user}
+              businessName={item.businessName}
+              category={item.category}
+            />
+          ))}
         </div>
       </section>
     </Container>

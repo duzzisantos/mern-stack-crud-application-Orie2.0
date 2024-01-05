@@ -1,10 +1,12 @@
 import { Card, Button } from "react-bootstrap";
-import { Plus, Search } from "react-bootstrap-icons";
+import { BuildingsFill, Plus, Search } from "react-bootstrap-icons";
 
 const SuggestedFollows = ({ user, businessName, category }) => {
   return (
-    <Card className="bg-transparent p-2 gap-2 shadow-sm border-0">
-      <p className="text-secondary">{businessName ?? "My Business Limited"}</p>
+    <Card className="bg-transparent p-2 gap-2 shadow-sm border">
+      <p className="text-secondary">
+        <BuildingsFill /> {businessName ?? "My Business Limited"}
+      </p>
       <small className="text-secondary">{category ?? "Financial"}</small>
       <div className="d-flex justify-content-start gap-2">
         <Button
@@ -16,13 +18,9 @@ const SuggestedFollows = ({ user, businessName, category }) => {
           Follow
         </Button>
         {user && (
-          <Button
-            size="sm"
-            variant="transparent"
-            className="border border-secondary"
-          >
+          <Button size="sm" variant="secondary" className="border-0">
             <Search />
-            <a className="text-decoration-none text-dark" href="/">
+            <a className="text-decoration-none text-light" href="/">
               View
             </a>
           </Button>
