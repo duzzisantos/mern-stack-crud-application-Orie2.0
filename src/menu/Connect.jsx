@@ -9,10 +9,12 @@ import SuggestedFollows from "../reusable-comps/SuggestedFollows";
 import axios from "axios";
 import Timeline from "../reusable-comps/Timeline";
 import CustomerHero from "../components/CustomerHero";
+import useGetFollowCount from "../helpers/getFollowCount";
 
 const Connect = ({ user }) => {
   const [businesses, setBusinesses] = useState([]);
   const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
 
   //Fetch all businesses registered
   useEffect(() => {
@@ -31,11 +33,13 @@ const Connect = ({ user }) => {
     getBusinesses();
   }, []);
 
-  //Fetch all the followers
+  //Fetch all the users following current user
   useEffect(() => {
     const getFollowers = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/followers`);
+        const response = await axios.get(
+          `http://localhost:8080/api/followers/get-followers`
+        );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
@@ -48,6 +52,25 @@ const Connect = ({ user }) => {
     getFollowers();
   }, []);
 
+  //Fetch all users current user is following
+  useEffect(() => {
+    const getFollowing = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/followers/get-following`
+        );
+        if (response.status !== 200) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        } else {
+          setFollowing(response.data);
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+    getFollowing();
+  }, []);
+
   const suggestedBusinesses = () => {
     const result = [];
     businesses.forEach((company) => {
@@ -57,10 +80,11 @@ const Connect = ({ user }) => {
   };
 
   const currentCustomer = suggestedBusinesses()
-    .filter((element) => element?.email === user?.email)
+    .filter((element) => element.email === user.email)
     .map((x) => x)[0];
 
-  const countFollowers = followers.length;
+  const countFollowers = useGetFollowCount(followers, user);
+  const countFollowing = useGetFollowCount(following, user);
 
   return (
     <Container
@@ -78,12 +102,13 @@ const Connect = ({ user }) => {
           <small className="fs-6">Following</small>
         </div>
       </section>
-      <section className="col-8 my-3 rounded-2 px-0">
+      <section className="col-9 my-3 rounded-2 px-0">
         <CustomerHero
           email={currentCustomer?.email}
           businessName={currentCustomer?.businessName}
           category={currentCustomer?.category}
-          followers={countFollowers}
+          followers={countFollowers.length}
+          following={countFollowing.length}
         />
         <div className="border overflow-y-auto">
           <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
@@ -105,17 +130,18 @@ const Connect = ({ user }) => {
           <h2 className="fs-6 fw-semibold ">Suggested customers</h2>
         </div>
         <div className="col-12 px-3 gap-3 vstack bg-light-subtle">
-          {suggestedBusinesses()
-            .filter((item) => item?.email !== user?.email)
-            .map((item, i) => (
-              <SuggestedFollows
-                key={i}
-                user={user}
-                businessName={item?.businessName}
-                category={item.category}
-                email={item.email}
-              />
-            ))}
+          {suggestedBusinesses().length > 1 &&
+            suggestedBusinesses()
+              .filter((item) => item?.email !== user?.email)
+              .map((item, i) => (
+                <SuggestedFollows
+                  key={i}
+                  user={user}
+                  businessName={item?.businessName}
+                  category={item.category}
+                  email={item.email}
+                />
+              ))}
         </div>
       </section>
     </Container>

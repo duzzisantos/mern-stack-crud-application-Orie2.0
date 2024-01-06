@@ -36,7 +36,7 @@ const CustomerHero = ({
           <small>
             <BuildingsFill /> {businessName}
           </small>
-          <small>
+          <small className="text-primary">
             <CartPlusFill /> {category}
           </small>
           <div className="d-flex justify-content-between">

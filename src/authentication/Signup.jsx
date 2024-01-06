@@ -37,9 +37,8 @@ const Signup = () => {
   useEffect(() => {
     if (loading) {
       return;
-    } else if (user) {
-      navigate("/home");
     }
+    if (user) navigate("/register");
   });
 
   return (
