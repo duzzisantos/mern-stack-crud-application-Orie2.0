@@ -14,7 +14,7 @@ const CustomerHero = ({
   following,
 }) => {
   return (
-    <div className="rounded-1 mb-3 px-3 py-2 border col-lg-4 shadow-lg col-sm-12">
+    <div className="rounded-1 mb-3 px-3 py-2 border col-lg-12 shadow-sm col-sm-12">
       <h1 className="fs-4">{userName}</h1>
       <fieldset className="d-flex gap-4">
         <legend
