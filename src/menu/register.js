@@ -53,13 +53,11 @@ const Register = ({ user }) => {
   });
 
   //Submit form to update
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     axios
       .post("http://localhost:8080/api/register", formData)
       .then((res) => {
         console.log(res.data);
-        console.log(vendor);
       })
       .catch((error) => {
         console.log(error.message);
@@ -97,6 +95,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="businessID">Business ID:</Form.Label>
             <Form.Control
               type="number"
+              className="rounded-0"
               value={vendor.businessID}
               id="businessID"
               name="businessID"
@@ -111,6 +110,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="firstName">First Name:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="firstName"
               name="firstName"
@@ -128,6 +128,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="lastname">Last Name:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="lastName"
               name="lastName"
@@ -146,6 +147,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="businessname">Business Name:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="businessName"
               name="businessName"
@@ -164,6 +166,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="address">Address:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="address"
               name="address"
@@ -182,6 +185,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="city">City:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="city"
               name="city"
@@ -198,6 +202,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="state">State:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="state"
               name="state"
@@ -214,6 +219,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="email">Email:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="email"
               name="email"
@@ -228,6 +234,7 @@ const Register = ({ user }) => {
             <Form.Label htmlFor="businessPhone">Business Phone:</Form.Label>
             <Form.Control
               type="text"
+              className="rounded-0"
               required
               id="businessPhone"
               name="businessPhone"
@@ -241,6 +248,7 @@ const Register = ({ user }) => {
           <Form.Label htmlFor="category">Category:</Form.Label>
           <Form.Select
             id="category"
+            className="rounded-0"
             required
             value={vendor.category}
             onChange={(e) => setVendor({ ...vendor, category: e.target.value })}
@@ -256,15 +264,13 @@ const Register = ({ user }) => {
           </small>
           <Form.Control
             type="file"
+            className="rounded-0"
             name="photos"
             accept=".jpeg, .jpg, .png, .pdf, .docx, .pptx"
             value={vendor.image}
             onChange={(e) => setVendor({ ...vendor, image: e.target.value })}
           />
-          <Button
-            type="submit"
-            className="w-25 custom-yellow text-dark border-0"
-          >
+          <Button type="submit" className="w-25 custom-pry rounded-0 border-0">
             Submit
           </Button>
         </Form>

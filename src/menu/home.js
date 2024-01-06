@@ -10,11 +10,7 @@ const Home = () => {
   return (
     <Container fluid className="col-12 px-0">
       {!user && (
-        <Navbar
-          fixed
-          className="w-100 py-1 custom-yellow shadow-sm"
-          sticky="top"
-        >
+        <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top">
           <Container className="d-flex justify-content-between">
             <Navbar.Brand as={Link} to="home" className="hstack">
               <span className="fs-2">Dugam</span>

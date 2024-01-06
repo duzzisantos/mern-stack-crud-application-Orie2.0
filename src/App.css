@@ -2,17 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Inter:wght@300&family=Nunito+Sans:wght@300&family=Poppins:wght@200;300&family=Roboto&family=Roboto+Serif:wght@300&family=Ubuntu:wght@300&display=swap");
 
 * {
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
 }
 .App {
   height: fit-content;
   width: 100%;
 }
 
-.custom-purple {
-  background-color: rgb(57, 56, 58) !important;
+.custom-sec {
+  background-color: #e9ecf5 !important;
 }
 
-.custom-yellow {
-  background-color: #f2e86d !important;
+.custom-pry {
+  background-color: #0d3b66 !important;
+}
+
+.custom-pry-border {
+  border: 1.5px solid #0d3b66 !important;
 }

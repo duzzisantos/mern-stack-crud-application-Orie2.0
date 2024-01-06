@@ -10,10 +10,10 @@ import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.s
 import { Link } from "react-router-dom";
 import {
   BuildingUp,
-  CartCheck,
-  House,
+  CartCheckFill,
+  HouseUpFill,
   PencilSquare,
-  PlusCircle,
+  PlusCircleFill,
 } from "react-bootstrap-icons";
 
 const Navigation = () => {
@@ -62,42 +62,42 @@ const Navigation = () => {
 
   return (
     <Container fluid className="col-12 px-0">
-      <Navbar className="py-0 custom-yellow" sticky="top">
+      <Navbar className="py-0 custom-pry" sticky="top">
         <Container>
-          <Navbar.Brand as={Link} to="home" className="fs-2">
+          <Navbar.Brand as={Link} to="home" className="fs-5 text-light">
             Dugam
             <span className=" position-relative">
-              <Brilliance className="fs-2" />
+              <Brilliance className="fs-5" />
               <Brilliance
-                className="fs-2"
-                style={{ marginTop: "-24px", marginLeft: "-8.5px" }}
+                className="fs-5"
+                style={{ marginTop: "-16px", marginLeft: "-8.5px" }}
               />
-              <Brilliance className="fs-2" style={{ marginLeft: "-11px" }} />
+              <Brilliance className="fs-5" style={{ marginLeft: "-11px" }} />
             </span>
           </Navbar.Brand>
           <Navbar.Toggle />
           <Nav className="me-auto fw-bold hstack">
-            <Nav.Link as={Link} to="home">
-              <House /> Home
+            <Nav.Link as={Link} to="home" className="text-light">
+              <HouseUpFill /> Home
             </Nav.Link>
-            <Nav.Link as={Link} to="register">
+            <Nav.Link as={Link} to="register" className="text-light">
               <PencilSquare /> Add Business
             </Nav.Link>
-            <Nav.Link as={Link} to="vendors">
-              <CartCheck /> Vendors
+            <Nav.Link as={Link} to="vendors" className="text-light">
+              <CartCheckFill /> Vendors
             </Nav.Link>
-            <Nav.Link as={Link} to="connect">
-              <PlusCircle /> Connect
+            <Nav.Link as={Link} to="connect" className="text-light">
+              <PlusCircleFill /> Connect
             </Nav.Link>
-            <Nav.Link as={Link} to="admin">
+            <Nav.Link as={Link} to="admin" className="text-light">
               <BuildingUp /> My Business
             </Nav.Link>
           </Nav>
-          <div className="hstack gap-2">
+          <div className="hstack gap-2 text-light">
             <small>{customerData[0]?.userName ?? name}</small>
             <Button
               size="sm"
-              className="mx-auto custom-purple border-0"
+              className="mx-auto custom-sec border-0 text-dark"
               onClick={() => {
                 logout();
                 navigate("/");

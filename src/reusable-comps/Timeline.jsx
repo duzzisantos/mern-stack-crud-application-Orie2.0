@@ -23,7 +23,7 @@ const Timeline = ({ user, userName }) => {
               />
             </legend>
             <small className="fw-bold">
-              Mercedes Benz <CheckCircleFill className="text-info" />
+              Mercedes Benz <CheckCircleFill className="text-primary" />
             </small>
           </div>
           <Button variant="transparent" className="rounded-5">
