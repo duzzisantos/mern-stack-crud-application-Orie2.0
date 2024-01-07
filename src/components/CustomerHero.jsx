@@ -14,14 +14,14 @@ const CustomerHero = ({
   following,
 }) => {
   return (
-    <div className="rounded-1 mb-3 px-3 py-2 border col-lg-12 shadow-sm col-sm-12">
+    <div className=" mb-3 px-3 py-2 border-5 border-end border-start border-primary-subtle col-lg-12 col-sm-12">
       <h1 className="fs-4">{userName}</h1>
       <fieldset className="d-flex gap-4">
         <legend
           className="border"
           style={{
-            height: "50px",
-            width: "50px",
+            height: "60px",
+            width: "60px",
             borderRadius: "50px",
             backgroundImage:
               "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA0dYxGVf1X0BOzqFNRKKBKOxFkUOzGvLQ0A&usqp=CAU)",
@@ -30,17 +30,17 @@ const CustomerHero = ({
           }}
         ></legend>
         <div className="d-flex flex-column gap-3">
-          <small>
+          <small className="fs-6">
             <EnvelopeAtFill /> {email}
           </small>
-          <small>
+          <small className="fs-6">
             <BuildingsFill /> {businessName}
           </small>
-          <small className="text-primary">
+          <small className="text-primary fs-6">
             <CartPlusFill /> {category}
           </small>
           <div className="d-flex justify-content-between">
-            <small>
+            <small className="fs-6">
               Followers{" "}
               <sup>
                 <Badge className="custom-pry" pill>
@@ -48,7 +48,7 @@ const CustomerHero = ({
                 </Badge>
               </sup>
             </small>
-            <small>
+            <small className="fs-6">
               Following{" "}
               <sup>
                 <Badge className="bg-primary" pill>

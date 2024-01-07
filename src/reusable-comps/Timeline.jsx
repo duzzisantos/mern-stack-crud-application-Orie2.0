@@ -7,7 +7,13 @@ import {
   ThreeDotsVertical,
 } from "react-bootstrap-icons";
 
-const Timeline = ({ user, userName }) => {
+const Timeline = ({
+  authorName,
+  contentImage,
+  authorImage,
+  businessCategory,
+  contentBody,
+}) => {
   return (
     <Card className="p-2 col-12 border-0 shadow-sm">
       <fieldset className="d-flex flex-column px-2">
@@ -17,36 +23,60 @@ const Timeline = ({ user, userName }) => {
               style={{ height: "30px", width: "30px", borderRadius: "50px" }}
             >
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/1024px-Mercedes-Logo.svg.png"
+                src={
+                  authorImage ??
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/1024px-Mercedes-Logo.svg.png"
+                }
                 alt="user"
                 style={{ height: "30px", width: "30px", borderRadius: "50px" }}
               />
             </legend>
-            <small className="fw-bold">
-              Mercedes Benz <CheckCircleFill className="text-primary" />
-            </small>
+            <div className="d-flex flex-column">
+              <small className="fw-bold mt-2">
+                {authorName ?? "Mercedes Benz"}{" "}
+                <CheckCircleFill className="text-primary" />
+              </small>
+              <small className="text-secondary">
+                {businessCategory ?? "Category X"}
+              </small>
+            </div>
           </div>
-          <Button variant="transparent" className="rounded-5">
+          <Button
+            variant="transparent"
+            id="More Info"
+            className="rounded-pill"
+            title="More Info"
+            aria-label="More Info"
+          >
             <ThreeDotsVertical />
           </Button>
         </div>
 
-        <article>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis,
-          repudiandae. Odio minima ipsum quas numquam architecto optio neque
-          nesciunt non molestiae. Pariatur in sint fugiat corrupti illo deserunt
-          nemo iure?
+        <article className="mt-2">
+          {contentBody ?? "Loading content..........."}
         </article>
         <div className="justify-content-start hstack mt-3 fw-light col-lg-2 col-sm-9">
-          <Button variant="transparent" className="d-flex flex-column">
+          <Button
+            variant="transparent"
+            className="d-flex flex-column"
+            title="Like"
+          >
             <Heart />
             <small>{12}</small>
           </Button>
-          <Button variant="transparent" className="d-flex flex-column">
+          <Button
+            variant="transparent"
+            className="d-flex flex-column"
+            title="Unlike"
+          >
             <HandThumbsDown />
             <small>{2}</small>
           </Button>
-          <Button variant="transparent" className="d-flex flex-column">
+          <Button
+            variant="transparent"
+            className="d-flex flex-column"
+            title="Bookmark"
+          >
             <Bookmark />
             <small>{2}</small>
           </Button>

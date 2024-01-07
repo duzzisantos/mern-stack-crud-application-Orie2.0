@@ -63,8 +63,8 @@ const Navigation = () => {
   return (
     <Container fluid className="col-12 px-0">
       <Navbar className="py-0 custom-pry" sticky="top">
-        <Container>
-          <Navbar.Brand as={Link} to="home" className="fs-5 text-light">
+        <Container className="col-9 pe-0">
+          <Navbar.Brand as={Link} to="home" className="fs-5 text-light mx-1">
             Dugam
             <span className=" position-relative">
               <Brilliance className="fs-5" />

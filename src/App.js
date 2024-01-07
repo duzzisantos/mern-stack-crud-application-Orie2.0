@@ -36,9 +36,9 @@ function App() {
                 {" "}
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register user={user} />} />
-                <Route path="vendors" element={<Vendors />} />
+                <Route path="vendors" element={<Vendors user={user} />} />
                 <Route path="connect" element={<Connect user={user} />} />
-                <Route path="admin/*" element={<Admin />} />
+                <Route path="admin/*" element={<Admin user={user} />} />
                 <Route path="/edit-vendor/:ID" element={<EditVendor />} />
               </>
             )

@@ -1,75 +1,25 @@
-import { useState, useEffect } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, Stack } from "react-bootstrap";
 import {
   PlusCircleFill,
   PeopleFill,
   PersonPlusFill,
+  BookFill,
 } from "react-bootstrap-icons";
 import SuggestedFollows from "../reusable-comps/SuggestedFollows";
-import axios from "axios";
 import Timeline from "../reusable-comps/Timeline";
 import CustomerHero from "../components/CustomerHero";
-import useGetFollowCount from "../helpers/getFollowCount";
+import ConnectWritePost from "../components/ConnectWritePost";
+import useGetBusinesses from "../api/useGetBusinesses";
+import useGetFollowing from "../api/useGetFollowing";
+import useGetFollowers from "../api/useGetFollowers";
+import useGetFollowedContent from "../api/useGetFollowedPosts";
 
 const Connect = ({ user }) => {
-  const [businesses, setBusinesses] = useState([]);
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
-
   //Fetch all businesses registered
-  useEffect(() => {
-    const getBusinesses = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/register`);
-        if (response.status !== 200) {
-          throw new Error(`${response.status} ${response.statusText}`);
-        } else {
-          setBusinesses(response.data);
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    };
-    getBusinesses();
-  }, []);
-
-  //Fetch all the users following current user
-  useEffect(() => {
-    const getFollowers = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/followers/get-followers`
-        );
-        if (response.status !== 200) {
-          throw new Error(`${response.status} ${response.statusText}`);
-        } else {
-          setFollowers(response.data);
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    };
-    getFollowers();
-  }, []);
-
-  //Fetch all users current user is following
-  useEffect(() => {
-    const getFollowing = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/followers/get-following`
-        );
-        if (response.status !== 200) {
-          throw new Error(`${response.status} ${response.statusText}`);
-        } else {
-          setFollowing(response.data);
-        }
-      } catch (err) {
-        console.warn(err);
-      }
-    };
-    getFollowing();
-  }, []);
+  const { businesses } = useGetBusinesses();
+  const { following } = useGetFollowing(user);
+  const { followers } = useGetFollowers(user);
+  const { subscribedContent } = useGetFollowedContent(user);
 
   const suggestedBusinesses = () => {
     const result = [];
@@ -83,53 +33,57 @@ const Connect = ({ user }) => {
     .filter((element) => element.email === user.email)
     .map((x) => x)[0];
 
-  const countFollowers = useGetFollowCount(followers, user);
-  const countFollowing = useGetFollowCount(following, user);
-
+  //Refactor these into singular components - celaner code
   return (
     <Container
       fluid
-      className="col-12 h-100 row row-cols-3 gap-3 justify-content-between"
+      className="col-12 vh-100 row row-cols-3 gap-3 justify-content-between"
     >
-      <section className="col-1 p-2 border d-flex flex-column gap-5 text-center fs-5">
-        <PlusCircleFill className="mx-auto mt-2" />
-        <div>
-          <PeopleFill className="mx-auto" />{" "}
-          <small className="fs-6">Followers</small>
-        </div>
-        <div>
-          <PersonPlusFill className="mx-auto" />{" "}
-          <small className="fs-6">Following</small>
-        </div>
+      <section className="col-1 p-2 mb-5 border text-center fs-5">
+        <PlusCircleFill className="mx-auto my-2" />
+        <Stack>
+          <PeopleFill className="mx-auto my-3" />{" "}
+        </Stack>
+        <Stack>
+          <PersonPlusFill className="mx-auto my-3" />{" "}
+        </Stack>
+        <Stack direction="vertical">
+          <BookFill className="mx-auto my-3" />{" "}
+        </Stack>
       </section>
-      <section className="col-9 my-3 rounded-2 px-0">
+      <section className="col-9 my-3 px-0 h-100 overflow-y-auto">
         <CustomerHero
           email={currentCustomer?.email}
           businessName={currentCustomer?.businessName}
           category={currentCustomer?.category}
-          followers={countFollowers.length}
-          following={countFollowing.length}
+          followers={followers[0]?.length ?? 0}
+          following={following[0]?.length ?? 0}
         />
-        <div className="border overflow-y-auto">
+        <ConnectWritePost user={user} />
+        <div className="border-0 rounded-2">
           <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
-            <h2 className="fs-6 fw-semibold ">Your timeline</h2>
             <div className="d-flex gap-2">
-              <Form.Label>Show latest</Form.Label>
-              <Form.Switch />
+              <Form.Label htmlFor="show-latest">Show latest</Form.Label>
+              <Form.Switch id="show-latest" />
             </div>
           </div>
           <div className="col-12 px-3 py-3 gap-3 vstack bg-light">
-            {[...Array(3).keys()].map((item, i) => (
-              <Timeline key={i} />
+            {subscribedContent.map((element, index) => (
+              <Timeline
+                key={index}
+                contentBody={element?.contentBody}
+                authorName={element?.authorName}
+                authorImage={element?.authorImage}
+              />
             ))}
           </div>
         </div>
       </section>
-      <section className="col-1 my-3 shadow-sm rounded-2 px-0 border gap-3 vstack">
-        <div className="bg-secondary bg-opacity-10 w-100 px-3 py-2  rounded-top-2">
+      <section className="col-1 mt-3 mb-5 px-0 border gap-3 vstack">
+        <div className="bg-secondary bg-opacity-10 w-100 px-3 py-2">
           <h2 className="fs-6 fw-semibold ">Suggested customers</h2>
         </div>
-        <div className="col-12 px-3 gap-3 vstack bg-light-subtle">
+        <div className="col-12 px-3 gap-3 vstack">
           {suggestedBusinesses().length > 1 &&
             suggestedBusinesses()
               .filter((item) => item?.email !== user?.email)

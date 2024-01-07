@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Inter:wght@300&family=Nunito+Sans:wght@300&family=Poppins:wght@200;300&family=Roboto&family=Roboto+Serif:wght@300&family=Ubuntu:wght@300&display=swap");
 
 * {
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .App {
   height: fit-content;
@@ -19,4 +19,20 @@
 
 .custom-pry-border {
   border: 1.5px solid #0d3b66 !important;
+}
+
+.box-400 {
+  height: 400px;
+}
+
+.box-150 {
+  height: 150px;
+}
+
+.box-650 {
+  height: 650px;
+}
+
+.box-fit {
+  height: fit-content !important;
 }

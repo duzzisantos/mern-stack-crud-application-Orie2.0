@@ -52,7 +52,7 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
           <Button
             size="sm"
             variant="transparent"
-            className="border border-dark"
+            className="border border-2 border-secondary rounded-pill"
             onClick={() => {
               handleFollow();
               handleUpdateUserFollowingList();
@@ -64,8 +64,7 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
         {user && (
           <Button
             size="sm"
-            variant="transparent"
-            className="border border-dark"
+            className=" border border-primary border-2 text-dark bg-transparent rounded-pill"
           >
             <Search />{" "}
             <a className="text-decoration-none text-dark" href="/">
