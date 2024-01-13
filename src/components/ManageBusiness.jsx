@@ -22,18 +22,14 @@ const ManageBusiness = ({
 
   return (
     <div className={commonBiggerBoxclasses}>
-      <h2 className={commonHeaderClasses}>Manage Business</h2>
+      <h2 className={"text-start fs-6 fw-bold mx-2 mb-4"}>Manage Business</h2>
       <div className="px-2">
         <Tabs className="mb-3">
           <Tab eventKey="details" title="Details">
             <Card className="border-0">
-              <Card.Header className="d-flex justify-content-between bg-transparent shadow-sm">
+              <Card.Header className="d-flex justify-content-between bg-primary-subtle rounded-0">
                 <h6>Manage General Details</h6>
-                <Button
-                  size="sm"
-                  variant="transparent"
-                  className="border-0 btn-outline-primary"
-                >
+                <Button size="sm" variant="transparent" className="border-0">
                   <PencilFill />
                 </Button>
               </Card.Header>

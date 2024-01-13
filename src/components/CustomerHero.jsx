@@ -45,7 +45,7 @@ const CustomerHero = ({
             <small className="fs-6">
               <ArrowLeftCircleFill className="text-primary" /> Followers{" "}
               <sup>
-                <Badge className="bg-primary" pill>
+                <Badge className="bg-success px-2" pill>
                   {followers}
                 </Badge>
               </sup>
@@ -53,7 +53,7 @@ const CustomerHero = ({
             <small className="fs-6">
               <ArrowRightCircleFill className="text-primary" /> Following{" "}
               <sup>
-                <Badge className="bg-primary" pill>
+                <Badge className="bg-success px-2" pill>
                   {following}
                 </Badge>
               </sup>

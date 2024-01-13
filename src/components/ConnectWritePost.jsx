@@ -56,7 +56,7 @@ const ConnectWritePost = ({ user }) => {
       {showTextArea && (
         <Form
           className="p-3 rounded-2 mb-3 bg-light shadow-sm vstack gap-2"
-          onsubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           <Form.Label htmlFor="writePost" className="fw-bolder">
             Write post

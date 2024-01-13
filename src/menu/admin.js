@@ -5,12 +5,13 @@ import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowing from "../api/useGetFollowing";
 import useGetOneBusiness from "../api/useGetOneBusiness";
 import useGetRatings from "../api/useGetRatings";
+import useGetAllUserContent from "../api/useGetUserPosts";
 
 const Admin = ({ user }) => {
   const commonBoxClasses =
-    "business-card-hover rounded-2 shadow-sm box-150 py-2 fw-bold col-lg-4 col-sm-12 text-center";
+    "business-card-hover rounded-2 border box-150 py-2 fw-bold col-lg-4 col-sm-12 text-center";
   const commonBiggerBoxclasses =
-    "box-650 py-2 shadow-sm rounded-2 business-card-hover col-lg-6 col-sm-12 vstack";
+    "box-650 py-2 border rounded-2 business-card-hover col-lg-6 col-sm-12 vstack";
   const commonFlexClasses =
     "d-flex flex-lg-row flex-sm-column hstack flex-wrap flex-lg-nowrap gap-2";
 
@@ -20,6 +21,19 @@ const Admin = ({ user }) => {
   const { following } = useGetFollowing(user);
   const { business } = useGetOneBusiness(user);
   const { rating } = useGetRatings(user);
+  const { userContent } = useGetAllUserContent(user);
+
+  const averageRating = () => {
+    const output = [];
+    for (const file of rating) {
+      output.push(file.ratingStars);
+    }
+    return (
+      output.map((element) => element).reduce((a, b) => a + b, 0) /
+      rating.length
+    );
+  };
+
   return (
     <Container className="h-100 col-9 p-3 box-fit">
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
@@ -27,21 +41,23 @@ const Admin = ({ user }) => {
         <div className={commonFlexClasses}>
           <div className={commonBoxClasses}>
             <h2 className={commonHeaderClasses}>Followers vs Following</h2>
-            <p className="mt-5 fs-2">
+            <p className="mt-4 fs-1">
               {followers?.length}
               {" : "} {following?.length}
             </p>
           </div>
           <div className={commonBoxClasses}>
             <h2 className={commonHeaderClasses}>Average Rating</h2>
-            <p className="mt-5 fs-2">3.9</p>
+            <p className="mt-4 fs-1">
+              {isNaN(averageRating()) ? 0 : averageRating()}
+            </p>
           </div>
           <div className={commonBoxClasses}>
             <h2 className={commonHeaderClasses}>Top Industry Interested</h2>
-            <p className="mt-5 fs-2">Fabrics</p>
+            <p className="mt-4 fs-1">Fabrics</p>
           </div>
         </div>
-        <div className={commonFlexClasses}>
+        <div className="d-flex flex-lg-row flex-sm-column hstack flex-wrap flex-lg-nowrap gap-4">
           <ManageBusiness
             business={business}
             ratings={rating}
@@ -50,6 +66,7 @@ const Admin = ({ user }) => {
           />
           <ManageFollowers
             followers={followers}
+            content={userContent}
             commonBiggerBoxclasses={commonBiggerBoxclasses}
             commonHeaderClasses={commonHeaderClasses}
           />

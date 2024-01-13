@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
+import useGetRatings from "../api/useGetRatings";
 import BusinessCard from "../components/BusinessCard";
 
 const Vendors = ({ user }) => {
   const { businesses } = useGetBusinesses();
   const [show, setShow] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
-  // const { rating } = useGetRatings(user);
+  const { rating } = useGetRatings(user);
 
   const handleClose = () => {
     setShow(false);
@@ -16,6 +18,32 @@ const Vendors = ({ user }) => {
   const handleShow = (email) => {
     setGrabEmail(email);
     setShow(true);
+  };
+
+  const handleCloseMessage = () => {
+    setShowMessageModal(false);
+  };
+
+  const handleShowMessage = (email) => {
+    setGrabEmail(email);
+    setShowMessageModal(true);
+  };
+
+  const averageRating = (email) => {
+    const output = [];
+    businesses.flat().forEach((business) => {
+      if (business.email === email) {
+        for (const file of rating) {
+          if (file.email === email) {
+            output.push(file.ratingStars);
+          }
+        }
+      }
+    });
+    return (
+      output.map((element) => element).reduce((a, b) => a + b, 0) /
+      rating.length
+    );
   };
 
   return (
@@ -52,11 +80,14 @@ const Vendors = ({ user }) => {
               state={element?.state}
               phone={element?.businessPhone}
               photo={element.photo}
-              ratingScore={0}
+              ratingScore={averageRating(element.email)}
               showModal={show}
               handleClose={handleClose}
               grabEmail={grabEmail}
               handleShow={() => handleShow(element.email)}
+              handleCloseMessage={handleCloseMessage}
+              handleShowMessage={() => handleShowMessage(element.email)}
+              showMessageModal={showMessageModal}
             />
           ))}
       </div>

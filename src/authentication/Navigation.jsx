@@ -13,6 +13,7 @@ import {
   CartCheckFill,
   HouseUpFill,
   PencilSquare,
+  Person,
   PlusCircleFill,
 } from "react-bootstrap-icons";
 
@@ -62,10 +63,9 @@ const Navigation = () => {
 
   return (
     <Container fluid className="col-12 px-0">
-      <Navbar className="py-0 custom-pry" sticky="top">
+      <Navbar className="py-1 custom-pry" sticky="top">
         <Container className="col-9 pe-0">
           <Navbar.Brand as={Link} to="home" className="fs-5 text-light mx-1">
-            Dugam
             <span className=" position-relative">
               <Brilliance className="fs-5" />
               <Brilliance
@@ -74,6 +74,7 @@ const Navigation = () => {
               />
               <Brilliance className="fs-5" style={{ marginLeft: "-11px" }} />
             </span>
+            Dugam
           </Navbar.Brand>
           <Navbar.Toggle />
           <Nav className="me-auto fw-bold hstack">
@@ -94,16 +95,17 @@ const Navigation = () => {
             </Nav.Link>
           </Nav>
           <div className="hstack gap-2 text-light">
-            <small>{customerData[0]?.userName ?? name}</small>
             <Button
               size="sm"
-              className="mx-auto custom-sec border-0 text-dark"
+              className="mx-auto custom-sec bg-opacity-50 border-0 text-dark rounded-pill"
               onClick={() => {
                 logout();
                 navigate("/");
               }}
+              style={{ height: "45px", width: "45px" }}
+              title={customerData[0]?.userName ?? name}
             >
-              Logout
+              <Person className="fs-4" />
             </Button>
           </div>
         </Container>

@@ -14,11 +14,11 @@
 }
 
 .custom-pry {
-  background-color: #0d3b66 !important;
+  background-color: #0055a5 !important;
 }
 
 .custom-pry-border {
-  border: 1.5px solid #0d3b66 !important;
+  border: 1.5px solid #0055a5 !important;
 }
 
 .box-400 {
@@ -38,9 +38,18 @@
 }
 
 .business-card-hover:hover {
-  border: 2px solid #0d3b66 !important;
+  border: 2px solid #aac2d9 !important;
 }
 
 li {
   list-style-type: none !important;
+}
+
+button[role="tab"] {
+  color: #0055a5 !important;
+  border-radius: 0% !important;
+}
+
+.smaller-text {
+  font-size: 14px;
 }

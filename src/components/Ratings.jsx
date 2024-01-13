@@ -1,4 +1,4 @@
-import { StarFill } from "react-bootstrap-icons";
+import { CalendarDateFill, PersonFill, StarFill } from "react-bootstrap-icons";
 
 const RatingsTemplate = ({
   ratedBy,
@@ -8,11 +8,16 @@ const RatingsTemplate = ({
   ratingsContent,
 }) => {
   return (
-    <div className="d-flex flex-column vstack gap-2 p-3 shadow-sm rounded-2">
+    <div className="d-flex flex-column vstack gap-1 p-3 shadow-sm rounded-0 my-3">
       <h2 className="fs-6 fw-bold">{ratingsTitle}</h2>
-      <div className="d-flex justify-content-between text-secondary">
-        <small>{ratedBy.split("@")[0]}</small>
-        <small>{ratingsDate}</small>
+      <div className="d-flex vstack gap-1 smaller-text text-secondary">
+        <div>
+          {" "}
+          <PersonFill /> <small>{ratedBy.split("@")[0]}</small>
+        </div>
+        <div>
+          <CalendarDateFill /> <small>{ratingsDate}</small>
+        </div>
       </div>
 
       <small>

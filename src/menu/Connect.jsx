@@ -1,4 +1,4 @@
-import { Container, Form } from "react-bootstrap";
+import { Alert, Container, Form } from "react-bootstrap";
 
 import SuggestedFollows from "../reusable-comps/SuggestedFollows";
 import Timeline from "../reusable-comps/Timeline";
@@ -18,14 +18,14 @@ const Connect = ({ user }) => {
 
   const suggestedBusinesses = () => {
     const result = [];
-    businesses.forEach((company) => {
+    businesses?.forEach((company) => {
       result.push(company[0]);
     });
     return result; //The user cannot follow themselves, so we filter them out
   };
 
   const currentCustomer = suggestedBusinesses()
-    .filter((element) => element.email === user.email)
+    ?.filter((element) => element.email === user.email)
     .map((x) => x)[0];
 
   //Refactor these into singular components
@@ -52,14 +52,18 @@ const Connect = ({ user }) => {
             </div>
           </div>
           <div className="px-3 py-3 gap-3 vstack">
-            {subscribedContent.map((element, index) => (
-              <Timeline
-                key={index}
-                contentBody={element?.contentBody}
-                authorName={element?.authorName}
-                authorImage={element?.authorImage}
-              />
-            ))}
+            {subscribedContent.length > 0 ? (
+              subscribedContent?.map((element, index) => (
+                <Timeline
+                  key={index}
+                  contentBody={element?.contentBody}
+                  authorName={element?.authorName}
+                  authorImage={element?.authorImage}
+                />
+              ))
+            ) : (
+              <Alert>No posts to see yet.</Alert>
+            )}
           </div>
         </div>
       </section>
@@ -68,9 +72,9 @@ const Connect = ({ user }) => {
           <h2 className="fs-6 fw-semibold ">Suggested customers</h2>
         </div>
         <div className="col-12 px-3 gap-3 vstack">
-          {suggestedBusinesses().length > 1 &&
+          {suggestedBusinesses()?.length > 1 &&
             suggestedBusinesses()
-              .filter((item) => item?.email !== user?.email)
+              ?.filter((item) => item?.email !== user?.email)
               .map((item, i) => (
                 <SuggestedFollows
                   key={i}
