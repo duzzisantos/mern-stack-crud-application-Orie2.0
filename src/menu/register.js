@@ -3,6 +3,19 @@ import "react-bootstrap";
 import axios from "axios";
 import "../App.css";
 import { Button, Container, Form } from "react-bootstrap";
+import {
+  BriefcaseFill,
+  BuildingFill,
+  EnvelopeAt,
+  GeoAltFill,
+  GlobeAmericas,
+  Map,
+  PeopleFill,
+  PersonPlusFill,
+  ShieldFillCheck,
+  TelephoneInbound,
+  Upload,
+} from "react-bootstrap-icons";
 
 const Register = ({ user }) => {
   const [userId, setUserId] = useState("");
@@ -83,7 +96,7 @@ const Register = ({ user }) => {
   ];
 
   return (
-    <Container fluid className="col-9 p-3">
+    <Container fluid className="col-6 p-3">
       <h1 className="fs-3 fw-bold">Add Business</h1>
       <div className="py-3 d-flex justify-content-center">
         <Form
@@ -92,7 +105,9 @@ const Register = ({ user }) => {
           className="gap-3 vstack"
         >
           <div>
-            <Form.Label htmlFor="businessID">Business ID:</Form.Label>
+            <Form.Label htmlFor="businessID">
+              <ShieldFillCheck /> Business ID:
+            </Form.Label>
             <Form.Control
               type="number"
               className="rounded-0"
@@ -107,7 +122,9 @@ const Register = ({ user }) => {
           </div>
           <div>
             {" "}
-            <Form.Label htmlFor="firstName">First Name:</Form.Label>
+            <Form.Label htmlFor="firstName">
+              <PersonPlusFill /> First Name:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -125,7 +142,9 @@ const Register = ({ user }) => {
             />
           </div>
           <div>
-            <Form.Label htmlFor="lastname">Last Name:</Form.Label>
+            <Form.Label htmlFor="lastname">
+              <PeopleFill /> Last Name:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -144,7 +163,9 @@ const Register = ({ user }) => {
           </div>
           <div>
             {" "}
-            <Form.Label htmlFor="businessname">Business Name:</Form.Label>
+            <Form.Label htmlFor="businessname">
+              <BuildingFill /> Business Name:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -163,7 +184,9 @@ const Register = ({ user }) => {
           </div>
           <div>
             {" "}
-            <Form.Label htmlFor="address">Address:</Form.Label>
+            <Form.Label htmlFor="address">
+              <GeoAltFill /> Address:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -182,7 +205,9 @@ const Register = ({ user }) => {
           </div>
           <div>
             {" "}
-            <Form.Label htmlFor="city">City:</Form.Label>
+            <Form.Label htmlFor="city">
+              <GlobeAmericas /> City:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -199,7 +224,9 @@ const Register = ({ user }) => {
           </div>
           <div>
             {" "}
-            <Form.Label htmlFor="state">State:</Form.Label>
+            <Form.Label htmlFor="state">
+              <Map /> State:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -216,7 +243,9 @@ const Register = ({ user }) => {
           </div>
           <div>
             {" "}
-            <Form.Label htmlFor="email">Email:</Form.Label>
+            <Form.Label htmlFor="email">
+              <EnvelopeAt /> Email:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -231,7 +260,9 @@ const Register = ({ user }) => {
             />
           </div>
           <div>
-            <Form.Label htmlFor="businessPhone">Business Phone:</Form.Label>
+            <Form.Label htmlFor="businessPhone">
+              <TelephoneInbound /> Business Phone:
+            </Form.Label>
             <Form.Control
               type="text"
               className="rounded-0"
@@ -245,7 +276,9 @@ const Register = ({ user }) => {
               }
             />
           </div>
-          <Form.Label htmlFor="category">Category:</Form.Label>
+          <Form.Label htmlFor="category">
+            <BriefcaseFill /> Category:
+          </Form.Label>
           <Form.Select
             id="category"
             className="rounded-0"
@@ -258,7 +291,9 @@ const Register = ({ user }) => {
               <option key={index}>{item}</option>
             ))}
           </Form.Select>
-          <Form.Label htmlFor="photos">Upload photos:</Form.Label>
+          <Form.Label htmlFor="photos">
+            <Upload /> Upload photos:
+          </Form.Label>
           <small className="text-primary">
             (Only JPG/JPEG and PNG are accepted.)
           </small>

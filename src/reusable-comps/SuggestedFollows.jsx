@@ -1,10 +1,5 @@
 import { Card, Button, Form } from "react-bootstrap";
-import {
-  BuildingsFill,
-  CartPlusFill,
-  PlusLg,
-  Search,
-} from "react-bootstrap-icons";
+import { BriefcaseFill, BuildingsFill, PlusLg } from "react-bootstrap-icons";
 import axios from "axios";
 const SuggestedFollows = ({ user, businessName, category, email }) => {
   const followerObject = {
@@ -40,19 +35,19 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
   };
 
   return (
-    <Card className=" p-2 gap-2  border border-1 border-secondary-subtle">
+    <Card className="p-2 gap-2 border-0 shadow-sm">
       <small className="text-dark">
         <BuildingsFill /> {businessName ?? "My Business Limited"}
       </small>
       <small className="text-primary">
-        <CartPlusFill /> {category ?? "Financial"}
+        <BriefcaseFill /> {category ?? "Financial"}
       </small>
       <div className="d-flex justify-content-start gap-2">
         <Form>
           <Button
             size="sm"
             variant="transparent"
-            className="border border-2 border-secondary rounded-pill"
+            className="border-0 text-light custom-pry"
             onClick={() => {
               handleFollow();
               handleUpdateUserFollowingList();
@@ -61,17 +56,6 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
             <PlusLg /> Follow
           </Button>
         </Form>
-        {user && (
-          <Button
-            size="sm"
-            className=" border border-primary border-2 text-dark bg-transparent rounded-pill"
-          >
-            <Search />{" "}
-            <a className="text-decoration-none text-dark" href="/">
-              View
-            </a>
-          </Button>
-        )}
       </div>
     </Card>
   );

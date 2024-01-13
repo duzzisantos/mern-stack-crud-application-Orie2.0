@@ -1,10 +1,5 @@
-import { Container, Form, Stack } from "react-bootstrap";
-import {
-  PlusCircleFill,
-  PeopleFill,
-  PersonPlusFill,
-  BookFill,
-} from "react-bootstrap-icons";
+import { Container, Form } from "react-bootstrap";
+
 import SuggestedFollows from "../reusable-comps/SuggestedFollows";
 import Timeline from "../reusable-comps/Timeline";
 import CustomerHero from "../components/CustomerHero";
@@ -33,32 +28,21 @@ const Connect = ({ user }) => {
     .filter((element) => element.email === user.email)
     .map((x) => x)[0];
 
-  //Refactor these into singular components - celaner code
+  //Refactor these into singular components
   return (
     <Container
       fluid
-      className="col-12 vh-100 row row-cols-3 gap-3 justify-content-between"
+      className="col-9 vh-100 gap-3 d-flex flex-lg-row flex-sm-column justify-content-between"
     >
-      <section className="col-1 p-2 mb-5 border text-center fs-5">
-        <PlusCircleFill className="mx-auto my-2" />
-        <Stack>
-          <PeopleFill className="mx-auto my-3" />{" "}
-        </Stack>
-        <Stack>
-          <PersonPlusFill className="mx-auto my-3" />{" "}
-        </Stack>
-        <Stack direction="vertical">
-          <BookFill className="mx-auto my-3" />{" "}
-        </Stack>
-      </section>
-      <section className="col-9 my-3 px-0 h-100 overflow-y-auto">
-        <CustomerHero
-          email={currentCustomer?.email}
-          businessName={currentCustomer?.businessName}
-          category={currentCustomer?.category}
-          followers={followers[0]?.length ?? 0}
-          following={following[0]?.length ?? 0}
-        />
+      <CustomerHero
+        email={currentCustomer?.email}
+        businessName={currentCustomer?.businessName}
+        category={currentCustomer?.category}
+        followers={followers[0]?.length ?? 0}
+        following={following[0]?.length ?? 0}
+      />
+
+      <section className="col-lg-6 my-3 px-0 h-100 overflow-y-auto">
         <ConnectWritePost user={user} />
         <div className="border-0 rounded-2">
           <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
@@ -67,7 +51,7 @@ const Connect = ({ user }) => {
               <Form.Switch id="show-latest" />
             </div>
           </div>
-          <div className="col-12 px-3 py-3 gap-3 vstack bg-light">
+          <div className="px-3 py-3 gap-3 vstack">
             {subscribedContent.map((element, index) => (
               <Timeline
                 key={index}
@@ -79,8 +63,8 @@ const Connect = ({ user }) => {
           </div>
         </div>
       </section>
-      <section className="col-1 mt-3 mb-5 px-0 border gap-3 vstack">
-        <div className="bg-secondary bg-opacity-10 w-100 px-3 py-2">
+      <section className=" mt-3 mb-5 px-0 shadow-sm gap-3 vstack rounded-top-2">
+        <div className="bg-primary-subtle bg-opacity-10 w-100 px-3 py-2">
           <h2 className="fs-6 fw-semibold ">Suggested customers</h2>
         </div>
         <div className="col-12 px-3 gap-3 vstack">

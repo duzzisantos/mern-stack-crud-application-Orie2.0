@@ -1,5 +1,15 @@
 import { Button, Card, Tab, Tabs } from "react-bootstrap";
-import { PencilFill } from "react-bootstrap-icons";
+import {
+  BriefcaseFill,
+  BuildingFill,
+  EnvelopeAt,
+  GeoAltFill,
+  PencilFill,
+  PeopleFill,
+  PersonAdd,
+  ShieldCheck,
+  TelephoneInboundFill,
+} from "react-bootstrap-icons";
 
 const ManageBusiness = ({
   commonBiggerBoxclasses,
@@ -28,14 +38,31 @@ const ManageBusiness = ({
               <Card.Body>
                 {obj?.map((el, i) => (
                   <ul key={i} className="lh-lg">
-                    <li>First name: {el.firstName}</li>
-                    <li>Last name: {el.lastName}</li>
-                    <li>Business name: {el.businessName}</li>
-                    <li>Business ID: {el.businessID}</li>
-                    <li>Business Phone: {el.businessPhone}</li>
-                    <li>Address: {el.address}</li>
-                    <li>Category: {el.category}</li>
-                    <li>Email: {el.email}</li>
+                    <li>
+                      <PersonAdd /> First name: {el.firstName}
+                    </li>
+                    <li>
+                      <PeopleFill /> Last name: {el.lastName}
+                    </li>
+                    <li>
+                      <BuildingFill /> Business name: {el.businessName}
+                    </li>
+                    <li>
+                      <ShieldCheck /> Business ID: {el.businessID}
+                    </li>
+                    <li>
+                      <TelephoneInboundFill /> Business Phone:{" "}
+                      {el.businessPhone}
+                    </li>
+                    <li>
+                      <GeoAltFill /> Address: {el.address}
+                    </li>
+                    <li>
+                      <BriefcaseFill /> Category: {el.category}
+                    </li>
+                    <li>
+                      <EnvelopeAt /> Email: {el.email}
+                    </li>
                   </ul>
                 ))}
               </Card.Body>

@@ -1,7 +1,6 @@
 import { Card, Button } from "react-bootstrap";
 import {
   Heart,
-  HandThumbsDown,
   Bookmark,
   CheckCircleFill,
   ThreeDotsVertical,
@@ -52,13 +51,13 @@ const Timeline = ({
           </Button>
         </div>
 
-        <article className="mt-2">
+        <article className="my-2">
           {contentBody ?? "Loading content..........."}
         </article>
         <div className="justify-content-start hstack mt-3 fw-light col-lg-2 col-sm-9">
           <Button
             variant="transparent"
-            className="d-flex flex-column"
+            className="d-flex flex-column vstack"
             title="Like"
           >
             <Heart />
@@ -66,19 +65,11 @@ const Timeline = ({
           </Button>
           <Button
             variant="transparent"
-            className="d-flex flex-column"
-            title="Unlike"
-          >
-            <HandThumbsDown />
-            <small>{2}</small>
-          </Button>
-          <Button
-            variant="transparent"
-            className="d-flex flex-column"
+            className="d-flex flex-column vstack"
             title="Bookmark"
           >
             <Bookmark />
-            <small>{2}</small>
+            <small className="mx-1">{2}</small>
           </Button>
         </div>
       </fieldset>

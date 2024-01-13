@@ -1,7 +1,9 @@
 import { Badge } from "react-bootstrap";
 import {
+  ArrowLeftCircleFill,
+  ArrowRightCircleFill,
+  BriefcaseFill,
   BuildingsFill,
-  CartPlusFill,
   EnvelopeAtFill,
 } from "react-bootstrap-icons";
 
@@ -14,11 +16,11 @@ const CustomerHero = ({
   following,
 }) => {
   return (
-    <div className=" mb-3 px-3 py-2 border-5 border-end border-start border-primary-subtle col-lg-12 col-sm-12">
+    <div className="mx-0 py-2">
       <h1 className="fs-4">{userName}</h1>
-      <fieldset className="d-flex gap-4">
+      <fieldset className="d-flex flex-column justify-content-center gap-3 shadow-sm px-4 py-2">
         <legend
-          className="border"
+          className="border mx-auto"
           style={{
             height: "60px",
             width: "60px",
@@ -37,19 +39,19 @@ const CustomerHero = ({
             <BuildingsFill /> {businessName}
           </small>
           <small className="text-primary fs-6">
-            <CartPlusFill /> {category}
+            <BriefcaseFill /> {category}
           </small>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex flex-column gap-2">
             <small className="fs-6">
-              Followers{" "}
+              <ArrowLeftCircleFill className="text-primary" /> Followers{" "}
               <sup>
-                <Badge className="custom-pry" pill>
+                <Badge className="bg-primary" pill>
                   {followers}
                 </Badge>
               </sup>
             </small>
             <small className="fs-6">
-              Following{" "}
+              <ArrowRightCircleFill className="text-primary" /> Following{" "}
               <sup>
                 <Badge className="bg-primary" pill>
                   {following}

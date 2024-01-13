@@ -46,7 +46,7 @@ const ConnectWritePost = ({ user }) => {
     <>
       {!showTextArea && (
         <div
-          className="py-2 px-2 border border-3 mb-2"
+          className="py-2 px-2 border border-2 rounded-3 mb-2"
           onClick={() => setShowTextArea(true)}
           style={{ cursor: "pointer" }}
         >
@@ -55,7 +55,7 @@ const ConnectWritePost = ({ user }) => {
       )}
       {showTextArea && (
         <Form
-          className="p-3 border rounded-2 mb-3 bg-light vstack gap-2"
+          className="p-3 rounded-2 mb-3 bg-light shadow-sm vstack gap-2"
           onsubmit={handleSubmit}
         >
           <Form.Label htmlFor="writePost" className="fw-bolder">
