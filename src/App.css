@@ -1,8 +1,8 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
-@import url("https://fonts.googleapis.com/css2?family=Fredoka&family=Inter:wght@300&family=Nunito+Sans:wght@300&family=Poppins:wght@200;300&family=Roboto&family=Roboto+Serif:wght@300&family=Ubuntu:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap");
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
 }
 .App {
   height: fit-content;
@@ -35,4 +35,12 @@
 
 .box-fit {
   height: fit-content !important;
+}
+
+.business-card-hover:hover {
+  border: 2px solid #0d3b66 !important;
+}
+
+li {
+  list-style-type: none !important;
 }
