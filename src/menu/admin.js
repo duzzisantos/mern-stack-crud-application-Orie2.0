@@ -4,11 +4,13 @@ import ManageFollowers from "../components/ManageFollowers";
 import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowing from "../api/useGetFollowing";
 import useGetOneBusiness from "../api/useGetOneBusiness";
+import useGetRatings from "../api/useGetRatings";
+
 const Admin = ({ user }) => {
   const commonBoxClasses =
-    "business-card-hover rounded-2 shadow-lg box-150 py-2 fw-bold col-lg-4 col-sm-12 text-center";
+    "business-card-hover rounded-2 shadow-sm box-150 py-2 fw-bold col-lg-4 col-sm-12 text-center";
   const commonBiggerBoxclasses =
-    "box-650 py-2 shadow-lg rounded-2 business-card-hover col-lg-6 col-sm-12 vstack";
+    "box-650 py-2 shadow-sm rounded-2 business-card-hover col-lg-6 col-sm-12 vstack";
   const commonFlexClasses =
     "d-flex flex-lg-row flex-sm-column hstack flex-wrap flex-lg-nowrap gap-2";
 
@@ -17,6 +19,7 @@ const Admin = ({ user }) => {
   const { followers } = useGetFollowers(user);
   const { following } = useGetFollowing(user);
   const { business } = useGetOneBusiness(user);
+  const { rating } = useGetRatings(user);
   return (
     <Container className="h-100 col-9 p-3 box-fit">
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
@@ -41,6 +44,7 @@ const Admin = ({ user }) => {
         <div className={commonFlexClasses}>
           <ManageBusiness
             business={business}
+            ratings={rating}
             commonBiggerBoxclasses={commonBiggerBoxclasses}
             commonHeaderClasses={commonHeaderClasses}
           />

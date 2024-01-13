@@ -1,4 +1,4 @@
-import { Button, Card, Tab, Tabs } from "react-bootstrap";
+import { Alert, Button, Card, Tab, Tabs } from "react-bootstrap";
 import {
   BriefcaseFill,
   BuildingFill,
@@ -10,11 +10,13 @@ import {
   ShieldCheck,
   TelephoneInboundFill,
 } from "react-bootstrap-icons";
+import RatingsTemplate from "./Ratings";
 
 const ManageBusiness = ({
   commonBiggerBoxclasses,
   commonHeaderClasses,
   business,
+  ratings,
 }) => {
   const obj = business.registeredBusinesses;
 
@@ -69,7 +71,22 @@ const ManageBusiness = ({
             </Card>
           </Tab>
           <Tab eventKey="ratings" title="Ratings">
-            Tab content for ratings
+            {ratings.length > 0 ? (
+              ratings?.map((el, i) => (
+                <RatingsTemplate
+                  key={i}
+                  ratedBy={el.ratedBy}
+                  ratingsDate={el.ratingsDate}
+                  ratingStars={el.ratingStars}
+                  ratingsContent={el.ratingsContent}
+                  ratingsTitle={el.ratingsTitle}
+                />
+              ))
+            ) : (
+              <Alert>
+                You currently have no ratings. Please check again later.
+              </Alert>
+            )}
           </Tab>
           <Tab eventKey="follow-up" title="Follow up">
             Tab content for ratings
