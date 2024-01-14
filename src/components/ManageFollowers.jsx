@@ -1,11 +1,18 @@
+import { useState } from "react";
 import { Alert, Tab, Tabs } from "react-bootstrap";
 import UserContentTemplate from "./UserContent";
 import ContentPhotos from "./ContentPhotos";
 import MessagesTemplate from "./DisplayMessages";
 
-const ManageFollowers = ({ commonBiggerBoxclasses, content, messages }) => {
+const ManageFollowers = ({
+  commonBiggerBoxclasses,
+  content,
+  messages,
+  user,
+}) => {
+  const [show, setShow] = useState(false);
   return (
-    <div className={commonBiggerBoxclasses}>
+    <div className={commonBiggerBoxclasses + "h-100 overflow-y-auto"}>
       <h2 className={"text-start fs-6 fw-bold mx-2 mb-4"}>Manage Content</h2>
       <div className="px-2">
         <Tabs className="mb-3">
@@ -31,6 +38,9 @@ const ManageFollowers = ({ commonBiggerBoxclasses, content, messages }) => {
                   sender={file.sender}
                   sendDate={file.sendDate}
                   messageBody={file.messageBody}
+                  user={user}
+                  show={show}
+                  setShow={setShow}
                 />
               ))
             ) : (

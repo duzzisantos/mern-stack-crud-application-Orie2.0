@@ -44,8 +44,8 @@ const Admin = ({ user }) => {
           <div className={commonBoxClasses}>
             <h2 className={commonHeaderClasses}>Followers vs Following</h2>
             <p className="mt-4 fs-1">
-              {followers?.length}
-              {" : "} {following?.length}
+              {followers[0]?.length}
+              {" : "} {following[0]?.length}
             </p>
           </div>
           <div className={commonBoxClasses}>
@@ -72,6 +72,7 @@ const Admin = ({ user }) => {
             commonBiggerBoxclasses={commonBiggerBoxclasses}
             commonHeaderClasses={commonHeaderClasses}
             messages={messages}
+            user={user}
           />
         </div>
       </div>
