@@ -1,18 +1,15 @@
-import { Tab, Tabs } from "react-bootstrap";
+import { Alert, Tab, Tabs } from "react-bootstrap";
 import UserContentTemplate from "./UserContent";
 import ContentPhotos from "./ContentPhotos";
+import MessagesTemplate from "./DisplayMessages";
 
-const ManageFollowers = ({
-  commonBiggerBoxclasses,
-  commonHeaderClasses,
-  content,
-}) => {
+const ManageFollowers = ({ commonBiggerBoxclasses, content, messages }) => {
   return (
     <div className={commonBiggerBoxclasses}>
       <h2 className={"text-start fs-6 fw-bold mx-2 mb-4"}>Manage Content</h2>
       <div className="px-2">
         <Tabs className="mb-3">
-          <Tab eventKey="home" title="Content">
+          <Tab eventKey="content" title="Content">
             {content[0]?.map((item, index) => (
               <UserContentTemplate
                 key={index}
@@ -21,11 +18,24 @@ const ManageFollowers = ({
               />
             ))}
           </Tab>
-          <Tab eventKey="profile" title="Photos">
+          <Tab eventKey="photos" title="Photos">
             <ContentPhotos content={content} />
           </Tab>
-          <Tab eventKey="contact" title="Messages">
-            Tab content for Messages
+          <Tab eventKey="messages" title="Messages">
+            {messages[0]?.length > 0 ? (
+              messages[0]?.map((file) => (
+                <MessagesTemplate
+                  key={file._id}
+                  subject={file.subject}
+                  id={file._id}
+                  sender={file.sender}
+                  sendDate={file.sendDate}
+                  messageBody={file.messageBody}
+                />
+              ))
+            ) : (
+              <Alert>No messages to see yet.</Alert>
+            )}
           </Tab>
         </Tabs>
       </div>

@@ -14,7 +14,7 @@ const Timeline = ({
   contentBody,
 }) => {
   return (
-    <Card className="p-2 col-12 border-0 shadow-sm">
+    <Card className="p-2 col-12 border-0 shadow-sm custom-pry-color">
       <fieldset className="d-flex flex-column px-2">
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-start hstack gap-3">
@@ -33,7 +33,7 @@ const Timeline = ({
             <div className="d-flex flex-column">
               <small className="fw-bold mt-2">
                 {authorName ?? "Mercedes Benz"}{" "}
-                <CheckCircleFill className="text-primary" />
+                <CheckCircleFill className="custom-pry-color" />
               </small>
               <small className="text-secondary">
                 {businessCategory ?? "Category X"}

@@ -43,6 +43,7 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
         backdrop="static"
         keyboard={false}
         size="lg"
+        className="custom-pry-color"
       >
         <Modal.Header closeButton>
           <Modal.Title>Add ratings for customer: {businessEmail}</Modal.Title>
@@ -90,10 +91,18 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant="transparent"
+            className="border border-secondary"
+            onClick={handleClose}
+          >
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button
+            variant="transparent"
+            className="custom-pry-border"
+            onClick={handleSubmit}
+          >
             Send
           </Button>
         </Modal.Footer>

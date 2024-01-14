@@ -7,6 +7,7 @@
 .App {
   height: fit-content;
   width: 100%;
+  color: rgba(0, 0, 0, 0.9) !important;
 }
 
 .custom-sec {
@@ -14,11 +15,15 @@
 }
 
 .custom-pry {
-  background-color: #0055a5 !important;
+  background-color: #153f66 !important;
 }
 
 .custom-pry-border {
-  border: 1.5px solid #0055a5 !important;
+  border: 1.5px solid #153f66 !important;
+}
+
+.custom-pry-color {
+  color: #153f66 !important;
 }
 
 .box-400 {
@@ -46,7 +51,7 @@ li {
 }
 
 button[role="tab"] {
-  color: #0055a5 !important;
+  color: #153f66 !important;
   border-radius: 0% !important;
 }
 

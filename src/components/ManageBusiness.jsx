@@ -26,7 +26,7 @@ const ManageBusiness = ({
       <div className="px-2">
         <Tabs className="mb-3">
           <Tab eventKey="details" title="Details">
-            <Card className="border-0">
+            <Card className="border-0 custom-pry-color">
               <Card.Header className="d-flex justify-content-between bg-primary-subtle rounded-0">
                 <h6>Manage General Details</h6>
                 <Button size="sm" variant="transparent" className="border-0">

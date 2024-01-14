@@ -39,7 +39,7 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
       <small className="text-dark">
         <BuildingsFill /> {businessName ?? "My Business Limited"}
       </small>
-      <small className="text-primary">
+      <small className="custom-pry-color">
         <BriefcaseFill /> {category ?? "Financial"}
       </small>
       <div className="d-flex justify-content-start gap-2">
@@ -47,7 +47,7 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
           <Button
             size="sm"
             variant="transparent"
-            className="border-0 text-light custom-pry"
+            className="border border-1 border-secondary"
             onClick={() => {
               handleFollow();
               handleUpdateUserFollowingList();

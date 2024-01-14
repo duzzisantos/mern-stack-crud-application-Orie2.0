@@ -31,7 +31,7 @@ const BusinessCard = ({
 }) => {
   return (
     <>
-      <Card className="col-lg-5 shadow-lg border-0 rounded-3 business-card-hover">
+      <Card className="col-lg-5 shadow-lg border-0 rounded-3 business-card-hover custom-pry-color">
         <Card.Header className="bg-transparent border-0 d-flex hstack justify-content-between">
           <Card.Title className="fw-bold mt-3" as={"h6"}>
             {businessName}
@@ -72,7 +72,7 @@ const BusinessCard = ({
           <div className="d-flex justify-content-end gap-2">
             <Button
               size="sm"
-              className="custom-pry border-0 px-2"
+              className="custom-pry-border bg-transparent custom-pry-color px-2"
               onClick={handleShowMessage}
             >
               Send message

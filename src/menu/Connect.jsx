@@ -32,7 +32,7 @@ const Connect = ({ user }) => {
   return (
     <Container
       fluid
-      className="col-9 vh-100 gap-3 d-flex flex-lg-row flex-sm-column justify-content-between"
+      className="col-9 vh-100 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
     >
       <CustomerHero
         email={currentCustomer?.email}

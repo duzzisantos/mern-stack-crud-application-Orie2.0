@@ -1,7 +1,5 @@
 import { Badge } from "react-bootstrap";
 import {
-  ArrowLeftCircleFill,
-  ArrowRightCircleFill,
   BriefcaseFill,
   BuildingsFill,
   EnvelopeAtFill,
@@ -38,24 +36,20 @@ const CustomerHero = ({
           <small className="fs-6">
             <BuildingsFill /> {businessName}
           </small>
-          <small className="text-primary fs-6">
+          <small className="custom-pry-color fs-6">
             <BriefcaseFill /> {category}
           </small>
           <div className="d-flex flex-column gap-2">
             <small className="fs-6">
-              <ArrowLeftCircleFill className="text-primary" /> Followers{" "}
+              Followers{" "}
               <sup>
-                <Badge className="bg-success px-2" pill>
-                  {followers}
-                </Badge>
+                <Badge className="bg-secondary rounded-5">{followers}</Badge>
               </sup>
             </small>
             <small className="fs-6">
-              <ArrowRightCircleFill className="text-primary" /> Following{" "}
+              Following{" "}
               <sup>
-                <Badge className="bg-success px-2" pill>
-                  {following}
-                </Badge>
+                <Badge className="bg-secondary rounded-5">{following}</Badge>
               </sup>
             </small>
           </div>

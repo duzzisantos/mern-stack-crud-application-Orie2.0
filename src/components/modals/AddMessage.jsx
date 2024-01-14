@@ -39,6 +39,7 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
         backdrop="static"
         keyboard={false}
         size="lg"
+        className="custom-pry-color"
       >
         <Modal.Header closeButton>
           <Modal.Title>Send message to customer: {businessEmail}</Modal.Title>
@@ -77,10 +78,19 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant="transparent"
+            className="border border-secondary"
+            onClick={handleClose}
+          >
             Cancel
           </Button>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button
+            variant="transparent"
+            className="custom-pry-border"
+            type="submit"
+            onClick={handleSubmit}
+          >
             Send
           </Button>
         </Modal.Footer>

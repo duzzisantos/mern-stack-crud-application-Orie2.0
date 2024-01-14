@@ -47,8 +47,8 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className="col-9 py-3 vh-100">
-      <h1 className="fs-4 fw-bold">Marketplace</h1>
+    <Container className="col-9 py-3 vh-100 custom-pry-color">
+      <h1 className="fs-3 fw-bold">Marketplace</h1>
       <div className="box-150 col-12 justify-content-center align-items-center bottom-0 d-flex">
         <div className="col-9 text-center d-flex flex-column">
           <Form.Label htmlFor="search-vendor" className="fs-4 fw-bold">

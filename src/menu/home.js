@@ -8,7 +8,7 @@ import { auth } from "../authentication/firebase";
 const Home = () => {
   const [user] = useAuthState(auth);
   return (
-    <Container fluid className="col-12 px-0">
+    <Container fluid className="col-12 px-0 custom-pry-color">
       {!user && (
         <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top">
           <Container className="d-flex justify-content-between">
