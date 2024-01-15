@@ -3,6 +3,7 @@ import { Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
 import useGetRatings from "../api/useGetRatings";
 import BusinessCard from "../components/BusinessCard";
+import { averageRating } from "../helpers/averageRating";
 
 const Vendors = ({ user }) => {
   const { businesses } = useGetBusinesses();
@@ -29,25 +30,8 @@ const Vendors = ({ user }) => {
     setShowMessageModal(true);
   };
 
-  const averageRating = (email) => {
-    const output = [];
-    businesses.flat().forEach((business) => {
-      if (business.email === email) {
-        for (const file of rating) {
-          if (file.email === email) {
-            output.push(file.ratingStars);
-          }
-        }
-      }
-    });
-    return (
-      output.map((element) => element).reduce((a, b) => a + b, 0) /
-      rating.length
-    );
-  };
-
   return (
-    <Container className="col-9 py-3 vh-100 custom-pry-color">
+    <Container className="col-9 py-3 h-100 custom-pry-color">
       <h1 className="fs-3 fw-bold">Marketplace</h1>
       <div className="box-150 col-12 justify-content-center align-items-center bottom-0 d-flex">
         <div className="col-9 text-center d-flex flex-column">
@@ -64,7 +48,7 @@ const Vendors = ({ user }) => {
         </div>
       </div>
       <h2 className="fs-6 fw-normal mt-2">Viewing Okirika</h2>
-      <div className="col-12 d-flex flex-lg-row flex-sm-column gap-3 flex-wrap pb-5">
+      <div className="col-lg-12 col-sm-12 d-flex gap-2 flex-lg-row flex-sm-column flex-wrap">
         {businesses
           .flat()
           .filter((obj) => obj.email !== user.email)
@@ -80,7 +64,7 @@ const Vendors = ({ user }) => {
               state={element?.state}
               phone={element?.businessPhone}
               photo={element.photo}
-              ratingScore={averageRating(element.email)}
+              ratingScore={averageRating(element.email, businesses, rating)}
               showModal={show}
               handleClose={handleClose}
               grabEmail={grabEmail}

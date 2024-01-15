@@ -1,17 +1,24 @@
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../authentication/firebase";
+import HeroArea from "../components/landing-page/Hero";
+import FindCustomers from "../components/landing-page/FindCustomers";
+import Businesses from "../components/landing-page/Businesses";
+
+import SuggestionBoxes from "../reusable-comps/SuggestionBoxes";
 
 const Home = () => {
   const [user] = useAuthState(auth);
+  const [search, setSearch] = useState("");
   return (
     <Container fluid className="col-12 px-0 custom-pry-color">
       {!user && (
-        <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top">
-          <Container className="d-flex justify-content-between">
+        <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top bg-light">
+          <Container className="d-flex justify-content-between bg-light">
             <Navbar.Brand as={Link} to="home" className="hstack">
               <span className="fs-2">Dugam</span>
               <span className="position-relative">
@@ -31,27 +38,61 @@ const Home = () => {
           </Container>
         </Navbar>
       )}
-      <section className="bg-white p-5" style={{ height: "600px" }}>
-        <h1 className="text-center mt-2 fw-bolder">
-          Start connecting with vendors today.
-        </h1>
+      <section className="bg-white" style={{ height: "500px" }}>
+        <HeroArea />
       </section>
       <section
         className="d-flex flex-row justify-content-center bg-light"
-        style={{ height: "600px" }}
-      ></section>
+        style={{ height: "250px" }}
+      >
+        <FindCustomers setSearch={setSearch} search={search} />
+      </section>
+
       <section
-        className="d-flex flex-row justify-content-center bg-white"
-        style={{ height: "600px" }}
-      ></section>
+        className="d-flex flex-row justify-content-center bg-white py-5"
+        style={{ height: "1000px" }}
+      >
+        <Businesses search={search} />
+      </section>
       <section
-        className="d-flex flex-row justify-content-center bg-light"
-        style={{ height: "600px" }}
-      ></section>
+        className="py-5 gap-3 d-flex justify-content-center align-items-center bottom-0  flex-column bg-light"
+        style={{ height: "fit-content" }}
+      >
+        <h2 className="fw-bold">Popular categories</h2>
+        <div className="row col-9 justify-content-start gap-3">
+          {[
+            "Medical",
+            "Financial",
+            "Insurance",
+            "Groceries",
+            "Fabrics",
+            "More",
+          ].map((el, i) => (
+            <SuggestionBoxes title={el} key={i} />
+          ))}
+        </div>
+      </section>
+
       <section
-        className="d-flex flex-row justify-content-center bg-dark"
-        style={{ height: "200px" }}
-      ></section>
+        className="py-5 gap-3 d-flex justify-content-center align-items-center bottom-0  flex-column bg-white"
+        style={{ height: "fit-content" }}
+      >
+        <h2 className="fw-bold">Popular regions</h2>
+        <div className="row col-9 justify-content-start gap-3">
+          {[
+            "Aba",
+            "Port Harcourt",
+            "Onitsha",
+            "Owerri",
+            "Asaba",
+            "Awka",
+            "Enugu",
+            "More",
+          ].map((el, i) => (
+            <SuggestionBoxes title={el} key={i} />
+          ))}
+        </div>
+      </section>
     </Container>
   );
 };

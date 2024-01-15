@@ -14,6 +14,10 @@
   background-color: #e9ecf5 !important;
 }
 
+.custom-light {
+  color: rgb(240, 240, 240) !important;
+}
+
 .custom-pry {
   background-color: #153f66 !important;
 }

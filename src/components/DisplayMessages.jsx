@@ -29,7 +29,7 @@ const MessagesTemplate = ({
 
         <p>{messageBody}</p>
         <Button
-          className="w-25 btn-sm bg-transparent custom-pry-color custom-pry-border"
+          className="w-25 rounded-pill btn-sm bg-transparent custom-pry-color custom-pry-border"
           onClick={() => setShow(true)}
         >
           Reply

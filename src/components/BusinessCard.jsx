@@ -31,7 +31,10 @@ const BusinessCard = ({
 }) => {
   return (
     <>
-      <Card className="col-lg-5 shadow-lg border-0 rounded-3 business-card-hover custom-pry-color">
+      <Card
+        className="col-lg-3 col-sm-12 shadow-lg border-0 rounded-3 business-card-hover custom-pry-color"
+        style={{ height: "fit-content" }}
+      >
         <Card.Header className="bg-transparent border-0 d-flex hstack justify-content-between">
           <Card.Title className="fw-bold mt-3" as={"h6"}>
             {businessName}
@@ -41,7 +44,10 @@ const BusinessCard = ({
           </Button>
         </Card.Header>
         <Card.Body>
-          <section className="border-4 border-bottom border-primary-subtle py-1 mb-2">
+          <section
+            className="border-4 border-bottom border-primary-subtle py-1 mb-2"
+            style={{ height: "100px" }}
+          >
             <strong>
               <h6>Business photos</h6>
             </strong>
@@ -49,7 +55,7 @@ const BusinessCard = ({
               <Card.Img key={item?._id} src={item?.image} alt={businessName} />
             ))}
           </section>
-          <ul className="lh-lg">
+          <ul className="lh-lg" style={{ height: "200px" }}>
             <li>
               <BriefcaseFill className="text-dark" /> Category:{" "}
               {businessCategory}
@@ -69,7 +75,7 @@ const BusinessCard = ({
               <StarFill className="text-warning" /> Ratings: {ratingScore}
             </li>
           </ul>
-          <div className="d-flex justify-content-end gap-2">
+          <div className="d-flex justify-content-end gap-2 mt-auto">
             <Button
               size="sm"
               className="custom-pry-border bg-transparent custom-pry-color px-2"
