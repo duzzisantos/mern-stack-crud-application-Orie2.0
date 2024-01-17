@@ -1,4 +1,4 @@
-# Orie - Business directory
+# Dugam - Business directory
 
 # Introduction
 Orie is a business directory app that helps buyers to locate vendors in a particular city. The user filters information based on vendor categories.
