@@ -43,7 +43,10 @@ const Connect = ({ user }) => {
       />
 
       <section className="col-lg-6 my-3 px-0 h-100 overflow-y-auto">
-        <ConnectWritePost user={user} />
+        <ConnectWritePost
+          user={user}
+          authorName={currentCustomer?.businessName}
+        />
         <div className="border-0 rounded-2">
           <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
             <div className="d-flex gap-2">
@@ -53,12 +56,17 @@ const Connect = ({ user }) => {
           </div>
           <div className="px-3 py-3 gap-3 vstack">
             {subscribedContent.length > 0 ? (
-              subscribedContent?.map((element, index) => (
+              subscribedContent?.map((element) => (
                 <Timeline
-                  key={index}
+                  key={element._id}
                   contentBody={element?.contentBody}
+                  likes={element?.likes}
+                  id={element._id}
+                  bookmarks={element?.isBookmarked}
                   authorName={element?.authorName}
+                  authorEmail={element?.authorEmail}
                   authorImage={element?.authorImage}
+                  user={user}
                 />
               ))
             ) : (

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const ConnectWritePost = ({ user }) => {
+const ConnectWritePost = ({ user, authorName }) => {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState("");
   const [showTextArea, setShowTextArea] = useState(false);
@@ -33,6 +33,8 @@ const ConnectWritePost = ({ user }) => {
       isBookmarked: false,
       likes: [{ likedUserName: "" }],
       userEmail: user?.email,
+      authorEmail: user?.email,
+      authorName: authorName,
     }
   );
   const handleSubmit = () => {
