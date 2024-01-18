@@ -14,7 +14,8 @@ const useGetCategories = () => {
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          setCategories(response.data);
+          const uniqueCategories = [...new Set(response.data.map((el) => el))];
+          setCategories(uniqueCategories);
         }
       } catch (err) {
         console.warn(err);

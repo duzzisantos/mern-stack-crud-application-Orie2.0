@@ -14,7 +14,8 @@ const useGetRegions = () => {
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          setRegions(response.data);
+          const uniqueRegions = [...new Set(response.data.map((el) => el))];
+          setRegions(uniqueRegions);
         }
       } catch (err) {
         console.warn(err);

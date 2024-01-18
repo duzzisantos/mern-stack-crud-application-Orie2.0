@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
 import useGetRatings from "../api/useGetRatings";
 import BusinessCard from "../components/BusinessCard";
 import { averageRating } from "../helpers/averageRating";
 
 const Vendors = ({ user }) => {
+  const [search, setSearch] = useState("");
   const { businesses } = useGetBusinesses();
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
@@ -31,24 +32,34 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className="col-9 py-3 h-100 custom-pry-color">
-      <h1 className="fs-3 fw-bold">Marketplace</h1>
+    <Container fluid className="col-12 p-3 custom-pry-color">
+      <div className="d-flex justify-content-center">
+        <h1 className="fs-3 fw-bold col-9">Vendors</h1>
+      </div>
       <div className="box-150 col-12 justify-content-center align-items-center bottom-0 d-flex">
         <div className="col-9 text-center d-flex flex-column">
           <Form.Label htmlFor="search-vendor" className="fs-4 fw-bold">
             Search Vendors by category or name
           </Form.Label>
-          <input
-            className="py-2 px-3 border form-control"
-            id="search-vendor"
-            type="search"
-            role="search"
-            placeholder="Search vendor  by category or name"
-          />
+          <div className="col-12 d-flex">
+            <Form.Control
+              id="search-businesses"
+              className="w-100 py-3 rounded-0"
+              placeholder="Eg: Car Tyres"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Button size="lg" className="custom-pry border-0 rounded-0">
+              Search
+            </Button>
+          </div>
         </div>
       </div>
-      <h2 className="fs-6 fw-normal mt-2">Viewing Okirika</h2>
-      <div className="col-lg-12 col-sm-12 d-flex gap-2 flex-lg-row flex-sm-column flex-wrap">
+
+      <div
+        className="col-12 d-flex justify-content-center gap-2 flex-lg-row flex-sm-column flex-wrap"
+        style={{ height: "1000px" }}
+      >
         {businesses
           .flat()
           .filter((obj) => obj.email !== user.email)

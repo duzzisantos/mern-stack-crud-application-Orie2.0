@@ -14,7 +14,8 @@ const useGetCities = () => {
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          setCities(response.data);
+          const uniqueCities = [...new Set(response.data.map((el) => el))];
+          setCities(uniqueCities);
         }
       } catch (err) {
         console.warn(err);
