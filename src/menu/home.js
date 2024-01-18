@@ -8,12 +8,19 @@ import { auth } from "../authentication/firebase";
 import HeroArea from "../components/landing-page/Hero";
 import FindCustomers from "../components/landing-page/FindCustomers";
 import Businesses from "../components/landing-page/Businesses";
-
 import SuggestionBoxes from "../reusable-comps/SuggestionBoxes";
+import useGetCities from "../api/useGetCities";
+import useGetCategories from "../api/useGetCategories";
+import useGetRegions from "../api/useGetRegion";
 
 const Home = () => {
   const [user] = useAuthState(auth);
   const [search, setSearch] = useState("");
+
+  const { cities } = useGetCities();
+  const { categories } = useGetCategories();
+  const { regions } = useGetRegions();
+
   return (
     <Container fluid className="col-12 px-0 custom-pry-color">
       {!user && (
@@ -45,13 +52,16 @@ const Home = () => {
         className="d-flex flex-row justify-content-center bg-light"
         style={{ height: "250px" }}
       >
-        <FindCustomers setSearch={setSearch} search={search} />
+        <FindCustomers
+          setSearch={setSearch}
+          search={search}
+          regions={regions}
+          cities={cities}
+          categories={categories}
+        />
       </section>
 
-      <section
-        className="d-flex flex-row justify-content-center bg-white py-5"
-        style={{ height: "1000px" }}
-      >
+      <section className="bg-white" style={{ height: "1000px" }}>
         <Businesses search={search} />
       </section>
       <section

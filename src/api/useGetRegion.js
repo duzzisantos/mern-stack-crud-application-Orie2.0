@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useGetRegions = () => {
-  const [categories, setRegions] = useState([]);
+  const [regions, setRegions] = useState([]);
 
   //Fetch all Regionsregistered since time immemorial
   useEffect(() => {
@@ -23,7 +23,7 @@ const useGetRegions = () => {
     getRegions();
   }, []);
 
-  return { categories, setRegions };
+  return { regions, setRegions };
 };
 
 export default useGetRegions;

@@ -1,7 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 
-const FindCustomers = ({ search, setSearch }) => {
+const FindCustomers = ({ search, setSearch, cities, regions, categories }) => {
   return (
     <Form className="d-flex flex-column col-12 vstack gap-3 align-items-center justify-content-center">
       <Form.Label className="fs-2 fw-semibold" htmlFor="search-businesses">
@@ -19,17 +19,24 @@ const FindCustomers = ({ search, setSearch }) => {
       </div>
       <div className="d-flex gap-2 col-9">
         <Form.Select className="w-25">
-          <option>Query city</option>
-          {["Aba", "Enugu", "Yenagoa"].map((element, index) => (
+          <option>Select city</option>
+          {cities?.map((element, index) => (
             <option key={index}>{element}</option>
           ))}
         </Form.Select>
         <Form.Select className="w-25">
-          <option>Query category</option>
-          {["Fabrics", "Groceries", "Insurance"].map((element, index) => (
+          <option>Select region/state</option>
+          {regions?.map((element, index) => (
             <option key={index}>{element}</option>
           ))}
         </Form.Select>
+        <Form.Select className="w-25">
+          <option>Select category</option>
+          {categories?.map((element, index) => (
+            <option key={index}>{element}</option>
+          ))}
+        </Form.Select>
+
         <Button className="custom-pry border-0">Go</Button>
       </div>
     </Form>
