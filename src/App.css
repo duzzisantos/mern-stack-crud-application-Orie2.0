@@ -30,6 +30,10 @@
   color: #153f66 !important;
 }
 
+.custom-link:hover {
+  color: #153f66 !important;
+}
+
 .box-400 {
   height: 400px;
 }
@@ -54,6 +58,9 @@ li {
   list-style-type: none !important;
 }
 
+ul ol {
+  list-style-type: circle !important;
+}
 button[role="tab"] {
   color: #153f66 !important;
   border-radius: 0% !important;

@@ -12,9 +12,10 @@ const CustomerHero = ({
   category,
   followers,
   following,
+  businessCategories,
 }) => {
   return (
-    <div className="mx-0 py-2">
+    <div className="mx-0 py-2 d-flex flex-column">
       <h1 className="fs-4">{userName}</h1>
       <fieldset className="d-flex flex-column justify-content-center gap-3 shadow-sm px-4 py-2">
         <legend
@@ -55,6 +56,20 @@ const CustomerHero = ({
           </div>
         </div>
       </fieldset>
+      <div className="my-3">
+        <div className="px-4 py-2 shadow-sm vstack gap-1">
+          <small className="fw-semibold">Categories</small>
+          {businessCategories?.map((item, i) => (
+            <a
+              key={i}
+              href="/"
+              className="text-decoration-none text-secondary smaller-text custom-link"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
