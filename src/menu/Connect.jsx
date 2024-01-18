@@ -31,19 +31,7 @@ const Connect = ({ user }) => {
 
   //Suggested users to follow
   const whomToFollow = () => {
-    const result = [];
-    for (const entity of businesses) {
-      const email = entity.email;
-
-      for (const file of followers) {
-        for (const item of following) {
-          if (file.followerName !== email || item.followerName !== email) {
-            result.push(entity[0]);
-          }
-        }
-      }
-    }
-    return result;
+    return null;
   };
 
   console.log(whomToFollow());
