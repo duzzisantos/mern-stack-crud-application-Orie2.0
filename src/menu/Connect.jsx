@@ -51,7 +51,7 @@ const Connect = ({ user }) => {
         businessCategories={categories}
       />
 
-      <section className="col-lg-6 my-3 px-0 h-100 overflow-y-auto">
+      <section className="col-lg-6 my-3 px-0 mh-100 overflow-y-auto">
         <ConnectWritePost
           user={user}
           authorName={currentCustomer?.businessName}

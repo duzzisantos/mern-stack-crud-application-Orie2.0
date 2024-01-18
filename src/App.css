@@ -34,6 +34,18 @@
   color: #153f66 !important;
 }
 
+.social-button-1:hover {
+  color: rgb(206, 28, 28) !important;
+}
+
+.social-button-2:hover {
+  color: rgb(14, 175, 49) !important;
+}
+
+.social-button-3:hover {
+  color: rgb(35, 4, 107) !important;
+}
+
 .box-400 {
   height: 400px;
 }

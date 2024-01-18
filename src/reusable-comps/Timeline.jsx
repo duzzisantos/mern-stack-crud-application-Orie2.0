@@ -133,7 +133,7 @@ const Timeline = ({
           <Form>
             <Button
               variant="transparent"
-              className={`d-flex flex-column vstack ${
+              className={`d-flex flex-column vstack social-button-1 ${
                 like ? "text-danger" : "text-secondary"
               }`}
               title="Like"
@@ -147,7 +147,7 @@ const Timeline = ({
           <Form>
             <Button
               variant="transparent"
-              className={`d-flex flex-column vstack ${
+              className={`d-flex flex-column vstack social-button-2 ${
                 bookmark ? "text-success" : "text-secondary"
               }`}
               title="Bookmark"
@@ -160,9 +160,12 @@ const Timeline = ({
           </Form>
           <Button
             variant="transparent"
-            className="d-flex flex-column vstack text-secondary"
+            className="d-flex flex-column vstack text-secondary social-button-3"
             title="Comment"
-            onClick={handleShowCommenter}
+            onClick={() => {
+              handleShowCommenter();
+              setShowCommentList(false);
+            }}
           >
             <ChatDotsFill />
             <small className="mx-1">{comments.length}</small>
@@ -183,7 +186,7 @@ const Timeline = ({
           style={{ cursor: "pointer" }}
           onClick={() => setShowCommentList(!showCommentList)}
         >
-          View comments
+          {!showCommentList ? "View comments" : "Collapse comments"}
         </small>
       )}
 
