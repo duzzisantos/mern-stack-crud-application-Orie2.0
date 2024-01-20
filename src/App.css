@@ -62,10 +62,6 @@
   height: fit-content !important;
 }
 
-.business-card-hover:hover {
-  border: 2px solid #aac2d9 !important;
-}
-
 li {
   list-style-type: none !important;
 }
