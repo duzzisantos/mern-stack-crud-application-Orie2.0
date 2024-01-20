@@ -12,14 +12,28 @@ import SuggestionBoxes from "../reusable-comps/SuggestionBoxes";
 import useGetCities from "../api/useGetCities";
 import useGetCategories from "../api/useGetCategories";
 import useGetRegions from "../api/useGetRegion";
+import getGeneralSearch from "../api/useGeneralSearch";
+import getNarrowSearch from "../api/useNarrowSearch";
 
 const Home = () => {
   const [user] = useAuthState(auth);
   const [search, setSearch] = useState("");
-
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [category, setCategory] = useState("");
+  const [generalSearch, setGeneralSearch] = useState([]);
+  const [narrowSearch, setNarrowSearch] = useState([]);
   const { cities } = useGetCities();
   const { categories } = useGetCategories();
   const { regions } = useGetRegions();
+
+  const handleGeneralSearch = () => {
+    return getGeneralSearch(setGeneralSearch, search);
+  };
+
+  const handleNarrowSearch = () => {
+    return getNarrowSearch(setNarrowSearch, region, city, category);
+  };
 
   return (
     <Container fluid className="col-12 px-0 custom-pry-color">
@@ -58,11 +72,18 @@ const Home = () => {
           regions={regions}
           cities={cities}
           categories={categories}
+          setCategories={setCategory}
+          setRegion={setRegion}
+          setCity={setCity}
+          handleGeneralSearch={handleGeneralSearch}
+          handleNarrowSearch={handleNarrowSearch}
+          handleResetGeneral={() => setGeneralSearch([])}
+          handleResetNarrow={() => setNarrowSearch([])}
         />
       </section>
 
       <section className="bg-white" style={{ height: "1000px" }}>
-        <Businesses search={search} />
+        <Businesses narrowSearch={narrowSearch} generalSearch={generalSearch} />
       </section>
       <section
         className="py-5 gap-3 d-flex justify-content-center align-items-center bottom-0  flex-column bg-light"
@@ -70,14 +91,7 @@ const Home = () => {
       >
         <h2 className="fw-bold">Popular categories</h2>
         <div className="row col-9 justify-content-start gap-3">
-          {[
-            "Medical",
-            "Financial",
-            "Insurance",
-            "Groceries",
-            "Fabrics",
-            "More",
-          ].map((el, i) => (
+          {categories.map((el, i) => (
             <SuggestionBoxes title={el} key={i} />
           ))}
         </div>
@@ -89,16 +103,7 @@ const Home = () => {
       >
         <h2 className="fw-bold">Popular regions</h2>
         <div className="row col-9 justify-content-start gap-3">
-          {[
-            "Aba",
-            "Port Harcourt",
-            "Onitsha",
-            "Owerri",
-            "Asaba",
-            "Awka",
-            "Enugu",
-            "More",
-          ].map((el, i) => (
+          {regions.map((el, i) => (
             <SuggestionBoxes title={el} key={i} />
           ))}
         </div>

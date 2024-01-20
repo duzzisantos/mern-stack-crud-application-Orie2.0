@@ -9,6 +9,7 @@ import useGetFollowing from "../api/useGetFollowing";
 import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowedContent from "../api/useGetFollowedPosts";
 import useGetCategories from "../api/useGetCategories";
+import useSuggestedFollows from "../api/useSuggestedFollows";
 
 const Connect = ({ user }) => {
   //Fetch all businesses registered
@@ -16,6 +17,7 @@ const Connect = ({ user }) => {
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
   const { subscribedContent } = useGetFollowedContent(user);
+  const { suggestedFollows } = useSuggestedFollows(user);
   const { categories } = useGetCategories();
   const suggestedBusinesses = () => {
     const result = [];
@@ -28,13 +30,6 @@ const Connect = ({ user }) => {
   const currentCustomer = suggestedBusinesses()
     ?.filter((element) => element.email === user.email)
     .map((x) => x)[0];
-
-  //Suggested users to follow
-  const whomToFollow = () => {
-    return null;
-  };
-
-  console.log(whomToFollow());
 
   //Refactor these into singular components
   return (
@@ -84,13 +79,13 @@ const Connect = ({ user }) => {
           </div>
         </div>
       </section>
-      <section className=" mt-3 mb-5 px-0 shadow-sm gap-3 vstack rounded-top-2">
+      <section className=" mt-3 mb-5 px-0  mh-100 shadow-sm gap-3 vstack rounded-top-2">
         <div className="bg-primary-subtle bg-opacity-10 w-100 px-3 py-2">
           <h2 className="fs-6 fw-semibold ">Suggestions</h2>
         </div>
         <div className="col-12 px-3 gap-3 vstack">
-          {whomToFollow()?.length > 1 &&
-            whomToFollow()
+          {suggestedFollows.length > 1 &&
+            suggestedFollows
               ?.filter((item) => item?.email !== user?.email)
               .map((item, i) => (
                 <SuggestedFollows
