@@ -69,6 +69,12 @@ const ManageBusiness = ({
                       {el.businessPhone}
                     </li>
                     <li>
+                      <GeoAltFill /> City: {el?.city}
+                    </li>
+                    <li>
+                      <GeoAltFill /> State/Region: {el?.state}
+                    </li>
+                    <li>
                       <GeoAltFill /> Address: {el.address}
                     </li>
                     <li>
