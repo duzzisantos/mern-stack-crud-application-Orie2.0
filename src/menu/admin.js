@@ -7,6 +7,7 @@ import useGetOneBusiness from "../api/useGetOneBusiness";
 import useGetRatings from "../api/useGetRatings";
 import useGetAllUserContent from "../api/useGetUserPosts";
 import useGetMessages from "../api/useGetMessages";
+import { BuildingsFill, PeopleFill, StarFill } from "react-bootstrap-icons";
 
 const Admin = ({ user }) => {
   const commonBoxClasses =
@@ -42,20 +43,27 @@ const Admin = ({ user }) => {
       <div className="vstack gap-5  h-100">
         <div className={commonFlexClasses}>
           <div className={commonBoxClasses}>
-            <h2 className={commonHeaderClasses}>Followers vs Following</h2>
+            <h2 className={commonHeaderClasses}>
+              <PeopleFill /> Followers vs Following
+            </h2>
             <p className="mt-4 fs-1">
               {followers[0]?.length}
               {" : "} {following[0]?.length}
             </p>
           </div>
           <div className={commonBoxClasses}>
-            <h2 className={commonHeaderClasses}>Average Rating</h2>
+            <h2 className={commonHeaderClasses}>
+              <StarFill className="text-warning" /> Average Rating
+            </h2>
             <p className="mt-4 fs-1">
               {isNaN(averageRating()) ? 0 : averageRating()}
             </p>
           </div>
           <div className={commonBoxClasses}>
-            <h2 className={commonHeaderClasses}>Top Industry Interested</h2>
+            <h2 className={commonHeaderClasses}>
+              <BuildingsFill className="text-secondary" /> Top Industry
+              Interested
+            </h2>
             <p className="mt-4 fs-1">Fabrics</p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { BookFill, CalendarFill, PenFill } from "react-bootstrap-icons";
+import { Book, BookFill, CalendarFill, PenFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
@@ -42,12 +42,14 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
         className="custom-pry-color"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Send message to customer: {businessEmail}</Modal.Title>
+          <Modal.Title>
+            <PenFill /> Send message to customer: {businessEmail}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form className="gap-2 vstack">
             <Form.Label htmlFor="title" className="fw-bold">
-              <PenFill /> Subject
+              <Book /> Subject
             </Form.Label>
             <Form.Control
               id="title"

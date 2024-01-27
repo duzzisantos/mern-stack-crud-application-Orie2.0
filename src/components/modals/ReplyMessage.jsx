@@ -1,5 +1,10 @@
 import { Form } from "react-bootstrap";
-import { BookFill, CalendarFill, PenFill } from "react-bootstrap-icons";
+import {
+  BookFill,
+  CalendarFill,
+  PenFill,
+  PersonFill,
+} from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
@@ -44,12 +49,14 @@ function ReplyMessage({
         className="custom-pry-color"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Replying message to customer: {sender}</Modal.Title>
+          <Modal.Title>
+            <PenFill /> Replying message to customer: {sender}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form className="gap-2 vstack">
             <Form.Label htmlFor="repliedBy" className="fw-bold">
-              <PenFill /> Responder
+              <PersonFill /> Responder (me)
             </Form.Label>
             <Form.Control id="repliedBy" defaultValue={repliedBy} />
 

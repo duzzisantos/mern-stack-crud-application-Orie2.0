@@ -9,6 +9,7 @@ import {
   GeoAltFill,
   GlobeAmericas,
   Map,
+  PencilFill,
   PeopleFill,
   PersonPlusFill,
   ShieldFillCheck,
@@ -89,7 +90,9 @@ const EditBusiness = ({ user, show, handleClose }) => {
       className="custom-pry-color"
     >
       <Modal.Header closeButton>
-        <Modal.Title>Editing My Business</Modal.Title>
+        <Modal.Title>
+          <PencilFill /> Editing My Business
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form

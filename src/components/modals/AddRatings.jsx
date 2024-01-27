@@ -1,5 +1,6 @@
 import { Form } from "react-bootstrap";
 import {
+  Book,
   BookFill,
   CalendarFill,
   PenFill,
@@ -46,12 +47,14 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
         className="custom-pry-color"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add ratings for customer: {businessEmail}</Modal.Title>
+          <Modal.Title>
+            <PenFill /> Add ratings for customer: {businessEmail}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form className="gap-2 vstack">
             <Form.Label htmlFor="title" className="fw-bold">
-              <PenFill /> Title
+              <Book /> Title
             </Form.Label>
             <Form.Control
               id="title"
@@ -79,11 +82,17 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
               value={ratingsContent}
               onChange={(e) => setRatingsContent(e.target.value)}
             />
-            <Form.Label className="fw-bold" htmlFor="ratingStars">
-              <StarFill className="text-warning" /> Ratings (in stars)
+            <Form.Label
+              className="fw-bold justify-content-between d-flex"
+              htmlFor="ratingStars"
+            >
+              <div>
+                <StarFill className="text-warning" /> Ratings (in stars)
+              </div>
+              <output>{ratingStars}</output>
             </Form.Label>
             <Form.Range
-              min={1}
+              min={0}
               max={5}
               value={ratingStars}
               onChange={(e) => setRatingStars(e.target.value)}
