@@ -7,7 +7,14 @@ import {
 } from "react-bootstrap-icons";
 import TextComponent from "../components/TextComponent";
 import { useState } from "react";
-import axios from "axios";
+import {
+  handleLikePost,
+  handleRemoveUser,
+  handleSaveBookmark,
+  handleSaveComment,
+  handleSendReport,
+  handleUnlikePost,
+} from "../api/timelineAPIs";
 import CommentList from "../components/CommentList";
 import MenuPopover from "./MenuPopover";
 import useGetPostComments from "../api/useGetPostComments";
@@ -41,71 +48,9 @@ const Timeline = ({
     setShowCommentForm(!showCommentForm);
   }
 
-  function handleSaveComment() {
-    axios
-      .post(
-        `http://localhost:8080/api/user-posts/reply?userEmail=${authorEmail}&id=${id}`,
-        {
-          commentBody: replyContent,
-          commentDate: `${new Date(Date.now()).toDateString()}`,
-          commentBy: user.email,
-        }
-      )
-      .then((res) => {
-        console.log(res.status);
-      })
-      .catch((error) => console.log(error.message));
-  }
-
-  function handleSaveBookmark() {
-    axios
-      .post(
-        `http://localhost:8080/api/user-posts/save-bookmark?userEmail=${authorEmail}&id=${id}`,
-        {
-          isBookmarked: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.status);
-        setBookmark(true);
-      })
-      .catch((error) => console.log(error.message));
-  }
-
-  function handleLikePost() {
-    axios
-      .post(
-        `http://localhost:8080/api/user-posts/like-post?userEmail=${authorEmail}&id=${id}`,
-        {
-          dateLiked: `${new Date(Date.now()).toDateString()}`,
-          likedUserName: authorEmail,
-          isUnliked: false,
-        }
-      )
-      .then((res) => {
-        console.log(res.status);
-        setLike(true);
-      })
-      .catch((error) => console.log(error.message));
-  }
-
-  function handleSendReport() {
-    axios
-      .post(
-        `http://localhost:8080/api/report-logs?userEmail=${authorEmail}&id=${id}&reportedBy=${user.email}`
-      )
-      .then((res) => console.log(res.status))
-      .catch((err) => console.warn(err.message));
-  }
-
-  function handleRemoveUser() {
-    axios
-      .post(
-        `http://localhost:8080/api/followers/block?blocker=${user.email}&blockee=${authorEmail}`
-      )
-      .then((res) => console.log(res.statusText))
-      .catch((err) => console.warn(err.message));
-  }
+  //Finds out if of the current user has likes across the content on the page
+  //This is vital for conditionally rendering the like and unlike buttons
+  const hasLikes = likes.some((content) => content.isLiked);
 
   return (
     <Card className="p-2 col-12 border-0 shadow-sm custom-pry-color">
@@ -141,7 +86,7 @@ const Timeline = ({
               <ButtonGroup vertical>
                 <Button
                   type="submit"
-                  onClick={handleRemoveUser}
+                  onClick={() => handleRemoveUser(user, authorEmail)}
                   variant="transparent"
                   className="border-0 text-start smaller-text popover-btn rounded-0"
                 >
@@ -149,7 +94,7 @@ const Timeline = ({
                 </Button>
                 <Button
                   type="submit"
-                  onClick={handleRemoveUser}
+                  onClick={() => handleRemoveUser(user, authorEmail)}
                   variant="transparent"
                   className="border-0 text-start smaller-text popover-btn rounded-0"
                 >
@@ -157,7 +102,7 @@ const Timeline = ({
                 </Button>
                 <Button
                   type="submit"
-                  onClick={handleSendReport}
+                  onClick={() => handleSendReport(authorEmail, id, user)}
                   variant="transparent"
                   className="border-0 text-start smaller-text popover-btn rounded-0"
                 >
@@ -173,18 +118,31 @@ const Timeline = ({
         </article>
         <div className="justify-content-start hstack mt-3 fw-light col-lg-2 col-sm-9">
           <Form>
-            <Button
-              variant="transparent"
-              className={`d-flex flex-column vstack social-button-1 ${
-                like ? "text-danger" : "text-secondary"
-              }`}
-              title="Like"
-              type="button"
-              onClick={handleLikePost}
-            >
-              <HeartFill />
-              <small>{likes?.length}</small>
-            </Button>
+            {!hasLikes ? ( //if any of the posts has likes - remove the like button - so the next click will trigger an unlike to prevent double likes
+              <Button
+                variant="transparent"
+                className={`d-flex flex-column vstack social-button-1 ${
+                  like ? "text-danger" : "text-secondary"
+                }`}
+                title="Like"
+                type="button"
+                onClick={() => handleLikePost(authorEmail, id, user, setLike)}
+              >
+                <HeartFill />
+                <small>{likes?.length}</small>
+              </Button>
+            ) : (
+              <Button
+                variant="transparent"
+                className={`d-flex flex-column vstack social-button-1  text-secondary`}
+                title="Unlike"
+                type="button"
+                onClick={() => handleUnlikePost(authorEmail, id, user, setLike)}
+              >
+                <HeartFill />
+                <small>{likes?.length}</small>
+              </Button>
+            )}
           </Form>
           <Form>
             <Button
@@ -194,7 +152,7 @@ const Timeline = ({
               }`}
               title="Bookmark"
               type="button"
-              onClick={handleSaveBookmark}
+              onClick={() => handleSaveBookmark(authorEmail, id, setBookmark)}
             >
               <BookmarkFill />
               <small className="mx-1">{bookmarks === true ? 1 : 0}</small>
@@ -217,7 +175,9 @@ const Timeline = ({
       {showCommentForm ? (
         <TextComponent
           handleClose={handleCloseCommenter}
-          handleSave={handleSaveComment}
+          handleSave={() =>
+            handleSaveComment(authorEmail, id, replyContent, user)
+          }
           setContent={setReplyContent}
           content={replyContent}
           title={"Post reply"}
