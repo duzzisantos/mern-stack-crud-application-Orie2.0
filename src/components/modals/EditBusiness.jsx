@@ -89,7 +89,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
       className="custom-pry-color"
     >
       <Modal.Header closeButton>
-        <Modal.Title>Editing Business</Modal.Title>
+        <Modal.Title>Editing My Business</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form

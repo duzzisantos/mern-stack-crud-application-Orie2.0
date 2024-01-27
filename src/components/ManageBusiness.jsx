@@ -38,7 +38,7 @@ const ManageBusiness = ({
         <Tabs className="mb-3">
           <Tab eventKey="details" title="Details">
             <Card className="border-0 custom-pry-color">
-              <Card.Header className="d-flex justify-content-between bg-primary-subtle rounded-0">
+              <Card.Header className="d-flex justify-content-between bg-transparent border rounded-0">
                 <h6>Manage General Details</h6>
                 <Button
                   size="sm"
@@ -105,9 +105,6 @@ const ManageBusiness = ({
                 You currently have no ratings. Please check again later.
               </Alert>
             )}
-          </Tab>
-          <Tab eventKey="follow-up" title="Follow up">
-            Tab content for ratings
           </Tab>
         </Tabs>
       </div>
