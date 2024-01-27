@@ -20,7 +20,7 @@ const Admin = ({ user }) => {
 
   const { followers } = useGetFollowers(user);
   const { following } = useGetFollowing(user);
-  const { business } = useGetOneBusiness(user);
+  const { biz } = useGetOneBusiness(user);
   const { rating } = useGetRatings(user);
   const { userContent } = useGetAllUserContent(user);
   const { messages } = useGetMessages(user);
@@ -61,7 +61,7 @@ const Admin = ({ user }) => {
         </div>
         <div className="d-flex flex-lg-row flex-sm-column hstack flex-wrap flex-lg-nowrap gap-4">
           <ManageBusiness
-            business={business}
+            biz={biz[0]}
             user={user}
             ratings={rating}
             commonBiggerBoxclasses={commonBiggerBoxclasses}

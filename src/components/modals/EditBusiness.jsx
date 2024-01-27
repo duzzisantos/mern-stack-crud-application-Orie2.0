@@ -38,7 +38,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          const data = response.data.registeredBusinesses[0];
+          const data = response.data[0];
 
           setBusinessID(data.businessID);
           setFirstName(data.firstName);

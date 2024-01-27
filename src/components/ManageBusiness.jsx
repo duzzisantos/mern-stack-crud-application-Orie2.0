@@ -14,14 +14,8 @@ import {
 import RatingsTemplate from "./Ratings";
 import EditBusiness from "./modals/EditBusiness";
 
-const ManageBusiness = ({
-  commonBiggerBoxclasses,
-  business,
-  ratings,
-  user,
-}) => {
+const ManageBusiness = ({ commonBiggerBoxclasses, biz, ratings, user }) => {
   const [show, setShow] = useState(false);
-  const obj = business.registeredBusinesses;
 
   const handleShow = () => {
     setShow(!show);
@@ -50,41 +44,39 @@ const ManageBusiness = ({
                 </Button>
               </Card.Header>
               <Card.Body>
-                {obj?.map((el, i) => (
-                  <ul key={i} className="lh-lg">
-                    <li>
-                      <PersonAdd /> First name: {el.firstName}
-                    </li>
-                    <li>
-                      <PeopleFill /> Last name: {el.lastName}
-                    </li>
-                    <li>
-                      <BuildingFill /> Business name: {el.businessName}
-                    </li>
-                    <li>
-                      <ShieldCheck /> Business ID: {el.businessID}
-                    </li>
-                    <li>
-                      <TelephoneInboundFill /> Business Phone:{" "}
-                      {el.businessPhone}
-                    </li>
-                    <li>
-                      <GeoAltFill /> City: {el?.city}
-                    </li>
-                    <li>
-                      <GeoAltFill /> State/Region: {el?.state}
-                    </li>
-                    <li>
-                      <GeoAltFill /> Address: {el.address}
-                    </li>
-                    <li>
-                      <BriefcaseFill /> Category: {el.category}
-                    </li>
-                    <li>
-                      <EnvelopeAt /> Email: {el.email}
-                    </li>
-                  </ul>
-                ))}
+                <ul className="lh-lg">
+                  <li>
+                    <PersonAdd /> First name: {biz?.firstName}
+                  </li>
+                  <li>
+                    <PeopleFill /> Last name: {biz?.lastName}
+                  </li>
+                  <li>
+                    <BuildingFill /> Business name: {biz?.businessName}
+                  </li>
+                  <li>
+                    <ShieldCheck /> Business ID: {biz?.businessID}
+                  </li>
+                  <li>
+                    <TelephoneInboundFill /> Business Phone:{" "}
+                    {biz?.businessPhone}
+                  </li>
+                  <li>
+                    <GeoAltFill /> City: {biz?.city}
+                  </li>
+                  <li>
+                    <GeoAltFill /> State/Region: {biz?.state}
+                  </li>
+                  <li>
+                    <GeoAltFill /> Address: {biz?.address}
+                  </li>
+                  <li>
+                    <BriefcaseFill /> Category: {biz?.category}
+                  </li>
+                  <li>
+                    <EnvelopeAt /> Email: {biz?.email}
+                  </li>
+                </ul>
               </Card.Body>
             </Card>
           </Tab>
