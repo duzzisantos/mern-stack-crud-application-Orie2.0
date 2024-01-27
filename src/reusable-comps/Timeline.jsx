@@ -129,7 +129,7 @@ const Timeline = ({
                 onClick={() => handleLikePost(authorEmail, id, user, setLike)}
               >
                 <HeartFill />
-                <small>{likes?.length}</small>
+                <small>{likes.filter((el) => el.isLiked).length}</small>
               </Button>
             ) : (
               <Button
@@ -140,7 +140,7 @@ const Timeline = ({
                 onClick={() => handleUnlikePost(authorEmail, id, user, setLike)}
               >
                 <HeartFill />
-                <small>{likes?.length}</small>
+                <small>{likes.filter((el) => el.isLiked).length}</small>
               </Button>
             )}
           </Form>
