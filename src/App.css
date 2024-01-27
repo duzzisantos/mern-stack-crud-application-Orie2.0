@@ -74,6 +74,10 @@ button[role="tab"] {
   border-radius: 0% !important;
 }
 
+.popover-btn:hover {
+  background-color: #e9ecf5 !important;
+}
+
 .smaller-text {
-  font-size: 14px;
+  font-size: 14px !important;
 }

@@ -7,12 +7,17 @@ const MenuPopover = ({ children, show, setShow }) => {
       trigger={"click"}
       placement="bottom"
       overlay={
-        <Popover>
-          <Popover.Body>{children}</Popover.Body>
+        <Popover className="rounded-0">
+          <Popover.Body className="p-0">{children}</Popover.Body>
         </Popover>
       }
     >
-      <Button onClick={() => setShow(!show)}>
+      <Button
+        variant="transparent"
+        size="sm"
+        className="border-0"
+        onClick={() => setShow(!show)}
+      >
         <ThreeDotsVertical />
       </Button>
     </OverlayTrigger>

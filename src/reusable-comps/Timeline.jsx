@@ -1,7 +1,6 @@
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form, ButtonGroup } from "react-bootstrap";
 import {
   CheckCircleFill,
-  ThreeDotsVertical,
   HeartFill,
   BookmarkFill,
   ChatDotsFill,
@@ -10,6 +9,7 @@ import TextComponent from "../components/TextComponent";
 import { useState } from "react";
 import axios from "axios";
 import CommentList from "../components/CommentList";
+import MenuPopover from "./MenuPopover";
 import useGetPostComments from "../api/useGetPostComments";
 
 const Timeline = ({
@@ -25,6 +25,7 @@ const Timeline = ({
   id,
 }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
   const [replyContent, setReplyContent] = useState("");
   const [showCommentList, setShowCommentList] = useState(false);
   const [like, setLike] = useState(false);
@@ -88,6 +89,24 @@ const Timeline = ({
       .catch((error) => console.log(error.message));
   }
 
+  function handleSendReport() {
+    axios
+      .post(
+        `http://localhost:8080/api/report-logs?userEmail=${authorEmail}&id=${id}&reportedBy=${user.email}`
+      )
+      .then((res) => console.log(res.status))
+      .catch((err) => console.warn(err.message));
+  }
+
+  function handleRemoveUser() {
+    axios
+      .post(
+        `http://localhost:8080/api/followers/block?blocker=${user.email}&blockee=${authorEmail}`
+      )
+      .then((res) => console.log(res.statusText))
+      .catch((err) => console.warn(err.message));
+  }
+
   return (
     <Card className="p-2 col-12 border-0 shadow-sm custom-pry-color">
       <fieldset className="d-flex flex-column px-2">
@@ -115,15 +134,38 @@ const Timeline = ({
               </small>
             </div>
           </div>
-          <Button
-            variant="transparent"
-            id="More Info"
-            className="rounded-pill"
-            title="More Info"
-            aria-label="More Info"
-          >
-            <ThreeDotsVertical />
-          </Button>
+          <MenuPopover
+            show={showPopover}
+            setShow={setShowPopover}
+            children={
+              <ButtonGroup vertical>
+                <Button
+                  type="submit"
+                  onClick={handleRemoveUser}
+                  variant="transparent"
+                  className="border-0 text-start smaller-text popover-btn rounded-0"
+                >
+                  Unfollow
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={handleRemoveUser}
+                  variant="transparent"
+                  className="border-0 text-start smaller-text popover-btn rounded-0"
+                >
+                  Block
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={handleSendReport}
+                  variant="transparent"
+                  className="border-0 text-start smaller-text popover-btn rounded-0"
+                >
+                  Report
+                </Button>
+              </ButtonGroup>
+            }
+          />
         </div>
 
         <article className="my-2">
