@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useGetOneBusiness = (user) => {
-  const [business, setBusiness] = useState({});
+  const [biz, setBiz] = useState([]);
   useEffect(() => {
     const getOneBusiness = async () => {
       try {
@@ -12,7 +12,7 @@ const useGetOneBusiness = (user) => {
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          setBusiness(response.data);
+          setBiz(response.data);
         }
       } catch (err) {
         console.warn(err);
@@ -21,7 +21,7 @@ const useGetOneBusiness = (user) => {
     getOneBusiness();
   }, [user.email]);
 
-  return { business, setBusiness };
+  return { biz, setBiz };
 };
 
 export default useGetOneBusiness;

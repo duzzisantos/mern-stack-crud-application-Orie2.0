@@ -1,13 +1,9 @@
 import { Badge } from "react-bootstrap";
-import {
-  BriefcaseFill,
-  BuildingsFill,
-  EnvelopeAtFill,
-} from "react-bootstrap-icons";
+import { BriefcaseFill, BuildingsFill } from "react-bootstrap-icons";
 
 const CustomerHero = ({
   userName,
-  email,
+
   businessName,
   category,
   followers,
@@ -31,9 +27,6 @@ const CustomerHero = ({
           }}
         ></legend>
         <div className="d-flex flex-column gap-3">
-          <small className="fs-6">
-            <EnvelopeAtFill /> {email}
-          </small>
           <small className="fs-6">
             <BuildingsFill /> {businessName}
           </small>

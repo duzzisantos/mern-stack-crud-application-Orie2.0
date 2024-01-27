@@ -4,7 +4,8 @@ import SuggestedFollows from "../reusable-comps/SuggestedFollows";
 import Timeline from "../reusable-comps/Timeline";
 import CustomerHero from "../components/CustomerHero";
 import ConnectWritePost from "../components/ConnectWritePost";
-import useGetBusinesses from "../api/useGetBusinesses";
+
+import useGetOneBusiness from "../api/useGetOneBusiness";
 import useGetFollowing from "../api/useGetFollowing";
 import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowedContent from "../api/useGetFollowedPosts";
@@ -13,23 +14,14 @@ import useSuggestedFollows from "../api/useSuggestedFollows";
 
 const Connect = ({ user }) => {
   //Fetch all businesses registered
-  const { businesses } = useGetBusinesses();
+  const { biz } = useGetOneBusiness(user);
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
   const { subscribedContent } = useGetFollowedContent(user);
   const { suggestedFollows } = useSuggestedFollows(user);
   const { categories } = useGetCategories();
-  const suggestedBusinesses = () => {
-    const result = [];
-    businesses?.forEach((company) => {
-      result.push(company[0]);
-    });
-    return result; //The user cannot follow themselves, so we filter them out
-  };
 
-  const currentCustomer = suggestedBusinesses()
-    ?.filter((element) => element.email === user.email)
-    .map((x) => x)[0];
+  const businessInfo = biz[0];
 
   //Refactor these into singular components
   return (
@@ -38,19 +30,15 @@ const Connect = ({ user }) => {
       className="col-9 vh-100 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
     >
       <CustomerHero
-        email={currentCustomer?.email}
-        businessName={currentCustomer?.businessName}
-        category={currentCustomer?.category}
+        businessName={businessInfo?.firstName + " " + businessInfo?.lastName}
+        category={businessInfo?.category}
         followers={followers[0]?.length ?? 0}
         following={following[0]?.length ?? 0}
         businessCategories={categories}
       />
 
       <section className="col-lg-6 my-3 px-0 mh-100 overflow-y-auto">
-        <ConnectWritePost
-          user={user}
-          authorName={currentCustomer?.businessName}
-        />
+        <ConnectWritePost user={user} authorName={businessInfo?.businessName} />
         <div className="border-0 rounded-2">
           <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
             <div className="d-flex gap-2">
