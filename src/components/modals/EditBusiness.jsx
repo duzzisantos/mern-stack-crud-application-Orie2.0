@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "react-bootstrap";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import "../App.css";
-import { Button, Container, Form } from "react-bootstrap";
-import { optionsArray } from "../helpers/hardCodedData";
+import { Modal, Form, Button } from "react-bootstrap";
+import { optionsArray } from "../../helpers/hardCodedData";
 import {
   BriefcaseFill,
   BuildingFill,
@@ -18,72 +16,84 @@ import {
   Upload,
 } from "react-bootstrap-icons";
 
-const Register = ({ user }) => {
-  const [userId, setUserId] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userName, setUserName] = useState("");
+const EditBusiness = ({ user, show, handleClose }) => {
+  const [businessID, setBusinessID] = useState(`${Date.now()}`);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [email, setEmail] = useState("");
+  const [businessPhone, setBusinessPhone] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
-    const getCustomer = async () => {
+    const getOneBusiness = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8080/api/signup?userEmail=${user.email}`
+        const response = await axios.get(
+          `http://localhost:8080/api/register/business-entity?userEmail=${user.email}`
         );
-        if (res.status !== 200) {
-          throw new Error(`${res.status} ${res.statusText}`);
+        if (response.status !== 200) {
+          throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          setUserEmail(res.data[0].userEmail);
-          setUserId(res.data[0].userId);
-          setUserName(res.data[0].userEmail);
+          const data = response.data.registeredBusinesses[0];
+
+          setBusinessID(data.businessID);
+          setFirstName(data.firstName);
+          setLastName(data.lastName);
+          setBusinessName(data.businessName);
+          setAddress(data.address);
+          setCity(data.city);
+          setState(data.state);
+          setEmail(data.email);
+          setBusinessPhone(data.businessPhone);
+          setCategory(data.category);
+          setImage(data.image);
         }
       } catch (err) {
-        console.warn(err.response);
+        console.warn(err);
       }
     };
-    getCustomer();
+    getOneBusiness();
   }, [user.email]);
 
-  //Form input states for updating user account with newly registered business
-  const [vendor, setVendor] = useState({
-    businessID: `${Date.now()}`,
-    firstName: "",
-    lastName: "",
-    businessName: "",
-    address: "",
-    city: "",
-    state: "",
-    email: "",
-    businessPhone: "",
-    category: "",
-    image: "",
-    imageId: `${Date.now() + 200}`,
-  });
-
-  //Merge vendor filled form Object with identifying data for querying
-  const formData = Object.assign(vendor, {
-    userId: userId,
-    userEmail: userEmail,
-    userName: userName,
-  });
-
-  //Submit form to update
-  const handleSubmit = () => {
+  const handleEditBusiness = (e) => {
+    e.preventDefault();
     axios
-      .post("http://localhost:8080/api/register", formData)
-      .then((res) => {
-        console.log(res.data);
+      .post(`http://localhost:8080/api/register/edit?userEmail=${user.email}`, {
+        businessID: businessID,
+        businessName: businessName,
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        city: city,
+        state: state,
+        email: email,
+        businessPhone: businessPhone,
+        category: category,
+        image: image,
       })
-      .catch((error) => {
-        console.log(error.message);
-      });
+      .then((res) => console.log(res.status))
+      .catch((err) => console.warn(err.message));
   };
 
   return (
-    <Container fluid className="col-9 p-3 custom-pry-color">
-      <h1 className="fs-3 fw-bold">Add Business</h1>
-      <div className="py-3 d-flex justify-content-center">
+    <Modal
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      keyboard={false}
+      size="lg"
+      className="custom-pry-color"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Editing Business</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <Form
-          onSubmit={handleSubmit}
+          onSubmit={handleEditBusiness}
           encType="multipart/form-data"
           className="gap-3 vstack"
         >
@@ -94,12 +104,10 @@ const Register = ({ user }) => {
             <Form.Control
               type="number"
               className="rounded-0"
-              value={vendor.businessID}
+              value={businessID}
               id="businessID"
               name="businessID"
-              onChange={(e) =>
-                setVendor({ ...vendor, businessID: e.target.value })
-              }
+              onChange={(e) => setBusinessID(e.target.value)}
               disabled
             />
           </div>
@@ -118,10 +126,8 @@ const Register = ({ user }) => {
               maxLength={50}
               spellCheck="false"
               autoCapitalize="on"
-              value={vendor.firstName}
-              onChange={(e) =>
-                setVendor({ ...vendor, firstName: e.target.value })
-              }
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div>
@@ -138,10 +144,8 @@ const Register = ({ user }) => {
               maxLength={50}
               spellCheck="false"
               autoCapitalize="on"
-              value={vendor.lastName}
-              onChange={(e) =>
-                setVendor({ ...vendor, lastName: e.target.value })
-              }
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div>
@@ -159,10 +163,8 @@ const Register = ({ user }) => {
               maxLength={50}
               spellCheck="false"
               autoCapitalize="on"
-              value={vendor.businessName}
-              onChange={(e) =>
-                setVendor({ ...vendor, businessName: e.target.value })
-              }
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
             />
           </div>
           <div>
@@ -180,10 +182,8 @@ const Register = ({ user }) => {
               maxLength={50}
               spellCheck="false"
               autoCapitalize="on"
-              value={vendor.address}
-              onChange={(e) =>
-                setVendor({ ...vendor, address: e.target.value })
-              }
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </div>
           <div>
@@ -201,8 +201,8 @@ const Register = ({ user }) => {
               maxLength={50}
               spellCheck="false"
               autoCapitalize="on"
-              value={vendor.city}
-              onChange={(e) => setVendor({ ...vendor, city: e.target.value })}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
             />
           </div>
           <div>
@@ -220,8 +220,8 @@ const Register = ({ user }) => {
               maxLength={50}
               spellCheck="false"
               autoCapitalize="on"
-              value={vendor.state}
-              onChange={(e) => setVendor({ ...vendor, state: e.target.value })}
+              value={state}
+              onChange={(e) => setState(e.target.value)}
             />
           </div>
           <div>
@@ -238,8 +238,8 @@ const Register = ({ user }) => {
               minLength={1}
               maxLength={50}
               spellCheck="false"
-              value={vendor.email}
-              onChange={(e) => setVendor({ ...vendor, email: e.target.value })}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -253,10 +253,8 @@ const Register = ({ user }) => {
               id="businessPhone"
               name="businessPhone"
               size={11}
-              value={vendor.businessPhone}
-              onChange={(e) =>
-                setVendor({ ...vendor, businessPhone: e.target.value })
-              }
+              value={businessPhone}
+              onChange={(e) => setBusinessPhone(e.target.value)}
             />
           </div>
           <Form.Label htmlFor="category">
@@ -266,8 +264,8 @@ const Register = ({ user }) => {
             id="category"
             className="rounded-0"
             required
-            value={vendor.category}
-            onChange={(e) => setVendor({ ...vendor, category: e.target.value })}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           >
             <option>Please select</option>
             {optionsArray.map((item, index) => (
@@ -285,16 +283,16 @@ const Register = ({ user }) => {
             className="rounded-0"
             name="photos"
             accept=".jpeg, .jpg, .png, .pdf, .docx, .pptx"
-            value={vendor.image}
-            onChange={(e) => setVendor({ ...vendor, image: e.target.value })}
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
           />
           <Button type="submit" className="w-25 custom-pry rounded-0 border-0">
             Submit
           </Button>
         </Form>
-      </div>
-    </Container>
+      </Modal.Body>
+    </Modal>
   );
 };
 
-export default Register;
+export default EditBusiness;

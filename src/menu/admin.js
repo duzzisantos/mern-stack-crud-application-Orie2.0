@@ -62,6 +62,7 @@ const Admin = ({ user }) => {
         <div className="d-flex flex-lg-row flex-sm-column hstack flex-wrap flex-lg-nowrap gap-4">
           <ManageBusiness
             business={business}
+            user={user}
             ratings={rating}
             commonBiggerBoxclasses={commonBiggerBoxclasses}
             commonHeaderClasses={commonHeaderClasses}

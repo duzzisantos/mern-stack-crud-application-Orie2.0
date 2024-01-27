@@ -1,4 +1,5 @@
 import { Alert, Button, Card, Tab, Tabs } from "react-bootstrap";
+import { useState } from "react";
 import {
   BriefcaseFill,
   BuildingFill,
@@ -11,14 +12,24 @@ import {
   TelephoneInboundFill,
 } from "react-bootstrap-icons";
 import RatingsTemplate from "./Ratings";
+import EditBusiness from "./modals/EditBusiness";
 
 const ManageBusiness = ({
   commonBiggerBoxclasses,
-  commonHeaderClasses,
   business,
   ratings,
+  user,
 }) => {
+  const [show, setShow] = useState(false);
   const obj = business.registeredBusinesses;
+
+  const handleShow = () => {
+    setShow(!show);
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
 
   return (
     <div className={commonBiggerBoxclasses + "h-100 overflow-y-auto"}>
@@ -29,7 +40,12 @@ const ManageBusiness = ({
             <Card className="border-0 custom-pry-color">
               <Card.Header className="d-flex justify-content-between bg-primary-subtle rounded-0">
                 <h6>Manage General Details</h6>
-                <Button size="sm" variant="transparent" className="border-0">
+                <Button
+                  size="sm"
+                  variant="transparent"
+                  className="border-0"
+                  onClick={handleShow}
+                >
                   <PencilFill />
                 </Button>
               </Card.Header>
@@ -89,6 +105,9 @@ const ManageBusiness = ({
           </Tab>
         </Tabs>
       </div>
+      {show && (
+        <EditBusiness user={user} show={show} handleClose={handleClose} />
+      )}
     </div>
   );
 };
