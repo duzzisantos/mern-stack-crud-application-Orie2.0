@@ -82,21 +82,9 @@ button[role="tab"] {
   font-size: 14px !important;
 }
 
-/* Landing page circles animation */
-.circles-wrapper {
-  position: absolute;
-}
-
-.circles {
-  position: relative;
-  height: 200px !important;
-  width: 200px !important;
-  border-radius: 50% !important;
-  background-color: steelblue !important;
-}
+/* Landing page circles animation - using fieldsets and legends */
 
 .bigger-circle {
-  position: relative;
   height: 870px !important;
   width: 870px !important;
   border-radius: 50% !important;
@@ -106,7 +94,6 @@ button[role="tab"] {
 }
 
 .big-circle {
-  position: relative;
   height: 670px !important;
   width: 670px !important;
   border-radius: 50% !important;
