@@ -5,7 +5,7 @@ import Navigation from "./authentication/Navigation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./authentication/firebase";
-import Home from "./menu/home";
+import Home from "./menu/Home";
 import Vendors from "./menu/vendors";
 import Register from "./menu/register";
 import FooterComponent from "./reusable-comps/footer";

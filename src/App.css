@@ -81,3 +81,87 @@ button[role="tab"] {
 .smaller-text {
   font-size: 14px !important;
 }
+
+/* Landing page circles animation */
+.circles-wrapper {
+  position: absolute;
+}
+
+.circles {
+  position: relative;
+  height: 200px !important;
+  width: 200px !important;
+  border-radius: 50% !important;
+  background-color: steelblue !important;
+}
+
+.bigger-circle {
+  position: relative;
+  height: 870px !important;
+  width: 870px !important;
+  border-radius: 50% !important;
+  border: 2px solid rgb(94, 146, 188) !important;
+  animation: bigger 80s;
+  animation-iteration-count: infinite;
+}
+
+.big-circle {
+  position: relative;
+  height: 670px !important;
+  width: 670px !important;
+  border-radius: 50% !important;
+  border: 2px solid rgb(132, 180, 219) !important;
+  animation: big 70s;
+  animation-iteration-count: infinite;
+}
+
+.small-circle {
+  position: relative;
+  height: 470px !important;
+  width: 470px !important;
+  border-radius: 50% !important;
+
+  border: 1px solid rgb(130, 161, 186) !important;
+  animation: smallCircle 60s;
+  animation-iteration-count: infinite;
+}
+
+.inner-legend {
+  height: 18px !important;
+  width: 100px !important;
+  float: none !important;
+  background-color: transparent !important;
+  margin-left: 44%;
+  margin-top: 3%;
+  border-radius: 10px;
+}
+
+@keyframes bigger {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes big {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes smallCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

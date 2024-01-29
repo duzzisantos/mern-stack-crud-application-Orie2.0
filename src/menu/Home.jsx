@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../authentication/firebase";
 import HeroArea from "../components/landing-page/Hero";
+import DesignedBackground from "../components/landing-page/DesignedBackground";
 import FindCustomers from "../components/landing-page/FindCustomers";
 import Businesses from "../components/landing-page/Businesses";
 import SuggestionBoxes from "../reusable-comps/SuggestionBoxes";
@@ -18,6 +19,7 @@ import getNarrowSearch from "../api/useNarrowSearch";
 const Home = () => {
   const [user] = useAuthState(auth);
   const [search, setSearch] = useState("");
+  const [searchState, setSearchState] = useState(false);
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
   const [category, setCategory] = useState("");
@@ -28,10 +30,12 @@ const Home = () => {
   const { regions } = useGetRegions();
 
   const handleGeneralSearch = () => {
+    setSearchState(true);
     return getGeneralSearch(setGeneralSearch, search);
   };
 
   const handleNarrowSearch = () => {
+    setSearchState(true);
     return getNarrowSearch(setNarrowSearch, region, city, category);
   };
 
@@ -77,13 +81,26 @@ const Home = () => {
           setCity={setCity}
           handleGeneralSearch={handleGeneralSearch}
           handleNarrowSearch={handleNarrowSearch}
-          handleResetGeneral={() => setGeneralSearch([])}
-          handleResetNarrow={() => setNarrowSearch([])}
+          handleResetGeneral={() => {
+            setGeneralSearch([]);
+            setSearchState(false);
+          }}
+          handleResetNarrow={() => {
+            setNarrowSearch([]);
+            setSearchState(false);
+          }}
         />
       </section>
 
       <section className="bg-white" style={{ height: "1000px" }}>
-        <Businesses narrowSearch={narrowSearch} generalSearch={generalSearch} />
+        {searchState ? (
+          <Businesses
+            narrowSearch={narrowSearch}
+            generalSearch={generalSearch}
+          />
+        ) : (
+          <DesignedBackground />
+        )}
       </section>
       <section
         className="py-5 gap-3 d-flex justify-content-center align-items-center bottom-0  flex-column bg-light"
