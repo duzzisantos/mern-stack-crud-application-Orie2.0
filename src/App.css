@@ -9,7 +9,9 @@
   width: 100%;
   color: rgba(0, 0, 0, 0.9) !important;
 }
-
+.not-allowed-cursor {
+  cursor: not-allowed !important;
+}
 .custom-sec {
   background-color: #e9ecf5 !important;
 }

@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { CalendarDateFill, PersonFill } from "react-bootstrap-icons";
 import ReplyMessage from "./modals/ReplyMessage";
+
 const MessagesTemplate = ({
   subject,
   sender,
@@ -20,7 +21,7 @@ const MessagesTemplate = ({
         <div className="d-flex vstack gap-1 smaller-text text-secondary">
           <div>
             {" "}
-            <PersonFill /> <small>{sender.split("@")[0]}</small>
+            <PersonFill /> <small>{sender.split("@")[0] ?? sender}</small>
           </div>
           <div>
             <CalendarDateFill /> <small>{sendDate}</small>
@@ -28,12 +29,14 @@ const MessagesTemplate = ({
         </div>
 
         <p>{messageBody}</p>
-        <Button
-          className="w-25 btn-sm bg-transparent custom-pry-color custom-pry-border"
-          onClick={() => setShow(true)}
-        >
-          Reply
-        </Button>
+        {sender.includes("Do not reply") ? null : ( //If message is from admin, the reply button is thus disabled, otherwise, user has access to reply other messages.
+          <Button
+            className={`w-25 btn-sm bg-transparent custom-pry-color custom-pry-border`}
+            onClick={() => setShow(true)}
+          >
+            Reply
+          </Button>
+        )}
       </div>
       {show && (
         <ReplyMessage

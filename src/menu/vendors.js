@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Alert, Button, Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
 import useGetRatings from "../api/useGetRatings";
 import BusinessCard from "../components/BusinessCard";
 import { averageRating } from "../helpers/averageRating";
+import getGeneralSearch from "../api/useGeneralSearch";
 
 const Vendors = ({ user }) => {
   const [search, setSearch] = useState("");
+  const [searchState, setSearchState] = useState(false);
+  const [generalSearch, setGeneralSearch] = useState([]);
   const { businesses } = useGetBusinesses();
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
@@ -31,6 +34,11 @@ const Vendors = ({ user }) => {
     setShowMessageModal(true);
   };
 
+  const handleVendorSearch = () => {
+    setSearchState(true);
+    return getGeneralSearch(setGeneralSearch, search);
+  };
+
   return (
     <Container fluid className="col-12 p-3 custom-pry-color">
       <div className="d-flex justify-content-center">
@@ -43,14 +51,25 @@ const Vendors = ({ user }) => {
           </Form.Label>
           <div className="col-12 d-flex">
             <Form.Control
-              id="search-businesses"
+              id="search-vendor"
               className="w-100 py-3 rounded-0"
               placeholder="Eg: Car Tyres"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Button size="lg" className="custom-pry border-0 rounded-0">
+            <Button
+              size="lg"
+              className="custom-pry border-0 rounded-0"
+              onClick={handleVendorSearch}
+            >
               Search
+            </Button>
+            <Button
+              size="lg"
+              className="bg-transparent custom-pry-border text-dark rounded-0"
+              onClick={() => setSearchState(false)}
+            >
+              Reset
             </Button>
           </div>
         </div>
@@ -60,10 +79,34 @@ const Vendors = ({ user }) => {
         className="col-12 d-flex justify-content-center gap-2 flex-lg-row flex-sm-column flex-wrap"
         style={{ height: "1000px" }}
       >
-        {businesses
-          .flat()
-          .filter((obj) => obj.email !== user.email)
-          .map((element, index) => (
+        {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following
+          businesses
+            .flat()
+            .filter((biz) => biz.email !== user.email)
+            .map((element, index) => (
+              <BusinessCard
+                key={index}
+                user={user}
+                businessCategory={element.category}
+                businessEmailAddress={element.email}
+                businessName={element.businessName}
+                address={element.address}
+                city={element?.city}
+                state={element?.state}
+                phone={element?.businessPhone}
+                photo={element.photo}
+                ratingScore={averageRating(rating, element.email)}
+                showModal={show}
+                handleClose={handleClose}
+                grabEmail={grabEmail}
+                handleShow={() => handleShow(element.email)}
+                handleCloseMessage={handleCloseMessage}
+                handleShowMessage={() => handleShowMessage(element.email)}
+                showMessageModal={showMessageModal}
+              />
+            ))
+        ) : searchState && generalSearch.length > 0 ? (
+          generalSearch.map((element, index) => (
             <BusinessCard
               key={index}
               user={user}
@@ -75,7 +118,7 @@ const Vendors = ({ user }) => {
               state={element?.state}
               phone={element?.businessPhone}
               photo={element.photo}
-              ratingScore={averageRating(element.email, businesses, rating)}
+              ratingScore={averageRating(rating, element.email)}
               showModal={show}
               handleClose={handleClose}
               grabEmail={grabEmail}
@@ -84,7 +127,16 @@ const Vendors = ({ user }) => {
               handleShowMessage={() => handleShowMessage(element.email)}
               showMessageModal={showMessageModal}
             />
-          ))}
+          ))
+        ) : (
+          <div className="col-9">
+            <Alert variant="transparent" className="fw-semibold">
+              Unfortunately, vendors were{" "}
+              <span className="text-danger">not found</span> pertaining to your
+              search. Modify your search term and try again!
+            </Alert>
+          </div>
+        )}
       </div>
     </Container>
   );

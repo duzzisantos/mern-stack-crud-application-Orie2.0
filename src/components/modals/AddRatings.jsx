@@ -27,6 +27,7 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
   const postObject = Object.assign(formData, {
     userEmail: businessEmail,
     ratedBy: user.email,
+    ratedUser: businessEmail,
   });
 
   const handleSubmit = (e) => {
