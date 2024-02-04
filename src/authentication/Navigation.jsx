@@ -5,15 +5,16 @@ import { db, auth, logout } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import React from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
 import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Link } from "react-router-dom";
 import {
   BuildingUp,
   CartCheckFill,
+  ClockFill,
   HouseUpFill,
   PencilSquare,
-  Person,
+  PersonFill,
   PlusCircleFill,
 } from "react-bootstrap-icons";
 
@@ -22,6 +23,8 @@ const Navigation = () => {
   const [customerData, setCustomerData] = useState([]);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+
+  console.log(user);
 
   useEffect(() => {
     const getUserName = async () => {
@@ -94,19 +97,31 @@ const Navigation = () => {
               <BuildingUp /> My Business
             </Nav.Link>
           </Nav>
-          <div className="hstack gap-2 text-light">
-            <Button
-              size="sm"
-              className="mx-auto custom-sec bg-opacity-50 border-0 text-dark rounded-pill"
-              onClick={() => {
-                logout();
-                navigate("/");
-              }}
-              style={{ height: "45px", width: "45px" }}
-              title={customerData[0]?.userName ?? name}
-            >
-              <Person className="fs-4" />
-            </Button>
+          <div
+            className="hstack gap-2 text-light rounded-5 border border-5"
+            style={{ height: "40px", width: "70px" }}
+          >
+            <NavDropdown className="mx-auto" title="Me">
+              <div className="p-2 smaller-text mx-1">
+                <p>
+                  <PersonFill /> {customerData[0]?.userName ?? name}
+                </p>
+                <p>
+                  <ClockFill /> Last login: {user.metadata.lastSignInTime}
+                </p>
+                <Button
+                  size="sm"
+                  className="btn btn-secondary text-light mx-auto w-100 btn-outline-danger border-0"
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                  }}
+                  title="Logout"
+                >
+                  Logout
+                </Button>
+              </div>
+            </NavDropdown>
           </div>
         </Container>
       </Navbar>

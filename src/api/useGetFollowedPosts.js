@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetFollowedContent = (user) => {
+const useGetFollowedContent = (user, page, size) => {
   const [subscribedContent, setSubscribedContent] = useState([]);
 
   useEffect(() => {
     const getFollowedContent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/subscribed-content?userEmail=${user.email}`
+          `http://localhost:8080/api/user-posts/subscribed-content?userEmail=${user.email}&page=${page}&size=${size}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -20,7 +20,7 @@ const useGetFollowedContent = (user) => {
       }
     };
     getFollowedContent();
-  }, [user.email]);
+  }, [user, page, size]);
 
   return { subscribedContent, setSubscribedContent };
 };
