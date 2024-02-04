@@ -97,6 +97,7 @@ const Home = () => {
           <Businesses
             narrowSearch={narrowSearch}
             generalSearch={generalSearch}
+            user={user}
           />
         ) : (
           <DesignedBackground />

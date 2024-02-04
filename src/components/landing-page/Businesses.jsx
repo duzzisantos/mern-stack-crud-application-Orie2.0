@@ -1,6 +1,6 @@
 import BusinessCard from "../BusinessCard";
 
-const Businesses = ({ narrowSearch, generalSearch }) => {
+const Businesses = ({ narrowSearch, generalSearch, user }) => {
   return (
     <div className="col-12 py-5 d-flex justify-content-center gap-2 flex-lg-row flex-sm-column flex-wrap">
       {narrowSearch.length > 0
@@ -14,6 +14,7 @@ const Businesses = ({ narrowSearch, generalSearch }) => {
               state={entity.state}
               businessName={entity.businessName}
               phone={entity.phone}
+              user={user}
             />
           ))
         : generalSearch.length > 0
@@ -27,6 +28,7 @@ const Businesses = ({ narrowSearch, generalSearch }) => {
               state={entity.state}
               businessName={entity.businessName}
               phone={entity.phone}
+              user={user}
             />
           ))
         : null}

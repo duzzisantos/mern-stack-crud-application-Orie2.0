@@ -29,6 +29,7 @@ const BusinessCard = ({
   handleShowMessage,
   user,
 }) => {
+  console.log(user);
   return (
     <>
       <Card
@@ -75,23 +76,25 @@ const BusinessCard = ({
               <StarFill className="text-warning" /> Ratings: {ratingScore}
             </li>
           </ul>
-          <div className="d-flex justify-content-end gap-2 mt-auto">
-            <Button
-              size="sm"
-              className="custom-pry-border bg-transparent custom-pry-color px-2"
-              onClick={handleShowMessage}
-            >
-              Send message
-            </Button>
-            <Button
-              size="sm"
-              variant="transparent"
-              className="border border-secondary px-2"
-              onClick={handleShow}
-            >
-              Add rating
-            </Button>
-          </div>
+          {!user ? null : ( //do not allow ratings on the home page if current client is not logged in
+            <div className="d-flex justify-content-end gap-2 mt-auto">
+              <Button
+                size="sm"
+                className="custom-pry-border bg-transparent custom-pry-color px-2"
+                onClick={handleShowMessage}
+              >
+                Send message
+              </Button>
+              <Button
+                size="sm"
+                variant="transparent"
+                className="border border-secondary px-2"
+                onClick={handleShow}
+              >
+                Add rating
+              </Button>
+            </div>
+          )}
         </Card.Body>
       </Card>
       {showModal && (

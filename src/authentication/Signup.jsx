@@ -13,6 +13,7 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+
   const register = () => {
     if (!name) {
       alert("Please enter name!");
@@ -38,7 +39,7 @@ const Signup = () => {
     if (loading) {
       return;
     }
-    if (user) navigate("/register");
+    if (user) navigate("/home");
   });
 
   return (
