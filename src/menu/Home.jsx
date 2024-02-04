@@ -25,6 +25,9 @@ const Home = () => {
   const [category, setCategory] = useState("");
   const [generalSearch, setGeneralSearch] = useState([]);
   const [narrowSearch, setNarrowSearch] = useState([]);
+  const [show, setShow] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [grabEmail, setGrabEmail] = useState("");
   const { cities } = useGetCities();
   const { categories } = useGetCategories();
   const { regions } = useGetRegions();
@@ -37,6 +40,24 @@ const Home = () => {
   const handleNarrowSearch = () => {
     setSearchState(true);
     return getNarrowSearch(setNarrowSearch, region, city, category);
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleShow = (email) => {
+    setGrabEmail(email);
+    setShow(true);
+  };
+
+  const handleCloseMessage = () => {
+    setShowMessageModal(false);
+  };
+
+  const handleShowMessage = (email) => {
+    setGrabEmail(email);
+    setShowMessageModal(true);
   };
 
   return (
@@ -98,6 +119,13 @@ const Home = () => {
             narrowSearch={narrowSearch}
             generalSearch={generalSearch}
             user={user}
+            showModal={show}
+            handleShow={handleShow}
+            handleClose={handleClose}
+            showMessageModal={showMessageModal}
+            grabEmail={grabEmail}
+            handleCloseMessage={handleCloseMessage}
+            handleShowMessage={handleShowMessage}
           />
         ) : (
           <DesignedBackground />

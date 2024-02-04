@@ -29,7 +29,6 @@ const BusinessCard = ({
   handleShowMessage,
   user,
 }) => {
-  console.log(user);
   return (
     <>
       <Card
