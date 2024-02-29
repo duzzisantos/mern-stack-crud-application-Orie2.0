@@ -7,7 +7,7 @@ const useGetOneBusiness = (user) => {
     const getOneBusiness = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/business-entity?userEmail=${user.email}`
+          `http://localhost:8080/api/register/business-entity?userEmail=${user}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -19,7 +19,7 @@ const useGetOneBusiness = (user) => {
       }
     };
     getOneBusiness();
-  }, [user.email]);
+  }, [user]);
 
   return { biz, setBiz };
 };

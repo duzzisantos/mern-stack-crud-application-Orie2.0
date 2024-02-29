@@ -7,7 +7,7 @@ const useGetRatings = (user) => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/ratings?userEmail=${user.email}`
+          `http://localhost:8080/api/ratings?userEmail=${user}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -19,7 +19,7 @@ const useGetRatings = (user) => {
       }
     };
     getFollowing();
-  }, [user.email]);
+  }, [user]);
 
   return { rating, setRating };
 };

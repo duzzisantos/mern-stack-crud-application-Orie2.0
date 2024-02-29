@@ -12,6 +12,7 @@ import AddMessage from "./modals/AddMessage";
 
 const BusinessCard = ({
   businessName,
+  isModal,
   businessCategory,
   businessEmailAddress,
   grabEmail,
@@ -32,7 +33,9 @@ const BusinessCard = ({
   return (
     <>
       <Card
-        className="col-lg-4 col-sm-12  shadow-lg border-0 rounded-3 business-card-hover custom-pry-color"
+        className={`col-lg-${
+          isModal ? 12 : 4
+        } col-sm-12  shadow-lg border-0 rounded-3 business-card-hover custom-pry-color`}
         style={{ height: "fit-content" }}
       >
         <Card.Header className="bg-transparent border-0 d-flex hstack justify-content-between">

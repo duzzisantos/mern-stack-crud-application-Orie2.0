@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 const Connect = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { biz } = useGetOneBusiness(user);
+  const { biz } = useGetOneBusiness(user.email);
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
   const { subscribedContent } = useGetFollowedContent(user);

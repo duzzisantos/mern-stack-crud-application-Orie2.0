@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import {
   Button,
   Card,
@@ -13,13 +14,20 @@ import useGetFollowing from "../api/useGetFollowing";
 import { handleFollow, handleUnfollow } from "../api/timelineAPIs";
 import { BuildingsFill, EyeFill, PlusCircle, XLg } from "react-bootstrap-icons";
 import useSuggestedFollows from "../api/useSuggestedFollows";
+import ViewProfile from "../components/modals/ViewProfile";
+import useGetRatings from "../api/useGetRatings";
+import useGetOneBusiness from "../api/useGetOneBusiness";
 
 const Followers = ({ user }) => {
+  const [show, setShow] = useState(false);
+  const [secondParty, setSecondParty] = useState("");
   const { state } = useLocation();
   const { followers } = useGetFollowers(user);
   const { following } = useGetFollowing(user);
   const { suggestedFollows } = useSuggestedFollows(user);
+  const { rating } = useGetRatings(secondParty);
 
+  const { biz } = useGetOneBusiness(secondParty);
   const alreadyFollowingList = following.flat().map((el) => el.followerName);
   const getFollowSuggestions = suggestedFollows
     .filter(
@@ -27,6 +35,12 @@ const Followers = ({ user }) => {
         !alreadyFollowingList.includes(el.email) && user.email !== el.email
     )
     .map((x) => x);
+
+  const handleShow = (item) => {
+    setSecondParty(item);
+
+    setShow(true);
+  };
 
   return (
     <Container className="h-100 col-9 p-3 box-fit custom-pry-color">
@@ -53,18 +67,10 @@ const Followers = ({ user }) => {
                     <Button
                       variant="transparent"
                       className="custom-pry-color"
-                      onClick={() => handleFollow(user, element.followerName)}
+                      onClick={() => handleFollow(user, element.follower)}
                       title="Follow"
                     >
                       <PlusCircle /> Follow
-                    </Button>
-
-                    <Button
-                      variant="transparent"
-                      className="custom-pry-color"
-                      title="View profile"
-                    >
-                      View profile
                     </Button>
                   </ButtonGroup>
                 </Card>
@@ -90,18 +96,10 @@ const Followers = ({ user }) => {
                     <Button
                       variant="transparent"
                       className="custom-pry-color"
-                      onClick={() => handleUnfollow(user, element.email)}
+                      onClick={() => handleUnfollow(user, element)}
                       title="Unfollow"
                     >
                       <XLg /> Unfollow
-                    </Button>
-
-                    <Button
-                      variant="transparent"
-                      className="custom-pry-color"
-                      title="View profile"
-                    >
-                      <EyeFill /> View profile
                     </Button>
                   </ButtonGroup>
                 </Card>
@@ -136,6 +134,7 @@ const Followers = ({ user }) => {
                       variant="transparent"
                       className="custom-pry-color"
                       title="View profile"
+                      onClick={() => handleShow(business.email)}
                     >
                       <EyeFill /> View profile
                     </Button>
@@ -146,6 +145,9 @@ const Followers = ({ user }) => {
           </Tab>
         </Tabs>
       </section>
+      {show && (
+        <ViewProfile show={show} setShow={setShow} rating={rating} biz={biz} />
+      )}
     </Container>
   );
 };
