@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { CalendarDateFill, PersonFill } from "react-bootstrap-icons";
+import { CalendarDateFill, PersonFill, Send } from "react-bootstrap-icons";
 import ReplyMessage from "./modals/ReplyMessage";
 
 const MessagesTemplate = ({
@@ -8,13 +9,19 @@ const MessagesTemplate = ({
   sendDate,
   messageBody,
   id,
-  setShow,
-  show,
+
   user,
+  Replies,
 }) => {
+  const [show, setShow] = useState(false);
+  const [showReplies, setShowReplies] = useState(false);
+  const [whichReply, setWhichReply] = useState("");
+  const handleClose = () => {
+    setShow(false);
+  };
   return (
     <>
-      <div className="d-flex flex-column vstack gap-1 p-3 shadow-sm rounded-0 my-3">
+      <div className="d-flex flex-column vstack gap-1 p-3 shadow-sm border rounded-0 my-3">
         <h2 className="fs-6 fw-bold">
           {subject}: {id}
         </h2>
@@ -30,18 +37,36 @@ const MessagesTemplate = ({
 
         <p>{messageBody}</p>
         {sender.includes("Do not reply") ? null : ( //If message is from admin, the reply button is thus disabled, otherwise, user has access to reply other messages.
-          <Button
-            className={`w-25 btn-sm bg-transparent custom-pry-color custom-pry-border`}
-            onClick={() => setShow(true)}
-          >
-            Reply
-          </Button>
+          <div className="hstack gap-2">
+            <Button
+              size="sm"
+              variant="transparent"
+              about="To reply a message"
+              title="Reply message"
+              className={`bg-transparent custom-pry-color custom-pry-border`}
+              onClick={() => setShow(!show)}
+            >
+              <Send /> Reply
+            </Button>
+            <Button
+              size="sm"
+              variant="transparent"
+              className="text-secondary border border-secondary"
+              onClick={() => {
+                setShowReplies(!showReplies);
+                setWhichReply(id);
+              }}
+            >
+              Replies
+            </Button>
+          </div>
         )}
+        {showReplies && whichReply && Replies}
       </div>
       {show && (
         <ReplyMessage
           show={show}
-          handleClose={() => setShow(false)}
+          handleClose={handleClose}
           messageId={id}
           sender={sender}
           user={user}

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
-import useGetRatings from "../api/useGetRatings";
+
 import BusinessCard from "../components/BusinessCard";
-import { averageRating } from "../helpers/averageRating";
+
 import getGeneralSearch from "../api/useGeneralSearch";
 
 const Vendors = ({ user }) => {
   const [search, setSearch] = useState("");
+
   const [searchState, setSearchState] = useState(false);
   const [generalSearch, setGeneralSearch] = useState([]);
   const { businesses } = useGetBusinesses();
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
-  const { rating } = useGetRatings(user);
 
   const handleClose = () => {
     setShow(false);
@@ -95,7 +95,6 @@ const Vendors = ({ user }) => {
                 state={element?.state}
                 phone={element?.businessPhone}
                 photo={element.photo}
-                ratingScore={averageRating(rating, element.email)}
                 showModal={show}
                 handleClose={handleClose}
                 grabEmail={grabEmail}
@@ -118,7 +117,6 @@ const Vendors = ({ user }) => {
               state={element?.state}
               phone={element?.businessPhone}
               photo={element.photo}
-              ratingScore={averageRating(rating, element.email)}
               showModal={show}
               handleClose={handleClose}
               grabEmail={grabEmail}

@@ -72,6 +72,15 @@ const Followers = ({ user }) => {
                     >
                       <PlusCircle /> Follow
                     </Button>
+
+                    <Button
+                      variant="transparent"
+                      className="custom-pry-color"
+                      title="View profile"
+                      onClick={() => handleShow(element?.follower)}
+                    >
+                      View profile
+                    </Button>
                   </ButtonGroup>
                 </Card>
               ))}
@@ -100,6 +109,15 @@ const Followers = ({ user }) => {
                       title="Unfollow"
                     >
                       <XLg /> Unfollow
+                    </Button>
+
+                    <Button
+                      variant="transparent"
+                      className="custom-pry-color"
+                      title="View profile"
+                      onClick={() => handleShow(element)}
+                    >
+                      <EyeFill /> View profile
                     </Button>
                   </ButtonGroup>
                 </Card>

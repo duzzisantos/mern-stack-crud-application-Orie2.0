@@ -21,8 +21,8 @@ const Admin = ({ user }) => {
 
   const { followers } = useGetFollowers(user);
   const { following } = useGetFollowing(user);
-  const { biz } = useGetOneBusiness(user);
-  const { rating } = useGetRatings(user);
+  const { biz } = useGetOneBusiness(user.email);
+  const { rating } = useGetRatings(user.email);
   const { userContent } = useGetAllUserContent(user);
   const { messages } = useGetMessages(user);
 
