@@ -11,30 +11,22 @@ import {
 import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowing from "../api/useGetFollowing";
 import { handleFollow, handleUnfollow } from "../api/timelineAPIs";
-import useGetBusinesses from "../api/useGetBusinesses";
 import { BuildingsFill, EyeFill, PlusCircle, XLg } from "react-bootstrap-icons";
+import useSuggestedFollows from "../api/useSuggestedFollows";
 
 const Followers = ({ user }) => {
   const { state } = useLocation();
   const { followers } = useGetFollowers(user);
   const { following } = useGetFollowing(user);
-  const { businesses } = useGetBusinesses();
+  const { suggestedFollows } = useSuggestedFollows(user);
 
   const alreadyFollowingList = following.flat().map((el) => el.followerName);
-  const getFollowSuggestions = businesses
-    .flat()
+  const getFollowSuggestions = suggestedFollows
     .filter(
       (el) =>
         !alreadyFollowingList.includes(el.email) && user.email !== el.email
     )
     .map((x) => x);
-
-  const getFollowing = businesses
-    .flat()
-    .filter(
-      (el) => alreadyFollowingList.includes(el.email) && user.email !== el.email
-    )
-    .map((y) => y);
 
   return (
     <Container className="h-100 col-9 p-3 box-fit custom-pry-color">
@@ -82,13 +74,13 @@ const Followers = ({ user }) => {
           <Tab eventKey="following" title="Following">
             <h2 className="fs-6">Following: {following.flat()?.length}</h2>
             <Row className="p-1 mx-0 gap-2">
-              {getFollowing.map((element, index) => (
+              {alreadyFollowingList.map((element, index) => (
                 <Card
                   key={index}
                   className="d-flex flex-row flex-wrap justify-content-between col-lg-12 py-2 border-0 shadow-sm rounded-0"
                 >
                   <div className="gap-2 custom-pry-color">
-                    <BuildingsFill /> <small>{element.businessName}</small>
+                    <BuildingsFill /> <small>{element}</small>
                   </div>
                   <ButtonGroup
                     className="gap-2 border"

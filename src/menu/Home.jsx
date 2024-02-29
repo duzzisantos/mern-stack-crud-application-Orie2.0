@@ -114,7 +114,7 @@ const Home = () => {
       </section>
 
       <section
-        className="d-flex flex-lg-row flex-sm-column bg-warning flex-wrap"
+        className="d-flex flex-lg-row flex-sm-column bg-body-secondary flex-wrap"
         style={{ height: "1000px" }}
       >
         {searchState ? (

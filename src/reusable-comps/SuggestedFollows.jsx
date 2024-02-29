@@ -1,39 +1,12 @@
 import { Card, Button, Form } from "react-bootstrap";
-import { BriefcaseFill, BuildingsFill, PlusLg } from "react-bootstrap-icons";
-import axios from "axios";
+import {
+  BriefcaseFill,
+  BuildingsFill,
+  PlusCircle,
+} from "react-bootstrap-icons";
+import { handleFollow } from "../api/timelineAPIs";
+
 const SuggestedFollows = ({ user, businessName, category, email }) => {
-  const followerObject = {
-    followerName: user.email,
-    followDate: Date.now(),
-    hasBlocked: false,
-    hasUnfollowed: false,
-    hasReported: false,
-    hasFollowed: true,
-    userEmail: email,
-  };
-
-  const followingObject = {
-    followerName: user.email,
-    userEmail: email,
-  };
-
-  const handleFollow = () => {
-    axios
-      .post("http://localhost:8080/api/followers", followerObject)
-      .then((res) => console.log(res.status))
-      .catch((err) => console.warn(err.message));
-  };
-
-  const handleUpdateUserFollowingList = () => {
-    axios
-      .post(
-        "http://localhost:8080/api/followers/update-following",
-        followingObject
-      )
-      .then((res) => console.log(res.status))
-      .catch((err) => console.warn(err.message));
-  };
-
   return (
     <Card className="p-2 gap-2 border-0 shadow-sm">
       <small className="text-dark">
@@ -49,11 +22,10 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
             variant="transparent"
             className="border border-1 border-secondary"
             onClick={() => {
-              handleFollow();
-              handleUpdateUserFollowingList();
+              handleFollow(user, email);
             }}
           >
-            <PlusLg /> Follow
+            <PlusCircle /> Follow
           </Button>
         </Form>
       </div>
