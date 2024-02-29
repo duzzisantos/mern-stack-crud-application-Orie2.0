@@ -61,7 +61,7 @@ const Home = () => {
   };
 
   return (
-    <Container fluid className="col-12 px-0 custom-pry-color">
+    <div className="col-12 px-0 custom-pry-color">
       {!user && (
         <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top bg-light">
           <Container className="d-flex justify-content-between bg-light">
@@ -84,11 +84,11 @@ const Home = () => {
           </Container>
         </Navbar>
       )}
-      <section className="bg-white" style={{ height: "500px" }}>
+      <section className="bg-white col-12" style={{ height: "500px" }}>
         <HeroArea />
       </section>
       <section
-        className="d-flex flex-row justify-content-center bg-light"
+        className="d-flex col-12 flex-row justify-content-center"
         style={{ height: "250px" }}
       >
         <FindCustomers
@@ -113,7 +113,10 @@ const Home = () => {
         />
       </section>
 
-      <section className="bg-white" style={{ height: "1000px" }}>
+      <section
+        className="d-flex flex-lg-row flex-sm-column bg-warning flex-wrap"
+        style={{ height: "1000px" }}
+      >
         {searchState ? (
           <Businesses
             narrowSearch={narrowSearch}
@@ -154,7 +157,7 @@ const Home = () => {
           ))}
         </div>
       </section>
-    </Container>
+    </div>
   );
 };
 

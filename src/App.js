@@ -14,6 +14,7 @@ import Connect from "./menu/Connect";
 import EditVendor from "./menu/edit-vendor";
 import Login from "./authentication/Login";
 import Signup from "./authentication/Signup";
+import Followers from "./menu/Followers";
 
 function App() {
   const [user] = useAuthState(auth);
@@ -39,6 +40,10 @@ function App() {
                 <Route path="vendors" element={<Vendors user={user} />} />
                 <Route path="connect" element={<Connect user={user} />} />
                 <Route path="admin/*" element={<Admin user={user} />} />
+                <Route
+                  path="account-follow"
+                  element={<Followers user={user} />}
+                />
                 <Route path="/edit-vendor/:ID" element={<EditVendor />} />
               </>
             )

@@ -11,16 +11,14 @@ import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowedContent from "../api/useGetFollowedPosts";
 import useGetCategories from "../api/useGetCategories";
 import useSuggestedFollows from "../api/useSuggestedFollows";
-import { useEffect, useState } from "react";
 
 const Connect = ({ user }) => {
   //Fetch all businesses registered
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(20);
+
   const { biz } = useGetOneBusiness(user);
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
-  const { subscribedContent } = useGetFollowedContent(user, page, size);
+  const { subscribedContent } = useGetFollowedContent(user);
   const { suggestedFollows } = useSuggestedFollows(user);
   const { categories } = useGetCategories();
 
@@ -29,29 +27,6 @@ const Connect = ({ user }) => {
   //As user scrolls to the bottom, trigger a change in the size and page number of paginated contents to
   //facilitate infinite scrolling
 
-  function fetchNextPage() {
-    setPage((p) => p + 1);
-    setSize((s) => s + 20);
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isBottom =
-        window.scrollHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight;
-      if (isBottom) {
-        fetchNextPage();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  console.log(subscribedContent.data);
   return (
     <Container
       fluid
@@ -75,8 +50,8 @@ const Connect = ({ user }) => {
             </div>
           </div>
           <div className="px-3 py-3 gap-3 vstack" id="time-line">
-            {subscribedContent?.data?.length > 0 ? (
-              subscribedContent?.data?.map((element, i) => (
+            {subscribedContent.length > 0 ? (
+              subscribedContent.map((element, i) => (
                 <Timeline
                   key={i}
                   contentBody={element?.contentBody}

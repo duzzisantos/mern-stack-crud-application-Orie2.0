@@ -72,10 +72,28 @@ function handleSendReport(authorEmail, id, user) {
     .catch((err) => console.warn(err.message));
 }
 
-function handleRemoveUser(user, authorEmail) {
+function handleRemoveUser(user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/followers/block?blocker=${user.email}&blockee=${authorEmail}`
+      `http://localhost:8080/api/followers/block?currentUser=${user.email}&secondParty=${secondParty}`
+    )
+    .then((res) => console.log(res.statusText))
+    .catch((err) => console.warn(err.message));
+}
+
+function handleUnfollow(user, secondParty) {
+  axios
+    .post(
+      `http://localhost:8080/api/followers/unfollow-user?currentUser=${user.email}&secondParty=${secondParty}`
+    )
+    .then((res) => console.log(res.statusText))
+    .catch((err) => console.warn(err.message));
+}
+
+function handleFollow(user, secondParty) {
+  axios
+    .post(
+      `http://localhost:8080/api/followers/follow-user?currentUser=${user.email}&secondParty=${secondParty}`
     )
     .then((res) => console.log(res.statusText))
     .catch((err) => console.warn(err.message));
@@ -88,4 +106,6 @@ export {
   handleSaveComment,
   handleSendReport,
   handleUnlikePost,
+  handleUnfollow,
+  handleFollow,
 };

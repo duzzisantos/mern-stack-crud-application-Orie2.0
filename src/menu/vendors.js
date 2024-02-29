@@ -40,12 +40,12 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container fluid className="col-12 p-3 custom-pry-color">
-      <div className="d-flex justify-content-center">
+    <Container className="col-12 p-3 custom-pry-color">
+      <div className="px-4 mx-2">
         <h1 className="fs-3 fw-bold col-9">Vendors</h1>
       </div>
       <div className="box-150 col-12 justify-content-center align-items-center bottom-0 d-flex">
-        <div className="col-9 text-center d-flex flex-column">
+        <div className="col-12 px-4 text-center d-flex flex-column">
           <Form.Label htmlFor="search-vendor" className="fs-4 fw-bold">
             Search Vendors by category or name
           </Form.Label>
@@ -76,7 +76,7 @@ const Vendors = ({ user }) => {
       </div>
 
       <div
-        className="col-12 d-flex justify-content-center gap-2 flex-lg-row flex-sm-column flex-wrap"
+        className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap"
         style={{ height: "1000px" }}
       >
         {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following

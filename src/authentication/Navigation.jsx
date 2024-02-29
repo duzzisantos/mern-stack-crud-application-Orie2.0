@@ -24,8 +24,6 @@ const Navigation = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  console.log(user);
-
   useEffect(() => {
     const getUserName = async () => {
       try {
