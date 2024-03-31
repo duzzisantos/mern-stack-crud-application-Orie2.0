@@ -134,7 +134,7 @@ const Timeline = ({
             ) : (
               <Button
                 variant="transparent"
-                className={`d-flex flex-column vstack social-button-1  text-secondary`}
+                className={`d-flex flex-column vstack social-button-1 border-0  text-secondary`}
                 title="Unlike"
                 type="button"
                 onClick={() => handleUnlikePost(authorEmail, id, user, setLike)}
@@ -147,7 +147,7 @@ const Timeline = ({
           <Form>
             <Button
               variant="transparent"
-              className={`d-flex flex-column vstack social-button-2 ${
+              className={`d-flex flex-column vstack social-button-2 border-0 ${
                 bookmark ? "text-success" : "text-secondary"
               }`}
               title="Bookmark"
@@ -160,7 +160,7 @@ const Timeline = ({
           </Form>
           <Button
             variant="transparent"
-            className="d-flex flex-column vstack text-secondary social-button-3"
+            className="d-flex flex-column vstack text-secondary social-button-3 border-0"
             title="Comment"
             onClick={() => {
               handleShowCommenter();

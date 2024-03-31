@@ -68,7 +68,9 @@ function handleSendReport(authorEmail, id, user) {
     .post(
       `http://localhost:8080/api/report-logs?userEmail=${authorEmail}&id=${id}&reportedBy=${user.email}`
     )
-    .then((res) => console.log(res.status))
+    .then((res) => {
+      console.log(res.status);
+    })
     .catch((err) => console.warn(err.message));
 }
 
@@ -77,7 +79,9 @@ function handleRemoveUser(user, secondParty) {
     .post(
       `http://localhost:8080/api/followers/block?currentUser=${user.email}&secondParty=${secondParty}`
     )
-    .then((res) => console.log(res.statusText))
+    .then((res) => {
+      console.log(res.statusText);
+    })
     .catch((err) => console.warn(err.message));
 }
 
@@ -86,7 +90,9 @@ function handleUnfollow(user, secondParty) {
     .post(
       `http://localhost:8080/api/followers/unfollow-user?currentUser=${user.email}&secondParty=${secondParty}`
     )
-    .then((res) => console.log(res.statusText))
+    .then((res) => {
+      console.log(res.statusText);
+    })
     .catch((err) => console.warn(err.message));
 }
 

@@ -4,7 +4,7 @@ import { ThreeDotsVertical } from "react-bootstrap-icons";
 const MenuPopover = ({ children, show, setShow }) => {
   return (
     <OverlayTrigger
-      trigger={"click"}
+      trigger={"focus"}
       placement="bottom"
       overlay={
         <Popover className="rounded-0">
