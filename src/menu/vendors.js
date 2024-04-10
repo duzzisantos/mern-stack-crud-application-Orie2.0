@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
-
+import { useLocation } from "react-router-dom";
 import BusinessCard from "../components/BusinessCard";
 
 import getGeneralSearch from "../api/useGeneralSearch";
 
 const Vendors = ({ user }) => {
   const [search, setSearch] = useState("");
-
+  const { state } = useLocation();
   const [searchState, setSearchState] = useState(false);
   const [generalSearch, setGeneralSearch] = useState([]);
   const { businesses } = useGetBusinesses();
@@ -44,7 +44,7 @@ const Vendors = ({ user }) => {
       <div className="px-4 mx-2">
         <h1 className="fs-3 fw-bold col-9">Vendors</h1>
       </div>
-      <div className="box-150 col-12 justify-content-center align-items-center bottom-0 d-flex">
+      <div className="box-150  col-12 justify-content-center align-items-center bottom-0 d-flex">
         <div className="col-12 px-4 text-center d-flex flex-column">
           <Form.Label htmlFor="search-vendor" className="fs-4 fw-bold">
             Search Vendors by category or name
@@ -54,7 +54,7 @@ const Vendors = ({ user }) => {
               id="search-vendor"
               className="w-100 py-3 rounded-0"
               placeholder="Eg: Car Tyres"
-              value={search}
+              value={search === "" && state !== "" ? state : search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <Button
@@ -77,7 +77,7 @@ const Vendors = ({ user }) => {
 
       <div
         className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap"
-        style={{ height: "1000px" }}
+        style={{ height: "fit-content" }}
       >
         {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following
           businesses

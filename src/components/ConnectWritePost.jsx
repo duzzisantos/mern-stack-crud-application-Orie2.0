@@ -48,7 +48,7 @@ const ConnectWritePost = ({ user, authorName }) => {
     <>
       {!showTextArea && (
         <div
-          className="py-2 px-2 border border-2 rounded-3 mb-2"
+          className="py-2 px-2 border rounded-0 mb-2"
           onClick={() => setShowTextArea(true)}
           style={{ cursor: "pointer" }}
         >
@@ -65,6 +65,7 @@ const ConnectWritePost = ({ user, authorName }) => {
           </Form.Label>
           <Form.Control
             id="writePost"
+            className="rounded-0"
             name="writepost"
             as={"textarea"}
             rows={2}
@@ -83,13 +84,14 @@ const ConnectWritePost = ({ user, authorName }) => {
             <Button
               size="sm"
               type="submit"
-              className="custom-pry text-light border-0"
+              className="custom-pry text-light border-0 rounded-0"
             >
               Post
             </Button>
             <Button
               size="sm"
-              variant="secondary"
+              variant="transparent"
+              className="rounded-0 custom-pry-border"
               onClick={() => setShowTextArea(false)}
             >
               Close

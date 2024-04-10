@@ -1,6 +1,7 @@
 import { Badge, Button } from "react-bootstrap";
 import { BriefcaseFill, BuildingsFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { optionsArray } from "../helpers/hardCodedData";
 
 const CustomerHero = ({
   userName,
@@ -9,11 +10,10 @@ const CustomerHero = ({
   category,
   followers,
   following,
-  businessCategories,
 }) => {
   const navigate = useNavigate();
   return (
-    <div className="mx-0 py-2 d-flex flex-column">
+    <div className="mx-0 py-2 d-flex flex-column rounded-0">
       <h1 className="fs-4">{userName}</h1>
       <fieldset className="d-flex flex-column justify-content-center gap-3 shadow-sm px-4 py-2">
         <legend
@@ -70,15 +70,16 @@ const CustomerHero = ({
       <div className="my-3">
         <div className="px-4 py-2 shadow-sm vstack gap-1">
           <small className="fw-semibold">Categories</small>
-          {businessCategories?.map((item, i) => (
-            <a
+          {optionsArray?.map((item, i) => (
+            <Button
               key={i}
-              href="/"
-              variant="transaparent"
-              className=" text-secondary smaller-text custom-link"
+              variant="transparent"
+              size="sm"
+              className="text-primary text-start"
+              onClick={() => navigate(`/view-categories`, { state: item })}
             >
               {item}
-            </a>
+            </Button>
           ))}
         </div>
       </div>

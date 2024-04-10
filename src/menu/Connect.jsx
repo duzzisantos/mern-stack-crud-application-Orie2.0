@@ -61,7 +61,7 @@ const Connect = ({ user }) => {
             businessCategories={categories}
           />
 
-          <section className="col-lg-6 my-3 px-0 mh-100 overflow-y-auto">
+          <section className="col-lg-6 my-3 px-2 mh-100 border-0 overflow-y-auto">
             <ConnectWritePost
               user={user}
               authorName={businessInfo?.businessName}
@@ -113,7 +113,7 @@ const Connect = ({ user }) => {
                       email={item.email}
                     />
                   ))}
-              <div className="border py-2 px-4 rounded-1">
+              <div className="border py-2 px-4 rounded-0">
                 <span className="smaller-text custom-pry-color fw-semibold">
                   Advert
                 </span>

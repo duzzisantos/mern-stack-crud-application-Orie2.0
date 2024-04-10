@@ -22,6 +22,7 @@ const TextComponent = ({
       </Form.Label>
       <Form.Control
         as={"textarea"}
+        className="rounded-0"
         rows={2}
         autoCorrect="true"
         id={title}
@@ -31,13 +32,17 @@ const TextComponent = ({
         onChange={(e) => setContent(e.target.value)}
       />
       <div className="row justify-content-end me-1 gap-1">
-        <Button size="sm" className="custom-pry border-0 w-25" type="submit">
+        <Button
+          size="sm"
+          className="custom-pry border-0 w-25 rounded-0"
+          type="submit"
+        >
           Reply
         </Button>
         <Button
           type="button"
           size="sm"
-          className="custom-pry-border bg-transparent text-dark w-25"
+          className="custom-pry-border bg-transparent text-dark w-25 rounded-0"
           onClick={handleClose}
         >
           Cancel

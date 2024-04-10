@@ -15,6 +15,8 @@ import EditVendor from "./menu/edit-vendor";
 import Login from "./authentication/Login";
 import Signup from "./authentication/Signup";
 import Followers from "./menu/Followers";
+import Categories from "./menu/Categories";
+import CategoryDescription from "./menu/CategoryDescription";
 
 function App() {
   const [user] = useAuthState(auth);
@@ -35,10 +37,16 @@ function App() {
             user && (
               <>
                 {" "}
+                <Route path="/" element={<Home />} />
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register user={user} />} />
                 <Route path="vendors" element={<Vendors user={user} />} />
                 <Route path="connect" element={<Connect user={user} />} />
+                <Route path="categories" element={<Categories />}></Route>
+                <Route
+                  path="view-categories"
+                  element={<CategoryDescription />}
+                />
                 <Route path="admin/*" element={<Admin user={user} />} />
                 <Route
                   path="account-follow"

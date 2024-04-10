@@ -8,7 +8,7 @@ import { handleFollow } from "../api/timelineAPIs";
 
 const SuggestedFollows = ({ user, businessName, category, email }) => {
   return (
-    <Card className="p-2 gap-2 border-0 shadow-sm">
+    <Card className="p-2 gap-2 border-0 shadow-sm rounded-0">
       <small className="text-dark">
         <BuildingsFill /> {businessName ?? "My Business Limited"}
       </small>

@@ -16,6 +16,7 @@ import {
   PencilSquare,
   PersonFill,
   PlusCircleFill,
+  Window,
 } from "react-bootstrap-icons";
 
 const Navigation = () => {
@@ -90,6 +91,9 @@ const Navigation = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="connect" className="text-light">
               <PlusCircleFill /> Connect
+            </Nav.Link>
+            <Nav.Link as={Link} to="categories" className="text-light">
+              <Window /> Categories
             </Nav.Link>
             <Nav.Link as={Link} to="admin" className="text-light">
               <BuildingUp /> My Business

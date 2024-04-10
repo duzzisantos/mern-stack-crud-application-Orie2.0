@@ -42,7 +42,10 @@ const FindCustomers = ({
         </Button>
       </div>
       <div className="d-flex gap-2 col-9">
-        <Form.Select className="w-25" onChange={(e) => setCity(e.target.value)}>
+        <Form.Select
+          className="w-25 rounded-0"
+          onChange={(e) => setCity(e.target.value)}
+        >
           <option>Select city</option>
           {cities?.map((element, index) => (
             <option key={index} value={element}>
@@ -51,7 +54,7 @@ const FindCustomers = ({
           ))}
         </Form.Select>
         <Form.Select
-          className="w-25"
+          className="w-25 rounded-0"
           onChange={(e) => setRegion(e.target.value)}
         >
           <option>Select region/state</option>
@@ -62,7 +65,7 @@ const FindCustomers = ({
           ))}
         </Form.Select>
         <Form.Select
-          className="w-25"
+          className="w-25 rounded-0"
           onChange={(e) => setCategories(e.target.value)}
         >
           <option>Select category</option>
@@ -73,11 +76,14 @@ const FindCustomers = ({
           ))}
         </Form.Select>
 
-        <Button className="custom-pry border-0" onClick={handleNarrowSearch}>
+        <Button
+          className="custom-pry border-0 rounded-0"
+          onClick={handleNarrowSearch}
+        >
           Go
         </Button>
         <Button
-          className="custom-pry-border bg-transparent custom-pry-color"
+          className="custom-pry-border bg-transparent custom-pry-color rounded-0"
           onClick={handleResetNarrow}
         >
           Reset

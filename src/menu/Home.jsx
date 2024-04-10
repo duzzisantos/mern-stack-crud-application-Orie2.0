@@ -139,10 +139,12 @@ const Home = () => {
         style={{ height: "fit-content" }}
       >
         <h2 className="fw-bold">Popular categories</h2>
-        <div className="row col-9 justify-content-start gap-3">
-          {categories.map((el, i) => (
-            <SuggestionBoxes title={el} key={i} />
-          ))}
+        <div className="col-9 justify-content-center bottom-0 h-100">
+          <div className="d-flex flex-wrap gap-3 text-center mt-3">
+            {categories.map((el, i) => (
+              <SuggestionBoxes key={i} title={el} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -151,10 +153,12 @@ const Home = () => {
         style={{ height: "fit-content" }}
       >
         <h2 className="fw-bold">Popular regions</h2>
-        <div className="row col-9 justify-content-start gap-3">
-          {regions.map((el, i) => (
-            <SuggestionBoxes title={el} key={i} />
-          ))}
+        <div className="col-9 justify-content-center bottom-0 h-100">
+          <div className="d-flex flex-wrap gap-3 text-center mt-3">
+            {regions.map((el, i) => (
+              <SuggestionBoxes key={i} title={el} />
+            ))}
+          </div>
         </div>
       </section>
     </div>

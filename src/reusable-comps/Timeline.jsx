@@ -53,7 +53,7 @@ const Timeline = ({
   const hasLikes = likes.some((content) => content.isLiked);
 
   return (
-    <Card className="p-2 col-12 border-0 shadow-sm custom-pry-color">
+    <Card className="p-2 col-12 border-0 shadow-sm rounded-0 custom-pry-color">
       <fieldset className="d-flex flex-column px-2">
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-start hstack gap-3">
@@ -188,7 +188,8 @@ const Timeline = ({
           style={{ cursor: "pointer" }}
           onClick={() => setShowCommentList(!showCommentList)}
         >
-          {!showCommentList ? "View comments" : "Collapse comments"}
+          {comments.length > 0 &&
+            (!showCommentList ? "View comments" : "Collapse comments")}
         </small>
       )}
 
