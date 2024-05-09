@@ -6,7 +6,7 @@ import {
 } from "react-bootstrap-icons";
 import { handleFollow } from "../api/timelineAPIs";
 
-const SuggestedFollows = ({ user, businessName, category, email }) => {
+const SuggestedFollows = ({ user, businessName, category, secondParty }) => {
   return (
     <Card className="p-2 gap-2 border-0 shadow-sm rounded-0">
       <small className="text-dark">
@@ -22,7 +22,7 @@ const SuggestedFollows = ({ user, businessName, category, email }) => {
             variant="transparent"
             className="border border-1 border-secondary"
             onClick={() => {
-              handleFollow(user, email);
+              handleFollow(user, secondParty);
             }}
           >
             <PlusCircle /> Follow

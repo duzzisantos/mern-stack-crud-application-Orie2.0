@@ -7,7 +7,7 @@ const useGetOneBusiness = (user) => {
     const getOneBusiness = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/business-entity?userEmail=${user}`
+          `http://localhost:8080/api/register/business-entity?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);

@@ -99,7 +99,7 @@ function handleUnfollow(user, secondParty) {
 function handleFollow(user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/followers/follow-user?currentUser=${user.email}&secondParty=${secondParty}`
+      `http://localhost:8080/api/followers/follow-user?currentUser=${user.uid}&secondParty=${secondParty}`
     )
     .then((res) => console.log(res.statusText))
     .catch((err) => console.warn(err.message));

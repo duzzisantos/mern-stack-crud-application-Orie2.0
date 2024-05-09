@@ -8,7 +8,7 @@ const useGetFollowing = (user) => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/followers/get-following?userEmail=${user.email}`
+          `http://localhost:8080/api/followers/get-following?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -20,7 +20,7 @@ const useGetFollowing = (user) => {
       }
     };
     getFollowing();
-  }, [user.email]);
+  }, [user]);
 
   return { following, setFollowing };
 };

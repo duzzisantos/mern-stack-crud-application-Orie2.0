@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 const Connect = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { biz } = useGetOneBusiness(user.email);
+  const { biz } = useGetOneBusiness(user);
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
   const { subscribedContent } = useGetFollowedContent(user);
@@ -110,7 +110,7 @@ const Connect = ({ user }) => {
                       user={user}
                       businessName={item?.businessName}
                       category={item.category}
-                      email={item.email}
+                      secondParty={item.clientUID}
                     />
                   ))}
               <div className="border py-2 px-4 rounded-0">

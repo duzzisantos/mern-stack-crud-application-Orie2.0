@@ -33,6 +33,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
           ) : !user && pathname === "/" ? (
             <Route path="/" element={<Home />} />
+          ) : user && pathname === "/signup" ? (
+            <Route path="/" element={<Home />} />
           ) : (
             user && (
               <>

@@ -40,7 +40,7 @@ const Signup = () => {
     if (loading) {
       return;
     }
-    if (user) navigate("/home");
+    if (user) navigate("/register");
   });
 
   return (
