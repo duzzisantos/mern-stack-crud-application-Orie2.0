@@ -66,16 +66,29 @@ const Register = ({ user }) => {
     userName: userName,
   });
 
+  const uid = {
+    clientUID: user.uid,
+  };
+
   //Submit form to update
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:8080/api/register", formData)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.status);
       })
       .catch((error) => {
-        console.log(error.message);
+        console.warn(error.message);
       });
+
+    axios
+      .post(
+        `http://localhost:8080/api/signup/add-client?userEmail=${user.email}`,
+        uid
+      )
+      .then((res) => console.log(res.statusText))
+      .catch((err) => console.warn(err.message));
   };
 
   return (

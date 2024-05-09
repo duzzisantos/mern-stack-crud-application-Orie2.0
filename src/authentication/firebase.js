@@ -40,6 +40,8 @@ const signInWithGoogle = async () => {
         email: user.email,
       });
     }
+    console.log(user);
+    return user;
   } catch (err) {
     console.log(err);
   }
@@ -66,9 +68,12 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       authProvider: "google",
       email,
     });
+
+    console.log(user);
+    return user;
   } catch (err) {
-    alert("That account already exists. Please try again carefully.");
     console.log(err);
+    return null;
   }
 };
 
