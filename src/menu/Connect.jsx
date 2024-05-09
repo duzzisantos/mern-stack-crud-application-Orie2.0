@@ -10,10 +10,12 @@ import useGetFollowedContent from "../api/useGetFollowedPosts";
 import useGetCategories from "../api/useGetCategories";
 import useSuggestedFollows from "../api/useSuggestedFollows";
 import { useEffect, useState } from "react";
+import useGetBusinesses from "../api/useGetBusinesses";
 
 const Connect = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { biz } = useGetOneBusiness(user);
+  const { businesses } = useGetBusinesses();
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
   const { subscribedContent } = useGetFollowedContent(user);
@@ -41,6 +43,10 @@ const Connect = ({ user }) => {
     categories,
     suggestedFollows,
   ]);
+
+  const getClientId = (data, authorEmail) => {
+    return data.flat().filter((d) => d.email === authorEmail)[0]?.clientUID;
+  };
 
   return (
     <>
@@ -86,7 +92,10 @@ const Connect = ({ user }) => {
                       authorEmail={element?.authorEmail}
                       authorImage={element?.authorImage}
                       user={user}
-                      secondParty={element.clientUID}
+                      secondParty={getClientId(
+                        businesses,
+                        element?.authorEmail
+                      )}
                     />
                   ))
                 ) : (

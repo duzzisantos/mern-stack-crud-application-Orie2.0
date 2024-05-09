@@ -54,7 +54,10 @@ function App() {
                   path="account-follow"
                   element={<Followers user={user} />}
                 />
-                <Route path="/edit-vendor/:ID" element={<EditVendor />} />
+                <Route
+                  path="/edit-vendor/:ID"
+                  element={<EditVendor user={user} />}
+                />
               </>
             )
           )}

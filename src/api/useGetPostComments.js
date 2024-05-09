@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetPostComments = (authorEmail, id) => {
+const useGetPostComments = (clientUID, id) => {
   const [comments, setComments] = useState([]);
 
   //Fetch all comments registered
@@ -9,7 +9,7 @@ const useGetPostComments = (authorEmail, id) => {
     const getComments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/comments?userEmail=${authorEmail}&id=${id}`
+          `http://localhost:8080/api/user-posts/comments?clientUID=${clientUID}&id=${id}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -21,7 +21,7 @@ const useGetPostComments = (authorEmail, id) => {
       }
     };
     getComments();
-  }, [authorEmail, id]);
+  }, [clientUID, id]);
 
   return { comments, setComments };
 };

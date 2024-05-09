@@ -75,6 +75,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
         businessPhone: businessPhone,
         category: category,
         image: image,
+        clientUID: user.uid,
       })
       .then((res) => console.log(res.status))
       .catch((err) => console.warn(err.message));

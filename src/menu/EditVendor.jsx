@@ -6,7 +6,7 @@ import axios from "axios";
 import "../App.css";
 // import qs from "qs";
 
-const EditVendor = () => {
+const EditVendor = ({ user }) => {
   let navigate = useNavigate();
   const params = useParams();
 
@@ -24,7 +24,7 @@ const EditVendor = () => {
     axios
       .get(`http://localhost:8080/register/${params.ID}`)
       .then((res) => {
-        console.log({ID: params.ID})
+        console.log({ ID: params.ID });
         const vendorData = res.data;
         console.log(vendorData);
         setVendorID(vendorData.ID);
@@ -42,7 +42,7 @@ const EditVendor = () => {
       });
   }, [params.ID]);
 
-  const handleUpdate = ( e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     axios
       .put(`http://localhost:8080/register/${params.ID}`, {
@@ -55,6 +55,7 @@ const EditVendor = () => {
         businessPhone,
         category,
         photos,
+        clientUID: user.uid,
       })
       .then((res) => {
         console.log(res.data);
@@ -66,10 +67,12 @@ const EditVendor = () => {
   };
 
   return (
-    <div
-      className="page-wrapper-form"
-    >
-      <form className="update-form" encType="multipart/form-data" onSubmit={(ID, e) => handleUpdate(ID, e)}>
+    <div className="page-wrapper-form">
+      <form
+        className="update-form"
+        encType="multipart/form-data"
+        onSubmit={(ID, e) => handleUpdate(ID, e)}
+      >
         <h3>Update Form (Admin)</h3>
         <label htmlFor="vendorID">Your ID:</label>
         <input

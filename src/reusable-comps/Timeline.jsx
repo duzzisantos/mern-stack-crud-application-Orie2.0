@@ -39,7 +39,7 @@ const Timeline = ({
   const [like, setLike] = useState(false);
   const [bookmark, setBookmark] = useState(false);
 
-  const { comments } = useGetPostComments(authorEmail, id);
+  const { comments } = useGetPostComments(secondParty, id);
 
   function handleCloseCommenter() {
     setShowCommentForm(false);
