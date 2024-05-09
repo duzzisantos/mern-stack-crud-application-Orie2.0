@@ -18,7 +18,7 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
   };
 
   const postObject = Object.assign(formData, {
-    userEmail: businessEmail,
+    clientUID: user.uid,
     sender: user.email,
   });
 

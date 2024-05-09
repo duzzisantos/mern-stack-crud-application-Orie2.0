@@ -7,7 +7,7 @@ const useGetMessages = (user) => {
     const getMessages = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/direct-messages?userEmail=${user.email}`
+          `http://localhost:8080/api/direct-messages?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -19,7 +19,7 @@ const useGetMessages = (user) => {
       }
     };
     getMessages();
-  }, [user.email]);
+  }, [user]);
 
   return { messages, setMessages };
 };

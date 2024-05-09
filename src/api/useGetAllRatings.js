@@ -1,27 +1,25 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetRatings = (user) => {
-  const [rating, setRating] = useState([]);
+const useGetAllRatings = () => {
+  const [allRatings, setAllRatings] = useState([]);
   useEffect(() => {
     const getFollowing = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/api/ratings/received?userEmail=${user.email}`
-        );
+        const response = await axios.get(`http://localhost:8080/api/ratings`);
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {
-          setRating(response.data);
+          setAllRatings(response.data);
         }
       } catch (err) {
         console.warn(err);
       }
     };
     getFollowing();
-  }, [user]);
+  }, []);
 
-  return { rating, setRating };
+  return { allRatings, setAllRatings };
 };
 
-export default useGetRatings;
+export default useGetAllRatings;

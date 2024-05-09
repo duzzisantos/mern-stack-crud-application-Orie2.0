@@ -29,6 +29,7 @@ const Timeline = ({
   businessCategory,
   contentBody,
   user,
+  secondParty,
   id,
 }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -86,7 +87,7 @@ const Timeline = ({
               <ButtonGroup vertical>
                 <Button
                   type="submit"
-                  onClick={() => handleRemoveUser(user, authorEmail)}
+                  onClick={() => handleRemoveUser(user, secondParty)}
                   variant="transparent"
                   className="border-0 text-start smaller-text popover-btn rounded-0"
                 >
@@ -94,7 +95,7 @@ const Timeline = ({
                 </Button>
                 <Button
                   type="submit"
-                  onClick={() => handleRemoveUser(user, authorEmail)}
+                  onClick={() => handleRemoveUser(user, secondParty)}
                   variant="transparent"
                   className="border-0 text-start smaller-text popover-btn rounded-0"
                 >
@@ -102,7 +103,7 @@ const Timeline = ({
                 </Button>
                 <Button
                   type="submit"
-                  onClick={() => handleSendReport(authorEmail, id, user)}
+                  onClick={() => handleSendReport(id, user, secondParty)}
                   variant="transparent"
                   className="border-0 text-start smaller-text popover-btn rounded-0"
                 >
@@ -126,7 +127,7 @@ const Timeline = ({
                 }`}
                 title="Like"
                 type="button"
-                onClick={() => handleLikePost(authorEmail, id, user, setLike)}
+                onClick={() => handleLikePost(secondParty, id, user, setLike)}
               >
                 <HeartFill />
                 <small>{likes.filter((el) => el.isLiked).length}</small>
@@ -137,7 +138,7 @@ const Timeline = ({
                 className={`d-flex flex-column vstack social-button-1 border-0  text-secondary`}
                 title="Unlike"
                 type="button"
-                onClick={() => handleUnlikePost(authorEmail, id, user, setLike)}
+                onClick={() => handleUnlikePost(secondParty, id, user, setLike)}
               >
                 <HeartFill />
                 <small>{likes.filter((el) => el.isLiked).length}</small>
@@ -152,7 +153,7 @@ const Timeline = ({
               }`}
               title="Bookmark"
               type="button"
-              onClick={() => handleSaveBookmark(authorEmail, id, setBookmark)}
+              onClick={() => handleSaveBookmark(secondParty, id, setBookmark)}
             >
               <BookmarkFill />
               <small className="mx-1">{bookmarks === true ? 1 : 0}</small>
@@ -176,7 +177,7 @@ const Timeline = ({
         <TextComponent
           handleClose={handleCloseCommenter}
           handleSave={() =>
-            handleSaveComment(authorEmail, id, replyContent, user)
+            handleSaveComment(secondParty, id, replyContent, user)
           }
           setContent={setReplyContent}
           content={replyContent}

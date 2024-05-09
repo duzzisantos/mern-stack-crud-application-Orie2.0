@@ -11,7 +11,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
 
-function AddRatings({ show, handleClose, businessEmail, user }) {
+function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
   const [ratingsTitle, setRatingsTitle] = useState("");
   const [ratingsDate, setRatingsDate] = useState("");
   const [ratingStars, setRatingStars] = useState(0);
@@ -25,9 +25,9 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
   };
 
   const postObject = Object.assign(formData, {
-    userEmail: businessEmail,
+    clientUID: user.uid,
     ratedBy: user.email,
-    ratedUser: businessEmail,
+    ratingsOwner: secondParty,
   });
 
   const handleSubmit = (e) => {
@@ -54,6 +54,21 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
         </Modal.Header>
         <Modal.Body>
           <Form className="gap-2 vstack">
+            <Form.Label
+              className="fw-bold justify-content-between d-flex"
+              htmlFor="ratingStars"
+            >
+              <div>
+                <StarFill className="text-warning" /> Ratings (in stars)
+              </div>
+              <output>{ratingStars}</output>
+            </Form.Label>
+            <Form.Range
+              min={0}
+              max={5}
+              value={ratingStars}
+              onChange={(e) => setRatingStars(e.target.value)}
+            />
             <Form.Label htmlFor="title" className="fw-bold">
               <Book /> Title
             </Form.Label>
@@ -73,6 +88,7 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
               value={ratingsDate}
               onChange={(e) => setRatingsDate(e.target.value)}
             />
+
             <Form.Label className="fw-bold" htmlFor="ratingsContent">
               <BookFill /> Content
             </Form.Label>
@@ -82,21 +98,6 @@ function AddRatings({ show, handleClose, businessEmail, user }) {
               id="ratingsContent"
               value={ratingsContent}
               onChange={(e) => setRatingsContent(e.target.value)}
-            />
-            <Form.Label
-              className="fw-bold justify-content-between d-flex"
-              htmlFor="ratingStars"
-            >
-              <div>
-                <StarFill className="text-warning" /> Ratings (in stars)
-              </div>
-              <output>{ratingStars}</output>
-            </Form.Label>
-            <Form.Range
-              min={0}
-              max={5}
-              value={ratingStars}
-              onChange={(e) => setRatingStars(e.target.value)}
             />
           </Form>
         </Modal.Body>

@@ -2,8 +2,8 @@ import { Button, Card } from "react-bootstrap";
 import {
   BriefcaseFill,
   EnvelopeAtFill,
-  GeoAltFill,
   StarFill,
+  GeoAltFill,
   TelephoneInboundFill,
   ThreeDotsVertical,
 } from "react-bootstrap-icons";
@@ -12,6 +12,7 @@ import AddMessage from "./modals/AddMessage";
 
 const BusinessCard = ({
   businessName,
+  secondParty,
   isModal,
   businessCategory,
   businessEmailAddress,
@@ -105,6 +106,7 @@ const BusinessCard = ({
           businessEmail={grabEmail}
           handleClose={handleClose}
           user={user}
+          secondParty={secondParty}
         />
       )}
       {showMessageModal && (

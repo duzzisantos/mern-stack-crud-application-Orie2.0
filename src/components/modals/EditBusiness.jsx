@@ -34,7 +34,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
     const getOneBusiness = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/business-entity?userEmail=${user.email}`
+          `http://localhost:8080/api/register/business-entity?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -58,12 +58,12 @@ const EditBusiness = ({ user, show, handleClose }) => {
       }
     };
     getOneBusiness();
-  }, [user.email]);
+  }, [user]);
 
   const handleEditBusiness = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:8080/api/register/edit?userEmail=${user.email}`, {
+      .post(`http://localhost:8080/api/register/edit?clientUID=${user.uid}`, {
         businessID: businessID,
         businessName: businessName,
         firstName: firstName,

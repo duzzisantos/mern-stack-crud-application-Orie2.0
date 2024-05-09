@@ -12,7 +12,7 @@ const ConnectWritePost = ({ user, authorName }) => {
     const getUserPosts = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/user-posts?userEmail=${user.email}`
+          `http://localhost:8080/api/user-posts?clientUID=${user.uid}`
         );
         if (res.status !== 200) {
           throw new Error(`${res.statusText}`);
@@ -22,7 +22,7 @@ const ConnectWritePost = ({ user, authorName }) => {
       }
     };
     getUserPosts();
-  }, [user.email]);
+  }, [user]);
 
   const postObject = Object.assign(
     {

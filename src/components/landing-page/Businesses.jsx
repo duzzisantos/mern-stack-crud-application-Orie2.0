@@ -11,6 +11,8 @@ const Businesses = ({
   grabEmail,
   handleCloseMessage,
   handleShowMessage,
+  ratingScore,
+  data,
 }) => {
   return (
     <div className="col-12 py-5 d-flex justify-content-center gap-2 flex-lg-row flex-sm-column flex-wrap">
@@ -18,6 +20,12 @@ const Businesses = ({
         ? narrowSearch.map((entity) => (
             <BusinessCard
               key={entity._id}
+              ratingScore={
+                ratingScore(data, entity.email)
+                  .map((r) => r?.ratingStars)
+                  .reduce((y, z) => y + z, 0) /
+                ratingScore(data, entity.email).length
+              }
               businessCategory={entity.category}
               address={entity.address}
               businessEmailAddress={entity.email}
@@ -39,6 +47,12 @@ const Businesses = ({
         ? generalSearch.map((entity) => (
             <BusinessCard
               key={entity._id}
+              ratingScore={
+                ratingScore(data, entity.email)
+                  .map((r) => r?.ratingStars)
+                  .reduce((y, z) => y + z, 0) /
+                ratingScore(data, entity.email).length
+              }
               businessCategory={entity.category}
               address={entity.address}
               businessEmailAddress={entity.email}

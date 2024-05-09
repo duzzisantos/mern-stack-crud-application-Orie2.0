@@ -9,7 +9,6 @@ const MessagesTemplate = ({
   sendDate,
   messageBody,
   id,
-
   user,
   Replies,
 }) => {

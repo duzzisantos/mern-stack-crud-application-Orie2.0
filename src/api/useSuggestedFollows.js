@@ -8,7 +8,7 @@ const useSuggestedFollows = (user) => {
     const getSuggestedFollows = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/followers/suggested-follows?currentUser=${user.email}`
+          `http://localhost:8080/api/followers/suggested-follows?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -20,7 +20,7 @@ const useSuggestedFollows = (user) => {
       }
     };
     getSuggestedFollows();
-  }, [user.email]);
+  }, [user]);
 
   return { suggestedFollows, setSuggestedFollows };
 };

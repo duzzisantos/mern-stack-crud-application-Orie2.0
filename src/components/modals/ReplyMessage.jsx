@@ -31,7 +31,7 @@ function ReplyMessage({
   const handleSubmit = () => {
     axios
       .post(
-        `http://localhost:8080/api/direct-messages/reply?userEmail=${user.email}&id=${messageId}`,
+        `http://localhost:8080/api/direct-messages/reply?clientUID=${user.uid}&id=${messageId}`,
         formData
       )
       .then((res) => console.log(res.statusText))

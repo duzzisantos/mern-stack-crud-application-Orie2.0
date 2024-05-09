@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import useGetBusinesses from "../api/useGetBusinesses";
+import useGetAllRatings from "../api/useGetAllRatings";
 import { useLocation } from "react-router-dom";
 import BusinessCard from "../components/BusinessCard";
-
 import getGeneralSearch from "../api/useGeneralSearch";
 
 const Vendors = ({ user }) => {
@@ -15,6 +15,8 @@ const Vendors = ({ user }) => {
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
+
+  const { allRatings } = useGetAllRatings();
 
   const handleClose = () => {
     setShow(false);
@@ -37,6 +39,18 @@ const Vendors = ({ user }) => {
   const handleVendorSearch = () => {
     setSearchState(true);
     return getGeneralSearch(setGeneralSearch, search);
+  };
+
+  const cleansedData = (data, userEmail) => {
+    const output = [];
+
+    data.flat().forEach((item) => {
+      if (userEmail === item?.ratingsOwner) {
+        return output.push(item);
+      }
+    });
+
+    return output;
   };
 
   return (
@@ -85,8 +99,15 @@ const Vendors = ({ user }) => {
             .filter((biz) => biz.email !== user.email)
             .map((element, index) => (
               <BusinessCard
+                ratingScore={
+                  cleansedData(allRatings, element.email)
+                    .map((r) => r?.ratingStars)
+                    .reduce((y, z) => y + z, 0) /
+                  cleansedData(allRatings, element.email).length
+                }
                 key={index}
                 user={user}
+                secondParty={element.email}
                 businessCategory={element.category}
                 businessEmailAddress={element.email}
                 businessName={element.businessName}
@@ -107,6 +128,12 @@ const Vendors = ({ user }) => {
         ) : searchState && generalSearch.length > 0 ? (
           generalSearch.map((element, index) => (
             <BusinessCard
+              ratingScore={
+                cleansedData(allRatings, element.email)
+                  .map((r) => r?.ratingStars)
+                  .reduce((y, z) => y + z, 0) /
+                cleansedData(allRatings, element.email).length
+              }
               key={index}
               user={user}
               businessCategory={element.category}

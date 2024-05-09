@@ -15,6 +15,7 @@ import useGetCategories from "../api/useGetCategories";
 import useGetRegions from "../api/useGetRegion";
 import getGeneralSearch from "../api/useGeneralSearch";
 import getNarrowSearch from "../api/useNarrowSearch";
+import useGetAllRatings from "../api/useGetAllRatings";
 
 const Home = () => {
   const [user] = useAuthState(auth);
@@ -31,6 +32,7 @@ const Home = () => {
   const { cities } = useGetCities();
   const { categories } = useGetCategories();
   const { regions } = useGetRegions();
+  const { allRatings } = useGetAllRatings();
 
   const handleGeneralSearch = () => {
     setSearchState(true);
@@ -58,6 +60,18 @@ const Home = () => {
   const handleShowMessage = (email) => {
     setGrabEmail(email);
     setShowMessageModal(true);
+  };
+
+  const cleansedData = (data, userEmail) => {
+    const output = [];
+
+    data.flat().forEach((item) => {
+      if (userEmail === item?.ratingsOwner) {
+        return output.push(item);
+      }
+    });
+
+    return output;
   };
 
   return (
@@ -119,6 +133,8 @@ const Home = () => {
       >
         {searchState ? (
           <Businesses
+            data={allRatings}
+            ratingScore={cleansedData}
             narrowSearch={narrowSearch}
             generalSearch={generalSearch}
             user={user}

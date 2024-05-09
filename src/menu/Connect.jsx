@@ -86,6 +86,7 @@ const Connect = ({ user }) => {
                       authorEmail={element?.authorEmail}
                       authorImage={element?.authorImage}
                       user={user}
+                      secondParty={element.clientUID}
                     />
                   ))
                 ) : (

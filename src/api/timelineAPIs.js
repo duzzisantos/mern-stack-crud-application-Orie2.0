@@ -1,9 +1,9 @@
 import axios from "axios";
 
-function handleSaveComment(authorEmail, id, replyContent, user) {
+function handleSaveComment(secondParty, id, replyContent, user) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/reply?userEmail=${authorEmail}&id=${id}`,
+      `http://localhost:8080/api/user-posts/reply?clientUID=${secondParty}&id=${id}`,
       {
         commentBody: replyContent,
         commentDate: `${new Date(Date.now()).toDateString()}`,
@@ -16,10 +16,10 @@ function handleSaveComment(authorEmail, id, replyContent, user) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSaveBookmark(authorEmail, id, setBookmark) {
+function handleSaveBookmark(secondParty, id, setBookmark) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/save-bookmark?userEmail=${authorEmail}&id=${id}`,
+      `http://localhost:8080/api/user-posts/save-bookmark?clientUID=${secondParty}&id=${id}`,
       {
         isBookmarked: true,
       }
@@ -31,10 +31,10 @@ function handleSaveBookmark(authorEmail, id, setBookmark) {
     .catch((error) => console.log(error.message));
 }
 
-function handleLikePost(authorEmail, id, user, setLike) {
+function handleLikePost(secondParty, id, user, setLike) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/like-post?userEmail=${authorEmail}&id=${id}`,
+      `http://localhost:8080/api/user-posts/like-post?clientUID=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
@@ -47,10 +47,10 @@ function handleLikePost(authorEmail, id, user, setLike) {
     .catch((error) => console.log(error.message));
 }
 
-function handleUnlikePost(authorEmail, id, user, setLike) {
+function handleUnlikePost(secondParty, id, user, setLike) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/unlike-post?userEmail=${authorEmail}&id=${id}`,
+      `http://localhost:8080/api/user-posts/unlike-post?clientUID=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
@@ -63,10 +63,10 @@ function handleUnlikePost(authorEmail, id, user, setLike) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSendReport(authorEmail, id, user) {
+function handleSendReport(id, user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/report-logs?userEmail=${authorEmail}&id=${id}&reportedBy=${user.email}`
+      `http://localhost:8080/api/report-logs?clientUID=${secondParty}&id=${id}&reportedBy=${user.uid}`
     )
     .then((res) => {
       console.log(res.status);
@@ -77,7 +77,7 @@ function handleSendReport(authorEmail, id, user) {
 function handleRemoveUser(user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/followers/block?currentUser=${user.email}&secondParty=${secondParty}`
+      `http://localhost:8080/api/followers/block?clientUID=${user.uid}&secondParty=${secondParty}`
     )
     .then((res) => {
       console.log(res.statusText);
@@ -88,7 +88,7 @@ function handleRemoveUser(user, secondParty) {
 function handleUnfollow(user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/followers/unfollow-user?currentUser=${user.email}&secondParty=${secondParty}`
+      `http://localhost:8080/api/followers/unfollow-user?clientUID=${user.uid}&secondParty=${secondParty}`
     )
     .then((res) => {
       console.log(res.statusText);
@@ -99,7 +99,7 @@ function handleUnfollow(user, secondParty) {
 function handleFollow(user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/followers/follow-user?currentUser=${user.uid}&secondParty=${secondParty}`
+      `http://localhost:8080/api/followers/follow-user?clientUID=${user.uid}&secondParty=${secondParty}`
     )
     .then((res) => console.log(res.statusText))
     .catch((err) => console.warn(err.message));

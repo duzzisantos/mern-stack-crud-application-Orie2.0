@@ -8,7 +8,7 @@ const useGetAllUserContent = (user) => {
     const getAllUserContent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/?userEmail=${user.email}`
+          `http://localhost:8080/api/user-posts/?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -20,7 +20,7 @@ const useGetAllUserContent = (user) => {
       }
     };
     getAllUserContent();
-  }, [user.email]);
+  }, [user]);
 
   return { userContent, setUserContent };
 };
