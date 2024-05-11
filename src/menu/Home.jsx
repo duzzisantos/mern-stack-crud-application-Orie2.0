@@ -27,7 +27,7 @@ const Home = ({ user }) => {
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
 
-  const token = user.accessToken;
+  const token = user?.accessToken;
   const { cities } = useGetCities(token);
   const { categories } = useGetCategories(token);
   const { regions } = useGetRegions(token);
