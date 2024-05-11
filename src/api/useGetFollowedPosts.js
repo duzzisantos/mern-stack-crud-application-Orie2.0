@@ -8,7 +8,7 @@ const useGetFollowedContent = (user) => {
     const getFollowedContent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/subscribed-content?clientUID=${user.uid}`
+          `http://localhost:8080/api/user-posts/subscribed-content?userEmail=${user.email}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);

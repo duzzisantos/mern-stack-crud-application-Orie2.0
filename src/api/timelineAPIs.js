@@ -3,7 +3,7 @@ import axios from "axios";
 function handleSaveComment(secondParty, id, replyContent, user) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/reply?clientUID=${secondParty}&id=${id}`,
+      `http://localhost:8080/api/user-posts/reply?userEmail=${secondParty}&id=${id}`,
       {
         commentBody: replyContent,
         commentDate: `${new Date(Date.now()).toDateString()}`,
@@ -19,7 +19,7 @@ function handleSaveComment(secondParty, id, replyContent, user) {
 function handleSaveBookmark(secondParty, id, setBookmark) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/save-bookmark?clientUID=${secondParty}&id=${id}`,
+      `http://localhost:8080/api/user-posts/save-bookmark?userEmail=${secondParty}&id=${id}`,
       {
         isBookmarked: true,
       }
@@ -34,7 +34,7 @@ function handleSaveBookmark(secondParty, id, setBookmark) {
 function handleLikePost(secondParty, id, user, setLike) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/like-post?clientUID=${secondParty}&id=${id}`,
+      `http://localhost:8080/api/user-posts/like-post?userEmail=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
@@ -50,7 +50,7 @@ function handleLikePost(secondParty, id, user, setLike) {
 function handleUnlikePost(secondParty, id, user, setLike) {
   axios
     .post(
-      `http://localhost:8080/api/user-posts/unlike-post?clientUID=${secondParty}&id=${id}`,
+      `http://localhost:8080/api/user-posts/unlike-post?userEmail=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
@@ -66,7 +66,7 @@ function handleUnlikePost(secondParty, id, user, setLike) {
 function handleSendReport(id, user, secondParty) {
   axios
     .post(
-      `http://localhost:8080/api/report-logs?clientUID=${secondParty}&id=${id}&reportedBy=${user.uid}`
+      `http://localhost:8080/api/report-logs?userEmail=${secondParty}&id=${id}&reportedBy=${user.uid}`
     )
     .then((res) => {
       console.log(res.status);
@@ -76,9 +76,10 @@ function handleSendReport(id, user, secondParty) {
 
 function handleRemoveUser(user, secondParty) {
   axios
-    .post(
-      `http://localhost:8080/api/followers/block?clientUID=${user.uid}&secondParty=${secondParty}`
-    )
+    .post(`http://localhost:8080/api/followers/block`, {
+      userEmail: user.email,
+      secondParty: secondParty,
+    })
     .then((res) => {
       console.log(res.statusText);
     })
@@ -87,20 +88,24 @@ function handleRemoveUser(user, secondParty) {
 
 function handleUnfollow(user, secondParty) {
   axios
-    .post(
-      `http://localhost:8080/api/followers/unfollow-user?clientUID=${user.uid}&secondParty=${secondParty}`
-    )
+    .post(`http://localhost:8080/api/followers/unfollow-user`, {
+      userEmail: user.email,
+      secondParty: secondParty,
+    })
     .then((res) => {
       console.log(res.statusText);
     })
     .catch((err) => console.warn(err.message));
 }
 
-function handleFollow(user, secondParty) {
+function handleFollow(user, secondParty, secondPartyEmail) {
   axios
-    .post(
-      `http://localhost:8080/api/followers/follow-user?clientUID=${user.uid}&secondParty=${secondParty}`
-    )
+    .post(`http://localhost:8080/api/followers/follow-user`, {
+      userEmail: user.email,
+      clientUID: user.uid,
+      secondParty,
+      secondPartyEmail,
+    })
     .then((res) => console.log(res.statusText))
     .catch((err) => console.warn(err.message));
 }

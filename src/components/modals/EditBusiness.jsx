@@ -18,6 +18,7 @@ import {
 } from "react-bootstrap-icons";
 
 const EditBusiness = ({ user, show, handleClose }) => {
+  console.log(user.uid);
   const [businessID, setBusinessID] = useState(`${Date.now()}`);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

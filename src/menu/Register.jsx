@@ -100,7 +100,7 @@ const Register = ({ user }) => {
           encType="multipart/form-data"
           className="gap-3 vstack"
         >
-          <div>
+          <Form.Group>
             <Form.Label htmlFor="businessID">
               <ShieldFillCheck /> Business ID:
             </Form.Label>
@@ -115,8 +115,8 @@ const Register = ({ user }) => {
               }
               disabled
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             {" "}
             <Form.Label htmlFor="firstName">
               <PersonPlusFill /> First Name:
@@ -136,8 +136,8 @@ const Register = ({ user }) => {
                 setVendor({ ...vendor, firstName: e.target.value })
               }
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             <Form.Label htmlFor="lastname">
               <PeopleFill /> Last Name:
             </Form.Label>
@@ -156,8 +156,8 @@ const Register = ({ user }) => {
                 setVendor({ ...vendor, lastName: e.target.value })
               }
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             {" "}
             <Form.Label htmlFor="businessname">
               <BuildingFill /> Business Name:
@@ -177,8 +177,8 @@ const Register = ({ user }) => {
                 setVendor({ ...vendor, businessName: e.target.value })
               }
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             {" "}
             <Form.Label htmlFor="address">
               <GeoAltFill /> Address:
@@ -198,8 +198,8 @@ const Register = ({ user }) => {
                 setVendor({ ...vendor, address: e.target.value })
               }
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             {" "}
             <Form.Label htmlFor="city">
               <GlobeAmericas /> City:
@@ -217,8 +217,8 @@ const Register = ({ user }) => {
               value={vendor.city}
               onChange={(e) => setVendor({ ...vendor, city: e.target.value })}
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             {" "}
             <Form.Label htmlFor="state">
               <Map /> State:
@@ -236,8 +236,8 @@ const Register = ({ user }) => {
               value={vendor.state}
               onChange={(e) => setVendor({ ...vendor, state: e.target.value })}
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             {" "}
             <Form.Label htmlFor="email">
               <EnvelopeAt /> Email:
@@ -254,8 +254,8 @@ const Register = ({ user }) => {
               value={vendor.email}
               onChange={(e) => setVendor({ ...vendor, email: e.target.value })}
             />
-          </div>
-          <div>
+          </Form.Group>
+          <Form.Group>
             <Form.Label htmlFor="businessPhone">
               <TelephoneInbound /> Business Phone:
             </Form.Label>
@@ -271,7 +271,7 @@ const Register = ({ user }) => {
                 setVendor({ ...vendor, businessPhone: e.target.value })
               }
             />
-          </div>
+          </Form.Group>
           <Form.Label htmlFor="category">
             <BriefcaseFill /> Category:
           </Form.Label>

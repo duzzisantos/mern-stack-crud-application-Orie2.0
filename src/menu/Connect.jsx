@@ -9,18 +9,21 @@ import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowedContent from "../api/useGetFollowedPosts";
 import useGetCategories from "../api/useGetCategories";
 import useSuggestedFollows from "../api/useSuggestedFollows";
-import { useEffect, useState } from "react";
-import useGetBusinesses from "../api/useGetBusinesses";
+import { useCallback, useEffect, useState } from "react";
+import useGetAllUserContent from "../api/useGetUserPosts";
 
 const Connect = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { biz } = useGetOneBusiness(user);
-  const { businesses } = useGetBusinesses();
   const { following } = useGetFollowing(user);
   const { followers } = useGetFollowers(user);
   const { subscribedContent } = useGetFollowedContent(user);
   const { suggestedFollows } = useSuggestedFollows(user);
   const { categories } = useGetCategories();
+  const { userContent } = useGetAllUserContent(user);
+  const [suggested, setSuggested] = useState([]);
+
+  const allPosts = [...subscribedContent, ...userContent.flat()];
 
   const businessInfo = biz[0];
 
@@ -31,7 +34,8 @@ const Connect = ({ user }) => {
       !followers ||
       !subscribedContent ||
       !suggestedFollows ||
-      !categories
+      !categories ||
+      !userContent
     ) {
       setIsLoading(true);
     }
@@ -42,11 +46,24 @@ const Connect = ({ user }) => {
     subscribedContent,
     categories,
     suggestedFollows,
+    userContent,
   ]);
 
-  const getClientId = (data, authorEmail) => {
-    return data.flat().filter((d) => d.email === authorEmail)[0]?.clientUID;
-  };
+  //This helps us clear the suggested follows - until, some new values are added to the suggestedFollows array from the backend
+  //Without this, an infinite loop occurs
+  useCallback(() => {
+    for (const x of suggestedFollows) {
+      for (const y of followers) {
+        for (const z of following) {
+          if (x.userEmail === y.follower || x.userEmail === z.follower) {
+            setSuggested([]);
+          } else {
+            setSuggested(suggestedFollows);
+          }
+        }
+      }
+    }
+  }, [followers, following, suggestedFollows]);
 
   return (
     <>
@@ -80,8 +97,8 @@ const Connect = ({ user }) => {
                 </div>
               </div>
               <div className="px-3 py-3 gap-3 vstack" id="time-line">
-                {subscribedContent.length > 0 ? (
-                  subscribedContent.map((element, i) => (
+                {allPosts.length > 0 ? (
+                  allPosts.map((element, i) => (
                     <Timeline
                       key={i}
                       contentBody={element?.contentBody}
@@ -92,10 +109,7 @@ const Connect = ({ user }) => {
                       authorEmail={element?.authorEmail}
                       authorImage={element?.authorImage}
                       user={user}
-                      secondParty={getClientId(
-                        businesses,
-                        element?.authorEmail
-                      )}
+                      secondParty={element.authorEmail}
                     />
                   ))
                 ) : (
@@ -111,8 +125,8 @@ const Connect = ({ user }) => {
               <h2 className="fs-6 fw-semibold ">Suggestions</h2>
             </div>
             <div className="col-12 px-3 gap-3 vstack">
-              {suggestedFollows.length > 1 &&
-                suggestedFollows
+              {suggested.length > 1 &&
+                suggested
                   ?.filter((item) => item?.email !== user?.email)
                   .map((item, i) => (
                     <SuggestedFollows
@@ -121,6 +135,7 @@ const Connect = ({ user }) => {
                       businessName={item?.businessName}
                       category={item.category}
                       secondParty={item.clientUID}
+                      secondPartyEmail={item.userEmail}
                     />
                   ))}
               <div className="border py-2 px-4 rounded-0">

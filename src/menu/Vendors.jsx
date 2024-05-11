@@ -41,7 +41,7 @@ const Vendors = ({ user }) => {
     return getGeneralSearch(setGeneralSearch, search);
   };
 
-  const cleansedData = (data, userEmail) => {
+  const averageRating = (data, userEmail) => {
     const output = [];
 
     data.flat().forEach((item) => {
@@ -99,12 +99,12 @@ const Vendors = ({ user }) => {
             .filter((biz) => biz.email !== user.email)
             .map((element, index) => (
               <BusinessCard
-                ratingScore={
-                  cleansedData(allRatings, element.email)
+                ratingScore={(
+                  averageRating(allRatings, element.email)
                     .map((r) => r?.ratingStars)
-                    .reduce((y, z) => y + z, 0) /
-                  cleansedData(allRatings, element.email).length
-                }
+                    .reduce((x, y) => x + y, 0) /
+                  averageRating(allRatings, element.email).length
+                ).toFixed(1)}
                 key={index}
                 user={user}
                 secondParty={element.email}
@@ -129,10 +129,10 @@ const Vendors = ({ user }) => {
           generalSearch.map((element, index) => (
             <BusinessCard
               ratingScore={
-                cleansedData(allRatings, element.email)
+                averageRating(allRatings, element.email)
                   .map((r) => r?.ratingStars)
                   .reduce((y, z) => y + z, 0) /
-                cleansedData(allRatings, element.email).length
+                averageRating(allRatings, element.email).length.toFixed(1)
               }
               key={index}
               user={user}
@@ -151,6 +151,7 @@ const Vendors = ({ user }) => {
               handleCloseMessage={handleCloseMessage}
               handleShowMessage={() => handleShowMessage(element.email)}
               showMessageModal={showMessageModal}
+              secondParty={element.email}
             />
           ))
         ) : (

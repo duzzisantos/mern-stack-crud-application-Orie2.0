@@ -13,6 +13,7 @@ import {
   handleSaveBookmark,
   handleSaveComment,
   handleSendReport,
+  handleUnfollow,
   handleUnlikePost,
 } from "../api/timelineAPIs";
 import CommentList from "../components/CommentList";
@@ -51,7 +52,7 @@ const Timeline = ({
 
   //Finds out if of the current user has likes across the content on the page
   //This is vital for conditionally rendering the like and unlike buttons
-  const hasLikes = likes.some((content) => content.isLiked);
+  const hasLikes = likes?.some((content) => content.isLiked);
 
   return (
     <Card className="p-2 col-12 border-0 shadow-sm rounded-0 custom-pry-color">
@@ -84,32 +85,34 @@ const Timeline = ({
             show={showPopover}
             setShow={setShowPopover}
             children={
-              <ButtonGroup vertical>
-                <Button
-                  type="submit"
-                  onClick={() => handleRemoveUser(user, secondParty)}
-                  variant="transparent"
-                  className="border-0 text-start smaller-text popover-btn rounded-0"
-                >
-                  Unfollow
-                </Button>
-                <Button
-                  type="submit"
-                  onClick={() => handleRemoveUser(user, secondParty)}
-                  variant="transparent"
-                  className="border-0 text-start smaller-text popover-btn rounded-0"
-                >
-                  Block
-                </Button>
-                <Button
-                  type="submit"
-                  onClick={() => handleSendReport(id, user, secondParty)}
-                  variant="transparent"
-                  className="border-0 text-start smaller-text popover-btn rounded-0"
-                >
-                  Report
-                </Button>
-              </ButtonGroup>
+              <Form>
+                <ButtonGroup vertical>
+                  <Button
+                    type="button"
+                    onClick={() => handleUnfollow(user, secondParty)}
+                    variant="transparent"
+                    className="border-0 text-start smaller-text popover-btn rounded-0"
+                  >
+                    Unfollow
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => handleRemoveUser(user, secondParty)}
+                    variant="transparent"
+                    className="border-0 text-start smaller-text popover-btn rounded-0"
+                  >
+                    Block
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => handleSendReport(id, user, secondParty)}
+                    variant="transparent"
+                    className="border-0 text-start smaller-text popover-btn rounded-0"
+                  >
+                    Report
+                  </Button>
+                </ButtonGroup>
+              </Form>
             }
           />
         </div>
@@ -130,7 +133,7 @@ const Timeline = ({
                 onClick={() => handleLikePost(secondParty, id, user, setLike)}
               >
                 <HeartFill />
-                <small>{likes.filter((el) => el.isLiked).length}</small>
+                <small>{likes?.filter((el) => el.isLiked).length}</small>
               </Button>
             ) : (
               <Button
@@ -141,7 +144,7 @@ const Timeline = ({
                 onClick={() => handleUnlikePost(secondParty, id, user, setLike)}
               >
                 <HeartFill />
-                <small>{likes.filter((el) => el.isLiked).length}</small>
+                <small>{likes?.filter((el) => el.isLiked).length}</small>
               </Button>
             )}
           </Form>

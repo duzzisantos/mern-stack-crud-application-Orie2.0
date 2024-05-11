@@ -106,7 +106,7 @@ const BusinessCard = ({
           businessEmail={grabEmail}
           handleClose={handleClose}
           user={user}
-          secondParty={secondParty}
+          secondParty={grabEmail}
         />
       )}
       {showMessageModal && (
