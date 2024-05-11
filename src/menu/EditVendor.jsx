@@ -22,7 +22,11 @@ const EditVendor = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/register/${params.ID}`)
+      .get(`http://localhost:8080/register/${params.ID}`, {
+        headers: {
+          Authorization: user.accessToken,
+        },
+      })
       .then((res) => {
         console.log({ ID: params.ID });
         const vendorData = res.data;
@@ -40,23 +44,31 @@ const EditVendor = ({ user }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [params.ID]);
+  }, [params.ID, user]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/register/${params.ID}`, {
-        ID,
-        firstName,
-        lastName,
-        businessName,
-        address,
-        email,
-        businessPhone,
-        category,
-        photos,
-        clientUID: user.uid,
-      })
+      .put(
+        `http://localhost:8080/register/${params.ID}`,
+        {
+          ID,
+          firstName,
+          lastName,
+          businessName,
+          address,
+          email,
+          businessPhone,
+          category,
+          photos,
+          clientUID: user.uid,
+        },
+        {
+          headers: {
+            Authorization: user.accessToken,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
         navigate("/admin");

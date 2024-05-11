@@ -39,8 +39,8 @@ const Timeline = ({
   const [showCommentList, setShowCommentList] = useState(false);
   const [like, setLike] = useState(false);
   const [bookmark, setBookmark] = useState(false);
-
-  const { comments } = useGetPostComments(secondParty, id);
+  const token = user.accessToken;
+  const { comments } = useGetPostComments(secondParty, id, token);
 
   function handleCloseCommenter() {
     setShowCommentForm(false);
@@ -89,7 +89,7 @@ const Timeline = ({
                 <ButtonGroup vertical>
                   <Button
                     type="button"
-                    onClick={() => handleUnfollow(user, secondParty)}
+                    onClick={() => handleUnfollow(user, secondParty, token)}
                     variant="transparent"
                     className="border-0 text-start smaller-text popover-btn rounded-0"
                   >
@@ -97,7 +97,7 @@ const Timeline = ({
                   </Button>
                   <Button
                     type="button"
-                    onClick={() => handleRemoveUser(user, secondParty)}
+                    onClick={() => handleRemoveUser(user, secondParty, token)}
                     variant="transparent"
                     className="border-0 text-start smaller-text popover-btn rounded-0"
                   >
@@ -105,7 +105,9 @@ const Timeline = ({
                   </Button>
                   <Button
                     type="button"
-                    onClick={() => handleSendReport(id, user, secondParty)}
+                    onClick={() =>
+                      handleSendReport(id, user, secondParty, token)
+                    }
                     variant="transparent"
                     className="border-0 text-start smaller-text popover-btn rounded-0"
                   >
@@ -130,7 +132,9 @@ const Timeline = ({
                 }`}
                 title="Like"
                 type="button"
-                onClick={() => handleLikePost(secondParty, id, user, setLike)}
+                onClick={() =>
+                  handleLikePost(secondParty, id, user, setLike, token)
+                }
               >
                 <HeartFill />
                 <small>{likes?.filter((el) => el.isLiked).length}</small>
@@ -141,7 +145,9 @@ const Timeline = ({
                 className={`d-flex flex-column vstack social-button-1 border-0  text-secondary`}
                 title="Unlike"
                 type="button"
-                onClick={() => handleUnlikePost(secondParty, id, user, setLike)}
+                onClick={() =>
+                  handleUnlikePost(secondParty, id, user, setLike, token)
+                }
               >
                 <HeartFill />
                 <small>{likes?.filter((el) => el.isLiked).length}</small>
@@ -156,7 +162,9 @@ const Timeline = ({
               }`}
               title="Bookmark"
               type="button"
-              onClick={() => handleSaveBookmark(secondParty, id, setBookmark)}
+              onClick={() =>
+                handleSaveBookmark(secondParty, id, setBookmark, token)
+              }
             >
               <BookmarkFill />
               <small className="mx-1">{bookmarks === true ? 1 : 0}</small>
@@ -180,7 +188,7 @@ const Timeline = ({
         <TextComponent
           handleClose={handleCloseCommenter}
           handleSave={() =>
-            handleSaveComment(secondParty, id, replyContent, user)
+            handleSaveComment(secondParty, id, replyContent, user, token)
           }
           setContent={setReplyContent}
           content={replyContent}

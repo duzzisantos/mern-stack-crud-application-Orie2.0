@@ -27,7 +27,12 @@ const Register = ({ user }) => {
     const getCustomer = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/signup?userEmail=${user.email}`
+          `http://localhost:8080/api/signup?userEmail=${user.email}`,
+          {
+            headers: {
+              Authorization: user.accessToken,
+            },
+          }
         );
         if (res.status !== 200) {
           throw new Error(`${res.status} ${res.statusText}`);
@@ -41,7 +46,7 @@ const Register = ({ user }) => {
       }
     };
     getCustomer();
-  }, [user.email]);
+  }, [user]);
 
   //Form input states for updating user account with newly registered business
   const [vendor, setVendor] = useState({
@@ -74,7 +79,11 @@ const Register = ({ user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/register", formData)
+      .post("http://localhost:8080/api/register", formData, {
+        headers: {
+          Authorization: user.accessToken,
+        },
+      })
       .then((res) => {
         console.log(res.status);
       })
@@ -85,7 +94,12 @@ const Register = ({ user }) => {
     axios
       .post(
         `http://localhost:8080/api/signup/add-client?userEmail=${user.email}`,
-        uid
+        uid,
+        {
+          headers: {
+            Authorization: user.accessToken,
+          },
+        }
       )
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));

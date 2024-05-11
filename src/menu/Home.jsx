@@ -29,19 +29,21 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
-  const { cities } = useGetCities();
-  const { categories } = useGetCategories();
-  const { regions } = useGetRegions();
-  const { allRatings } = useGetAllRatings();
+
+  const token = user.accessToken;
+  const { cities } = useGetCities(token);
+  const { categories } = useGetCategories(token);
+  const { regions } = useGetRegions(token);
+  const { allRatings } = useGetAllRatings(token);
 
   const handleGeneralSearch = () => {
     setSearchState(true);
-    return getGeneralSearch(setGeneralSearch, search);
+    return getGeneralSearch(setGeneralSearch, search, token);
   };
 
   const handleNarrowSearch = () => {
     setSearchState(true);
-    return getNarrowSearch(setNarrowSearch, region, city, category);
+    return getNarrowSearch(setNarrowSearch, region, city, category, token);
   };
 
   const handleClose = () => {

@@ -11,12 +11,13 @@ const Vendors = ({ user }) => {
   const { state } = useLocation();
   const [searchState, setSearchState] = useState(false);
   const [generalSearch, setGeneralSearch] = useState([]);
-  const { businesses } = useGetBusinesses();
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
 
-  const { allRatings } = useGetAllRatings();
+  const token = user.accessToken;
+  const { businesses } = useGetBusinesses(token);
+  const { allRatings } = useGetAllRatings(token);
 
   const handleClose = () => {
     setShow(false);
@@ -38,7 +39,7 @@ const Vendors = ({ user }) => {
 
   const handleVendorSearch = () => {
     setSearchState(true);
-    return getGeneralSearch(setGeneralSearch, search);
+    return getGeneralSearch(setGeneralSearch, search, token);
   };
 
   const averageRating = (data, userEmail) => {

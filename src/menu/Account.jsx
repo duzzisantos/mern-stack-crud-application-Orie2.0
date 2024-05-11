@@ -4,7 +4,7 @@ import axios from "axios";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({ user }) => {
   const [signup, setSignUp] = useState({
     username: "",
     password: "",
@@ -17,6 +17,7 @@ const SignUp = () => {
       .post("http://localhost:8080/usersignsup", qs.stringify(signup), {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: user.AccessToken,
         },
       })
       .then((res) => {
