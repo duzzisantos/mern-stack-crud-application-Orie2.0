@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { getHost } from "../helpers/getHost";
 
 const ConnectWritePost = ({ user, authorName }) => {
   const [message, setMessage] = useState("");
@@ -12,7 +13,7 @@ const ConnectWritePost = ({ user, authorName }) => {
     const getUserPosts = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/user-posts?userEmail=${user.email}`,
+          `${getHost()}/api/user-posts?userEmail=${user.email}`,
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
@@ -44,7 +45,7 @@ const ConnectWritePost = ({ user, authorName }) => {
   );
   const handleSubmit = () => {
     axios
-      .post("http://localhost:8080/api/user-posts", postObject, {
+      .post(`${getHost()}/api/user-post`, postObject, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
