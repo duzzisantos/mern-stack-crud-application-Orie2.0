@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetMessages = (user) => {
+const useGetMessages = (user, token) => {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     const getMessages = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/direct-messages?clientUID=${user.uid}`
+          `http://localhost:8080/api/direct-messages?clientUID=${user.uid}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -19,7 +24,7 @@ const useGetMessages = (user) => {
       }
     };
     getMessages();
-  }, [user]);
+  }, [user, token]);
 
   return { messages, setMessages };
 };

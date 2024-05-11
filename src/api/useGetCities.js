@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetCities = () => {
+const useGetCities = (token) => {
   const [cities, setCities] = useState([]);
 
   //Fetch all cities registered since time immemorial
@@ -9,7 +9,12 @@ const useGetCities = () => {
     const getCities = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/cities`
+          `http://localhost:8080/api/register/cities`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -22,7 +27,7 @@ const useGetCities = () => {
       }
     };
     getCities();
-  }, []);
+  }, [token]);
 
   return { cities, setCities };
 };

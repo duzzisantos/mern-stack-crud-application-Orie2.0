@@ -1,6 +1,6 @@
 import axios from "axios";
 
-function handleSaveComment(secondParty, id, replyContent, user) {
+function handleSaveComment(secondParty, id, replyContent, user, token) {
   axios
     .post(
       `http://localhost:8080/api/user-posts/reply?userEmail=${secondParty}&id=${id}`,
@@ -8,6 +8,11 @@ function handleSaveComment(secondParty, id, replyContent, user) {
         commentBody: replyContent,
         commentDate: `${new Date(Date.now()).toDateString()}`,
         commentBy: user.email,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
       }
     )
     .then((res) => {
@@ -16,12 +21,17 @@ function handleSaveComment(secondParty, id, replyContent, user) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSaveBookmark(secondParty, id, setBookmark) {
+function handleSaveBookmark(secondParty, id, setBookmark, token) {
   axios
     .post(
       `http://localhost:8080/api/user-posts/save-bookmark?userEmail=${secondParty}&id=${id}`,
       {
         isBookmarked: true,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
       }
     )
     .then((res) => {
@@ -31,13 +41,18 @@ function handleSaveBookmark(secondParty, id, setBookmark) {
     .catch((error) => console.log(error.message));
 }
 
-function handleLikePost(secondParty, id, user, setLike) {
+function handleLikePost(secondParty, id, user, setLike, token) {
   axios
     .post(
       `http://localhost:8080/api/user-posts/like-post?userEmail=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
       }
     )
     .then((res) => {
@@ -47,13 +62,18 @@ function handleLikePost(secondParty, id, user, setLike) {
     .catch((error) => console.log(error.message));
 }
 
-function handleUnlikePost(secondParty, id, user, setLike) {
+function handleUnlikePost(secondParty, id, user, setLike, token) {
   axios
     .post(
       `http://localhost:8080/api/user-posts/unlike-post?userEmail=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
       }
     )
     .then((res) => {
@@ -63,10 +83,15 @@ function handleUnlikePost(secondParty, id, user, setLike) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSendReport(id, user, secondParty) {
+function handleSendReport(id, user, secondParty, token) {
   axios
     .post(
-      `http://localhost:8080/api/report-logs?userEmail=${secondParty}&id=${id}&reportedBy=${user.uid}`
+      `http://localhost:8080/api/report-logs?userEmail=${secondParty}&id=${id}&reportedBy=${user.uid}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
     )
     .then((res) => {
       console.log(res.status);
@@ -74,38 +99,62 @@ function handleSendReport(id, user, secondParty) {
     .catch((err) => console.warn(err.message));
 }
 
-function handleRemoveUser(user, secondParty) {
+function handleRemoveUser(user, secondParty, token) {
   axios
-    .post(`http://localhost:8080/api/followers/block`, {
-      userEmail: user.email,
-      secondParty: secondParty,
-    })
+    .post(
+      `http://localhost:8080/api/followers/block`,
+      {
+        userEmail: user.email,
+        secondParty: secondParty,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
     .then((res) => {
       console.log(res.statusText);
     })
     .catch((err) => console.warn(err.message));
 }
 
-function handleUnfollow(user, secondParty) {
+function handleUnfollow(user, secondParty, token) {
   axios
-    .post(`http://localhost:8080/api/followers/unfollow-user`, {
-      userEmail: user.email,
-      secondParty: secondParty,
-    })
+    .post(
+      `http://localhost:8080/api/followers/unfollow-user`,
+      {
+        userEmail: user.email,
+        secondParty: secondParty,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
     .then((res) => {
       console.log(res.statusText);
     })
     .catch((err) => console.warn(err.message));
 }
 
-function handleFollow(user, secondParty, secondPartyEmail) {
+function handleFollow(user, secondParty, secondPartyEmail, token) {
   axios
-    .post(`http://localhost:8080/api/followers/follow-user`, {
-      userEmail: user.email,
-      clientUID: user.uid,
-      secondParty,
-      secondPartyEmail,
-    })
+    .post(
+      `http://localhost:8080/api/followers/follow-user`,
+      {
+        userEmail: user.email,
+        clientUID: user.uid,
+        secondParty,
+        secondPartyEmail,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
     .then((res) => console.log(res.statusText))
     .catch((err) => console.warn(err.message));
 }

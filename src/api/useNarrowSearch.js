@@ -1,9 +1,20 @@
 import axios from "axios";
 
-const getNarrowSearch = async (setNarrowSearch, region, city, category) => {
+const getNarrowSearch = async (
+  setNarrowSearch,
+  region,
+  city,
+  category,
+  token
+) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`
+      `http://localhost:8080/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
     );
     if (response.status !== 200) {
       throw new Error(`${response.status} ${response.statusText}`);

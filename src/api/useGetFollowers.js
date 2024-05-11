@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetFollowers = (user) => {
+const useGetFollowers = (user, token) => {
   const [followers, setFollowers] = useState([]);
   //Fetch all the users following current user
   useEffect(() => {
     const getFollowers = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/followers/get-followers?clientUID=${user.uid}`
+          `http://localhost:8080/api/followers/get-followers?clientUID=${user.uid}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -20,7 +25,7 @@ const useGetFollowers = (user) => {
       }
     };
     getFollowers();
-  }, [user]);
+  }, [user, token]);
 
   return { followers, setFollowers };
 };

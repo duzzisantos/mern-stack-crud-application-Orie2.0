@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetCategories = () => {
+const useGetCategories = (token) => {
   const [categories, setCategories] = useState([]);
 
   //Fetch all categories registered since time immemorial
@@ -9,7 +9,12 @@ const useGetCategories = () => {
     const getCategories = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/categories`
+          `http://localhost:8080/api/register/categories`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -22,7 +27,7 @@ const useGetCategories = () => {
       }
     };
     getCategories();
-  }, []);
+  }, [token]);
 
   return { categories, setCategories };
 };

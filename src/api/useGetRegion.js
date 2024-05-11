@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetRegions = () => {
+const useGetRegions = (token) => {
   const [regions, setRegions] = useState([]);
 
   //Fetch all Regionsregistered since time immemorial
@@ -9,7 +9,12 @@ const useGetRegions = () => {
     const getRegions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/regions`
+          `http://localhost:8080/api/register/regions`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -22,7 +27,7 @@ const useGetRegions = () => {
       }
     };
     getRegions();
-  }, []);
+  }, [token]);
 
   return { regions, setRegions };
 };

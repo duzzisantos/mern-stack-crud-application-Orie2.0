@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetPostComments = (secondParty, id) => {
+const useGetPostComments = (secondParty, id, token) => {
   const [comments, setComments] = useState([]);
 
   //Fetch all comments registered
@@ -9,7 +9,12 @@ const useGetPostComments = (secondParty, id) => {
     const getComments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/comments?userEmail=${secondParty}&id=${id}`
+          `http://localhost:8080/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -21,7 +26,7 @@ const useGetPostComments = (secondParty, id) => {
       }
     };
     getComments();
-  }, [secondParty, id]);
+  }, [secondParty, id, token]);
 
   return { comments, setComments };
 };

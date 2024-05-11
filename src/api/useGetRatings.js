@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetRatings = (user) => {
+const useGetRatings = (user, token) => {
   const [rating, setRating] = useState([]);
   useEffect(() => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/ratings/received?userEmail=${user.email}`
+          `http://localhost:8080/api/ratings/received?userEmail=${user.email}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -19,7 +24,7 @@ const useGetRatings = (user) => {
       }
     };
     getFollowing();
-  }, [user]);
+  }, [user, token]);
 
   return { rating, setRating };
 };

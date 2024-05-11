@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useGetAllUserContent = (user) => {
+const useGetAllUserContent = (user, token) => {
   const [userContent, setUserContent] = useState([]);
 
   useEffect(() => {
     const getAllUserContent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/?userEmail=${user.email}`
+          `http://localhost:8080/api/user-posts/?userEmail=${user.email}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -20,7 +25,7 @@ const useGetAllUserContent = (user) => {
       }
     };
     getAllUserContent();
-  }, [user]);
+  }, [user, token]);
 
   return { userContent, setUserContent };
 };
