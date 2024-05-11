@@ -39,7 +39,7 @@ function App() {
             user && (
               <>
                 {" "}
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home user={user} />} />
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register user={user} />} />
                 <Route path="vendors" element={<Vendors user={user} />} />

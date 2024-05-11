@@ -3,8 +3,6 @@ import { Container } from "react-bootstrap";
 import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../authentication/firebase";
 import HeroArea from "../components/landing-page/Hero";
 import DesignedBackground from "../components/landing-page/DesignedBackground";
 import FindCustomers from "../components/landing-page/FindCustomers";
@@ -17,8 +15,7 @@ import getGeneralSearch from "../api/useGeneralSearch";
 import getNarrowSearch from "../api/useNarrowSearch";
 import useGetAllRatings from "../api/useGetAllRatings";
 
-const Home = () => {
-  const [user] = useAuthState(auth);
+const Home = ({ user }) => {
   const [search, setSearch] = useState("");
   const [searchState, setSearchState] = useState(false);
   const [city, setCity] = useState("");
