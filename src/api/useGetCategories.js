@@ -10,7 +10,7 @@ const useGetCategories = (token) => {
     const getCategories = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/register/categories`,
+          `${getHost()}/api/register/categories`,
           {
             headers: {
               Authorization: token,

@@ -1,7 +1,7 @@
 export const getHost = () => {
   if (process.env.NODE_ENV === "development") {
-    return "http://localhost:8080";
+    return process.env.REACT_APP_SERVER;
   } else if (process.env.NODE_ENV === "production") {
-    return process.env.SERVER_HOST;
+    return process.env.REACT_APP_HOSTNAME;
   }
 };

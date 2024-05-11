@@ -9,9 +9,7 @@ const useGetFollowing = (user, token) => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/followers/get-following?clientUID=${
-            user.uid
-          }`,
+          `${getHost()}/api/followers/get-following?clientUID=${user.uid}`,
           {
             headers: {
               Authorization: token,

@@ -9,9 +9,7 @@ const useSuggestedFollows = (user, token) => {
     const getSuggestedFollows = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/followers/suggested-follows?clientUID=${
-            user.uid
-          }`,
+          `${getHost()}/api/followers/suggested-follows?clientUID=${user.uid}`,
           {
             headers: {
               Authorization: token,

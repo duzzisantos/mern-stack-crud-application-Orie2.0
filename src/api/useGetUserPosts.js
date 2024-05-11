@@ -9,7 +9,7 @@ const useGetAllUserContent = (user, token) => {
     const getAllUserContent = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/user-posts/?userEmail=${user.email}`,
+          `${getHost()}/api/user-posts/?userEmail=${user.email}`,
           {
             headers: {
               Authorization: token,

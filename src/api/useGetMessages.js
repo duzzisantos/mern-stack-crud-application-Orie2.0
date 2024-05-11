@@ -8,7 +8,7 @@ const useGetMessages = (user, token) => {
     const getMessages = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/direct-messages?clientUID=${user.uid}`,
+          `${getHost()}/api/direct-messages?clientUID=${user.uid}`,
           {
             headers: {
               Authorization: token,

@@ -4,7 +4,7 @@ import { getHost } from "../helpers/getHost";
 function handleSaveComment(secondParty, id, replyContent, user, token) {
   axios
     .post(
-      `http://${getHost()}/api/user-posts/reply?userEmail=${secondParty}&id=${id}`,
+      `${getHost()}/api/user-posts/reply?userEmail=${secondParty}&id=${id}`,
       {
         commentBody: replyContent,
         commentDate: `${new Date(Date.now()).toDateString()}`,
@@ -25,7 +25,7 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
 function handleSaveBookmark(secondParty, id, setBookmark, token) {
   axios
     .post(
-      `http://${getHost()}/api/user-posts/save-bookmark?userEmail=${secondParty}&id=${id}`,
+      `${getHost()}/api/user-posts/save-bookmark?userEmail=${secondParty}&id=${id}`,
       {
         isBookmarked: true,
       },
@@ -45,7 +45,7 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
 function handleLikePost(secondParty, id, user, setLike, token) {
   axios
     .post(
-      `http://${getHost()}/api/user-posts/like-post?userEmail=${secondParty}&id=${id}`,
+      `${getHost()}/api/user-posts/like-post?userEmail=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
@@ -66,7 +66,7 @@ function handleLikePost(secondParty, id, user, setLike, token) {
 function handleUnlikePost(secondParty, id, user, setLike, token) {
   axios
     .post(
-      `http://${getHost()}/api/user-posts/unlike-post?userEmail=${secondParty}&id=${id}`,
+      `${getHost()}/api/user-posts/unlike-post?userEmail=${secondParty}&id=${id}`,
       {
         dateLiked: `${new Date(Date.now()).toDateString()}`,
         likedUserName: user.email,
@@ -87,7 +87,7 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
 function handleSendReport(id, user, secondParty, token) {
   axios
     .post(
-      `http://${getHost()}/api/report-logs?userEmail=${secondParty}&id=${id}&reportedBy=${
+      `${getHost()}/api/report-logs?userEmail=${secondParty}&id=${id}&reportedBy=${
         user.uid
       }`,
       {
@@ -105,7 +105,7 @@ function handleSendReport(id, user, secondParty, token) {
 function handleRemoveUser(user, secondParty, token) {
   axios
     .post(
-      `http://${getHost()}/api/followers/block`,
+      `${getHost()}/api/followers/block`,
       {
         userEmail: user.email,
         secondParty: secondParty,
@@ -125,7 +125,7 @@ function handleRemoveUser(user, secondParty, token) {
 function handleUnfollow(user, secondParty, token) {
   axios
     .post(
-      `http://${getHost()}/api/followers/unfollow-user`,
+      `${getHost()}/api/followers/unfollow-user`,
       {
         userEmail: user.email,
         secondParty: secondParty,
@@ -145,7 +145,7 @@ function handleUnfollow(user, secondParty, token) {
 function handleFollow(user, secondParty, secondPartyEmail, token) {
   axios
     .post(
-      `http://${getHost()}/api/followers/follow-user`,
+      `${getHost()}/api/followers/follow-user`,
       {
         userEmail: user.email,
         clientUID: user.uid,

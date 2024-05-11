@@ -9,7 +9,7 @@ const useGetBusinesses = (token) => {
   useEffect(() => {
     const getBusinesses = async () => {
       try {
-        const response = await axios.get(`http://${getHost()}/api/register`, {
+        const response = await axios.get(`${getHost()}/api/register`, {
           headers: {
             Authorization: token,
           },

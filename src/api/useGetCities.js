@@ -9,14 +9,11 @@ const useGetCities = (token) => {
   useEffect(() => {
     const getCities = async () => {
       try {
-        const response = await axios.get(
-          `http://${getHost()}/api/register/cities`,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
+        const response = await axios.get(`${getHost()}/api/register/cities`, {
+          headers: {
+            Authorization: token,
+          },
+        });
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {

@@ -7,7 +7,7 @@ const useGetAllRatings = (token) => {
   useEffect(() => {
     const getFollowing = async () => {
       try {
-        const response = await axios.get(`http://${getHost()}/api/ratings`, {
+        const response = await axios.get(`${getHost()}/api/ratings`, {
           headers: {
             Authorization: token,
           },

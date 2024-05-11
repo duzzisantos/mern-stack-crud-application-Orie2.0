@@ -8,7 +8,7 @@ const useGetRatings = (user, token) => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/ratings/received?userEmail=${user.email}`,
+          `${getHost()}/api/ratings/received?userEmail=${user.email}`,
           {
             headers: {
               Authorization: token,

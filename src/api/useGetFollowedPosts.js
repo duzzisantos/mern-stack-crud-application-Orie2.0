@@ -9,7 +9,7 @@ const useGetFollowedContent = (user, token) => {
     const getFollowedContent = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/user-posts/subscribed-content?userEmail=${
+          `${getHost()}/api/user-posts/subscribed-content?userEmail=${
             user.email
           }`,
           {

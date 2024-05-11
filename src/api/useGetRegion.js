@@ -9,14 +9,11 @@ const useGetRegions = (token) => {
   useEffect(() => {
     const getRegions = async () => {
       try {
-        const response = await axios.get(
-          `http://${getHost()}/api/register/regions`,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
+        const response = await axios.get(`${getHost()}/api/register/regions`, {
+          headers: {
+            Authorization: token,
+          },
+        });
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
         } else {

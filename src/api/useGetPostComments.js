@@ -10,7 +10,7 @@ const useGetPostComments = (secondParty, id, token) => {
     const getComments = async () => {
       try {
         const response = await axios.get(
-          `http://${getHost()}/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
+          `${getHost()}/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
           {
             headers: {
               Authorization: token,

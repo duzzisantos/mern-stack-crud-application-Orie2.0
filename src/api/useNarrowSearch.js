@@ -10,7 +10,7 @@ const getNarrowSearch = async (
 ) => {
   try {
     const response = await axios.get(
-      `http://${getHost()}/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
+      `${getHost()}/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
       {
         headers: {
           Authorization: token,
