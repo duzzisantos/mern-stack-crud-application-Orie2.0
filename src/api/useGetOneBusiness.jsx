@@ -11,7 +11,7 @@ const useGetOneBusiness = (user, token) => {
           `${getHost()}/api/register/business-entity?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

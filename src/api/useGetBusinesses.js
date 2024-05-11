@@ -11,7 +11,7 @@ const useGetBusinesses = (token) => {
       try {
         const response = await axios.get(`${getHost()}/api/register`, {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
           },
         });
         if (response.status !== 200) {

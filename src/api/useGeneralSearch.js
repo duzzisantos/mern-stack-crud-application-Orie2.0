@@ -7,7 +7,7 @@ const getGeneralSearch = async (setGeneralSearch, searchTerm, token) => {
       `${getHost()}/api/query-business/general-search?searchTerm=${searchTerm}`,
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

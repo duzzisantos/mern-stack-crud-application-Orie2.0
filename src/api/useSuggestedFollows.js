@@ -12,7 +12,7 @@ const useSuggestedFollows = (user, token) => {
           `${getHost()}/api/followers/suggested-follows?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

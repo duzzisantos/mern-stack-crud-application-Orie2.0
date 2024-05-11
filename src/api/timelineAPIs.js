@@ -12,7 +12,7 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -31,7 +31,7 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -52,7 +52,7 @@ function handleLikePost(secondParty, id, user, setLike, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -73,7 +73,7 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -112,7 +112,7 @@ function handleRemoveUser(user, secondParty, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -132,7 +132,7 @@ function handleUnfollow(user, secondParty, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -154,7 +154,7 @@ function handleFollow(user, secondParty, secondPartyEmail, token) {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     )

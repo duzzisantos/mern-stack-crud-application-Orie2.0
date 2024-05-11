@@ -12,7 +12,7 @@ const useGetAllUserContent = (user, token) => {
           `${getHost()}/api/user-posts/?userEmail=${user.email}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

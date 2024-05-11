@@ -11,7 +11,7 @@ const useGetRatings = (user, token) => {
           `${getHost()}/api/ratings/received?userEmail=${user.email}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

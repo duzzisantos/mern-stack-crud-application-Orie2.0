@@ -14,7 +14,7 @@ const useGetFollowedContent = (user, token) => {
           }`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

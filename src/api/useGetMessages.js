@@ -11,7 +11,7 @@ const useGetMessages = (user, token) => {
           `${getHost()}/api/direct-messages?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

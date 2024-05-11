@@ -15,7 +15,7 @@ const ConnectWritePost = ({ user, authorName }) => {
           `http://localhost:8080/api/user-posts?userEmail=${user.email}`,
           {
             headers: {
-              Authorization: user.accessToken,
+              Authorization: `Bearer ${user.accessToken}`,
             },
           }
         );
@@ -44,7 +44,11 @@ const ConnectWritePost = ({ user, authorName }) => {
   );
   const handleSubmit = () => {
     axios
-      .post("http://localhost:8080/api/user-posts", postObject)
+      .post("http://localhost:8080/api/user-posts", postObject, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
       .then((res) => console.log(res.status))
       .catch((err) => console.log(err.message));
   };

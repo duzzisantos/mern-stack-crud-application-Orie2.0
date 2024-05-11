@@ -11,7 +11,7 @@ const useGetRegions = (token) => {
       try {
         const response = await axios.get(`${getHost()}/api/register/regions`, {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
           },
         });
         if (response.status !== 200) {

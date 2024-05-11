@@ -9,7 +9,7 @@ const useGetAllRatings = (token) => {
       try {
         const response = await axios.get(`${getHost()}/api/ratings`, {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
           },
         });
         if (response.status !== 200) {

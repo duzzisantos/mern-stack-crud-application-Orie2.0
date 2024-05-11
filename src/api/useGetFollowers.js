@@ -12,7 +12,7 @@ const useGetFollowers = (user, token) => {
           `${getHost()}/api/followers/get-followers?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

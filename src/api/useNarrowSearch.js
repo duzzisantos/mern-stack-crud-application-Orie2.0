@@ -13,7 +13,7 @@ const getNarrowSearch = async (
       `${getHost()}/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
       {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

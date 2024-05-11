@@ -13,7 +13,7 @@ const useGetCategories = (token) => {
           `${getHost()}/api/register/categories`,
           {
             headers: {
-              Authorization: token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
