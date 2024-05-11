@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetFollowedContent = (user, token) => {
   const [subscribedContent, setSubscribedContent] = useState([]);
@@ -8,7 +9,9 @@ const useGetFollowedContent = (user, token) => {
     const getFollowedContent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/subscribed-content?userEmail=${user.email}`,
+          `http://${getHost()}/api/user-posts/subscribed-content?userEmail=${
+            user.email
+          }`,
           {
             headers: {
               Authorization: token,

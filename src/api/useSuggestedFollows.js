@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useSuggestedFollows = (user, token) => {
   const [suggestedFollows, setSuggestedFollows] = useState([]);
@@ -8,7 +9,9 @@ const useSuggestedFollows = (user, token) => {
     const getSuggestedFollows = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/followers/suggested-follows?clientUID=${user.uid}`,
+          `http://${getHost()}/api/followers/suggested-follows?clientUID=${
+            user.uid
+          }`,
           {
             headers: {
               Authorization: token,

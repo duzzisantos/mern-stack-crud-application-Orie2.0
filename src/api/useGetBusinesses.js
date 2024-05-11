@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetBusinesses = (token) => {
   const [businesses, setBusinesses] = useState([]);
@@ -8,7 +9,7 @@ const useGetBusinesses = (token) => {
   useEffect(() => {
     const getBusinesses = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/register`, {
+        const response = await axios.get(`http://${getHost()}/api/register`, {
           headers: {
             Authorization: token,
           },

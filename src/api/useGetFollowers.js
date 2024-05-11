@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetFollowers = (user, token) => {
   const [followers, setFollowers] = useState([]);
@@ -8,7 +9,9 @@ const useGetFollowers = (user, token) => {
     const getFollowers = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/followers/get-followers?clientUID=${user.uid}`,
+          `http://${getHost()}/api/followers/get-followers?clientUID=${
+            user.uid
+          }`,
           {
             headers: {
               Authorization: token,

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetPostComments = (secondParty, id, token) => {
   const [comments, setComments] = useState([]);
@@ -9,7 +10,7 @@ const useGetPostComments = (secondParty, id, token) => {
     const getComments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
+          `http://${getHost()}/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
           {
             headers: {
               Authorization: token,

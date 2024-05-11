@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetCategories = (token) => {
   const [categories, setCategories] = useState([]);
@@ -9,7 +10,7 @@ const useGetCategories = (token) => {
     const getCategories = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/categories`,
+          `http://${getHost()}/api/register/categories`,
           {
             headers: {
               Authorization: token,

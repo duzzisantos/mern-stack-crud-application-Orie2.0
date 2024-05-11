@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetRatings = (user, token) => {
   const [rating, setRating] = useState([]);
@@ -7,7 +8,7 @@ const useGetRatings = (user, token) => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/ratings/received?userEmail=${user.email}`,
+          `http://${getHost()}/api/ratings/received?userEmail=${user.email}`,
           {
             headers: {
               Authorization: token,

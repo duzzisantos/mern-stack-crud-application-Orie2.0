@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetMessages = (user, token) => {
   const [messages, setMessages] = useState([]);
@@ -7,7 +8,7 @@ const useGetMessages = (user, token) => {
     const getMessages = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/direct-messages?clientUID=${user.uid}`,
+          `http://${getHost()}/api/direct-messages?clientUID=${user.uid}`,
           {
             headers: {
               Authorization: token,

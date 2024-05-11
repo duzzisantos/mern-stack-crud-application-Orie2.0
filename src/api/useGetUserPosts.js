@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const useGetAllUserContent = (user, token) => {
   const [userContent, setUserContent] = useState([]);
@@ -8,7 +9,7 @@ const useGetAllUserContent = (user, token) => {
     const getAllUserContent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/user-posts/?userEmail=${user.email}`,
+          `http://${getHost()}/api/user-posts/?userEmail=${user.email}`,
           {
             headers: {
               Authorization: token,

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const getNarrowSearch = async (
   setNarrowSearch,
@@ -9,7 +10,7 @@ const getNarrowSearch = async (
 ) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
+      `http://${getHost()}/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
       {
         headers: {
           Authorization: token,

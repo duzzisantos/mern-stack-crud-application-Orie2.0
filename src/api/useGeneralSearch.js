@@ -1,9 +1,10 @@
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const getGeneralSearch = async (setGeneralSearch, searchTerm, token) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/query-business/general-search?searchTerm=${searchTerm}`,
+      `http://${getHost()}/api/query-business/general-search?searchTerm=${searchTerm}`,
       {
         headers: {
           Authorization: token,
