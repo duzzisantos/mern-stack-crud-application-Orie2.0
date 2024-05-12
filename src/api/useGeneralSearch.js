@@ -1,12 +1,10 @@
 import axios from "axios";
-import { isLocal, isProduction, localHost, server } from "../helpers/getHost";
+import { getHost } from "../helpers/getHost";
 
 const getGeneralSearch = async (setGeneralSearch, searchTerm, token) => {
   try {
     const response = await axios.get(
-      `${
-        isLocal ? localHost : isProduction && server
-      }/api/query-business/general-search?searchTerm=${searchTerm}`,
+      `${getHost()}/api/query-business/general-search?searchTerm=${searchTerm}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
