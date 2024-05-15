@@ -11,6 +11,7 @@ const getGeneralSearch = async (setGeneralSearch, searchTerm, token) => {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     );
     if (response.status !== 200) {

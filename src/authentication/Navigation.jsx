@@ -50,7 +50,13 @@ const Navigation = () => {
     const getCustomer = async () => {
       try {
         const res = await axios.get(
-          `${getHost()}/api/signup?userEmail=${user.email}`
+          `${getHost()}/api/signup?userEmail=${user.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+            withCredentials: false,
+          }
         );
         if (res.status !== 200) {
           throw new Error(`${res.status} ${res.statusText}`);
@@ -62,7 +68,7 @@ const Navigation = () => {
       }
     };
     getCustomer();
-  }, [user.email]);
+  }, [user.email, user.accessToken]);
 
   return (
     <Container fluid className="col-12 px-0">

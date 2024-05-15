@@ -16,6 +16,7 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -37,6 +38,7 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -60,6 +62,7 @@ function handleLikePost(secondParty, id, user, setLike, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -83,6 +86,7 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -104,6 +108,7 @@ function handleSendReport(id, user, secondParty, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -126,6 +131,7 @@ function handleRemoveUser(user, secondParty, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -148,6 +154,7 @@ function handleUnfollow(user, secondParty, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => {
@@ -172,6 +179,7 @@ function handleFollow(user, secondParty, secondPartyEmail, token) {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     )
     .then((res) => console.log(res.statusText))

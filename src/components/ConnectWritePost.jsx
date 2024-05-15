@@ -20,6 +20,7 @@ const ConnectWritePost = ({ user, authorName }) => {
               "Access-Control-Allow-Origin": "*",
               "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
             },
+            withCredentials: false,
           }
         );
         if (res.status !== 200) {
@@ -53,6 +54,7 @@ const ConnectWritePost = ({ user, authorName }) => {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       })
       .then((res) => console.log(res.status))
       .catch((err) => console.log(err.message));

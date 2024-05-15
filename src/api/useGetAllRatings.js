@@ -13,6 +13,7 @@ const useGetAllRatings = (token) => {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
           },
+          withCredentials: false,
         });
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);

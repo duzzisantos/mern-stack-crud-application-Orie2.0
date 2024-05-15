@@ -17,6 +17,7 @@ const getNarrowSearch = async (
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
+        withCredentials: false,
       }
     );
     if (response.status !== 200) {
