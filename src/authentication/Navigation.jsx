@@ -18,7 +18,7 @@ import {
   PlusCircleFill,
   Window,
 } from "react-bootstrap-icons";
-import { getHost } from "../helpers/getHost";
+// import { getHost } from "../helpers/getHost";
 
 const Navigation = () => {
   const [user, loading] = useAuthState(auth);
@@ -50,7 +50,11 @@ const Navigation = () => {
     const getCustomer = async () => {
       try {
         const res = await axios.get(
-          `${getHost()}/api/signup?userEmail=${user.email}`,
+          `${
+            process.env.NODE_ENV === "production"
+              ? process.env.REACT_APP_SERVER
+              : process.env.REACT_APP_LOCAL
+          }/api/signup?userEmail=${user.email}`,
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
