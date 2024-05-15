@@ -18,6 +18,7 @@ import {
   PlusCircleFill,
   Window,
 } from "react-bootstrap-icons";
+import { getHost } from "../helpers/getHost";
 
 const Navigation = () => {
   const [user, loading] = useAuthState(auth);
@@ -49,7 +50,7 @@ const Navigation = () => {
     const getCustomer = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/signup?userEmail=${user.email}`
+          `${getHost()}/api/signup?userEmail=${user.email}`
         );
         if (res.status !== 200) {
           throw new Error(`${res.status} ${res.statusText}`);
