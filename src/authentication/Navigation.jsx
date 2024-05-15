@@ -53,7 +53,8 @@ const Navigation = () => {
           `${
             process.env.NODE_ENV === "production"
               ? process.env.REACT_APP_SERVER
-              : process.env.REACT_APP_LOCAL
+              : process.env.NODE_ENV === "development" &&
+                process.env.REACT_APP_LOCAL
           }/api/signup?userEmail=${user.email}`,
           {
             headers: {
