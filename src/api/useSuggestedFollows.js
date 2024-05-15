@@ -13,6 +13,8 @@ const useSuggestedFollows = (user, token) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
             },
           }
         );

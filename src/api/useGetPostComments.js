@@ -14,6 +14,8 @@ const useGetPostComments = (secondParty, id, token) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
             },
           }
         );

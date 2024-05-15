@@ -13,6 +13,8 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -32,6 +34,8 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -53,6 +57,8 @@ function handleLikePost(secondParty, id, user, setLike, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -74,6 +80,8 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -93,6 +101,8 @@ function handleSendReport(id, user, secondParty, token) {
       {
         headers: {
           Authorization: token,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -113,6 +123,8 @@ function handleRemoveUser(user, secondParty, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -133,6 +145,8 @@ function handleUnfollow(user, secondParty, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )
@@ -155,6 +169,8 @@ function handleFollow(user, secondParty, secondPartyEmail, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       }
     )

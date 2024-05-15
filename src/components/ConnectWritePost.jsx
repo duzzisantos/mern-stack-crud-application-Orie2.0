@@ -17,6 +17,8 @@ const ConnectWritePost = ({ user, authorName }) => {
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
             },
           }
         );
@@ -48,6 +50,8 @@ const ConnectWritePost = ({ user, authorName }) => {
       .post(`${getHost()}/api/user-post`, postObject, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
         },
       })
       .then((res) => console.log(res.status))
