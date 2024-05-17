@@ -12,14 +12,11 @@ import {
   PencilFill,
   PeopleFill,
   PersonPlusFill,
-  ShieldFillCheck,
   TelephoneInbound,
   Upload,
 } from "react-bootstrap-icons";
 
 const EditBusiness = ({ user, show, handleClose }) => {
-  console.log(user.uid);
-  const [businessID, setBusinessID] = useState(`${Date.now()}`);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [businessName, setBusinessName] = useState("");
@@ -42,7 +39,6 @@ const EditBusiness = ({ user, show, handleClose }) => {
         } else {
           const data = response.data[0];
 
-          setBusinessID(data.businessID);
           setFirstName(data.firstName);
           setLastName(data.lastName);
           setBusinessName(data.businessName);
@@ -65,7 +61,6 @@ const EditBusiness = ({ user, show, handleClose }) => {
     e.preventDefault();
     axios
       .post(`http://localhost:8080/api/register/edit?clientUID=${user.uid}`, {
-        businessID: businessID,
         businessName: businessName,
         firstName: firstName,
         lastName: lastName,
@@ -102,20 +97,6 @@ const EditBusiness = ({ user, show, handleClose }) => {
           encType="multipart/form-data"
           className="gap-3 vstack"
         >
-          <div>
-            <Form.Label htmlFor="businessID">
-              <ShieldFillCheck /> Business ID:
-            </Form.Label>
-            <Form.Control
-              type="number"
-              className="rounded-0"
-              value={businessID}
-              id="businessID"
-              name="businessID"
-              onChange={(e) => setBusinessID(e.target.value)}
-              disabled
-            />
-          </div>
           <div>
             {" "}
             <Form.Label htmlFor="firstName">
