@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetRatings = (user) => {
+const useGetRatings = (user, token) => {
   const [rating, setRating] = useState([]);
   useEffect(() => {
     const getFollowing = async () => {
@@ -11,6 +11,7 @@ const useGetRatings = (user) => {
           `${getHost()}/api/ratings/received?userEmail=${user.email}`,
           {
             headers: {
+              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -26,7 +27,7 @@ const useGetRatings = (user) => {
       }
     };
     getFollowing();
-  }, [user]);
+  }, [user, token]);
 
   return { rating, setRating };
 };

@@ -23,12 +23,13 @@ const Followers = ({ user }) => {
   const [secondParty, setSecondParty] = useState("");
   const { state } = useLocation();
 
-  const { followers } = useGetFollowers(user);
-  const { following } = useGetFollowing(user);
-  const { suggestedFollows } = useSuggestedFollows(user);
-  const { rating } = useGetRatings(secondParty);
+  const token = user.accessToken;
+  const { followers } = useGetFollowers(user, token);
+  const { following } = useGetFollowing(user, token);
+  const { suggestedFollows } = useSuggestedFollows(user, token);
+  const { rating } = useGetRatings(secondParty, token);
 
-  const { biz } = useGetOneBusiness(secondParty);
+  const { biz } = useGetOneBusiness(secondParty, token);
   const alreadyFollowingList = following.flat().map((el) => el.followerName);
   const getFollowSuggestions = suggestedFollows
     .filter(

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetRegions = () => {
+const useGetRegions = (token) => {
   const [regions, setRegions] = useState([]);
 
   //Fetch all Regionsregistered since time immemorial
@@ -11,6 +11,7 @@ const useGetRegions = () => {
       try {
         const response = await axios.get(`${getHost()}/api/register/regions`, {
           headers: {
+            Authorization: `Bearer ${token}`,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -26,7 +27,7 @@ const useGetRegions = () => {
       }
     };
     getRegions();
-  });
+  }, [token]);
 
   return { regions, setRegions };
 };

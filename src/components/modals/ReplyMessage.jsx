@@ -35,7 +35,12 @@ function ReplyMessage({
         `${getHost()}/api/direct-messages/reply?clientUID=${
           user.uid
         }&id=${messageId}`,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
       )
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));

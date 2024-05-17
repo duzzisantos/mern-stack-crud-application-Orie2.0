@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetPostComments = (secondParty, id) => {
+const useGetPostComments = (secondParty, id, token) => {
   const [comments, setComments] = useState([]);
 
   //Fetch all comments registered
@@ -13,6 +13,7 @@ const useGetPostComments = (secondParty, id) => {
           `${getHost()}/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
           {
             headers: {
+              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -28,7 +29,7 @@ const useGetPostComments = (secondParty, id) => {
       }
     };
     getComments();
-  }, [secondParty, id]);
+  }, [secondParty, id, token]);
 
   return { comments, setComments };
 };

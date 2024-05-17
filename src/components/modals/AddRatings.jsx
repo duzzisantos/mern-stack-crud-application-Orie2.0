@@ -34,7 +34,11 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${getHost()}/api/ratings`, postObject)
+      .post(`${getHost()}/api/ratings`, postObject, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
   };

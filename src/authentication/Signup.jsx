@@ -32,7 +32,11 @@ const Signup = () => {
     };
 
     axios
-      .post(`${getHost()}/api/signup`, postObject)
+      .post(`${getHost()}/api/signup`, postObject, {
+        headers: {
+          Authorization: `Bearer ${user?.accessToken}`,
+        },
+      })
       .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err.message));
   };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetAllUserContent = (user) => {
+const useGetAllUserContent = (user, token) => {
   const [userContent, setUserContent] = useState([]);
 
   useEffect(() => {
@@ -12,6 +12,7 @@ const useGetAllUserContent = (user) => {
           `${getHost()}/api/user-posts/?userEmail=${user.email}`,
           {
             headers: {
+              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -27,7 +28,7 @@ const useGetAllUserContent = (user) => {
       }
     };
     getAllUserContent();
-  }, [user]);
+  }, [user, token]);
 
   return { userContent, setUserContent };
 };

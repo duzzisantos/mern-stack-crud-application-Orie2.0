@@ -16,6 +16,7 @@ const ConnectWritePost = ({ user, authorName }) => {
           `${getHost()}/api/user-posts?userEmail=${user.email}`,
           {
             headers: {
+              Authorization: `Bearer ${user.accessToken}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -44,10 +45,12 @@ const ConnectWritePost = ({ user, authorName }) => {
       authorName: authorName,
     }
   );
+
   const handleSubmit = () => {
     axios
       .post(`${getHost()}/api/user-post`, postObject, {
         headers: {
+          Authorization: `Bearer ${user.accessToken}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

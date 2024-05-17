@@ -15,8 +15,8 @@ const Vendors = ({ user }) => {
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
 
-  const { businesses } = useGetBusinesses();
-  const { allRatings } = useGetAllRatings();
+  const { businesses } = useGetBusinesses(user.accessToken);
+  const { allRatings } = useGetAllRatings(user.accessToken);
 
   const handleClose = () => {
     setShow(false);
@@ -38,7 +38,7 @@ const Vendors = ({ user }) => {
 
   const handleVendorSearch = () => {
     setSearchState(true);
-    return getGeneralSearch(setGeneralSearch, search);
+    return getGeneralSearch(setGeneralSearch, search, user.accessToken);
   };
 
   const averageRating = (data, userEmail) => {

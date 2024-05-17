@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetOneBusiness = (user) => {
+const useGetOneBusiness = (user, token) => {
   const [biz, setBiz] = useState([]);
   useEffect(() => {
     const getOneBusiness = async () => {
@@ -11,6 +11,7 @@ const useGetOneBusiness = (user) => {
           `${getHost()}/api/register/business-entity?clientUID=${user.uid}`,
           {
             headers: {
+              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -26,7 +27,7 @@ const useGetOneBusiness = (user) => {
       }
     };
     getOneBusiness();
-  }, [user]);
+  }, [user, token]);
 
   return { biz, setBiz };
 };

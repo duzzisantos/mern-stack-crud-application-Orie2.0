@@ -33,7 +33,12 @@ const EditBusiness = ({ user, show, handleClose }) => {
     const getOneBusiness = async () => {
       try {
         const response = await axios.get(
-          `${getHost()}/api/register/business-entity?clientUID=${user.uid}`
+          `${getHost()}/api/register/business-entity?clientUID=${user.uid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+          }
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -61,19 +66,27 @@ const EditBusiness = ({ user, show, handleClose }) => {
   const handleEditBusiness = (e) => {
     e.preventDefault();
     axios
-      .post(`${getHost()}/api/register/edit?clientUID=${user.uid}`, {
-        businessName: businessName,
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        city: city,
-        state: state,
-        email: email,
-        businessPhone: businessPhone,
-        category: category,
-        image: image,
-        clientUID: user.uid,
-      })
+      .post(
+        `${getHost()}/api/register/edit?clientUID=${user.uid}`,
+        {
+          businessName: businessName,
+          firstName: firstName,
+          lastName: lastName,
+          address: address,
+          city: city,
+          state: state,
+          email: email,
+          businessPhone: businessPhone,
+          category: category,
+          image: image,
+          clientUID: user.uid,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
       .then((res) => console.log(res.status))
       .catch((err) => console.warn(err.message));
   };

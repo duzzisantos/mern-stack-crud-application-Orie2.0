@@ -1,12 +1,19 @@
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const getNarrowSearch = async (setNarrowSearch, region, city, category) => {
+const getNarrowSearch = async (
+  setNarrowSearch,
+  region,
+  city,
+  category,
+  token
+) => {
   try {
     const response = await axios.get(
       `${getHost()}/api/query-business/narrow-search?region=${region}&city=${city}&category=${category}`,
       {
         headers: {
+          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

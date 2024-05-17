@@ -19,12 +19,13 @@ const Admin = ({ user }) => {
 
   const commonHeaderClasses = "text-center fs-6 fw-bold custom-pry-color";
 
-  const { followers } = useGetFollowers(user);
-  const { following } = useGetFollowing(user);
-  const { biz } = useGetOneBusiness(user);
-  const { rating } = useGetRatings(user);
-  const { userContent } = useGetAllUserContent(user);
-  const { messages } = useGetMessages(user);
+  const token = user.accessToken;
+  const { followers } = useGetFollowers(user, token);
+  const { following } = useGetFollowing(user, token);
+  const { biz } = useGetOneBusiness(user, token);
+  const { rating } = useGetRatings(user, token);
+  const { userContent } = useGetAllUserContent(user, token);
+  const { messages } = useGetMessages(user, token);
 
   const averageRating = () => {
     const output = [];

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetCategories = () => {
+const useGetCategories = (token) => {
   const [categories, setCategories] = useState([]);
 
   //Fetch all categories registered since time immemorial
@@ -13,6 +13,7 @@ const useGetCategories = () => {
           `${getHost()}/api/register/categories`,
           {
             headers: {
+              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -29,7 +30,7 @@ const useGetCategories = () => {
       }
     };
     getCategories();
-  });
+  }, [token]);
 
   return { categories, setCategories };
 };

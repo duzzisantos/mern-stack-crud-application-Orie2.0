@@ -25,7 +25,11 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
 
   const handleSubmit = () => {
     axios
-      .post(`${getHost()}/api/direct-messages`, postObject)
+      .post(`${getHost()}/api/direct-messages`, postObject, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
 
