@@ -31,6 +31,8 @@ const Register = ({ user }) => {
           {
             headers: {
               Authorization: user.accessToken,
+              Accept: "application/json",
+              "Content-Type": "application/json",
             },
           }
         );
@@ -82,6 +84,8 @@ const Register = ({ user }) => {
       .post("http://localhost:8080/api/register", formData, {
         headers: {
           Authorization: user.accessToken,
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       })
       .then((res) => {
@@ -98,6 +102,8 @@ const Register = ({ user }) => {
         {
           headers: {
             Authorization: user.accessToken,
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
         }
       )

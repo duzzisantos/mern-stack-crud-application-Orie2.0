@@ -14,10 +14,9 @@ const getNarrowSearch = async (
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        withCredentials: false,
       }
     );
     if (response.status !== 200) {

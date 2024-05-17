@@ -17,10 +17,9 @@ const ConnectWritePost = ({ user, authorName }) => {
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+              Accept: "application/json",
+              "Content-Type": "application/json",
             },
-            withCredentials: false,
           }
         );
         if (res.status !== 200) {
@@ -51,10 +50,9 @@ const ConnectWritePost = ({ user, authorName }) => {
       .post(`${getHost()}/api/user-post`, postObject, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        withCredentials: false,
       })
       .then((res) => console.log(res.status))
       .catch((err) => console.log(err.message));

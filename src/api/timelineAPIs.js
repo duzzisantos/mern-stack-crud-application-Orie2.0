@@ -13,8 +13,8 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -35,8 +35,8 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -59,8 +59,8 @@ function handleLikePost(secondParty, id, user, setLike, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -83,8 +83,8 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -105,8 +105,8 @@ function handleSendReport(id, user, secondParty, token) {
       {
         headers: {
           Authorization: token,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -128,8 +128,8 @@ function handleRemoveUser(user, secondParty, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -151,8 +151,8 @@ function handleUnfollow(user, secondParty, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         withCredentials: false,
       }
@@ -176,10 +176,9 @@ function handleFollow(user, secondParty, secondPartyEmail, token) {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        withCredentials: false,
       }
     )
     .then((res) => console.log(res.statusText))

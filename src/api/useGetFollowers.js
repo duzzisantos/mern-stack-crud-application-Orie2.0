@@ -13,8 +13,8 @@ const useGetFollowers = (user, token) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+              Accept: "application/json",
+              "Content-Type": "application/json",
             },
             withCredentials: false,
           }
