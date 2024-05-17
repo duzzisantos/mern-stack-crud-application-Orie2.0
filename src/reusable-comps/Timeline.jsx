@@ -30,6 +30,7 @@ const Timeline = ({
   businessCategory,
   contentBody,
   user,
+  token,
   secondParty,
   id,
 }) => {
@@ -39,8 +40,7 @@ const Timeline = ({
   const [showCommentList, setShowCommentList] = useState(false);
   const [like, setLike] = useState(false);
   const [bookmark, setBookmark] = useState(false);
-  const token = user.accessToken;
-  const { comments } = useGetPostComments(secondParty, id);
+  const { comments } = useGetPostComments(secondParty, id, token);
 
   function handleCloseCommenter() {
     setShowCommentForm(false);

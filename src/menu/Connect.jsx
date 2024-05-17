@@ -114,6 +114,7 @@ const Connect = ({ user }) => {
                       authorEmail={element?.authorEmail}
                       authorImage={element?.authorImage}
                       user={user}
+                      token={token}
                       secondParty={element.authorEmail}
                     />
                   ))
