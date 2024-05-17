@@ -40,7 +40,7 @@ function App() {
               <>
                 {" "}
                 <Route path="/" element={<Home user={user} />} />
-                <Route path="home" element={<Home />} />
+                <Route path="home" element={<Home user={user} />} />
                 <Route path="register" element={<Register user={user} />} />
                 <Route path="vendors" element={<Vendors user={user} />} />
                 <Route path="connect" element={<Connect user={user} />} />
