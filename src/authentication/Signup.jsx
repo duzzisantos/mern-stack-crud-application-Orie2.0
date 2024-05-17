@@ -6,6 +6,7 @@ import "../App.css";
 import { Button, Form } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import axios from "axios";
+import { getHost } from "../helpers/getHost";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ const Signup = () => {
     };
 
     axios
-      .post("http://localhost:8080/api/signup", postObject)
+      .post(`${getHost()}/api/signup`, postObject)
       .then((res) => console.log(res.statusText))
       .catch((err) => console.log(err.message));
   };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetCities = (token) => {
+const useGetCities = () => {
   const [cities, setCities] = useState([]);
 
   //Fetch all cities registered since time immemorial
@@ -11,7 +11,6 @@ const useGetCities = (token) => {
       try {
         const response = await axios.get(`${getHost()}/api/register/cities`, {
           headers: {
-            Authorization: `Bearer ${token}`,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -27,7 +26,7 @@ const useGetCities = (token) => {
       }
     };
     getCities();
-  }, [token]);
+  });
 
   return { cities, setCities };
 };

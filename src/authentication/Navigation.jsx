@@ -50,13 +50,7 @@ const Navigation = () => {
     const getCustomer = async () => {
       try {
         const res = await axios.get(
-          `${getHost()}/api/signup?userEmail=${user.email}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.accessToken}`,
-            },
-            withCredentials: false,
-          }
+          `${getHost()}/api/signup?userEmail=${user.email}`
         );
         if (res.status !== 200) {
           throw new Error(`${res.status} ${res.statusText}`);

@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
+import { getHost } from "../../helpers/getHost";
 
 function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
   const [ratingsTitle, setRatingsTitle] = useState("");
@@ -33,7 +34,7 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/ratings", postObject)
+      .post(`${getHost()}/api/ratings`, postObject)
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
   };

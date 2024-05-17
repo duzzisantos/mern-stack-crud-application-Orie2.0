@@ -15,6 +15,7 @@ import {
   TelephoneInbound,
   Upload,
 } from "react-bootstrap-icons";
+import { getHost } from "../../helpers/getHost";
 
 const EditBusiness = ({ user, show, handleClose }) => {
   const [firstName, setFirstName] = useState("");
@@ -32,7 +33,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
     const getOneBusiness = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/register/business-entity?clientUID=${user.uid}`
+          `${getHost()}/api/register/business-entity?clientUID=${user.uid}`
         );
         if (response.status !== 200) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -60,7 +61,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
   const handleEditBusiness = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:8080/api/register/edit?clientUID=${user.uid}`, {
+      .post(`${getHost()}/api/register/edit?clientUID=${user.uid}`, {
         businessName: businessName,
         firstName: firstName,
         lastName: lastName,

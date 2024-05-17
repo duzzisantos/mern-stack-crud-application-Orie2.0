@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetFollowers = (user, token) => {
+const useGetFollowers = (user) => {
   const [followers, setFollowers] = useState([]);
   //Fetch all the users following current user
   useEffect(() => {
@@ -12,7 +12,6 @@ const useGetFollowers = (user, token) => {
           `${getHost()}/api/followers/get-followers?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -29,7 +28,7 @@ const useGetFollowers = (user, token) => {
       }
     };
     getFollowers();
-  }, [user, token]);
+  });
 
   return { followers, setFollowers };
 };

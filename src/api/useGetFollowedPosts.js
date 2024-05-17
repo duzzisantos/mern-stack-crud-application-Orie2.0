@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetFollowedContent = (user, token) => {
+const useGetFollowedContent = (user) => {
   const [subscribedContent, setSubscribedContent] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const useGetFollowedContent = (user, token) => {
           }`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -30,7 +29,7 @@ const useGetFollowedContent = (user, token) => {
       }
     };
     getFollowedContent();
-  }, [user, token]);
+  });
 
   return { subscribedContent, setSubscribedContent };
 };

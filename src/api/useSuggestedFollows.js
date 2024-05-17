@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useSuggestedFollows = (user, token) => {
+const useSuggestedFollows = (user) => {
   const [suggestedFollows, setSuggestedFollows] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,6 @@ const useSuggestedFollows = (user, token) => {
           `${getHost()}/api/followers/suggested-follows?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -28,7 +27,7 @@ const useSuggestedFollows = (user, token) => {
       }
     };
     getSuggestedFollows();
-  }, [user, token]);
+  }, [user]);
 
   return { suggestedFollows, setSuggestedFollows };
 };

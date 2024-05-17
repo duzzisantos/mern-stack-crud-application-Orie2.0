@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetMessages = (user, token) => {
+const useGetMessages = (user) => {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     const getMessages = async () => {
@@ -11,7 +11,6 @@ const useGetMessages = (user, token) => {
           `${getHost()}/api/direct-messages?clientUID=${user.uid}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
               Accept: "application/json",
               "Content-Type": "application/json",
             },
@@ -27,7 +26,7 @@ const useGetMessages = (user, token) => {
       }
     };
     getMessages();
-  }, [user, token]);
+  });
 
   return { messages, setMessages };
 };

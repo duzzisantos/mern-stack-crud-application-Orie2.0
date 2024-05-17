@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "react-bootstrap";
 import axios from "axios";
 import "../App.css";
+import { getHost } from "../helpers/getHost";
 // import qs from "qs";
 
 const EditVendor = ({ user }) => {
@@ -22,11 +23,7 @@ const EditVendor = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/register/${params.ID}`, {
-        headers: {
-          Authorization: user.accessToken,
-        },
-      })
+      .get(`${getHost()}/register/${params.ID}`, {})
       .then((res) => {
         console.log({ ID: params.ID });
         const vendorData = res.data;
@@ -50,7 +47,7 @@ const EditVendor = ({ user }) => {
     e.preventDefault();
     axios
       .put(
-        `http://localhost:8080/register/${params.ID}`,
+        `${getHost()}/register/${params.ID}`,
         {
           ID,
           firstName,

@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetAllRatings = (token) => {
+const useGetAllRatings = () => {
   const [allRatings, setAllRatings] = useState([]);
   useEffect(() => {
     const getFollowing = async () => {
       try {
         const response = await axios.get(`${getHost()}/api/ratings`, {
           headers: {
-            Authorization: `Bearer ${token}`,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -24,7 +23,7 @@ const useGetAllRatings = (token) => {
       }
     };
     getFollowing();
-  }, [token]);
+  });
 
   return { allRatings, setAllRatings };
 };

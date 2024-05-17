@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-function handleSaveComment(secondParty, id, replyContent, user, token) {
+function handleSaveComment(secondParty, id, replyContent, user) {
   axios
     .post(
       `${getHost()}/api/user-posts/reply?userEmail=${secondParty}&id=${id}`,
@@ -12,7 +12,6 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -25,7 +24,7 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSaveBookmark(secondParty, id, setBookmark, token) {
+function handleSaveBookmark(secondParty, id, setBookmark) {
   axios
     .post(
       `${getHost()}/api/user-posts/save-bookmark?userEmail=${secondParty}&id=${id}`,
@@ -34,7 +33,6 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -48,7 +46,7 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
     .catch((error) => console.log(error.message));
 }
 
-function handleLikePost(secondParty, id, user, setLike, token) {
+function handleLikePost(secondParty, id, user, setLike) {
   axios
     .post(
       `${getHost()}/api/user-posts/like-post?userEmail=${secondParty}&id=${id}`,
@@ -58,7 +56,6 @@ function handleLikePost(secondParty, id, user, setLike, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -72,7 +69,7 @@ function handleLikePost(secondParty, id, user, setLike, token) {
     .catch((error) => console.log(error.message));
 }
 
-function handleUnlikePost(secondParty, id, user, setLike, token) {
+function handleUnlikePost(secondParty, id, user, setLike) {
   axios
     .post(
       `${getHost()}/api/user-posts/unlike-post?userEmail=${secondParty}&id=${id}`,
@@ -82,7 +79,6 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -96,7 +92,7 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSendReport(id, user, secondParty, token) {
+function handleSendReport(id, user, secondParty) {
   axios
     .post(
       `${getHost()}/api/report-logs?userEmail=${secondParty}&id=${id}&reportedBy=${
@@ -104,7 +100,6 @@ function handleSendReport(id, user, secondParty, token) {
       }`,
       {
         headers: {
-          Authorization: token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -117,7 +112,7 @@ function handleSendReport(id, user, secondParty, token) {
     .catch((err) => console.warn(err.message));
 }
 
-function handleRemoveUser(user, secondParty, token) {
+function handleRemoveUser(user, secondParty) {
   axios
     .post(
       `${getHost()}/api/followers/block`,
@@ -127,7 +122,6 @@ function handleRemoveUser(user, secondParty, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -140,7 +134,7 @@ function handleRemoveUser(user, secondParty, token) {
     .catch((err) => console.warn(err.message));
 }
 
-function handleUnfollow(user, secondParty, token) {
+function handleUnfollow(user, secondParty) {
   axios
     .post(
       `${getHost()}/api/followers/unfollow-user`,
@@ -150,7 +144,6 @@ function handleUnfollow(user, secondParty, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -163,7 +156,7 @@ function handleUnfollow(user, secondParty, token) {
     .catch((err) => console.warn(err.message));
 }
 
-function handleFollow(user, secondParty, secondPartyEmail, token) {
+function handleFollow(user, secondParty, secondPartyEmail) {
   axios
     .post(
       `${getHost()}/api/followers/follow-user`,
@@ -175,7 +168,6 @@ function handleFollow(user, secondParty, secondPartyEmail, token) {
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

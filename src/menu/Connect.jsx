@@ -14,14 +14,14 @@ import useGetAllUserContent from "../api/useGetUserPosts";
 
 const Connect = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const token = user.accessToken;
-  const { biz } = useGetOneBusiness(user, token);
-  const { following } = useGetFollowing(user, token);
-  const { followers } = useGetFollowers(user, token);
-  const { subscribedContent } = useGetFollowedContent(user, token);
-  const { suggestedFollows } = useSuggestedFollows(user, token);
-  const { categories } = useGetCategories(token);
-  const { userContent } = useGetAllUserContent(user, token);
+
+  const { biz } = useGetOneBusiness(user);
+  const { following } = useGetFollowing(user);
+  const { followers } = useGetFollowers(user);
+  const { subscribedContent } = useGetFollowedContent(user);
+  const { suggestedFollows } = useSuggestedFollows(user);
+  const { categories } = useGetCategories();
+  const { userContent } = useGetAllUserContent(user);
   const [suggested, setSuggested] = useState([]);
 
   const allPosts = [...subscribedContent, ...userContent.flat()];

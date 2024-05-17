@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
+import { getHost } from "../../helpers/getHost";
 
 function ReplyMessage({
   show,
@@ -31,7 +32,9 @@ function ReplyMessage({
   const handleSubmit = () => {
     axios
       .post(
-        `http://localhost:8080/api/direct-messages/reply?clientUID=${user.uid}&id=${messageId}`,
+        `${getHost()}/api/direct-messages/reply?clientUID=${
+          user.uid
+        }&id=${messageId}`,
         formData
       )
       .then((res) => console.log(res.statusText))

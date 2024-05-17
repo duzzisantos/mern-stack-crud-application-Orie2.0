@@ -17,6 +17,7 @@ import {
   TelephoneInbound,
   Upload,
 } from "react-bootstrap-icons";
+import { getHost } from "../helpers/getHost";
 
 const Register = ({ user }) => {
   const [userId, setUserId] = useState("");
@@ -27,7 +28,7 @@ const Register = ({ user }) => {
     const getCustomer = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/signup?userEmail=${user.email}`,
+          `${getHost()}/api/signup?userEmail=${user.email}`,
           {
             headers: {
               Authorization: user.accessToken,
@@ -81,7 +82,7 @@ const Register = ({ user }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/register", formData, {
+      .post(`${getHost()}/api/register`, formData, {
         headers: {
           Authorization: user.accessToken,
           Accept: "application/json",
@@ -96,17 +97,12 @@ const Register = ({ user }) => {
       });
 
     axios
-      .post(
-        `http://localhost:8080/api/signup/add-client?userEmail=${user.email}`,
-        uid,
-        {
-          headers: {
-            Authorization: user.accessToken,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      .post(`${getHost()}/api/signup/add-client?userEmail=${user.email}`, uid, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
   };

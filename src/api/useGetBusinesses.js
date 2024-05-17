@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
-const useGetBusinesses = (token) => {
+const useGetBusinesses = () => {
   const [businesses, setBusinesses] = useState([]);
 
   //Fetch all businesses registered
@@ -11,7 +11,6 @@ const useGetBusinesses = (token) => {
       try {
         const response = await axios.get(`${getHost()}/api/register`, {
           headers: {
-            Authorization: `Bearer ${token}`,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -26,7 +25,7 @@ const useGetBusinesses = (token) => {
       }
     };
     getBusinesses();
-  }, [token]);
+  });
 
   return { businesses, setBusinesses };
 };

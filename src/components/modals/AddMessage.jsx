@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
+import { getHost } from "../../helpers/getHost";
 
 function AddMessage({ show, handleClose, businessEmail, user }) {
   const [messageSubject, setMessageSubject] = useState("");
@@ -24,7 +25,7 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:8080/api/direct-messages", postObject)
+      .post(`${getHost()}/api/direct-messages`, postObject)
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
 
