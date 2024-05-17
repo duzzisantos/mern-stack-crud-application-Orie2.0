@@ -39,7 +39,7 @@ const Admin = ({ user }) => {
   };
 
   return (
-    <Container className="h-100 col-9 p-3 box-fit custom-pry-color">
+    <Container className="col-9 p-3 box-fit custom-pry-color">
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
       <div className="vstack gap-5  h-100">
         <div className={commonFlexClasses}>

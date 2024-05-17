@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Container } from "react-bootstrap";
-import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeroArea from "../components/landing-page/Hero";
+import Dugam from "../images/Dugam.png";
 import DesignedBackground from "../components/landing-page/DesignedBackground";
 import FindCustomers from "../components/landing-page/FindCustomers";
 import Businesses from "../components/landing-page/Businesses";
@@ -75,15 +75,15 @@ const Home = ({ user }) => {
 
   return (
     <div className="col-12 px-0 custom-pry-color">
-      {!user && (
+      {!user && window.location.pathname === "/" ? (
         <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top bg-light">
           <Container className="d-flex justify-content-between bg-light">
             <Navbar.Brand as={Link} to="home" className="hstack">
-              <span className="fs-2">Dugam</span>
-              <span className="position-relative">
-                <Brilliance className="fs-2" />
-                <Brilliance className="fs-2" style={{ marginLeft: "-5px" }} />
-              </span>
+              <img
+                src={Dugam}
+                alt="Dugam brand ID"
+                style={{ height: "30px" }}
+              />
             </Navbar.Brand>
             <Navbar.Toggle />
             <Nav className="fw-bold hstack gap-3">
@@ -96,12 +96,12 @@ const Home = ({ user }) => {
             </Nav>
           </Container>
         </Navbar>
-      )}
+      ) : user && window.location.pathname === "home" ? null : null}
       <section className="bg-white col-12" style={{ height: "500px" }}>
         <HeroArea />
       </section>
       <section
-        className="d-flex col-12 flex-row justify-content-center"
+        className="d-flex col-12 flex-lg-row flex-sm-column justify-content-center"
         style={{ height: "250px" }}
       >
         <FindCustomers

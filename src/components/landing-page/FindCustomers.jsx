@@ -1,4 +1,4 @@
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 
 const FindCustomers = ({
@@ -16,11 +16,11 @@ const FindCustomers = ({
   handleResetNarrow,
 }) => {
   return (
-    <Form className="d-flex flex-column col-12 vstack gap-3 align-items-center justify-content-center">
+    <Form className="d-flex flex-column col-12 vstack gap-3 align-items-center justify-content-center search-vendors">
       <Form.Label className="fs-2 fw-semibold" htmlFor="search-businesses">
         <Search /> Search for businesses
       </Form.Label>
-      <div className="col-9 d-flex">
+      <Form.Group className="col-9 d-flex">
         <Form.Control
           id="search-businesses"
           className="w-100 py-3 rounded-0"
@@ -40,8 +40,8 @@ const FindCustomers = ({
         >
           Reset
         </Button>
-      </div>
-      <div className="d-flex gap-2 col-9">
+      </Form.Group>
+      <Col className="d-flex flex-lg-row flex-sm-wrap gap-2 col-9">
         <Form.Select
           className="w-25 rounded-0"
           onChange={(e) => setCity(e.target.value)}
@@ -88,7 +88,7 @@ const FindCustomers = ({
         >
           Reset
         </Button>
-      </div>
+      </Col>
     </Form>
   );
 };

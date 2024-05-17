@@ -73,7 +73,7 @@ const Connect = ({ user }) => {
       ) : (
         <Container
           fluid
-          className="col-9 vh-100 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
+          className="col-9 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
         >
           <CustomerHero
             businessName={
@@ -85,7 +85,7 @@ const Connect = ({ user }) => {
             businessCategories={categories}
           />
 
-          <section className="col-lg-6 my-3 px-2 mh-100 border-0 overflow-y-auto">
+          <section className="col-lg-6 my-3 px-2 mh-100 overflow-y-auto">
             <ConnectWritePost
               user={user}
               authorName={businessInfo?.businessName}
@@ -97,7 +97,10 @@ const Connect = ({ user }) => {
                   <Form.Switch id="show-latest" />
                 </div>
               </div>
-              <div className="px-3 py-3 gap-3 vstack" id="time-line">
+              <div
+                className="px-3 py-3 gap-3 vstack border rounded-1"
+                id="time-line"
+              >
                 {allPosts.length > 0 ? (
                   allPosts.map((element, i) => (
                     <Timeline
@@ -121,9 +124,9 @@ const Connect = ({ user }) => {
               </div>
             </div>
           </section>
-          <section className=" mt-3 mb-5 px-0  mh-100 shadow-sm gap-3 vstack rounded-top-2">
+          <section className=" mt-3 mb-5 px-0 border vstack rounded-top-2">
             <div className="bg-primary-subtle bg-opacity-10 w-100 px-3 py-2">
-              <h2 className="fs-6 fw-semibold ">Suggestions</h2>
+              <h2 className="fs-6 fw-semibold">Suggestions</h2>
             </div>
             <div className="col-12 px-3 gap-3 vstack">
               {suggested.length > 1 &&
@@ -139,7 +142,7 @@ const Connect = ({ user }) => {
                       secondPartyEmail={item.userEmail}
                     />
                   ))}
-              <div className="border py-2 px-4 rounded-0">
+              <div className="border py-2 px-4 my-3 rounded-0">
                 <span className="smaller-text custom-pry-color fw-semibold">
                   Advert
                 </span>

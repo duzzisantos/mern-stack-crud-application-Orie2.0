@@ -19,7 +19,7 @@ const Replies = ({ replies }) => {
           </div>
         ))
       ) : (
-        <Alert>No replies yet!</Alert>
+        <Alert variant="warning">No replies yet!</Alert>
       )}
     </div>
   );

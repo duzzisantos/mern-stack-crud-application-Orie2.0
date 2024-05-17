@@ -20,7 +20,7 @@ const MessagesTemplate = ({
   };
   return (
     <>
-      <div className="d-flex flex-column vstack gap-1 p-3 shadow-sm border rounded-0 my-3">
+      <div className="d-flex flex-column vstack gap-1 p-3 shadow-sm rounded-0 my-3">
         <h2 className="fs-6 fw-bold">
           {subject}: {id}
         </h2>

@@ -1,4 +1,4 @@
-import { Badge, Button } from "react-bootstrap";
+import { Badge, Button, Col } from "react-bootstrap";
 import { BriefcaseFill, BuildingsFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { optionsArray } from "../helpers/hardCodedData";
@@ -15,15 +15,14 @@ const CustomerHero = ({
   return (
     <div className="mx-0 py-2 d-flex flex-column rounded-0">
       <h1 className="fs-4">{userName}</h1>
-      <fieldset className="d-flex flex-column justify-content-center gap-3 shadow-sm px-4 py-2">
+      <Col className="d-flex flex-column justify-content-center gap-3 border rounded-1 px-4 py-2">
         <legend
           className="border mx-auto"
           style={{
             height: "60px",
             width: "60px",
             borderRadius: "50px",
-            backgroundImage:
-              "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA0dYxGVf1X0BOzqFNRKKBKOxFkUOzGvLQ0A&usqp=CAU)",
+            backgroundImage: "",
             backgroundPosition: "center",
             backgroundSize: "150%",
           }}
@@ -66,9 +65,9 @@ const CustomerHero = ({
             </small>
           </div>
         </div>
-      </fieldset>
-      <div className="my-3">
-        <div className="px-4 py-2 shadow-sm vstack gap-1">
+      </Col>
+      <Col className="my-3 rounded-1 border">
+        <div className="px-4 py-2 vstack gap-1">
           <small className="fw-semibold">Categories</small>
           {optionsArray?.map((item, i) => (
             <Button
@@ -82,7 +81,7 @@ const CustomerHero = ({
             </Button>
           ))}
         </div>
-      </div>
+      </Col>
     </div>
   );
 };

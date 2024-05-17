@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import React from "react";
 import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
-import { ReactComponent as Brilliance } from "bootstrap-icons/icons/brilliance.svg";
+import Dugam from "../images/Dugam.png";
 import { Link } from "react-router-dom";
 import {
   BuildingUp,
@@ -71,22 +71,14 @@ const Navigation = () => {
   }, [user.email, user.accessToken]);
 
   return (
-    <Container fluid className="col-12 px-0">
-      <Navbar className="py-1 custom-pry" sticky="top">
-        <Container className="col-9 pe-0">
-          <Navbar.Brand as={Link} to="home" className="fs-5 text-light mx-1">
-            <span className=" position-relative">
-              <Brilliance className="fs-5" />
-              <Brilliance
-                className="fs-5"
-                style={{ marginTop: "-16px", marginLeft: "-8.5px" }}
-              />
-              <Brilliance className="fs-5" style={{ marginLeft: "-11px" }} />
-            </span>
-            Dugam
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Nav className="me-auto fw-bold hstack">
+    <Navbar collapseOnSelect expand="lg" className="py-1 custom-pry sticky-top">
+      <Container className="col-9 pe-0">
+        <Navbar.Brand as={Link} to="home" className="fs-5 text-light mx-1">
+          <img src={Dugam} alt="Dugam brand ID" style={{ height: "30px" }} />
+        </Navbar.Brand>
+        <Navbar.Toggle className="text-bg-light btn-outline-light text-light" />
+        <Navbar.Collapse>
+          <Nav className="me-auto flex-lg-row flex-md-column flex-sm-column">
             <Nav.Link as={Link} to="home" className="text-light">
               <HouseUpFill /> Home
             </Nav.Link>
@@ -106,35 +98,34 @@ const Navigation = () => {
               <BuildingUp /> My Business
             </Nav.Link>
           </Nav>
-          <div
-            className="hstack gap-2 text-light rounded-5 border border-5"
-            style={{ height: "40px", width: "70px" }}
+
+          <NavDropdown
+            className="mx-lg-auto col-sm-2 col-md-1 text-light p-2"
+            title="Profile"
           >
-            <NavDropdown className="mx-auto" title="Me">
-              <div className="p-2 smaller-text mx-1">
-                <p>
-                  <PersonFill /> {customerData[0]?.userName ?? name}
-                </p>
-                <p>
-                  <ClockFill /> Last login: {user.metadata.lastSignInTime}
-                </p>
-                <Button
-                  size="sm"
-                  className="btn btn-secondary text-light mx-auto w-100 btn-outline-danger border-0"
-                  onClick={() => {
-                    logout();
-                    navigate("/");
-                  }}
-                  title="Logout"
-                >
-                  Logout
-                </Button>
-              </div>
-            </NavDropdown>
-          </div>
-        </Container>
-      </Navbar>
-    </Container>
+            <div className="p-2 smaller-text mx-1">
+              <p>
+                <PersonFill /> {customerData[0]?.userName ?? name}
+              </p>
+              <p>
+                <ClockFill /> Last login: {user.metadata.lastSignInTime}
+              </p>
+              <Button
+                size="sm"
+                className="btn btn-secondary text-light mx-auto w-100 btn-outline-danger border-0"
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+                title="Logout"
+              >
+                Logout
+              </Button>
+            </div>
+          </NavDropdown>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

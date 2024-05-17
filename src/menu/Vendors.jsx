@@ -55,7 +55,7 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className="col-12 p-3 custom-pry-color">
+    <Container className="h-100 col-12 p-3 custom-pry-color">
       <div className="px-4 mx-2">
         <h1 className="fs-3 fw-bold col-9">Vendors</h1>
       </div>

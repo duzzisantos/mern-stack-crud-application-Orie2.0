@@ -64,7 +64,7 @@ const ConnectWritePost = ({ user, authorName }) => {
     <>
       {!showTextArea && (
         <div
-          className="py-2 px-2 border rounded-0 mb-2"
+          className="py-2 px-2 border border-3 rounded-1 mb-2"
           onClick={() => setShowTextArea(true)}
           style={{ cursor: "pointer" }}
         >
