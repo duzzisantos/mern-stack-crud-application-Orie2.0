@@ -18,6 +18,7 @@ function ReplyMessage({
   sender,
   messageId,
   repliedBy,
+  secondParty,
 }) {
   const [replyDate, setReplyDate] = useState("");
   const [replyBody, setReplyBody] = useState("");
@@ -32,9 +33,7 @@ function ReplyMessage({
   const handleSubmit = () => {
     axios
       .post(
-        `${getHost()}/api/direct-messages/reply?clientUID=${
-          user.uid
-        }&id=${messageId}`,
+        `${getHost()}/api/direct-messages/reply?clientUID=${secondParty}&id=${messageId}`,
         formData,
         {
           headers: {

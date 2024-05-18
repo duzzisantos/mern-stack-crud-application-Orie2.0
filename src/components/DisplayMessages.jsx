@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import { CalendarDateFill, PersonFill, Send } from "react-bootstrap-icons";
 import ReplyMessage from "./modals/ReplyMessage";
 
 const MessagesTemplate = ({
   subject,
   sender,
+  receiver,
   sendDate,
   messageBody,
   id,
   user,
   Replies,
+  secondParty,
 }) => {
   const [show, setShow] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -25,6 +27,23 @@ const MessagesTemplate = ({
           {subject}: {id}
         </h2>
         <div className="d-flex vstack gap-1 smaller-text text-secondary">
+          {sender === user.email ? (
+            <Badge
+              className="bg-success p-2"
+              pill
+              style={{ width: "fit-content" }}
+            >
+              Sent
+            </Badge>
+          ) : (
+            <Badge
+              className="bg-warning text-dark p-2"
+              pill
+              style={{ width: "fit-content" }}
+            >
+              Received
+            </Badge>
+          )}
           <div>
             {" "}
             <PersonFill /> <small>{sender.split("@")[0] ?? sender}</small>
@@ -45,7 +64,7 @@ const MessagesTemplate = ({
               className={`bg-transparent custom-pry-color custom-pry-border`}
               onClick={() => setShow(!show)}
             >
-              <Send /> Reply
+              <Send /> Follow up
             </Button>
             <Button
               size="sm"
@@ -56,7 +75,7 @@ const MessagesTemplate = ({
                 setWhichReply(id);
               }}
             >
-              Replies
+              Responses
             </Button>
           </div>
         )}
@@ -70,6 +89,7 @@ const MessagesTemplate = ({
           sender={sender}
           user={user}
           repliedBy={user.email}
+          secondParty={secondParty}
         />
       )}
     </>

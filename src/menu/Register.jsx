@@ -18,6 +18,7 @@ import {
   Upload,
 } from "react-bootstrap-icons";
 import { getHost } from "../helpers/getHost";
+import { encodeImageAsURL } from "../helpers/stringHelpers";
 
 const Register = ({ user }) => {
   const [userId, setUserId] = useState("");
@@ -52,6 +53,8 @@ const Register = ({ user }) => {
   }, [user]);
 
   //Form input states for updating user account with newly registered business
+  const [converted, setConverted] = useState("");
+
   const [vendor, setVendor] = useState({
     businessID: `${Date.now()}`,
     firstName: "",
@@ -63,7 +66,6 @@ const Register = ({ user }) => {
     email: "",
     businessPhone: "",
     category: "",
-    image: "",
     imageId: `${Date.now() + 200}`,
   });
 
@@ -71,6 +73,7 @@ const Register = ({ user }) => {
   const formData = Object.assign(vendor, {
     userId: userId,
     userEmail: userEmail,
+    photos: [{ image: converted }],
     userName: userName,
   });
 
@@ -79,8 +82,7 @@ const Register = ({ user }) => {
   };
 
   //Submit form to update
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     axios
       .post(`${getHost()}/api/register`, formData, {
         headers: {
@@ -303,7 +305,7 @@ const Register = ({ user }) => {
               <option key={index}>{item}</option>
             ))}
           </Form.Select>
-          <Form.Label htmlFor="photos">
+          <Form.Label htmlFor="image-register">
             <Upload /> Upload photos:
           </Form.Label>
           <small className="text-primary">
@@ -311,11 +313,11 @@ const Register = ({ user }) => {
           </small>
           <Form.Control
             type="file"
+            id="image-register"
             className="rounded-0"
-            name="photos"
-            accept=".jpeg, .jpg, .png, .pdf, .docx, .pptx"
-            value={vendor.image}
-            onChange={(e) => setVendor({ ...vendor, image: e.target.value })}
+            name="image"
+            accept=".jpeg, .jpg, .png"
+            onChange={() => encodeImageAsURL("image-register", setConverted)}
           />
           <Button type="submit" className="w-25 custom-pry rounded-0 border-0">
             Submit

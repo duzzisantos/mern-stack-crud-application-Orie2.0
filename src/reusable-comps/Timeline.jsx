@@ -4,6 +4,7 @@ import {
   HeartFill,
   BookmarkFill,
   ChatDotsFill,
+  PersonCircle,
 } from "react-bootstrap-icons";
 import TextComponent from "../components/TextComponent";
 import { useState } from "react";
@@ -59,26 +60,29 @@ const Timeline = ({
       <fieldset className="d-flex flex-column px-2">
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-start hstack gap-3">
-            <legend
-              style={{ height: "30px", width: "30px", borderRadius: "50px" }}
-            >
-              <img
-                src={
-                  authorImage ??
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/1024px-Mercedes-Logo.svg.png"
-                }
-                alt="user"
-                style={{ height: "30px", width: "30px", borderRadius: "50px" }}
+            {authorImage ? (
+              <div
+                className="border"
+                style={{
+                  borderRadius: "50px",
+                  height: "60px",
+                  width: "60px",
+                  backgroundImage: `url(${authorImage})`,
+                  backgroundPosition: "center",
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                }}
               />
-            </legend>
+            ) : (
+              <PersonCircle className="hstack mt-2 text-secondary fs-3" />
+            )}
+
             <div className="d-flex flex-column">
               <small className="fw-bold mt-2">
                 {authorName ?? "Mercedes Benz"}{" "}
                 <CheckCircleFill className="custom-pry-color" />
               </small>
-              <small className="text-secondary">
-                {businessCategory ?? "Category X"}
-              </small>
+              <small className="text-secondary">{businessCategory ?? ""}</small>
             </div>
           </div>
           <MenuPopover
@@ -119,8 +123,15 @@ const Timeline = ({
           />
         </div>
 
-        <article className="my-2">
+        <article className="my-2 vstack">
           {contentBody ?? "Loading content..........."}
+          {contentImage && (
+            <img
+              className="border w-100 rounded-1 mt-3"
+              src={contentImage}
+              alt=""
+            />
+          )}
         </article>
         <div className="justify-content-start hstack mt-3 fw-light col-lg-2 col-sm-9">
           <Form>

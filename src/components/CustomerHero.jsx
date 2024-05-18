@@ -1,11 +1,16 @@
 import { Badge, Button, Col } from "react-bootstrap";
-import { BriefcaseFill, BuildingsFill } from "react-bootstrap-icons";
+import {
+  BriefcaseFill,
+  BuildingsFill,
+  PersonCircle,
+} from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { optionsArray } from "../helpers/hardCodedData";
+import { sortedStrings } from "../helpers/stringHelpers";
 
 const CustomerHero = ({
   userName,
-
+  userImage,
   businessName,
   category,
   followers,
@@ -13,20 +18,24 @@ const CustomerHero = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div className="mx-0 py-2 d-flex flex-column rounded-0">
+    <div className="mx-0 py-2 d-flex flex-column rounded-0 h-100">
       <h1 className="fs-4">{userName}</h1>
-      <Col className="d-flex flex-column justify-content-center gap-3 border rounded-1 px-4 py-2">
-        <legend
-          className="border mx-auto"
-          style={{
-            height: "60px",
-            width: "60px",
-            borderRadius: "50px",
-            backgroundImage: "",
-            backgroundPosition: "center",
-            backgroundSize: "150%",
-          }}
-        ></legend>
+      <Col className="d-flex flex-column gap-3 border rounded-1 px-4 py-2">
+        {(
+          <div
+            className="border mx-auto"
+            style={{
+              height: "60px",
+              width: "60px",
+              borderRadius: "50px",
+              backgroundImage: `url(${userImage})`,
+              backgroundPosition: "center",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        ) ?? <PersonCircle />}
+
         <div className="d-flex flex-column gap-3">
           <small className="fs-6">
             <BuildingsFill /> {businessName}
@@ -69,7 +78,7 @@ const CustomerHero = ({
       <Col className="my-3 rounded-1 border">
         <div className="px-4 py-2 vstack gap-1">
           <small className="fw-semibold">Categories</small>
-          {optionsArray?.map((item, i) => (
+          {sortedStrings(optionsArray)?.map((item, i) => (
             <Button
               key={i}
               variant="transparent"

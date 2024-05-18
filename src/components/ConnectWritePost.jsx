@@ -2,11 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { getHost } from "../helpers/getHost";
+import { PencilFill } from "react-bootstrap-icons";
+import { encodeImageAsURL } from "../helpers/stringHelpers";
 
 const ConnectWritePost = ({ user, authorName }) => {
   const [message, setMessage] = useState("");
-  const [image, setImage] = useState("");
   const [showTextArea, setShowTextArea] = useState(false);
+  const [converted, setCoverted] = useState("");
 
   //Find all the current user's content posts
   useEffect(() => {
@@ -35,7 +37,6 @@ const ConnectWritePost = ({ user, authorName }) => {
   const postObject = Object.assign(
     {
       contentBody: message,
-      contentImage: image,
     },
     {
       isBookmarked: false,
@@ -43,12 +44,13 @@ const ConnectWritePost = ({ user, authorName }) => {
       userEmail: user?.email,
       authorEmail: user?.email,
       authorName: authorName,
+      contentImage: converted,
     }
   );
 
   const handleSubmit = () => {
     axios
-      .post(`${getHost()}/api/user-post`, postObject, {
+      .post(`${getHost()}/api/user-posts`, postObject, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
           Accept: "application/json",
@@ -63,11 +65,14 @@ const ConnectWritePost = ({ user, authorName }) => {
     <>
       {!showTextArea && (
         <div
-          className="py-2 px-2 border border-3 rounded-1 mb-2"
+          className="py-2 px-2 border border-1 rounded-1 mb-2 d-flex hstack justify-content-between"
           onClick={() => setShowTextArea(true)}
           style={{ cursor: "pointer" }}
         >
-          <p className="mx-2 my-2 fw-bolder text-secondary">Write post</p>
+          <small className="mx-2 my-2 fw-bolder custom-pry-text">
+            Write post
+          </small>
+          <PencilFill />
         </div>
       )}
       {showTextArea && (
@@ -88,13 +93,13 @@ const ConnectWritePost = ({ user, authorName }) => {
             onChange={(e) => setMessage(e.target.value)}
           />
 
-          <input
+          <Form.Control
             type="file"
             id="addImage"
             name="addImage"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            onChange={() => encodeImageAsURL("addImage", setCoverted)}
           />
+
           <div className="d-flex justify-content-between my-3">
             <Button
               size="sm"

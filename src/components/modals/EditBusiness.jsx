@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Col } from "react-bootstrap";
 import { optionsArray } from "../../helpers/hardCodedData";
 import {
   BriefcaseFill,
@@ -16,6 +16,7 @@ import {
   Upload,
 } from "react-bootstrap-icons";
 import { getHost } from "../../helpers/getHost";
+import { encodeImageAsURL } from "../../helpers/stringHelpers";
 
 const EditBusiness = ({ user, show, handleClose }) => {
   const [firstName, setFirstName] = useState("");
@@ -27,7 +28,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
   const [email, setEmail] = useState("");
   const [businessPhone, setBusinessPhone] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [converted, setConverted] = useState("");
 
   useEffect(() => {
     const getOneBusiness = async () => {
@@ -54,7 +55,6 @@ const EditBusiness = ({ user, show, handleClose }) => {
           setEmail(data.email);
           setBusinessPhone(data.businessPhone);
           setCategory(data.category);
-          setImage(data.image);
         }
       } catch (err) {
         console.warn(err);
@@ -63,24 +63,25 @@ const EditBusiness = ({ user, show, handleClose }) => {
     getOneBusiness();
   }, [user]);
 
-  const handleEditBusiness = (e) => {
-    e.preventDefault();
+  const editedItems = {
+    businessName: businessName,
+    firstName: firstName,
+    lastName: lastName,
+    address: address,
+    city: city,
+    state: state,
+    email: email,
+    businessPhone: businessPhone,
+    category: category,
+    clientUID: user.uid,
+  };
+  const handleEditBusiness = () => {
     axios
       .post(
         `${getHost()}/api/register/edit?clientUID=${user.uid}`,
-        {
-          businessName: businessName,
-          firstName: firstName,
-          lastName: lastName,
-          address: address,
-          city: city,
-          state: state,
-          email: email,
-          businessPhone: businessPhone,
-          category: category,
-          image: image,
-          clientUID: user.uid,
-        },
+        Object.assign(editedItems, {
+          photos: [{ image: converted }],
+        }),
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
@@ -272,7 +273,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
               <option key={index}>{item}</option>
             ))}
           </Form.Select>
-          <Form.Label htmlFor="photos">
+          <Form.Label htmlFor="image-edit">
             <Upload /> Upload photos:
           </Form.Label>
           <small className="text-primary">
@@ -281,14 +282,25 @@ const EditBusiness = ({ user, show, handleClose }) => {
           <Form.Control
             type="file"
             className="rounded-0"
-            name="photos"
-            accept=".jpeg, .jpg, .png, .pdf, .docx, .pptx"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            name="image"
+            id="image-edit"
+            accept=".jpeg, .jpg, .png"
+            onChange={(e) => encodeImageAsURL("image-edit", setConverted)}
           />
-          <Button type="submit" className="w-25 custom-pry rounded-0 border-0">
-            Submit
-          </Button>
+          <Col className="hstack gap-2">
+            <Button
+              type="submit"
+              className="w-25 custom-pry rounded-0 custom-pry-border"
+            >
+              Submit
+            </Button>
+            <Button
+              onClick={handleClose}
+              className="w-25 rounded-0 bg-transparent custom-pry-color custom-pry-border"
+            >
+              Close
+            </Button>
+          </Col>
         </Form>
       </Modal.Body>
     </Modal>

@@ -31,8 +31,7 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
     ratingsOwner: secondParty,
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     axios
       .post(`${getHost()}/api/ratings`, postObject, {
         headers: {

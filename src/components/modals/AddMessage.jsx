@@ -21,6 +21,7 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
   const postObject = Object.assign(formData, {
     clientUID: user.uid,
     sender: user.email,
+    receiver: businessEmail,
   });
 
   const handleSubmit = () => {

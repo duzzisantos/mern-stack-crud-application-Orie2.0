@@ -25,7 +25,8 @@ const Connect = ({ user }) => {
   const { userContent } = useGetAllUserContent(user, token);
   const [suggested, setSuggested] = useState([]);
 
-  const allPosts = [...subscribedContent, ...userContent.flat()];
+  let allPosts = [...subscribedContent, ...userContent.flat()];
+  const [latest, setLatest] = useState(false);
 
   const businessInfo = biz[0];
 
@@ -67,6 +68,10 @@ const Connect = ({ user }) => {
     }
   }, [followers, following, suggestedFollows]);
 
+  const handleSwitch = () => {
+    setLatest(!latest);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -84,6 +89,7 @@ const Connect = ({ user }) => {
             followers={followers[0]?.length ?? 0}
             following={following[0]?.length ?? 0}
             businessCategories={categories}
+            userImage={businessInfo?.photos[0]?.image ?? ""}
           />
 
           <section className="col-lg-6 my-3 px-2 mh-100 overflow-y-auto">
@@ -95,32 +101,55 @@ const Connect = ({ user }) => {
               <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
                 <div className="d-flex gap-2">
                   <Form.Label htmlFor="show-latest">Show latest</Form.Label>
-                  <Form.Switch id="show-latest" />
+                  <Form.Switch id="show-latest" onChange={handleSwitch} />
                 </div>
               </div>
               <div
                 className="px-3 py-3 gap-3 vstack border rounded-1"
                 id="time-line"
               >
-                {allPosts.length > 0 ? (
-                  allPosts.map((element, i) => (
-                    <Timeline
-                      key={i}
-                      contentBody={element?.contentBody}
-                      likes={element?.likes}
-                      id={element._id}
-                      bookmarks={element?.isBookmarked}
-                      authorName={element?.authorName}
-                      authorEmail={element?.authorEmail}
-                      authorImage={element?.authorImage}
-                      user={user}
-                      token={token}
-                      secondParty={element.authorEmail}
-                    />
-                  ))
-                ) : (
-                  <Alert variant="transparent" className="fw-bold">
-                    No posts to see yet.
+                {latest && allPosts.length > 0
+                  ? allPosts
+                      .reverse()
+                      .map((element, i) => (
+                        <Timeline
+                          key={i}
+                          contentBody={element?.contentBody}
+                          contentImage={element?.contentImage}
+                          likes={element?.likes}
+                          id={element._id}
+                          bookmarks={element?.isBookmarked}
+                          authorName={element?.authorName}
+                          authorEmail={element?.authorEmail}
+                          authorImage={element?.authorImage}
+                          businessCategory={element?.category}
+                          user={user}
+                          token={token}
+                          secondParty={element.authorEmail}
+                        />
+                      ))
+                  : !latest &&
+                    allPosts.length > 0 &&
+                    allPosts?.map((element, i) => (
+                      <Timeline
+                        key={i}
+                        contentBody={element?.contentBody}
+                        contentImage={element?.contentImage}
+                        likes={element?.likes}
+                        id={element._id}
+                        bookmarks={element?.isBookmarked}
+                        authorName={element?.authorName}
+                        authorEmail={element?.authorEmail}
+                        authorImage={element?.authorImage}
+                        businessCategory={element?.category}
+                        user={user}
+                        token={token}
+                        secondParty={element.authorEmail}
+                      />
+                    ))}
+                {allPosts.length < 1 && (
+                  <Alert variant="info">
+                    There are no posts yet. Start writing something.
                   </Alert>
                 )}
               </div>
@@ -133,7 +162,7 @@ const Connect = ({ user }) => {
             <div className="col-12 px-3 gap-3 vstack">
               {suggested.length > 1 &&
                 suggested
-                  ?.filter((item) => item?.email !== user?.email)
+                  ?.filter((item) => item?.userEmail !== user?.email) //current user cannot follow him/herself
                   .map((item, i) => (
                     <SuggestedFollows
                       key={i}

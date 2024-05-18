@@ -20,7 +20,7 @@ const ManageFollowers = ({
               <UserContentTemplate
                 key={index}
                 contentBody={item.contentBody}
-                contentImage={item.contentImage}
+                contentImage={""}
               />
             ))}
           </Tab>
@@ -37,8 +37,10 @@ const ManageFollowers = ({
                     subject={file.subject}
                     id={file._id}
                     sender={file.sender}
+                    receiver={file.receiver}
                     sendDate={file.sendDate}
                     messageBody={file.messageBody}
+                    secondParty={file.clientUID}
                     user={user}
                     Replies={<Replies replies={file.replies} />}
                   />
