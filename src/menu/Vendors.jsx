@@ -63,7 +63,7 @@ const Vendors = ({ user }) => {
           <Form.Label htmlFor="search-vendor" className="fs-4 fw-bold">
             Search Vendors by category or name
           </Form.Label>
-          <div className="col-12 d-flex">
+          <div className="col-12 d-flex flex-column">
             <Form.Control
               id="search-vendor"
               className="w-100 py-3 rounded-0"
@@ -71,20 +71,22 @@ const Vendors = ({ user }) => {
               value={search === "" && state !== "" ? state : search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Button
-              size="lg"
-              className="custom-pry border-0 rounded-0"
-              onClick={handleVendorSearch}
-            >
-              Search
-            </Button>
-            <Button
-              size="lg"
-              className="bg-transparent custom-pry-border text-dark rounded-0"
-              onClick={() => setSearchState(false)}
-            >
-              Reset
-            </Button>
+            <div className="mt-3 hstack gap-2">
+              <Button
+                size="lg"
+                className="custom-pry custom-pry-border rounded-0"
+                onClick={handleVendorSearch}
+              >
+                Search
+              </Button>
+              <Button
+                size="lg"
+                className="bg-transparent custom-pry-border text-dark rounded-0"
+                onClick={() => setSearchState(false)}
+              >
+                Reset
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -155,11 +157,9 @@ const Vendors = ({ user }) => {
             />
           ))
         ) : (
-          <div className="col-9">
-            <Alert variant="transparent" className="fw-semibold">
-              Unfortunately, vendors were{" "}
-              <span className="text-danger">not found</span> pertaining to your
-              search. Modify your search term and try again!
+          <div className="col-12">
+            <Alert variant="primary" className="fw-semibold">
+              Please search vendors with appropriate terms.
             </Alert>
           </div>
         )}

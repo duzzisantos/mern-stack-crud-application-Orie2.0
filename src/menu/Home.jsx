@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeroArea from "../components/landing-page/Hero";
@@ -107,10 +107,7 @@ const Home = ({ user }) => {
       <section className="bg-white col-12" style={{ height: "500px" }}>
         <HeroArea />
       </section>
-      <section
-        className="d-flex col-12 flex-lg-row flex-sm-column justify-content-center"
-        style={{ height: "250px" }}
-      >
+      <Row className="my-4">
         <FindCustomers
           setSearch={setSearch}
           search={search}
@@ -131,7 +128,7 @@ const Home = ({ user }) => {
             setSearchState(false);
           }}
         />
-      </section>
+      </Row>
 
       <section
         className="d-flex flex-lg-row flex-sm-column bg-body-secondary flex-wrap"

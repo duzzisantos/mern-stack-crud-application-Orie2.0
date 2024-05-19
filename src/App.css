@@ -154,3 +154,31 @@ button[role="tab"] {
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 600px) {
+  #narrow-search-items,
+  #connect-page-wrapper,
+  #admin-dashboard,
+  #suggestion-boxes {
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  #show-side-menu {
+    display: block !important;
+  }
+
+  #customer-hero {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #show-side-menu {
+    display: block !important;
+  }
+
+  #customer-hero {
+    display: none !important;
+  }
+}

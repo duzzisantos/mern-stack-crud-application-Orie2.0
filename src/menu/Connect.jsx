@@ -1,4 +1,4 @@
-import { Alert, Container, Form, Spinner } from "react-bootstrap";
+import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
 import SuggestedFollows from "../reusable-comps/SuggestedFollows";
 import Timeline from "../reusable-comps/Timeline";
 import CustomerHero from "../components/CustomerHero";
@@ -11,9 +11,12 @@ import useGetCategories from "../api/useGetCategories";
 import useSuggestedFollows from "../api/useSuggestedFollows";
 import { useCallback, useEffect, useState } from "react";
 import useGetAllUserContent from "../api/useGetUserPosts";
+import ConnectSideMenu from "../components/ConnectSideMenu";
+import { List } from "react-bootstrap-icons";
 
 const Connect = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const token = user.accessToken;
   const { biz } = useGetOneBusiness(user, token);
@@ -78,19 +81,31 @@ const Connect = ({ user }) => {
         <Spinner animation="border" />
       ) : (
         <Container
+          id="connect-page-wrapper"
           fluid
           className="col-9 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
         >
-          <CustomerHero
-            businessName={
-              businessInfo?.firstName + " " + businessInfo?.lastName
-            }
-            category={businessInfo?.category}
-            followers={followers[0]?.length ?? 0}
-            following={following[0]?.length ?? 0}
-            businessCategories={categories}
-            userImage={businessInfo?.photos[0]?.image ?? ""}
-          />
+          <div id="show-side-menu" className="d-none">
+            <Button
+              variant="transparent"
+              className="custom-pry-color border mt-3 mx-2 fw-bold"
+              onClick={() => setShowMenu(true)}
+            >
+              Expand <List />
+            </Button>
+          </div>
+          <div id="customer-hero">
+            <CustomerHero
+              businessName={
+                businessInfo?.firstName + " " + businessInfo?.lastName
+              }
+              category={businessInfo?.category}
+              followers={followers[0]?.length ?? 0}
+              following={following[0]?.length ?? 0}
+              businessCategories={categories}
+              userImage={businessInfo?.photos[0]?.image ?? ""}
+            />
+          </div>
 
           <section className="col-lg-6 my-3 px-2 mh-100 overflow-y-auto">
             <ConnectWritePost
@@ -181,6 +196,24 @@ const Connect = ({ user }) => {
             </div>
           </section>
         </Container>
+      )}
+      {showMenu && (
+        <ConnectSideMenu
+          show={showMenu}
+          setShow={setShowMenu}
+          children={
+            <CustomerHero
+              businessName={
+                businessInfo?.firstName + " " + businessInfo?.lastName
+              }
+              category={businessInfo?.category}
+              followers={followers[0]?.length ?? 0}
+              following={following[0]?.length ?? 0}
+              businessCategories={categories}
+              userImage={businessInfo?.photos[0]?.image ?? ""}
+            />
+          }
+        />
       )}
     </>
   );
