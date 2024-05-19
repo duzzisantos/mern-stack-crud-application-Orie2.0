@@ -30,7 +30,7 @@ const Admin = ({ user }) => {
   };
 
   return (
-    <Container className="col-9 p-3 custom-pry-color">
+    <Container className="col-lg-9 col-sm-12 p-3 custom-pry-color">
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
 
       <Row

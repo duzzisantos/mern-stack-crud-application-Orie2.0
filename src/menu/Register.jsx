@@ -110,7 +110,7 @@ const Register = ({ user }) => {
   };
 
   return (
-    <Container fluid className="col-9 p-3 custom-pry-color">
+    <Container fluid className="col-lg-9 col-sm-12 p-3 custom-pry-color">
       <h1 className="fs-3 fw-bold">Add Business</h1>
       <div className="py-3 d-flex justify-content-center">
         <Form

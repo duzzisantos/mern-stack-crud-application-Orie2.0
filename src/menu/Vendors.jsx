@@ -54,12 +54,11 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className="h-100 col-12 p-3 custom-pry-color">
-      <div className="px-4 mx-2">
-        <h1 className="fs-3 fw-bold col-9">Vendors</h1>
-      </div>
-      <div className="box-150  col-12 justify-content-center align-items-center bottom-0 d-flex">
-        <div className="col-12 px-4 text-center d-flex flex-column">
+    <Container className="vh-100 col-lg-12 col-sm-12 p-3 custom-pry-color">
+      <h1 className="fs-3 fw-bold col-9 mx-4">Vendors</h1>
+
+      <div className="justify-content-center align-items-center bottom-0 d-flex">
+        <div className="col-12 mb-5 px-4 text-center d-flex flex-column">
           <Form.Label
             htmlFor="search-vendor"
             className="fs-4 fw-bold mt-5 text-wrap"
@@ -94,10 +93,7 @@ const Vendors = ({ user }) => {
         </div>
       </div>
 
-      <div
-        className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap mt-5"
-        style={{ height: "fit-content" }}
-      >
+      <div className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap">
         {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following
           businesses
             .flat()

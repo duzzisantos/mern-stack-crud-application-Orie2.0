@@ -71,7 +71,7 @@ const Navigation = () => {
 
   return (
     <Navbar collapseOnSelect expand="lg" className="py-1 custom-pry sticky-top">
-      <Container className="col-9 pe-0">
+      <Container className="col-lg-9 col-sm-12 pe-0">
         <Navbar.Brand
           as={Link}
           to="home"
