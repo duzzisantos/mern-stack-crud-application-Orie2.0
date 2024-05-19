@@ -13,6 +13,7 @@ import useGetRegions from "../api/useGetRegion";
 import getGeneralSearch from "../api/useGeneralSearch";
 import getNarrowSearch from "../api/useNarrowSearch";
 import useGetAllRatings from "../api/useGetAllRatings";
+import { CaretRightSquareFill } from "react-bootstrap-icons";
 
 const Home = ({ user }) => {
   const [search, setSearch] = useState("");
@@ -82,7 +83,8 @@ const Home = ({ user }) => {
               to="home"
               className="hstack fw-bold custom-pry-color"
             >
-              Dugam
+              Dugam {"   "}
+              <CaretRightSquareFill className="mx-" focusable="false" />
             </Navbar.Brand>
             <Navbar.Toggle />
             <Nav className="fw-bold hstack gap-3">

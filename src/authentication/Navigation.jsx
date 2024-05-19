@@ -9,6 +9,7 @@ import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
   BuildingUp,
+  CaretRightSquareFill,
   CartCheckFill,
   ClockFill,
   HouseUpFill,
@@ -76,7 +77,8 @@ const Navigation = () => {
           to="home"
           className="fs-5 text-light mx-1 fw-bold"
         >
-          Dugam
+          Dugam {"   "}
+          <CaretRightSquareFill className="mx-" focusable="false" />
         </Navbar.Brand>
         <Navbar.Toggle className="text-bg-light btn-outline-light text-light" />
         <Navbar.Collapse>
