@@ -54,7 +54,7 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className="vh-100 col-lg-12 col-sm-12 p-3 custom-pry-color">
+    <Container className=" col-lg-12 col-sm-12 p-3 custom-pry-color">
       <h1 className="fs-3 fw-bold col-9 mx-4">Vendors</h1>
 
       <div className="justify-content-center align-items-center bottom-0 d-flex">
@@ -93,7 +93,10 @@ const Vendors = ({ user }) => {
         </div>
       </div>
 
-      <div className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap">
+      <div
+        className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap"
+        style={{ height: "fit-content" }}
+      >
         {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following
           businesses
             .flat()

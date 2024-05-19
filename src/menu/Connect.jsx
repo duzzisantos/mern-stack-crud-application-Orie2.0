@@ -83,7 +83,7 @@ const Connect = ({ user }) => {
         <Container
           id="connect-page-wrapper"
           fluid
-          className="vh-100 col-lg-9 col-sm-12 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
+          className=" col-lg-9 col-sm-12 gap-3 custom-pry-color d-flex flex-lg-row flex-sm-column justify-content-between"
         >
           <div id="show-side-menu" className="d-none">
             <Button
