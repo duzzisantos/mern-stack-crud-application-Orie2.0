@@ -95,7 +95,7 @@ const Vendors = ({ user }) => {
       </div>
 
       <div
-        className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap"
+        className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap mt-5"
         style={{ height: "fit-content" }}
       >
         {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following
@@ -160,7 +160,7 @@ const Vendors = ({ user }) => {
             />
           ))
         ) : (
-          <Alert variant="primary" className="fw-semibold col-12 mt-5">
+          <Alert variant="primary" className="fw-semibold col-12">
             Please search vendors with appropriate terms.
           </Alert>
         )}
