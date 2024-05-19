@@ -6,7 +6,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import React from "react";
 import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
-import Dugam from "../images/Dugam.png";
 import { Link } from "react-router-dom";
 import {
   BuildingUp,
@@ -72,8 +71,12 @@ const Navigation = () => {
   return (
     <Navbar collapseOnSelect expand="lg" className="py-1 custom-pry sticky-top">
       <Container className="col-9 pe-0">
-        <Navbar.Brand as={Link} to="home" className="fs-5 text-light mx-1">
-          <img src={Dugam} alt="Dugam brand ID" style={{ height: "30px" }} />
+        <Navbar.Brand
+          as={Link}
+          to="home"
+          className="fs-5 text-light mx-1 fw-bold"
+        >
+          Dugam
         </Navbar.Brand>
         <Navbar.Toggle className="text-bg-light btn-outline-light text-light" />
         <Navbar.Collapse>

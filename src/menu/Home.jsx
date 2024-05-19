@@ -3,7 +3,6 @@ import { Container } from "react-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeroArea from "../components/landing-page/Hero";
-import Dugam from "../images/Dugam.png";
 import DesignedBackground from "../components/landing-page/DesignedBackground";
 import FindCustomers from "../components/landing-page/FindCustomers";
 import Businesses from "../components/landing-page/Businesses";
@@ -78,19 +77,25 @@ const Home = ({ user }) => {
       {!user && window.location.pathname === "/" ? (
         <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top bg-light">
           <Container className="d-flex justify-content-between bg-light">
-            <Navbar.Brand as={Link} to="home" className="hstack">
-              <img
-                src={Dugam}
-                alt="Dugam brand ID"
-                style={{ height: "30px" }}
-              />
+            <Navbar.Brand
+              as={Link}
+              to="home"
+              className="hstack fw-bold custom-pry-color"
+            >
+              Dugam
             </Navbar.Brand>
             <Navbar.Toggle />
             <Nav className="fw-bold hstack gap-3">
-              <a href="/signup" className="text-decoration-none text-dark">
+              <a
+                href="/signup"
+                className="text-decoration-none custom-pry-color"
+              >
                 Signup
               </a>
-              <a href="/login" className="text-decoration-none text-dark">
+              <a
+                href="/login"
+                className="text-decoration-none custom-pry-color"
+              >
                 Login
               </a>
             </Nav>
