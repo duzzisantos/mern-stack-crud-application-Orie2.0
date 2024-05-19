@@ -46,7 +46,7 @@ const Signup = () => {
     if (loading) {
       return;
     }
-    if (user) navigate("/register");
+    if (user) navigate("/home");
   });
 
   return (
@@ -103,6 +103,7 @@ const Signup = () => {
               onClick={() => {
                 register();
                 handleRegisterClient();
+                navigate("/register");
               }}
             >
               Signup
