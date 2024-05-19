@@ -3,10 +3,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, registerWithEmailAndPassword } from "./firebase";
 import "../App.css";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
+import loginPage from "../images/dugam-print.png";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -49,52 +50,56 @@ const Signup = () => {
   });
 
   return (
-    <div className="col-12">
-      <div className="mx-5 d-flex pt-3">
+    <Container className="col-12" fluid>
+      <div className="mx-2 my-3 pt-3 d-flex">
         <a href="/" className="text-decoration-none text-dark">
           <ArrowLeft /> Home
         </a>
       </div>
-      <div className="d-flex flex-column justify-content-center align-items-center vh-100">
-        <Form
-          className="col-lg-5 col-md-4 p-4 shadow-sm border rounded-3 text-dark"
-          style={{ height: "fit-content" }}
-        >
-          <div className="justify-content-start d-flex flex-column">
-            <h3 className="fw-bold">Sign up to Dugam</h3>
-            <Form.Label htmlFor="fullName">Full Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Eg: John Doe"
-              id="fullName"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="justify-content-start d-flex flex-column">
-            <Form.Label htmlFor="email">Email</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Eg: john.doe@example.net"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="justify-content-start d-flex flex-column">
-            <Form.Label htmlFor="password">Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Must contain at least 6 characters"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
 
-          <div className="vstack gap-2 mt-4">
+      <Row className="custom-pry">
+        <Col
+          lg={3}
+          md={6}
+          sm={12}
+          xs={12}
+          className="border-end border-5 border-success-subtle border-top"
+        >
+          <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-light">
+            <div className="justify-content-start d-flex flex-column">
+              <h3 className="fw-bold">Sign up to Dugam</h3>
+              <Form.Label htmlFor="fullName">Full Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Eg: John Doe"
+                id="fullName"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="justify-content-start d-flex flex-column">
+              <Form.Label htmlFor="email">Email</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Eg: john.doe@example.net"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="justify-content-start d-flex flex-column">
+              <Form.Label htmlFor="password">Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Must contain at least 6 characters"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
             <Button
-              className="custom-purple border-0 w-25"
+              size="md"
+              className="mt-4 d-block bg-primary-subtle text-dark border-0"
               onClick={() => {
                 register();
                 handleRegisterClient();
@@ -102,17 +107,29 @@ const Signup = () => {
             >
               Signup
             </Button>
-            <div className="text-dark hstack gap-3">
-              <span>Already have an account? </span>
-              <a href="/login" className="text-primary">
-                Login
-              </a>{" "}
-              now.
-            </div>
-          </div>
-        </Form>
-      </div>
-    </div>
+            <a href="/login" className="btn btn-outline-light mt-4">
+              Already have an account? Login
+            </a>{" "}
+            <article className="mt-5 text-light">
+              <h2 className="h6 fw-bold">About Dugam</h2>
+              Dugam is a business directory platform that connects potential and
+              actual buyers with registered vendors. It seeks to provide a
+              spotlight on under-represented businesses, and establish new
+              partnerships - enhancing the local economy.
+            </article>
+          </Form>
+        </Col>
+        <Col
+          className="d-lg-flex d-md-flex d-sm-none bg-white"
+          style={{
+            backgroundImage: `url(${loginPage})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPositionY: "center",
+          }}
+        ></Col>
+      </Row>
+    </Container>
   );
 };
 
