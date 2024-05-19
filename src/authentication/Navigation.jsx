@@ -80,7 +80,10 @@ const Navigation = () => {
           Dugam {"   "}
           <CaretRightSquareFill className="mx-" focusable="false" />
         </Navbar.Brand>
-        <Navbar.Toggle className="text-bg-light btn-outline-light text-light" />
+        <Navbar.Toggle
+          className="text-bg-light me-sm-2 me-md-2 btn-outline-light text-light"
+          id="hamburger"
+        />
         <Navbar.Collapse>
           <Nav className="me-auto flex-lg-row flex-md-column flex-sm-column">
             <Nav.Link as={Link} to="home" className="text-light">
