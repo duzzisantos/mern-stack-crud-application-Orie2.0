@@ -60,7 +60,10 @@ const Vendors = ({ user }) => {
       </div>
       <div className="box-150  col-12 justify-content-center align-items-center bottom-0 d-flex">
         <div className="col-12 px-4 text-center d-flex flex-column">
-          <Form.Label htmlFor="search-vendor" className="fs-4 fw-bold">
+          <Form.Label
+            htmlFor="search-vendor"
+            className="fs-4 fw-bold mt-5 text-wrap"
+          >
             Search Vendors by category or name
           </Form.Label>
           <div className="col-12 d-flex flex-column">
@@ -157,11 +160,9 @@ const Vendors = ({ user }) => {
             />
           ))
         ) : (
-          <div className="col-12">
-            <Alert variant="primary" className="fw-semibold">
-              Please search vendors with appropriate terms.
-            </Alert>
-          </div>
+          <Alert variant="primary" className="fw-semibold col-12 mt-5">
+            Please search vendors with appropriate terms.
+          </Alert>
         )}
       </div>
     </Container>
