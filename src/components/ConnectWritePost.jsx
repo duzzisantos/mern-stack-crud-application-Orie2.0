@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { getHost } from "../helpers/getHost";
 import { PencilFill } from "react-bootstrap-icons";
@@ -10,30 +10,6 @@ const ConnectWritePost = ({ user, authorName }) => {
   const [message, setMessage] = useState("");
   const [showTextArea, setShowTextArea] = useState(false);
   const [converted, setCoverted] = useState("");
-
-  //Find all the current user's content posts
-  useMemo(() => {
-    const getUserPosts = async () => {
-      try {
-        const res = await axios.get(
-          `${getHost()}/api/user-posts?userEmail=${user.email}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.accessToken}`,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (res.status !== 200) {
-          throw new Error(`${res.statusText}`);
-        }
-      } catch (err) {
-        console.warn(err.message);
-      }
-    };
-    getUserPosts();
-  }, [user]);
 
   const postObject = Object.assign(
     {
