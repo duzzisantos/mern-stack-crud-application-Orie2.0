@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { getHost } from "../helpers/getHost";
 import { PencilFill } from "react-bootstrap-icons";
 import { encodeImageAsURL } from "../helpers/stringHelpers";
+import { getBase64Size } from "../helpers/getBase64Size";
 
 const ConnectWritePost = ({ user, authorName }) => {
   const [message, setMessage] = useState("");
@@ -11,7 +12,7 @@ const ConnectWritePost = ({ user, authorName }) => {
   const [converted, setCoverted] = useState("");
 
   //Find all the current user's content posts
-  useEffect(() => {
+  useMemo(() => {
     const getUserPosts = async () => {
       try {
         const res = await axios.get(
@@ -61,6 +62,9 @@ const ConnectWritePost = ({ user, authorName }) => {
       .catch((err) => console.log(err.message));
   };
 
+  const fileSize = getBase64Size(converted);
+
+  console.log(fileSize);
   return (
     <>
       {!showTextArea && (
@@ -100,11 +104,22 @@ const ConnectWritePost = ({ user, authorName }) => {
             onChange={() => encodeImageAsURL("addImage", setCoverted)}
           />
 
+          <div className="d-flex justify-content-between">
+            {" "}
+            <Form.Text>Max Upload 100 KB.</Form.Text>
+            {fileSize > 100000 && (
+              <div className="bg-warning-subtle px-2 rounded-2">
+                File cannot exceed 100 KB.
+              </div>
+            )}
+          </div>
+
           <div className="d-flex justify-content-between my-3">
             <Button
               size="sm"
               type="submit"
               className="custom-pry text-light border-0 rounded-0"
+              disabled={fileSize > 100000}
             >
               Post
             </Button>
