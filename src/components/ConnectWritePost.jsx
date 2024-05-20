@@ -40,7 +40,6 @@ const ConnectWritePost = ({ user, authorName }) => {
 
   const fileSize = getBase64Size(converted);
 
-  console.log(fileSize);
   return (
     <>
       {!showTextArea && (
