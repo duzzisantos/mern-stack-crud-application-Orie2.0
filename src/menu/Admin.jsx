@@ -65,7 +65,7 @@ const Admin = ({ user }) => {
           <p className="mt-4 fs-2">Fabrics</p>
         </Col>
       </Row>
-      <Row id="manage-wrapper">
+      <Row id="manage-wrapper gap-3">
         <ManageBusiness biz={biz[0]} user={user} ratings={rating} />
         <ManageFollowers
           followers={followers}
