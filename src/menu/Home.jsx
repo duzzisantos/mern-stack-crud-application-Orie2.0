@@ -3,9 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeroArea from "../components/landing-page/Hero";
-import DesignedBackground from "../components/landing-page/DesignedBackground";
 import FindCustomers from "../components/landing-page/FindCustomers";
-import Businesses from "../components/landing-page/Businesses";
 import SuggestionBoxes from "../reusable-comps/SuggestionBoxes";
 import useGetCities from "../api/useGetCities";
 import useGetCategories from "../api/useGetCategories";
@@ -14,9 +12,12 @@ import getGeneralSearch from "../api/useGeneralSearch";
 import getNarrowSearch from "../api/useNarrowSearch";
 import useGetAllRatings from "../api/useGetAllRatings";
 import { CaretRightSquareFill } from "react-bootstrap-icons";
+import RenderResults from "../components/landing-page/RenderResults";
+import useGetGroupedBusinesses from "../api/useGetGroupedBusinesses";
 
 const Home = ({ user }) => {
   const [search, setSearch] = useState("");
+
   const [searchState, setSearchState] = useState(false);
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
@@ -31,15 +32,22 @@ const Home = ({ user }) => {
   const { cities } = useGetCities(token);
   const { categories } = useGetCategories(token);
   const { regions } = useGetRegions(token);
+  const { grouped } = useGetGroupedBusinesses(token);
   const { allRatings } = useGetAllRatings(token);
+  const [validated, setValidated] = useState(false);
+  const [validatedNarrow, setValidatedNarrow] = useState(false);
 
-  const handleGeneralSearch = () => {
+  const handleGeneralSearch = (event) => {
+    event.preventDefault();
     setSearchState(true);
+    setValidated(true);
     return getGeneralSearch(setGeneralSearch, search, token);
   };
 
-  const handleNarrowSearch = () => {
+  const handleNarrowSearch = (event) => {
+    event.preventDefault();
     setSearchState(true);
+    setValidatedNarrow(true);
     return getNarrowSearch(setNarrowSearch, region, city, category, token);
   };
 
@@ -109,7 +117,10 @@ const Home = ({ user }) => {
       </section>
       <Row className="my-4">
         <FindCustomers
+          validated={validated}
+          validatedNarrow={validatedNarrow}
           setSearch={setSearch}
+          groupedData={grouped}
           search={search}
           regions={regions}
           cities={cities}
@@ -117,41 +128,49 @@ const Home = ({ user }) => {
           setCategories={setCategory}
           setRegion={setRegion}
           setCity={setCity}
+          category={category}
+          city={city}
+          region={region}
           handleGeneralSearch={handleGeneralSearch}
           handleNarrowSearch={handleNarrowSearch}
           handleResetGeneral={() => {
             setGeneralSearch([]);
+            setSearch("");
             setSearchState(false);
           }}
           handleResetNarrow={() => {
             setNarrowSearch([]);
+            setRegion("");
+            setCity("");
+            setCategory("");
             setSearchState(false);
           }}
         />
       </Row>
 
       <section
-        className="d-flex flex-lg-row flex-sm-column bg-body-secondary flex-wrap"
-        style={{ height: "1000px" }}
+        className="d-flex flex-lg-row flex-sm-column flex-wrap py-3"
+        style={{ height: "fit-content" }}
       >
-        {searchState ? (
-          <Businesses
-            data={allRatings}
-            ratingScore={cleansedData}
-            narrowSearch={narrowSearch}
-            generalSearch={generalSearch}
-            user={user}
-            showModal={show}
-            handleShow={handleShow}
-            handleClose={handleClose}
-            showMessageModal={showMessageModal}
-            grabEmail={grabEmail}
-            handleCloseMessage={handleCloseMessage}
-            handleShowMessage={handleShowMessage}
-          />
-        ) : (
-          <DesignedBackground />
-        )}
+        <RenderResults
+          city={city}
+          category={category}
+          region={region}
+          search={search}
+          searchState={searchState}
+          allRatings={allRatings}
+          cleansedData={cleansedData}
+          narrowSearch={narrowSearch}
+          generalSearch={generalSearch}
+          user={user}
+          show={show}
+          handleClose={handleClose}
+          handleShow={handleShow}
+          showMessageModal={showMessageModal}
+          grabEmail={grabEmail}
+          handleCloseMessage={handleCloseMessage}
+          handleShowMessage={handleShowMessage}
+        />
       </section>
       <section
         className="py-5 gap-3 d-flex justify-content-center align-items-center bottom-0  flex-column bg-light"

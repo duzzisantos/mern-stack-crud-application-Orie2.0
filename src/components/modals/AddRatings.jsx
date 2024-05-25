@@ -1,18 +1,12 @@
 import { Form } from "react-bootstrap";
-import {
-  Book,
-  BookFill,
-  CalendarFill,
-  PenFill,
-  StarFill,
-} from "react-bootstrap-icons";
+import { Book, BookFill, CalendarFill, StarFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
 import { getHost } from "../../helpers/getHost";
 
-function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
+function AddRatings({ show, handleClose, businessName, user, secondParty }) {
   const [ratingsTitle, setRatingsTitle] = useState("");
   const [ratingsDate, setRatingsDate] = useState("");
   const [ratingStars, setRatingStars] = useState(0);
@@ -52,8 +46,8 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
         className="custom-pry-color"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            <PenFill /> Add ratings for customer: {businessEmail}
+          <Modal.Title className="h6">
+            <StarFill /> Ratings for: {businessName}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -91,6 +85,8 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
               className="py-1 px-1 form-control"
               value={ratingsDate}
               onChange={(e) => setRatingsDate(e.target.value)}
+              min={new Date().toLocaleDateString()}
+              max={new Date().toLocaleDateString()}
             />
 
             <Form.Label className="fw-bold" htmlFor="ratingsContent">

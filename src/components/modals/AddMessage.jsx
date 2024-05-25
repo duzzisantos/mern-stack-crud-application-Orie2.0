@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { getHost } from "../../helpers/getHost";
 
-function AddMessage({ show, handleClose, businessEmail, user }) {
+function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
   const [messageSubject, setMessageSubject] = useState("");
   const [messageDate, setMessageDate] = useState("");
 
@@ -48,8 +48,8 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
         className="custom-pry-color"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            <PenFill /> Send message to customer: {businessEmail}
+          <Modal.Title className="h6">
+            <PenFill /> Message to : {businessName}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -72,6 +72,8 @@ function AddMessage({ show, handleClose, businessEmail, user }) {
               className="py-1 px-1 form-control"
               value={messageDate}
               onChange={(e) => setMessageDate(e.target.value)}
+              min={new Date().toLocaleDateString()}
+              max={new Date().toLocaleDateString()}
             />
             <Form.Label className="fw-bold" htmlFor="messageContent">
               <BookFill /> Message

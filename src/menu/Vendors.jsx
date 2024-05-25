@@ -119,7 +119,7 @@ const Vendors = ({ user }) => {
                 city={element?.city}
                 state={element?.state}
                 phone={element?.businessPhone}
-                photo={element.photo}
+                photo={element.photos}
                 showModal={show}
                 handleClose={handleClose}
                 grabEmail={grabEmail}
@@ -147,7 +147,7 @@ const Vendors = ({ user }) => {
               city={element?.city}
               state={element?.state}
               phone={element?.businessPhone}
-              photo={element.photo}
+              photo={element.photos}
               showModal={show}
               handleClose={handleClose}
               grabEmail={grabEmail}

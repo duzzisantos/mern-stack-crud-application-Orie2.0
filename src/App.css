@@ -115,6 +115,20 @@ button[role="tab"] {
   animation-iteration-count: infinite;
 }
 
+/* Remove validation styles from inputs and selects within .was-validated */
+
+.was-validated .form-select:valid,
+.was-validated .form-select.is-valid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4z'/%3E%3C/svg%3E") !important;
+  background-position: right 1.75rem center !important;
+  background-size: 8px 10px !important;
+  background-repeat: no-repeat !important;
+}
+
+.remove-outline {
+  outline: 1px solid red !important;
+}
+
 .inner-legend {
   height: 18px !important;
   width: 100px !important;

@@ -5,10 +5,12 @@ import {
   StarFill,
   GeoAltFill,
   TelephoneInboundFill,
-  ThreeDotsVertical,
+  ImageFill,
 } from "react-bootstrap-icons";
 import AddRatings from "./modals/AddRatings";
 import AddMessage from "./modals/AddMessage";
+import { useState } from "react";
+import DisplayImages from "./modals/DisplayImages";
 
 const BusinessCard = ({
   businessName,
@@ -31,6 +33,7 @@ const BusinessCard = ({
   handleShowMessage,
   user,
 }) => {
+  const [showImages, setShowImages] = useState(false);
   return (
     <>
       <Card
@@ -40,24 +43,18 @@ const BusinessCard = ({
         style={{ height: "fit-content" }}
       >
         <Card.Header className="bg-transparent border-0 d-flex hstack justify-content-between">
-          <Card.Title className="fw-bold mt-3" as={"h6"}>
+          <Card.Title className="fw-bold" as={"h6"}>
             {businessName}
           </Card.Title>
-          <Button variant="transparent" size="sm" className="border-0">
-            <ThreeDotsVertical />
-          </Button>
         </Card.Header>
         <Card.Body>
-          <section
-            className="border-4 border-bottom border-primary-subtle py-1 mb-2"
-            style={{ height: "100px" }}
-          >
-            <strong>
-              <h6>Business photos</h6>
-            </strong>
-            {photo?.map((item) => (
-              <Card.Img key={item?._id} src={item?.image} alt={businessName} />
-            ))}
+          <section className="border-4 border-bottom border-primary-subtle mb-2">
+            <Button
+              className="btn btn-sm bg-primary-subtle custom-pry-color border-0 mb-2"
+              onClick={() => setShowImages(!showImages)}
+            >
+              <ImageFill /> View Photos
+            </Button>
           </section>
           <ul className="lh-lg" style={{ height: "200px" }}>
             <li>
@@ -76,10 +73,11 @@ const BusinessCard = ({
               {`${address}, ${city}, ${state}`}
             </li>
             <li>
-              <StarFill className="text-warning" /> Ratings: {ratingScore}
+              <StarFill className="text-warning" /> Ratings:{" "}
+              {isNaN(ratingScore) ? "None received yet" : ratingScore}
             </li>
           </ul>
-          {!user ? null : ( //do not allow ratings on the home page if current client is not logged in
+          {!user || user.email === businessEmailAddress ? null : ( //do not allow ratings on the home page if current client is not logged in or if rendered card pertains to current client
             <div className="d-flex justify-content-end gap-2 mt-auto">
               <Button
                 size="sm"
@@ -103,7 +101,7 @@ const BusinessCard = ({
       {showModal && (
         <AddRatings
           show={showModal}
-          businessEmail={grabEmail}
+          businessName={businessName}
           handleClose={handleClose}
           user={user}
           secondParty={grabEmail}
@@ -113,8 +111,18 @@ const BusinessCard = ({
         <AddMessage
           show={showMessageModal}
           businessEmail={grabEmail}
+          businessName={businessName}
           handleClose={handleCloseMessage}
           user={user}
+        />
+      )}
+
+      {showImages && (
+        <DisplayImages
+          show={showImages}
+          handleClose={() => setShowImages(!showImages)}
+          businessName={businessName}
+          photo={photo}
         />
       )}
     </>
