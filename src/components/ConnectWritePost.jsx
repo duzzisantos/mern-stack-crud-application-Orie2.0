@@ -25,7 +25,8 @@ const ConnectWritePost = ({ user, authorName }) => {
     }
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios
       .post(`${getHost()}/api/user-posts`, postObject, {
         headers: {
