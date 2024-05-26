@@ -25,7 +25,7 @@ function handleSaveComment(secondParty, id, replyContent, user, token) {
     .catch((error) => console.log(error.message));
 }
 
-function handleSaveBookmark(secondParty, id, setBookmark, token) {
+function handleSaveBookmark(secondParty, id, setBookmark, token, refetch) {
   axios
     .post(
       `${getHost()}/api/user-posts/save-bookmark?userEmail=${secondParty}&id=${id}`,
@@ -43,12 +43,13 @@ function handleSaveBookmark(secondParty, id, setBookmark, token) {
     )
     .then((res) => {
       console.log(res.status);
+      refetch();
       setBookmark(true);
     })
     .catch((error) => console.log(error.message));
 }
 
-function handleLikePost(secondParty, id, user, setLike, token) {
+function handleLikePost(secondParty, id, user, setLike, token, refetch) {
   axios
     .post(
       `${getHost()}/api/user-posts/like-post?userEmail=${secondParty}&id=${id}`,
@@ -67,12 +68,13 @@ function handleLikePost(secondParty, id, user, setLike, token) {
     )
     .then((res) => {
       console.log(res.status);
+      refetch();
       setLike(true);
     })
     .catch((error) => console.log(error.message));
 }
 
-function handleUnlikePost(secondParty, id, user, setLike, token) {
+function handleUnlikePost(secondParty, id, user, setLike, token, refetch) {
   axios
     .post(
       `${getHost()}/api/user-posts/unlike-post?userEmail=${secondParty}&id=${id}`,
@@ -92,6 +94,7 @@ function handleUnlikePost(secondParty, id, user, setLike, token) {
     .then((res) => {
       console.log(res.status);
       setLike(false);
+      refetch();
     })
     .catch((error) => console.log(error.message));
 }

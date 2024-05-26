@@ -25,4 +25,14 @@ function encodeImageAsURL(elementID, setState) {
   }
 }
 
-export { sortedStrings, encodeImageAsURL };
+function getRemainingLimit(string, limit) {
+  const { length } = string.split("");
+
+  if (length > limit) {
+    return limit;
+  } else {
+    return limit - length;
+  }
+}
+
+export { sortedStrings, encodeImageAsURL, getRemainingLimit };

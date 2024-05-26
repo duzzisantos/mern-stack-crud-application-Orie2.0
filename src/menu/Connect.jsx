@@ -25,11 +25,11 @@ const Connect = ({ user }) => {
   const { subscribedContent } = useGetFollowedContent(user, token);
   const { suggestedFollows } = useSuggestedFollows(user, token);
   const { categories } = useGetCategories(token);
-  const { userContent } = useGetAllUserContent(user, token);
+  const { userContent, refetch } = useGetAllUserContent(user, token);
   const [suggested, setSuggested] = useState([]);
 
   let allPosts = [...subscribedContent, ...userContent.flat()];
-  const [latest, setLatest] = useState(false);
+  const [latest, setLatest] = useState(true);
 
   const businessInfo = biz[0];
 
@@ -111,11 +111,12 @@ const Connect = ({ user }) => {
             <ConnectWritePost
               user={user}
               authorName={businessInfo?.businessName}
+              refetch={refetch}
             />
             <div className="border-0 rounded-2">
               <div className="d-flex justify-content-between bg-opacity-10 w-100 px-3 py-1 rounded-top-2">
                 <div className="d-flex gap-2">
-                  <Form.Label htmlFor="show-latest">Show latest</Form.Label>
+                  <Form.Label htmlFor="show-latest">Show oldest</Form.Label>
                   <Form.Switch id="show-latest" onChange={handleSwitch} />
                 </div>
               </div>
@@ -128,6 +129,7 @@ const Connect = ({ user }) => {
                       .reverse()
                       .map((element, i) => (
                         <Timeline
+                          refetch={refetch}
                           key={i}
                           contentBody={element?.contentBody}
                           contentImage={element?.contentImage}

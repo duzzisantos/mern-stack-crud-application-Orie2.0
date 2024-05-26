@@ -1,21 +1,21 @@
 import { Card, Button, Form, ButtonGroup } from "react-bootstrap";
 import {
   CheckCircleFill,
-  HeartFill,
-  BookmarkFill,
+  // HeartFill,
+  // BookmarkFill,
   ChatDotsFill,
   PersonCircle,
 } from "react-bootstrap-icons";
 import TextComponent from "../components/TextComponent";
 import { useState } from "react";
 import {
-  handleLikePost,
+  // handleLikePost,
   handleRemoveUser,
-  handleSaveBookmark,
+  // handleSaveBookmark,
   handleSaveComment,
   handleSendReport,
   handleUnfollow,
-  handleUnlikePost,
+  // handleUnlikePost,
 } from "../api/timelineAPIs";
 import CommentList from "../components/CommentList";
 import MenuPopover from "./MenuPopover";
@@ -34,13 +34,14 @@ const Timeline = ({
   token,
   secondParty,
   id,
+  refetch,
 }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const [replyContent, setReplyContent] = useState("");
   const [showCommentList, setShowCommentList] = useState(false);
-  const [like, setLike] = useState(false);
-  const [bookmark, setBookmark] = useState(false);
+  // const [like, setLike] = useState(false);
+  // const [bookmark, setBookmark] = useState(false);
   const { comments } = useGetPostComments(secondParty, id, token);
 
   function handleCloseCommenter() {
@@ -53,7 +54,7 @@ const Timeline = ({
 
   //Finds out if of the current user has likes across the content on the page
   //This is vital for conditionally rendering the like and unlike buttons
-  const hasLikes = likes?.some((content) => content.isLiked);
+  // const hasLikes = likes?.some((content) => content.isLiked);
 
   return (
     <Card className="p-2 col-12 border-0 shadow-sm rounded-0 custom-pry-color">
@@ -93,7 +94,9 @@ const Timeline = ({
                 <ButtonGroup vertical>
                   <Button
                     type="button"
-                    onClick={() => handleUnfollow(user, secondParty, token)}
+                    onClick={() => {
+                      handleUnfollow(user, secondParty, token);
+                    }}
                     variant="transparent"
                     className="border-0 text-start smaller-text popover-btn rounded-0"
                   >
@@ -101,7 +104,9 @@ const Timeline = ({
                   </Button>
                   <Button
                     type="button"
-                    onClick={() => handleRemoveUser(user, secondParty, token)}
+                    onClick={() => {
+                      handleRemoveUser(user, secondParty, token);
+                    }}
                     variant="transparent"
                     className="border-0 text-start smaller-text popover-btn rounded-0"
                   >
@@ -109,9 +114,9 @@ const Timeline = ({
                   </Button>
                   <Button
                     type="button"
-                    onClick={() =>
-                      handleSendReport(id, user, secondParty, token)
-                    }
+                    onClick={() => {
+                      handleSendReport(id, user, secondParty, token);
+                    }}
                     variant="transparent"
                     className="border-0 text-start smaller-text popover-btn rounded-0"
                   >
@@ -134,7 +139,7 @@ const Timeline = ({
           )}
         </article>
         <div className="justify-content-start hstack mt-3 fw-light col-lg-2 col-sm-9">
-          <Form>
+          {/* <Form>
             {!hasLikes ? ( //if any of the posts has likes - remove the like button - so the next click will trigger an unlike to prevent double likes
               <Button
                 variant="transparent"
@@ -143,9 +148,16 @@ const Timeline = ({
                 }`}
                 title="Like"
                 type="button"
-                onClick={() =>
-                  handleLikePost(secondParty, id, user, setLike, token)
-                }
+                onClick={() => {
+                  handleLikePost(
+                    secondParty,
+                    id,
+                    user,
+                    setLike,
+                    token,
+                    refetch
+                  );
+                }}
               >
                 <HeartFill />
                 <small>{likes?.filter((el) => el.isLiked).length}</small>
@@ -156,9 +168,16 @@ const Timeline = ({
                 className={`d-flex flex-column vstack social-button-1 border-0  text-secondary`}
                 title="Unlike"
                 type="button"
-                onClick={() =>
-                  handleUnlikePost(secondParty, id, user, setLike, token)
-                }
+                onClick={() => {
+                  handleUnlikePost(
+                    secondParty,
+                    id,
+                    user,
+                    setLike,
+                    token,
+                    refetch
+                  );
+                }}
               >
                 <HeartFill />
                 <small>{likes?.filter((el) => el.isLiked).length}</small>
@@ -173,14 +192,20 @@ const Timeline = ({
               }`}
               title="Bookmark"
               type="button"
-              onClick={() =>
-                handleSaveBookmark(secondParty, id, setBookmark, token)
-              }
+              onClick={() => {
+                handleSaveBookmark(
+                  secondParty,
+                  id,
+                  setBookmark,
+                  token,
+                  refetch
+                );
+              }}
             >
               <BookmarkFill />
               <small className="mx-1">{bookmarks === true ? 1 : 0}</small>
             </Button>
-          </Form>
+          </Form> */}
           <Button
             variant="transparent"
             className="d-flex flex-column vstack text-secondary social-button-3 border-0"

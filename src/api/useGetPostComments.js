@@ -1,37 +1,38 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
 
 const useGetPostComments = (secondParty, id, token) => {
   const [comments, setComments] = useState([]);
 
-  //Fetch all comments registered
-  useEffect(() => {
-    const getComments = async () => {
-      try {
-        const response = await axios.get(
-          `${getHost()}/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (response.status !== 200) {
-          throw new Error(`${response.status} ${response.statusText}`);
-        } else {
-          setComments(response.data);
+  const getComments = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `${getHost()}/api/user-posts/comments?userEmail=${secondParty}&id=${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
-      } catch (err) {
-        console.warn(err);
+      );
+      if (response.status !== 200) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      } else {
+        setComments(response.data);
       }
-    };
-    getComments();
+    } catch (err) {
+      console.warn(err);
+    }
   }, [secondParty, id, token]);
 
-  return { comments, setComments };
+  //Fetch all comments registered
+  useEffect(() => {
+    getComments();
+  }, [getComments]);
+
+  return { comments, refetch: getComments };
 };
 
 export default useGetPostComments;
