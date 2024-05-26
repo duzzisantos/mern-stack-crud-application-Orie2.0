@@ -55,10 +55,7 @@ const ConnectWritePost = ({ user, authorName }) => {
         </div>
       )}
       {showTextArea && (
-        <Form
-          className="p-3 rounded-2 mb-3 bg-light shadow-sm vstack gap-2"
-          onSubmit={handleSubmit}
-        >
+        <Form className="p-3 rounded-2 mb-3 bg-light shadow-sm vstack gap-2">
           <Form.Label htmlFor="writePost" className="fw-bolder">
             Write post
           </Form.Label>
@@ -70,7 +67,6 @@ const ConnectWritePost = ({ user, authorName }) => {
             rows={2}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            required
           />
 
           <Form.Control
@@ -93,9 +89,10 @@ const ConnectWritePost = ({ user, authorName }) => {
           <div className="d-flex justify-content-between my-3">
             <Button
               size="sm"
-              type="submit"
+              type="button"
               className="custom-pry text-light border-0 rounded-0"
               disabled={fileSize > 100000 || message === ""}
+              onClick={handleSubmit}
             >
               Post
             </Button>
