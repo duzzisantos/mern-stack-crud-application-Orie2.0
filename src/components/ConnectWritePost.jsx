@@ -99,6 +99,7 @@ const ConnectWritePost = ({ user, authorName, refetch }) => {
 
               <Form.Control
                 type="file"
+                accept=".jpg, .jpeg, .png"
                 id="addImage"
                 name="addImage"
                 onChange={() => encodeImageAsURL("addImage", setCoverted)}
@@ -118,7 +119,7 @@ const ConnectWritePost = ({ user, authorName, refetch }) => {
                 <Button
                   size="sm"
                   type="button"
-                  className="custom-pry text-light border-0 rounded-0"
+                  className="custom-pry text-light border-0 rounded-3"
                   disabled={fileSize > 100000 || message === ""}
                   onClick={handleSubmit}
                 >
@@ -127,7 +128,7 @@ const ConnectWritePost = ({ user, authorName, refetch }) => {
                 <Button
                   size="sm"
                   variant="transparent"
-                  className="rounded-0 custom-pry-border"
+                  className="rounded-3 custom-pry-border"
                   onClick={() => setShow(false)}
                 >
                   Close

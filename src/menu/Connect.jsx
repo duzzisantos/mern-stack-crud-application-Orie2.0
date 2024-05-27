@@ -94,7 +94,7 @@ const Connect = ({ user }) => {
               Expand <List />
             </Button>
           </div>
-          <div id="customer-hero">
+          <div id="customer-hero" className="mx-1">
             <CustomerHero
               businessName={
                 businessInfo?.firstName + " " + businessInfo?.lastName
@@ -165,15 +165,15 @@ const Connect = ({ user }) => {
                       />
                     ))}
                 {allPosts.length < 1 && (
-                  <Alert variant="info">
-                    There are no posts yet. Start writing something.
+                  <Alert variant="primary" className="border-0">
+                    Loading....
                   </Alert>
                 )}
               </div>
             </div>
           </section>
-          <section className=" mt-3 mb-5 px-0 border vstack rounded-top-2">
-            <div className="bg-primary-subtle bg-opacity-10 w-100 px-3 py-2">
+          <section className=" mt-3 mb-5 px-0 shadow-sm vstack rounded-top-2">
+            <div className="bg-primary-subtle rounded-top bg-opacity-10 w-100 px-3 py-2">
               <h2 className="fs-6 fw-semibold">Suggestions</h2>
             </div>
             <div className="col-12 px-3 gap-3 vstack">
@@ -190,7 +190,7 @@ const Connect = ({ user }) => {
                       secondPartyEmail={item.userEmail}
                     />
                   ))}
-              <div className="border py-2 px-4 my-3 rounded-0">
+              <div className="py-2 px-4 my-3 rounded-0">
                 <span className="smaller-text custom-pry-color fw-semibold">
                   Advert
                 </span>

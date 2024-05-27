@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "react-bootstrap";
 import axios from "axios";
 import "../App.css";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Col, Container, Form } from "react-bootstrap";
 import { optionsArray } from "../helpers/hardCodedData";
 import {
   BriefcaseFill,
@@ -19,6 +19,7 @@ import {
 } from "react-bootstrap-icons";
 import { getHost } from "../helpers/getHost";
 import { encodeImageAsURL } from "../helpers/stringHelpers";
+import { getBase64Size } from "../helpers/getBase64Size";
 
 const Register = ({ user }) => {
   const [userId, setUserId] = useState("");
@@ -108,6 +109,8 @@ const Register = ({ user }) => {
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
   };
+
+  const fileSize = getBase64Size(converted);
 
   return (
     <Container fluid className="col-lg-9 col-sm-12 p-3 custom-pry-color">
@@ -306,11 +309,9 @@ const Register = ({ user }) => {
             ))}
           </Form.Select>
           <Form.Label htmlFor="image-register">
-            <Upload /> Upload photos:
+            <Upload /> Upload photo:
           </Form.Label>
-          <small className="text-primary">
-            (Only JPG/JPEG and PNG are accepted.)
-          </small>
+
           <Form.Control
             type="file"
             id="image-register"
@@ -319,9 +320,32 @@ const Register = ({ user }) => {
             accept=".jpeg, .jpg, .png"
             onChange={() => encodeImageAsURL("image-register", setConverted)}
           />
-          <Button type="submit" className="w-25 custom-pry rounded-0 border-0">
-            Submit
-          </Button>
+          <div className="d-flex justify-content-between">
+            {" "}
+            <Form.Text>
+              Max Upload 100 KB. (Only JPG/JPEG and PNG are accepted.)
+            </Form.Text>
+            {fileSize > 100000 && (
+              <div className="bg-warning-subtle px-2 rounded-2">
+                File cannot exceed 100 KB.
+              </div>
+            )}
+          </div>
+          <Col className="hstack gap-2">
+            <Button
+              type="submit"
+              className="custom-pry rounded-3 custom-pry-border"
+              disabled={Object.values(vendor).some((el) => el === "")}
+            >
+              Submit
+            </Button>
+            <input
+              title="Reset"
+              type="reset"
+              className="btn bg-transparent custom-pry-color custom-pry-border rounded-3"
+              onClick={() => setVendor("")}
+            />
+          </Col>
         </Form>
       </div>
     </Container>

@@ -26,7 +26,7 @@ const ManageBusiness = ({ commonBiggerBoxclasses, biz, ratings, user }) => {
   };
 
   return (
-    <div className={commonBiggerBoxclasses + "h-100 overflow-y-auto"}>
+    <div className={commonBiggerBoxclasses + "h-100 overflow-y-auto mt-5"}>
       <h2 className={"text-start fs-6 fw-bold mx-2 mb-4"}>Manage Business</h2>
       <div className="px-2">
         <Tabs className="mb-3">

@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 const SuggestionBoxes = ({ title }) => {
   const navigate = useNavigate();
   return (
-    <Card
-      className="col-lg-3 col-md-10 col-sm-12 rounded-1 border d-flex justify-content-center p-3"
-      id="suggestion-boxes"
-    >
+    <Card className="col-lg-3 col-md-4 col-sm-4 shadow-sm border-0 rounded-0 d-flex justify-content-center p-3 shake-on-hover suggestion-boxes">
       <h3 className="fs-5 fw-bold text-capitalize custom-pry-color">{title}</h3>
 
       <CardBody>

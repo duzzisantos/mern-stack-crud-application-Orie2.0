@@ -56,8 +56,8 @@ function ReplyMessage({
         className="custom-pry-color"
       >
         <Modal.Header closeButton>
-          <Modal.Title>
-            <PenFill /> Replying message to customer: {sender}
+          <Modal.Title className="h6">
+            <PenFill /> Replying: {sender}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -92,15 +92,15 @@ function ReplyMessage({
         <Modal.Footer>
           <Button
             variant="transparent"
-            className="border border-secondary"
+            className="custom-pry-border rounded-3 custom-pry-color"
             onClick={handleClose}
           >
             Cancel
           </Button>
           <Button
-            variant="transparent"
-            className="custom-pry-border"
+            className="custom-pry-border custom-pry"
             onClick={handleSubmit}
+            disabled={replyBody === "" || replyDate === "" || repliedBy === ""}
           >
             Send
           </Button>

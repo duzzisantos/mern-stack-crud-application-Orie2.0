@@ -61,7 +61,7 @@ const Vendors = ({ user }) => {
         <div className="col-12 mb-5 px-4 text-center d-flex flex-column">
           <Form.Label
             htmlFor="search-vendor"
-            className="fs-4 fw-bold mt-5 text-wrap"
+            className="fs-4 fw-bold mt-5 text-wrap text-start"
           >
             Search Vendors by category or name
           </Form.Label>
@@ -75,15 +75,14 @@ const Vendors = ({ user }) => {
             />
             <div className="mt-3 hstack gap-2">
               <Button
-                size="lg"
-                className="custom-pry custom-pry-border rounded-0"
+                className="custom-pry custom-pry-border rounded-3"
                 onClick={handleVendorSearch}
+                disabled={search === ""}
               >
                 Search
               </Button>
               <Button
-                size="lg"
-                className="bg-transparent custom-pry-border text-dark rounded-0"
+                className="bg-transparent custom-pry-border text-dark rounded-3"
                 onClick={() => setSearchState(false)}
               >
                 Reset

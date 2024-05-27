@@ -1,4 +1,4 @@
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 
 const TextComponent = ({
   handleClose,
@@ -31,23 +31,24 @@ const TextComponent = ({
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <div className="row justify-content-end me-1 gap-1">
+      <Col className="d-flex justify-content-end hastack gap-2">
         <Button
           size="sm"
-          className="custom-pry border-0 w-25 rounded-0"
+          className="custom-pry custom-pry-border rounded-3"
           type="submit"
+          disabled={content === ""}
         >
           Reply
         </Button>
         <Button
           type="button"
           size="sm"
-          className="custom-pry-border bg-transparent text-dark w-25 rounded-0"
+          className="custom-pry-border bg-transparent custom-pry-color rounded-3"
           onClick={handleClose}
         >
           Cancel
         </Button>
-      </div>
+      </Col>
     </Form>
   );
 };

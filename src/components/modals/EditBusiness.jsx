@@ -13,10 +13,10 @@ import {
   PeopleFill,
   PersonPlusFill,
   TelephoneInbound,
-  Upload,
+  // Upload,
 } from "react-bootstrap-icons";
 import { getHost } from "../../helpers/getHost";
-import { encodeImageAsURL } from "../../helpers/stringHelpers";
+// import { encodeImageAsURL } from "../../helpers/stringHelpers";
 
 const EditBusiness = ({ user, show, handleClose }) => {
   const [firstName, setFirstName] = useState("");
@@ -28,7 +28,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
   const [email, setEmail] = useState("");
   const [businessPhone, setBusinessPhone] = useState("");
   const [category, setCategory] = useState("");
-  const [converted, setConverted] = useState("");
+  // const [converted, setConverted] = useState("");
 
   useEffect(() => {
     const getOneBusiness = async () => {
@@ -79,9 +79,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
     axios
       .post(
         `${getHost()}/api/register/edit?clientUID=${user.uid}`,
-        Object.assign(editedItems, {
-          photos: [{ image: converted }],
-        }),
+        editedItems,
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
@@ -102,7 +100,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
       className="custom-pry-color"
     >
       <Modal.Header closeButton>
-        <Modal.Title>
+        <Modal.Title className="h5">
           <PencilFill /> Editing My Business
         </Modal.Title>
       </Modal.Header>
@@ -273,7 +271,7 @@ const EditBusiness = ({ user, show, handleClose }) => {
               <option key={index}>{item}</option>
             ))}
           </Form.Select>
-          <Form.Label htmlFor="image-edit">
+          {/* <Form.Label htmlFor="image-edit">
             <Upload /> Upload photos:
           </Form.Label>
           <small className="text-primary">
@@ -286,17 +284,17 @@ const EditBusiness = ({ user, show, handleClose }) => {
             id="image-edit"
             accept=".jpeg, .jpg, .png"
             onChange={(e) => encodeImageAsURL("image-edit", setConverted)}
-          />
+          /> */}
           <Col className="hstack gap-2">
             <Button
               type="submit"
-              className="w-25 custom-pry rounded-0 custom-pry-border"
+              className="custom-pry rounded-3 custom-pry-border"
             >
               Submit
             </Button>
             <Button
               onClick={handleClose}
-              className="w-25 rounded-0 bg-transparent custom-pry-color custom-pry-border"
+              className="rounded-3 bg-transparent custom-pry-color custom-pry-border"
             >
               Close
             </Button>

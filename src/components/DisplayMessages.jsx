@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Badge, Button } from "react-bootstrap";
-import { CalendarDateFill, PersonFill, Send } from "react-bootstrap-icons";
+import { Button } from "react-bootstrap";
+import { CalendarDateFill, PersonFill } from "react-bootstrap-icons";
 import ReplyMessage from "./modals/ReplyMessage";
 
 const MessagesTemplate = ({
@@ -23,26 +23,12 @@ const MessagesTemplate = ({
   return (
     <>
       <div className="d-flex flex-column vstack gap-1 p-3 shadow-sm rounded-0 my-3">
-        <h2 className="fs-6 fw-bold">
-          {subject}: {id}
-        </h2>
+        <h2 className="fs-6 fw-bold text-capitalize">{subject}</h2>
         <div className="d-flex vstack gap-1 smaller-text text-secondary">
           {sender === user.email ? (
-            <Badge
-              className="bg-success p-2"
-              pill
-              style={{ width: "fit-content" }}
-            >
-              Sent
-            </Badge>
+            <small className="text-info fw-bold">Sent</small>
           ) : (
-            <Badge
-              className="bg-warning text-dark p-2"
-              pill
-              style={{ width: "fit-content" }}
-            >
-              Received
-            </Badge>
+            <small className="text-primary fw-bold">Received</small>
           )}
           <div>
             {" "}
@@ -53,23 +39,22 @@ const MessagesTemplate = ({
           </div>
         </div>
 
-        <p>{messageBody}</p>
+        <article className="py-3">{messageBody}</article>
         {sender.includes("Do not reply") ? null : ( //If message is from admin, the reply button is thus disabled, otherwise, user has access to reply other messages.
           <div className="hstack gap-2">
             <Button
               size="sm"
-              variant="transparent"
               about="To reply a message"
               title="Reply message"
-              className={`bg-transparent custom-pry-color custom-pry-border`}
+              className={`custom-pry rounded-3 custom-pry-border`}
               onClick={() => setShow(!show)}
             >
-              <Send /> Follow up
+              Follow up
             </Button>
             <Button
               size="sm"
               variant="transparent"
-              className="text-secondary border border-secondary"
+              className="custom-pry-color custom-pry-border rounded-3"
               onClick={() => {
                 setShowReplies(!showReplies);
                 setWhichReply(id);

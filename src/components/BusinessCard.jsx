@@ -39,7 +39,7 @@ const BusinessCard = ({
       <Card
         className={`col-lg-${
           isModal ? 12 : 4
-        } col-sm-12  shadow-sm border-0  rounded-0 business-card-hover custom-pry-color`}
+        } col-sm-12  shadow-sm border-0  rounded-0 custom-pry-color shake-on-hover business-card`}
         style={{ height: "fit-content" }}
       >
         <Card.Header className="bg-transparent border-0 d-flex hstack justify-content-between">
@@ -78,10 +78,10 @@ const BusinessCard = ({
             </li>
           </ul>
           {!user || user.email === businessEmailAddress ? null : ( //do not allow ratings on the home page if current client is not logged in or if rendered card pertains to current client
-            <div className="d-flex justify-content-end gap-2 mt-auto">
+            <div className="d-flex justify-content-end gap-2 mt-4">
               <Button
                 size="sm"
-                className="custom-pry-border bg-transparent custom-pry-color px-2"
+                className="custom-pry px-2 custom-pry-border rounded-3"
                 onClick={handleShowMessage}
               >
                 Send message
@@ -89,7 +89,7 @@ const BusinessCard = ({
               <Button
                 size="sm"
                 variant="transparent"
-                className="border border-secondary px-2"
+                className="custom-pry-border px-2 rounded-3"
                 onClick={handleShow}
               >
                 Add rating

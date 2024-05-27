@@ -41,28 +41,28 @@ const Admin = ({ user }) => {
         className="text-center gap-2 p-3 flex-lg-row flex-sm-column flex-md-column"
         id="admin-dashboard"
       >
-        <Col className="border pt-3">
-          <small className="h5 fw-bold">
-            <PeopleFill /> Followers vs Following
+        <Col className="pt-3 shadow-lg border-top rounded-bottom border-5 border-success shake-on-hover">
+          <small className="h6 fw-bold">
+            <PeopleFill className="text-success" /> Followers vs Following
           </small>
-          <p className="mt-4 fs-2">
+          <p className="mt-4 h5">
             {followers[0]?.length}
             {" : "} {following[0]?.length}
           </p>
         </Col>
-        <Col className="border pt-3">
-          <small className="h5 fw-bold">
+        <Col className="pt-3 shadow-lg border-top rounded-bottom border-5 border-warning shake-on-hover">
+          <small className="h6 fw-bold">
             <StarFill className="text-warning" /> Average Rating
           </small>
-          <p className="mt-4 fs-2">
-            {isNaN(averageRating()) ? 0 : averageRating()}
+          <p className="mt-4 h5">
+            {isNaN(averageRating()) ? 0 : averageRating().toFixed(1)}
           </p>
         </Col>
-        <Col className="border pt-3">
-          <small className="h5 fw-bold">
-            <BuildingsFill className="text-secondary" /> Top Industry Interested
+        <Col className="pt-3 shadow-lg border-top rounded-bottom border-5 border-info shake-on-hover">
+          <small className="h6 fw-bold">
+            <BuildingsFill className="text-info" /> Top Industry Interested
           </small>
-          <p className="mt-4 fs-2">Fabrics</p>
+          <p className="mt-4 h5">Fabrics</p>
         </Col>
       </Row>
       <Row id="manage-wrapper gap-3">

@@ -90,16 +90,20 @@ function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
         <Modal.Footer>
           <Button
             variant="transparent"
-            className="border border-secondary"
+            className="custom-pry-border rounded-3"
             onClick={handleClose}
           >
             Cancel
           </Button>
           <Button
-            variant="transparent"
-            className="custom-pry-border"
+            className="custom-pry-border custom-pry rounded-3"
             type="submit"
             onClick={handleSubmit}
+            disabled={
+              messageContent === "" ||
+              messageDate === "" ||
+              messageSubject === ""
+            }
           >
             Send
           </Button>

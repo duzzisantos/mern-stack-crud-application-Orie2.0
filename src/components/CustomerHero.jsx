@@ -18,9 +18,9 @@ const CustomerHero = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div className="mx-0 py-2 d-flex flex-column rounded-0 h-100">
+    <div className="mx-0 py-2 d-flex flex-column rounded-0">
       <h1 className="fs-4">{userName}</h1>
-      <Col className="d-flex flex-column gap-3 border rounded-1 px-4 py-2">
+      <Col className="d-flex flex-column gap-3 shadow-sm rounded-1 px-4 py-2">
         {(
           <div
             className="border mx-auto"
@@ -41,7 +41,7 @@ const CustomerHero = ({
             <BuildingsFill /> {businessName}
           </small>
           <small className="custom-pry-color fs-6">
-            <BriefcaseFill /> {category}
+            <BriefcaseFill /> {category ?? "Not assigned yet"}
           </small>
           <div className="d-flex flex-column gap-2">
             <small className="fs-6">
@@ -75,7 +75,7 @@ const CustomerHero = ({
           </div>
         </div>
       </Col>
-      <Col className="my-3 rounded-1 border">
+      <Col className="my-3 rounded-1 shadow-sm">
         <div className="px-4 py-2 vstack gap-1">
           <small className="fw-semibold">Categories</small>
           {sortedStrings(optionsArray)?.map((item, i) => (
@@ -83,7 +83,7 @@ const CustomerHero = ({
               key={i}
               variant="transparent"
               size="sm"
-              className="text-primary text-start"
+              className="text-secondary text-start"
               onClick={() => navigate(`/view-categories`, { state: item })}
             >
               {item}

@@ -70,7 +70,12 @@ const Navigation = () => {
   }, [user.email, user.accessToken]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="py-1 custom-pry sticky-top">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      className="py-1 custom-pry"
+      sticky="top"
+    >
       <Container className="col-lg-9 col-sm-12 pe-0">
         <Navbar.Brand
           as={Link}

@@ -46,11 +46,7 @@ const FindCustomers = ({
 
   return (
     <Container className="vstack gap-3">
-      <Form
-        className="d-flex flex-column col-12 vstack gap-3  search-vendors"
-        noValidate
-        onSubmit={handleGeneralSearch}
-      >
+      <Form className="d-flex flex-column col-12 vstack gap-3  search-vendors">
         <Col className="col-9 mx-auto gap-2">
           <Form.Group>
             <Form.Label
@@ -65,28 +61,25 @@ const FindCustomers = ({
             </h5>
             <Form.Control
               id="search-businesses"
-              className="w-100 py-3 rounded-0"
+              className="w-100 py-3 rounded-3"
               placeholder="Eg: Car Tyres"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               required
-              isInvalid={validated && search === ""}
             />
-            <Form.Control.Feedback type="invalid">
-              {validated && search === "" && "Enter search value"}
-            </Form.Control.Feedback>
           </Form.Group>
 
           <Col className="w-75 hstack mt-3">
             <Button
-              className="custom-pry custom-pry-border rounded-0"
+              className="custom-pry custom-pry-border rounded-3"
               onClick={handleGeneralSearch}
               type="submit"
+              disabled={search === ""}
             >
               Search
             </Button>
             <Button
-              className="custom-pry-border bg-transparent custom-pry-color rounded-0 mx-2"
+              className="custom-pry-border bg-transparent custom-pry-color rounded-3 mx-2"
               onClick={handleResetGeneral}
             >
               Reset
@@ -98,11 +91,7 @@ const FindCustomers = ({
       <h5 className="w-75 mx-auto">
         <Filter /> Narrow search
       </h5>
-      <Form
-        noValidate
-        validated={validatedNarrow}
-        onSubmit={handleNarrowSearch}
-      >
+      <Form onSubmit={handleNarrowSearch}>
         <Col
           id="narrow-search-items"
           lg={9}
@@ -115,22 +104,16 @@ const FindCustomers = ({
               <Form.Label htmlFor="state-region">State/Region</Form.Label>
               <Form.Select
                 id="state-region"
-                className={`rounded-0 ${
-                  validatedNarrow && region === "" && "remove-outline"
-                }`}
+                className={`rounded-3 `}
                 onChange={(e) => setRegion(e.target.value)}
                 value={region}
                 required
-                isInvalid={validatedNarrow && region === ""}
               >
                 <option>Select region/state</option>
                 {regions?.map((element, index) => (
                   <option key={index}>{element}</option>
                 ))}
               </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                {validatedNarrow && region === "" && "Select region/state"}
-              </Form.Control.Feedback>
             </FormGroup>
           </Col>
           <Col>
@@ -138,22 +121,16 @@ const FindCustomers = ({
               <Form.Label htmlFor="city">City</Form.Label>
               <Form.Select
                 id="city"
-                className={`rounded-0 ${
-                  validatedNarrow && city === "" && "remove-outline"
-                }`}
+                className={`rounded-3 `}
                 onChange={(e) => setCity(e.target.value)}
                 required
                 value={city}
-                isInvalid={validatedNarrow && city === ""}
               >
                 <option>Select city</option>
                 {getCitiesList()?.map((element, index) => (
                   <option key={index}>{element}</option>
                 ))}
               </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                {validatedNarrow && city === "" && "Select city"}
-              </Form.Control.Feedback>
             </FormGroup>
           </Col>
 
@@ -162,12 +139,9 @@ const FindCustomers = ({
               <Form.Label htmlFor="category">Category</Form.Label>
               <Form.Select
                 id="category"
-                className={`rounded-0 ${
-                  validatedNarrow && category === "" && "remove-outline"
-                }`}
+                className={`rounded-3 `}
                 onChange={(e) => setCategories(e.target.value)}
                 value={category}
-                isInvalid={validatedNarrow && category === ""}
                 required
               >
                 <option>Select category</option>
@@ -175,22 +149,20 @@ const FindCustomers = ({
                   <option key={index}>{element}</option>
                 ))}
               </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                {validatedNarrow && category === "" && "Select category"}
-              </Form.Control.Feedback>
             </FormGroup>
           </Col>
         </Col>
         <Col className="w-75 mx-auto hstack gap-2 mt-3">
           <Button
             type="submit"
-            className="custom-pry custom-pry-border rounded-0"
+            className="custom-pry custom-pry-border rounded-3"
             onClick={handleNarrowSearch}
+            disabled={city === "" || region === "" || category === ""}
           >
             Go
           </Button>
           <Button
-            className="custom-pry-border bg-transparent custom-pry-color rounded-0"
+            className="custom-pry-border bg-transparent custom-pry-color rounded-3"
             onClick={handleResetNarrow}
           >
             Reset

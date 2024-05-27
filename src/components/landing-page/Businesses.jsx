@@ -20,12 +20,12 @@ const Businesses = ({
         ? narrowSearch.map((entity) => (
             <BusinessCard
               key={entity._id}
-              ratingScore={
+              ratingScore={(
                 ratingScore(data, entity.email)
                   .map((r) => r?.ratingStars)
                   .reduce((y, z) => y + z, 0) /
                 ratingScore(data, entity.email).length
-              }
+              ).toFixed(1)}
               businessCategory={entity.category}
               address={entity.address}
               businessEmailAddress={entity.email}
@@ -48,12 +48,12 @@ const Businesses = ({
         ? generalSearch.map((entity) => (
             <BusinessCard
               key={entity._id}
-              ratingScore={
+              ratingScore={(
                 ratingScore(data, entity.email)
                   .map((r) => r?.ratingStars)
                   .reduce((y, z) => y + z, 0) /
                 ratingScore(data, entity.email).length
-              }
+              ).toFixed(1)}
               businessCategory={entity.category}
               address={entity.address}
               businessEmailAddress={entity.email}

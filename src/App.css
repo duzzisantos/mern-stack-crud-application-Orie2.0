@@ -129,6 +129,10 @@ button[role="tab"] {
   outline: 1px solid red !important;
 }
 
+.user-summary {
+  background-color: rgba(0, 0, 0, 0.07) !important;
+}
+
 .inner-legend {
   height: 18px !important;
   width: 100px !important;
@@ -137,6 +141,30 @@ button[role="tab"] {
   margin-left: 44%;
   margin-top: 3%;
   border-radius: 10px;
+}
+
+/* Define the keyframes for the shake animation */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Create a class for the shake animation */
+.shake-on-hover:hover {
+  animation: shake 0.5s linear;
 }
 
 @keyframes bigger {
@@ -173,9 +201,17 @@ button[role="tab"] {
   #narrow-search-items,
   #connect-page-wrapper,
   #admin-dashboard,
-  #suggestion-boxes {
+  .suggestion-boxes {
     display: flex;
     flex-direction: column !important;
+  }
+
+  .suggestion-boxes {
+    width: 100% !important;
+  }
+
+  .business-card {
+    width: 90% !important;
   }
 
   #show-side-menu {

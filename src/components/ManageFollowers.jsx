@@ -1,5 +1,5 @@
 import { Alert, Tab, Tabs } from "react-bootstrap";
-import UserContentTemplate from "./UserContent";
+// import UserContentTemplate from "./UserContent";
 import ContentPhotos from "./ContentPhotos";
 import MessagesTemplate from "./DisplayMessages";
 import Replies from "./Replies";
@@ -11,11 +11,11 @@ const ManageFollowers = ({
   user,
 }) => {
   return (
-    <div className={commonBiggerBoxclasses + "h-100 overflow-y-auto"}>
+    <div className={commonBiggerBoxclasses + "h-100 overflow-y-auto mt-5"}>
       <h2 className={"text-start fs-6 fw-bold mx-2 mb-4"}>Manage Content</h2>
       <div className="px-2">
         <Tabs className="mb-3">
-          <Tab eventKey="content" title="Content">
+          {/* <Tab eventKey="content" title="Content">
             {content[0]?.map((item, index) => (
               <UserContentTemplate
                 key={index}
@@ -23,7 +23,7 @@ const ManageFollowers = ({
                 contentImage={""}
               />
             ))}
-          </Tab>
+          </Tab> */}
           <Tab eventKey="photos" title="Photos">
             <ContentPhotos content={content} />
           </Tab>
@@ -46,7 +46,7 @@ const ManageFollowers = ({
                   />
                 ))
             ) : (
-              <Alert>No messages to see yet.</Alert>
+              <Alert className="border-0">No messages to see yet.</Alert>
             )}
           </Tab>
         </Tabs>

@@ -104,15 +104,20 @@ function AddRatings({ show, handleClose, businessName, user, secondParty }) {
         <Modal.Footer>
           <Button
             variant="transparent"
-            className="border border-secondary"
+            className="custom-pry-border rounded-3"
             onClick={handleClose}
           >
             Cancel
           </Button>
           <Button
-            variant="transparent"
-            className="custom-pry-border"
+            className="custom-pry-border custom-pry rounded-3"
             onClick={handleSubmit}
+            disabled={
+              ratingStars === 0 ||
+              ratingsContent === "" ||
+              ratingsDate === "" ||
+              ratingsTitle === ""
+            }
           >
             Send
           </Button>

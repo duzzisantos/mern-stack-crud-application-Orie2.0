@@ -1,7 +1,7 @@
 export const optionsArray = [
   "Okirika",
   "Fabrics",
-  "Computers and accessories",
+  "Computers",
   "Auto parts",
   "Groceries",
   "Leather goods",
