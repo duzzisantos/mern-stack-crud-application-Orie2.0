@@ -1,7 +1,7 @@
 import { Card, Button, Form, ButtonGroup } from "react-bootstrap";
 import {
   CheckCircleFill,
-  // HeartFill,
+  HeartFill,
   // BookmarkFill,
   ChatDotsFill,
   PersonCircle,
@@ -9,13 +9,13 @@ import {
 import TextComponent from "../components/modals/TextComponent";
 import { useState } from "react";
 import {
-  // handleLikePost,
+  handleLikePost,
   handleRemoveUser,
   // handleSaveBookmark,
   handleSaveComment,
   handleSendReport,
   handleUnfollow,
-  // handleUnlikePost,
+  handleUnlikePost,
 } from "../api/timelineAPIs";
 import CommentList from "../components/CommentList";
 import MenuPopover from "./MenuPopover";
@@ -34,12 +34,13 @@ const Timeline = ({
   token,
   secondParty,
   id,
+  refetch,
 }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const [replyContent, setReplyContent] = useState("");
   const [showCommentList, setShowCommentList] = useState(false);
-  // const [like, setLike] = useState(false);
+  const [like, setLike] = useState(false);
   // const [bookmark, setBookmark] = useState(false);
   const { comments, refetchComments } = useGetPostComments(
     secondParty,
@@ -58,7 +59,7 @@ const Timeline = ({
 
   //Finds out if of the current user has likes across the content on the page
   //This is vital for conditionally rendering the like and unlike buttons
-  // const hasLikes = likes?.some((content) => content.isLiked);
+  const hasLikes = likes?.some((content) => content.isLiked);
 
   return (
     <Card className="p-2 col-12 border-0 shadow-sm rounded-0 custom-pry-color">
@@ -143,11 +144,11 @@ const Timeline = ({
           )}
         </article>
         <div className="justify-content-start hstack mt-3 fw-light col-lg-2 col-sm-9">
-          {/* <Form>
+          <Form>
             {!hasLikes ? ( //if any of the posts has likes - remove the like button - so the next click will trigger an unlike to prevent double likes
               <Button
                 variant="transparent"
-                className={`d-flex flex-column vstack social-button-1 ${
+                className={`d-flex border-0 flex-column vstack social-button-1 ${
                   like ? "text-danger" : "text-secondary"
                 }`}
                 title="Like"
@@ -169,7 +170,7 @@ const Timeline = ({
             ) : (
               <Button
                 variant="transparent"
-                className={`d-flex flex-column vstack social-button-1 border-0  text-secondary`}
+                className={`d-flex flex-column border-0 vstack social-button-1 border-0  text-secondary`}
                 title="Unlike"
                 type="button"
                 onClick={() => {
@@ -188,7 +189,7 @@ const Timeline = ({
               </Button>
             )}
           </Form>
-          <Form>
+          {/* <Form>
             <Button
               variant="transparent"
               className={`d-flex flex-column vstack social-button-2 border-0 ${

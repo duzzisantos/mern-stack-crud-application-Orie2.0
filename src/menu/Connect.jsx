@@ -149,6 +149,7 @@ const Connect = ({ user }) => {
                     allPosts.length > 0 &&
                     allPosts?.map((element, i) => (
                       <Timeline
+                        refetch={refetch}
                         key={i}
                         contentBody={element?.contentBody}
                         contentImage={element?.contentImage}

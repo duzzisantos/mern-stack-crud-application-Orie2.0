@@ -68,8 +68,9 @@ function handleLikePost(secondParty, id, user, setLike, token, refetch) {
     )
     .then((res) => {
       console.log(res.status);
-      refetch();
+
       setLike(true);
+      refetch();
     })
     .catch((error) => console.log(error.message));
 }
