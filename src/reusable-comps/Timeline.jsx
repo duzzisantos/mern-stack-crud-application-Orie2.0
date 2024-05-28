@@ -6,7 +6,7 @@ import {
   ChatDotsFill,
   PersonCircle,
 } from "react-bootstrap-icons";
-import TextComponent from "../components/TextComponent";
+import TextComponent from "../components/modals/TextComponent";
 import { useState } from "react";
 import {
   // handleLikePost,
@@ -34,7 +34,6 @@ const Timeline = ({
   token,
   secondParty,
   id,
-  refetch,
 }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
@@ -42,10 +41,15 @@ const Timeline = ({
   const [showCommentList, setShowCommentList] = useState(false);
   // const [like, setLike] = useState(false);
   // const [bookmark, setBookmark] = useState(false);
-  const { comments } = useGetPostComments(secondParty, id, token);
+  const { comments, refetchComments } = useGetPostComments(
+    secondParty,
+    id,
+    token
+  );
 
   function handleCloseCommenter() {
     setShowCommentForm(false);
+    refetchComments();
   }
 
   function handleShowCommenter() {
@@ -222,13 +226,14 @@ const Timeline = ({
       </fieldset>
       {showCommentForm ? (
         <TextComponent
+          showModal={showCommentForm}
           handleClose={handleCloseCommenter}
           handleSave={() =>
             handleSaveComment(secondParty, id, replyContent, user, token)
           }
           setContent={setReplyContent}
           content={replyContent}
-          title={"Post reply"}
+          title={"Post your comment"}
         />
       ) : (
         <small
