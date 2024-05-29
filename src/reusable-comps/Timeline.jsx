@@ -5,10 +5,16 @@ import {
   // BookmarkFill,
   ChatDotsFill,
   PersonCircle,
+  Megaphone,
+  TrashFill,
+  PencilFill,
+  PersonDashFill,
+  XOctagonFill,
 } from "react-bootstrap-icons";
 import TextComponent from "../components/modals/TextComponent";
 import { useState } from "react";
 import {
+  handleDeletePost,
   handleLikePost,
   handleRemoveUser,
   // handleSaveBookmark,
@@ -20,12 +26,14 @@ import {
 import CommentList from "../components/CommentList";
 import MenuPopover from "./MenuPopover";
 import useGetPostComments from "../api/useGetPostComments";
+import EditPost from "../components/modals/EditPost";
 
 const Timeline = ({
   authorName,
   authorEmail,
   likes,
   bookmarks,
+  isEdited,
   contentImage,
   authorImage,
   businessCategory,
@@ -38,6 +46,7 @@ const Timeline = ({
 }) => {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [replyContent, setReplyContent] = useState("");
   const [showCommentList, setShowCommentList] = useState(false);
   const [like, setLike] = useState(false);
@@ -85,10 +94,21 @@ const Timeline = ({
 
             <div className="d-flex flex-column">
               <small className="fw-bold mt-2">
-                {authorName ?? "Mercedes Benz"}{" "}
-                <CheckCircleFill className="custom-pry-color" />
+                {authorName} {"  "}
+                <CheckCircleFill
+                  className="custom-pry-color"
+                  title={`${authorName} is verified`}
+                />
               </small>
-              <small className="text-secondary">{businessCategory ?? ""}</small>
+
+              <div className={`d-flex gap-${businessCategory ? "2" : "0"}`}>
+                {" "}
+                <small className="custom-pry-color">
+                  {businessCategory ?? ""}
+                </small>
+                {businessCategory && isEdited ? " | " : ""}
+                {isEdited && <small className="text-secondary">Edited</small>}
+              </div>
             </div>
           </div>
           <MenuPopover
@@ -97,36 +117,65 @@ const Timeline = ({
             children={
               <Form>
                 <ButtonGroup vertical>
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      handleUnfollow(user, secondParty, token);
-                    }}
-                    variant="transparent"
-                    className="border-0 text-start smaller-text popover-btn rounded-0"
-                  >
-                    Unfollow
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      handleRemoveUser(user, secondParty, token);
-                    }}
-                    variant="transparent"
-                    className="border-0 text-start smaller-text popover-btn rounded-0"
-                  >
-                    Block
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      handleSendReport(id, user, secondParty, token);
-                    }}
-                    variant="transparent"
-                    className="border-0 text-start smaller-text popover-btn rounded-0"
-                  >
-                    Report
-                  </Button>
+                  {user.email === authorEmail ? null : (
+                    <>
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          handleUnfollow(user, secondParty, token);
+                        }}
+                        variant="transparent"
+                        className="border-0 text-start smaller-text popover-btn rounded-0 px-4"
+                      >
+                        <PersonDashFill /> Unfollow
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          handleRemoveUser(user, secondParty, token);
+                        }}
+                        variant="transparent"
+                        className="border-0 text-start smaller-text popover-btn rounded-0 px-4"
+                      >
+                        <XOctagonFill /> Block
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          handleSendReport(id, user, secondParty, token);
+                        }}
+                        variant="transparent"
+                        className="border-0 text-start smaller-text popover-btn rounded-0 px-4"
+                      >
+                        <Megaphone /> Report
+                      </Button>
+                    </>
+                  )}
+                  {user.email === authorEmail ? ( //current user can only have access to modifying their own resources
+                    <>
+                      {" "}
+                      <Button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleDeletePost(user, id, token, refetch);
+                          console.log(id);
+                        }}
+                        variant="transparent"
+                        className="border-0 text-start smaller-text popover-btn rounded-0 px-4"
+                      >
+                        <TrashFill /> Delete
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => setShowEdit(!showEdit)}
+                        variant="transparent"
+                        className="border-0 text-start smaller-text popover-btn rounded-0 px-4"
+                      >
+                        <PencilFill /> Edit
+                      </Button>
+                    </>
+                  ) : null}
                 </ButtonGroup>
               </Form>
             }
@@ -248,6 +297,17 @@ const Timeline = ({
       )}
 
       {showCommentList && <CommentList comments={comments} />}
+      {showEdit && (
+        <EditPost
+          show={showEdit}
+          setShow={setShowEdit}
+          user={user}
+          refetch={refetch}
+          grabbedId={id}
+          grabbedMessage={contentBody}
+          grabbedImage={contentImage}
+        />
+      )}
     </Card>
   );
 };

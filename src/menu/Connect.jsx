@@ -143,6 +143,7 @@ const Connect = ({ user }) => {
                           user={user}
                           token={token}
                           secondParty={element.authorEmail}
+                          isEdited={element.isEdited}
                         />
                       ))
                   : !latest &&
@@ -163,6 +164,7 @@ const Connect = ({ user }) => {
                         user={user}
                         token={token}
                         secondParty={element.authorEmail}
+                        isEdited={element.isEdited}
                       />
                     ))}
                 {allPosts.length < 1 && (

@@ -189,8 +189,30 @@ function handleFollow(user, secondParty, secondPartyEmail, token) {
     .catch((err) => console.warn(err.message));
 }
 
+function handleDeletePost(user, id, token, refetch) {
+  axios
+    .post(
+      `${getHost()}/api/user-posts/delete-post?userEmail=${
+        user.email
+      }&id=${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res.status);
+      refetch();
+    })
+    .catch((err) => console.warn(err.message));
+}
+
 export {
   handleLikePost,
+  handleDeletePost,
   handleRemoveUser,
   handleSaveBookmark,
   handleSaveComment,

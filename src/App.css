@@ -125,6 +125,10 @@ button[role="tab"] {
   background-repeat: no-repeat !important;
 }
 
+.popover-arrow {
+  display: none !important;
+}
+
 .remove-outline {
   outline: 1px solid red !important;
 }

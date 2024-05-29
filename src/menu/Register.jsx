@@ -335,7 +335,7 @@ const Register = ({ user }) => {
             <Button
               type="submit"
               className="custom-pry rounded-3 custom-pry-border"
-              disabled={Object.values(vendor).some((el) => el === "")}
+              disabled={Object.values(vendor).every((el) => !el)}
             >
               Submit
             </Button>
