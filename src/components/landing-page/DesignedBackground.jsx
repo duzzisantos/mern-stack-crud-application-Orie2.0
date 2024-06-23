@@ -1,21 +1,10 @@
-import DesignImage from "../../images/shopping-lady.jpg";
-
 const DesignedBackground = () => {
   return (
-    <div
-      className="col-12 px-5"
-      style={{
-        height: "1000px",
-        backgroundImage: `url(${DesignImage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-      id="circles-wrapper"
-    >
+    <div className="col-12 px-5 h-5 bg-light-subtle">
       <article className="my-5 text-center">
-        <h2 className="fs-1 lh-sm fw-bold">
+        <h4 className="fs-1 lh-sm fw-bold">
           Your Number 1 Destination for Finding The Right Vendors
-        </h2>
+        </h4>
       </article>
     </div>
   );

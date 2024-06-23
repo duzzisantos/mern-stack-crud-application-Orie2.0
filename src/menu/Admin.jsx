@@ -41,26 +41,26 @@ const Admin = ({ user }) => {
         className="text-center gap-2 p-3 flex-lg-row flex-sm-column flex-md-column"
         id="admin-dashboard"
       >
-        <Col className="pt-3 shadow-lg border-top rounded-bottom border-5 border-success shake-on-hover">
+        <Col className="pt-3 shadow-lg rounded-bottom border-5 border-info shake-on-hover">
           <small className="h6 fw-bold">
-            <PeopleFill className="text-success" /> Followers vs Following
+            <PeopleFill className="text-info fs-1" /> Followers vs Following
           </small>
           <p className="mt-4 h5">
             {followers[0]?.length}
             {" : "} {following[0]?.length}
           </p>
         </Col>
-        <Col className="pt-3 shadow-lg border-top rounded-bottom border-5 border-warning shake-on-hover">
+        <Col className="pt-3 shadow-lg rounded-bottom border-5 border-info shake-on-hover">
           <small className="h6 fw-bold">
-            <StarFill className="text-warning" /> Average Rating
+            <StarFill className="text-warning fs-1" /> Average Rating
           </small>
           <p className="mt-4 h5">
             {isNaN(averageRating()) ? 0 : averageRating().toFixed(1)}
           </p>
         </Col>
-        <Col className="pt-3 shadow-lg border-top rounded-bottom border-5 border-info shake-on-hover">
+        <Col className="pt-3 shadow-lg rounded-bottom border-5 border-info shake-on-hover">
           <small className="h6 fw-bold">
-            <BuildingsFill className="text-info" /> Top Industry Interested
+            <BuildingsFill className="fs-1" /> Top Industry Interested
           </small>
           <p className="mt-4 h5">Fabrics</p>
         </Col>

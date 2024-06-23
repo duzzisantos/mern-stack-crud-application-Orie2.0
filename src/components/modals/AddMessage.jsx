@@ -49,7 +49,7 @@ function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
       >
         <Modal.Header closeButton>
           <Modal.Title className="h6">
-            <PenFill /> Message to : {businessName}
+            <PenFill /> Message to : {businessEmail}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

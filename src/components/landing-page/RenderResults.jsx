@@ -1,12 +1,7 @@
-import { useState, useEffect } from "react";
 import { Spinner, Alert } from "react-bootstrap";
-import DesignedBackground from "./DesignedBackground";
 import Businesses from "./Businesses";
 
 function RenderResults({
-  city,
-  category,
-  region,
   search,
   searchState,
   allRatings,
@@ -22,49 +17,11 @@ function RenderResults({
   handleCloseMessage,
   handleShowMessage,
 }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [showResults, setShowResults] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const isSuccess =
+    (search || searchState) &&
+    (generalSearch.length > 0 || narrowSearch.length > 0);
 
-  useEffect(() => {
-    if (
-      ((city !== "" && category !== "" && region !== "") || search !== "") &&
-      searchState
-    ) {
-      setTimeout(() => {
-        setIsLoading(false);
-        setShowResults(true);
-      }, 1000);
-    } else if (
-      searchState &&
-      (narrowSearch.length === 0 || generalSearch.length === 0)
-    ) {
-      setTimeout(() => {
-        setIsLoading(false);
-        setShowAlert(false);
-      }, 1000);
-    } else {
-      setIsLoading(false);
-    }
-  }, [
-    city,
-    category,
-    region,
-    search,
-    searchState,
-    narrowSearch,
-    generalSearch,
-  ]);
-
-  if (isLoading) {
-    return (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
-  }
-
-  if (showResults) {
+  if (isSuccess) {
     return (
       <Businesses
         data={allRatings}
@@ -81,22 +38,14 @@ function RenderResults({
         handleShowMessage={handleShowMessage}
       />
     );
-  }
-
-  if (showAlert) {
+  } else if (search && searchState) {
     return (
-      <Alert
-        variant="info"
-        className="w-75 mx-auto"
-        style={{ height: "fit-content" }}
-      >
-        Oops! It seems your search item was not found. Please reset search and
-        try again.
+      <Alert className="w-75 mx-auto justify-content-start d-flex hstack gap-5 border-0">
+        <Spinner />
+        If loading persists, it could be that your search item was not found.{" "}
       </Alert>
     );
   }
-
-  return <DesignedBackground />;
 }
 
 export default RenderResults;

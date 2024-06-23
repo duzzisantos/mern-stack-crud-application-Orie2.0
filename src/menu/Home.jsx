@@ -11,7 +11,6 @@ import useGetRegions from "../api/useGetRegion";
 import getGeneralSearch from "../api/useGeneralSearch";
 import getNarrowSearch from "../api/useNarrowSearch";
 import useGetAllRatings from "../api/useGetAllRatings";
-import { CaretRightSquareFill } from "react-bootstrap-icons";
 import RenderResults from "../components/landing-page/RenderResults";
 import useGetGroupedBusinesses from "../api/useGetGroupedBusinesses";
 
@@ -92,7 +91,6 @@ const Home = ({ user }) => {
               className="hstack fw-bold custom-pry-color"
             >
               Dugam {"   "}
-              <CaretRightSquareFill className="mx-" focusable="false" />
             </Navbar.Brand>
             <Navbar.Toggle />
             <Nav className="fw-bold hstack gap-3">
