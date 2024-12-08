@@ -1,4 +1,4 @@
-import Hero from "../../images/hero.jpg";
+import Hero from "../../images/konigsstrasse.jpg";
 
 const HeroArea = () => {
   return (
