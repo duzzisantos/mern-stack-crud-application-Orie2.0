@@ -80,8 +80,6 @@ const Home = ({ user }) => {
     return output;
   };
 
-  console.log(user);
-
   return (
     <div className="col-12 px-0 custom-pry-color overflow-x-hidden">
       {!user && window.location.pathname === "/" ? (
