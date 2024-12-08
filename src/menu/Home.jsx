@@ -187,7 +187,7 @@ const Home = ({ user }) => {
         <div className="col-9 justify-content-center bottom-0 h-100">
           <div className="d-flex flex-wrap gap-3 text-center mt-3">
             {categories.length === 0 ? (
-              <Skeleton />
+              <Skeleton children={"Categories loading..."} />
             ) : (
               categories.map((el, i) => (
                 <SuggestionBoxes
@@ -209,7 +209,7 @@ const Home = ({ user }) => {
         <div className="col-9 justify-content-center bottom-0 h-100">
           <div className="d-flex flex-wrap gap-3 text-center mt-3">
             {regions.length === 0 ? (
-              <Skeleton />
+              <Skeleton children={"Regions loading..."} />
             ) : (
               regions.map((el, i) => (
                 <SuggestionBoxes

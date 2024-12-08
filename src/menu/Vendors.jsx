@@ -128,9 +128,9 @@ const Vendors = ({ user }) => {
         style={{ height: "fit-content" }}
       >
         {businesses.flat().length === 0 ? (
-          <Skeleton />
+          <Skeleton children={"Vendors are loading..."} />
         ) : searchState && generalSearch.length === 0 ? (
-          <Skeleton />
+          <Skeleton children={"Vendors are loading..."} />
         ) : searchState && generalSearch.length > 0 ? (
           generalSearch.map((element, index) => (
             <BusinessCard

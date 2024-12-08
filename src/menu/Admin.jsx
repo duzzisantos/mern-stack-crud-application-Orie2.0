@@ -8,6 +8,7 @@ import useGetRatings from "../api/useGetRatings";
 import useGetAllUserContent from "../api/useGetUserPosts";
 import useGetMessages from "../api/useGetMessages";
 import { BuildingsFill, PeopleFill, StarFill } from "react-bootstrap-icons";
+import Skeleton from "../reusable-comps/Skeleton";
 
 const Admin = ({ user }) => {
   const token = user.accessToken;
@@ -29,6 +30,8 @@ const Admin = ({ user }) => {
     );
   };
 
+  const commonClass = "pt-3 card-hover shadow-lg rounded border-5 border-info";
+
   return (
     <Container className="col-lg-9 col-sm-12 p-3 custom-pry-color">
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
@@ -41,38 +44,54 @@ const Admin = ({ user }) => {
         className="text-center gap-2 p-3 flex-lg-row flex-sm-column flex-md-column"
         id="admin-dashboard"
       >
-        <Col className="pt-3 shadow-lg rounded-bottom border-5 border-info shake-on-hover">
-          <small className="h6 fw-bold">
-            <PeopleFill className="text-info fs-1" /> Followers vs Following
-          </small>
-          <p className="mt-4 h5">
-            {followers[0]?.length}
-            {" : "} {following[0]?.length}
-          </p>
-        </Col>
-        <Col className="pt-3 shadow-lg rounded-bottom border-5 border-info shake-on-hover">
+        {!following.length && !followers.length ? (
+          <Skeleton />
+        ) : (
+          <Col className={commonClass}>
+            <small className="h6 fw-bold">
+              <PeopleFill className="text-info fs-1" /> Followers vs Following
+            </small>
+            <p className="mt-4 h5">
+              {followers[0]?.length}
+              {" : "} {following[0]?.length}
+            </p>
+          </Col>
+        )}
+        <Col className={commonClass}>
           <small className="h6 fw-bold">
             <StarFill className="text-warning fs-1" /> Average Rating
           </small>
-          <p className="mt-4 h5">
-            {isNaN(averageRating()) ? 0 : averageRating().toFixed(1)}
-          </p>
+          {!rating.length ? (
+            <Skeleton />
+          ) : (
+            <p className="mt-4 h5">
+              {isNaN(averageRating()) ? 0 : averageRating().toFixed(1)}
+            </p>
+          )}
         </Col>
-        <Col className="pt-3 shadow-lg rounded-bottom border-5 border-info shake-on-hover">
+        <Col className={commonClass}>
           <small className="h6 fw-bold">
             <BuildingsFill className="fs-1" /> Top Industry Interested
           </small>
           <p className="mt-4 h5">Fabrics</p>
         </Col>
       </Row>
-      <Row id="manage-wrapper gap-3">
-        <ManageBusiness biz={biz[0]} user={user} ratings={rating} />
-        <ManageFollowers
-          followers={followers}
-          content={userContent}
-          messages={messages}
-          user={user}
-        />
+      <Row id="manage-wrapper gap-3" className="mt-4">
+        {!rating.length && !biz[0]?.length ? (
+          <Skeleton children={"Business information loading..."} />
+        ) : (
+          <ManageBusiness biz={biz[0]} user={user} ratings={rating} />
+        )}
+        {!followers.length && !messages.length && !userContent.length ? (
+          <Skeleton children={"Followers information loading..."} />
+        ) : (
+          <ManageFollowers
+            followers={followers}
+            content={userContent}
+            messages={messages}
+            user={user}
+          />
+        )}
       </Row>
     </Container>
   );

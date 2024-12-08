@@ -1,4 +1,4 @@
-import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import SuggestedFollows from "../reusable-comps/SuggestedFollows";
 import Timeline from "../reusable-comps/Timeline";
 import CustomerHero from "../components/CustomerHero";
@@ -9,13 +9,13 @@ import useGetFollowers from "../api/useGetFollowers";
 import useGetFollowedContent from "../api/useGetFollowedPosts";
 import useGetCategories from "../api/useGetCategories";
 import useSuggestedFollows from "../api/useSuggestedFollows";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import useGetAllUserContent from "../api/useGetUserPosts";
 import ConnectSideMenu from "../components/ConnectSideMenu";
 import { List } from "react-bootstrap-icons";
+import Skeleton from "../reusable-comps/Skeleton";
 
 const Connect = ({ user }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const token = user.accessToken;
@@ -32,28 +32,6 @@ const Connect = ({ user }) => {
   const [latest, setLatest] = useState(true);
 
   const businessInfo = biz[0];
-
-  useEffect(() => {
-    if (
-      !biz ||
-      !following ||
-      !followers ||
-      !subscribedContent ||
-      !suggestedFollows ||
-      !categories ||
-      !userContent
-    ) {
-      setIsLoading(true);
-    }
-  }, [
-    biz,
-    followers,
-    following,
-    subscribedContent,
-    categories,
-    suggestedFollows,
-    userContent,
-  ]);
 
   //This helps us clear the suggested follows - until, some new values are added to the suggestedFollows array from the backend
   //Without this, an infinite loop occurs
@@ -77,8 +55,13 @@ const Connect = ({ user }) => {
 
   return (
     <>
-      {isLoading ? (
-        <Spinner animation="border" />
+      {allPosts.length === 0 ? (
+        <div
+          className="d-flex bottom-0 justify-content-center align-items-center mx-5"
+          style={{ height: "100vh" }}
+        >
+          <Skeleton children={"Posts and user content are loading..."} />
+        </div>
       ) : (
         <Container
           id="connect-page-wrapper"
@@ -167,11 +150,6 @@ const Connect = ({ user }) => {
                         isEdited={element.isEdited}
                       />
                     ))}
-                {allPosts.length < 1 && (
-                  <Alert variant="primary" className="border-0">
-                    Loading....
-                  </Alert>
-                )}
               </div>
             </div>
           </section>
