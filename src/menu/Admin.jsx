@@ -44,19 +44,20 @@ const Admin = ({ user }) => {
         className="text-center gap-2 p-3 flex-lg-row flex-sm-column flex-md-column"
         id="admin-dashboard"
       >
-        {!following.length && !followers.length ? (
-          <Skeleton />
-        ) : (
-          <Col className={commonClass}>
-            <small className="h6 fw-bold">
-              <PeopleFill className="text-info fs-1" /> Followers vs Following
-            </small>
+        <Col className={commonClass}>
+          <small className="h6 fw-bold">
+            <PeopleFill className="text-info fs-1" /> Followers vs Following
+          </small>
+          {!followers.length && !following.length ? (
+            <Skeleton />
+          ) : (
             <p className="mt-4 h5">
               {followers[0]?.length}
               {" : "} {following[0]?.length}
             </p>
-          </Col>
-        )}
+          )}
+        </Col>
+
         <Col className={commonClass}>
           <small className="h6 fw-bold">
             <StarFill className="text-warning fs-1" /> Average Rating

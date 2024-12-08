@@ -1,10 +1,5 @@
 import { Form } from "react-bootstrap";
-import {
-  BookFill,
-  CalendarFill,
-  PenFill,
-  PersonFill,
-} from "react-bootstrap-icons";
+import { BookFill, PenFill, PersonFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
@@ -20,11 +15,10 @@ function ReplyMessage({
   repliedBy,
   secondParty,
 }) {
-  const [replyDate, setReplyDate] = useState("");
   const [replyBody, setReplyBody] = useState("");
   const formData = Object.assign(
     {
-      replyDate: replyDate,
+      replyDate: new Date(Date.now()).toDateString(),
       replyBody: replyBody,
     },
     { repliedBy: repliedBy }
@@ -67,16 +61,6 @@ function ReplyMessage({
             </Form.Label>
             <Form.Control id="repliedBy" defaultValue={repliedBy} />
 
-            <Form.Label className="fw-bold" htmlFor="replyDate">
-              <CalendarFill /> Response Date
-            </Form.Label>
-            <input
-              type="date"
-              id="replyDate"
-              className="py-1 px-1 form-control"
-              value={replyDate}
-              onChange={(e) => setReplyDate(e.target.value)}
-            />
             <Form.Label className="fw-bold" htmlFor="replyBody">
               <BookFill /> Message
             </Form.Label>
@@ -100,7 +84,7 @@ function ReplyMessage({
           <Button
             className="custom-pry-border custom-pry"
             onClick={handleSubmit}
-            disabled={replyBody === "" || replyDate === "" || repliedBy === ""}
+            disabled={replyBody === "" || repliedBy === ""}
           >
             Send
           </Button>
