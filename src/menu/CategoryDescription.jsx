@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import ShoppingLady from "../images/shopping-lady.jpg";
 const CategoryDescription = () => {
   const { state } = useLocation();
 
@@ -11,40 +12,23 @@ const CategoryDescription = () => {
       <div className="col-12 justify-content-center bottom-0 h-100">
         <section className=" ps-4 gap-3 mt-3">
           <div className="d-flex flex-column gap-3 p-2">
-            <article className="col-12 p-4 shadow-sm">
-              <h3 className="h5">Lorem {state}</h3>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem mollitia consequatur obcaecati modi odit, natus
-              pariatur! Ratione itaque mollitia ab, velit quia culpa sint non
-              obcaecati voluptatum nihil excepturi quisquam.
+            <article
+              className="col-12 p-4 shadow-sm"
+              style={{
+                height: "450px",
+                backgroundImage: `url(${ShoppingLady})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <h3 className="h5">About {state}</h3>
+              This is one avenue we source from on this platform. Enjoy the
+              vendors as you surf through.
             </article>
-            <article className="col-12 p-4 shadow-sm">
-              <h3 className="h5">{state} Ipsum</h3>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-              sapiente rerum saepe beatae, quisquam laudantium ipsum, iure
-              nobis, provident aliquam architecto facilis reiciendis ab dolorum
-              accusantium iste! Quidem, rerum iste? Accusamus quisquam omnis
-              libero modi ipsam aliquid? Tempora quia iste vel eius libero
-              natus, aspernatur alias ipsa voluptates itaque quis aliquam labore
-              totam rerum amet sunt ea numquam debitis ipsum?
-            </article>
-            <article className="col-12 p-4 shadow-sm">
-              <h3 className="h5">Dolor {state}</h3>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Laudantium, quas beatae! Alias voluptatum pariatur vitae
-              exercitationem at modi, ipsum nisi laborum, suscipit eaque eos
-              numquam distinctio! Magni placeat recusandae pariatur! Adipisci
-              deleniti illo, quidem temporibus eligendi, optio voluptatibus
-              error et voluptatem asperiores quia nihil vitae saepe dolore
-              dolorum voluptates voluptatum ipsam. Sint cum iste libero facilis
-              esse ab minima nisi! Numquam, porro magnam. Laudantium amet
-              ducimus repudiandae iusto quos nemo sit esse odio cupiditate
-              doloremque quam consequatur libero fuga, ipsum nobis praesentium
-              alias perferendis beatae? Ea quos laborum quibusdam hic!
-            </article>
+
             <div className="col-12 d-flex flex-lg-row flex-sm-column gap-1 shadow-sm">
               <article className="col-lg-6 col-sm-12 col-md-10 p-4">
-                <h5>{state}</h5>
+                <h5>{state} introduction</h5>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Asperiores explicabo beatae praesentium, odio error voluptatibus
                 recusandae voluptate eius officiis pariatur nulla doloremque
@@ -59,7 +43,7 @@ const CategoryDescription = () => {
                 explicabo itaque ipsam corrupti. Sint?
               </article>
               <article className="col-lg-6 col-sm-12 col-md-10 p-4">
-                <h5>{state}</h5>
+                <h5>{state} more information</h5>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
                 dicta obcaecati nobis, harum quaerat aut ab expedita ea
                 sapiente, enim consequuntur at, error saepe quibusdam voluptates
