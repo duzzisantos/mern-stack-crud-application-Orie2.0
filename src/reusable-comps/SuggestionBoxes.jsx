@@ -1,7 +1,7 @@
 import { Card, CardBody, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const SuggestionBoxes = ({ title, user }) => {
+const SuggestionBoxes = ({ title, token }) => {
   const navigate = useNavigate();
 
   const handleVisit = () => {
@@ -12,7 +12,7 @@ const SuggestionBoxes = ({ title, user }) => {
     <Card className="col-lg-3 col-md-4 col-sm-4 shadow-sm border-0 rounded-0 d-flex justify-content-center p-3 card-hover suggestion-boxes">
       <h3 className="fs-5 fw-bold text-capitalize custom-pry-color">{title}</h3>
       <CardBody>
-        {user === undefined || !user ? (
+        {token === "" ? (
           <a href="/login" className="text-decoration-none">
             Explore
           </a>

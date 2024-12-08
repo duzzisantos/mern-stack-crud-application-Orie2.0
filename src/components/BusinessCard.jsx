@@ -101,7 +101,7 @@ const BusinessCard = ({
       {showModal && (
         <AddRatings
           show={showModal}
-          businessName={businessName}
+          businessEmail={grabEmail}
           handleClose={handleClose}
           user={user}
           secondParty={grabEmail}

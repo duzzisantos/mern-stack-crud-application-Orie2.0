@@ -5,6 +5,7 @@ import useGetAllRatings from "../api/useGetAllRatings";
 import { useLocation } from "react-router-dom";
 import BusinessCard from "../components/BusinessCard";
 import getGeneralSearch from "../api/useGeneralSearch";
+import Skeleton from "../reusable-comps/Skeleton";
 
 const Vendors = ({ user }) => {
   const [search, setSearch] = useState("");
@@ -14,7 +15,6 @@ const Vendors = ({ user }) => {
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
-
   const { businesses } = useGetBusinesses(user.accessToken);
   const { allRatings } = useGetAllRatings(user.accessToken);
 
@@ -53,6 +53,36 @@ const Vendors = ({ user }) => {
     return output;
   };
 
+  const searchMatches = () => {
+    const matches = businesses.flat().some((element) => {
+      const {
+        address,
+        businessName,
+        businessPhone,
+        category,
+        city,
+        email,
+        firstName,
+        lastName,
+        state,
+      } = element;
+
+      return (
+        search.toLowerCase().includes(address.toLowerCase()) ||
+        search.toLowerCase().includes(businessPhone.toLowerCase()) ||
+        search.toLowerCase().includes(businessName.toLowerCase()) ||
+        search.toLowerCase().includes(category.toLowerCase()) ||
+        search.toLowerCase().includes(city.toLowerCase()) ||
+        search.toLowerCase().includes(email.toLowerCase()) ||
+        search.toLowerCase().includes(firstName.toLowerCase()) ||
+        search.toLowerCase().includes(lastName.toLowerCase()) ||
+        search.toLowerCase().includes(state.toLowerCase())
+      );
+    });
+
+    return matches;
+  };
+
   return (
     <Container className=" col-lg-12 col-sm-12 p-3 custom-pry-color">
       <h1 className="fs-3 fw-bold col-9 mx-4">Vendors</h1>
@@ -68,6 +98,7 @@ const Vendors = ({ user }) => {
           <div className="col-12 d-flex flex-column">
             <Form.Control
               id="search-vendor"
+              type="search"
               className="w-100 py-3 rounded-0"
               placeholder="Eg: Car Tyres"
               value={search === "" && state !== "" ? state : search}
@@ -96,7 +127,42 @@ const Vendors = ({ user }) => {
         className=" p-4 d-flex gap-3 flex-lg-row flex-sm-column flex-wrap"
         style={{ height: "fit-content" }}
       >
-        {!searchState && businesses.length > 0 ? ( //render the initial view of selected vendors - especially those the current user is following
+        {businesses.flat().length === 0 ? (
+          <Skeleton />
+        ) : searchState && generalSearch.length === 0 ? (
+          <Skeleton />
+        ) : searchState && generalSearch.length > 0 ? (
+          generalSearch.map((element, index) => (
+            <BusinessCard
+              ratingScore={
+                averageRating(allRatings, element.email)
+                  .map((r) => r?.ratingStars)
+                  .reduce((y, z) => y + z, 0) /
+                averageRating(allRatings, element.email).length.toFixed(1)
+              }
+              key={index}
+              user={user}
+              businessCategory={element.category}
+              businessEmailAddress={element.email}
+              businessName={element.businessName}
+              address={element.address}
+              city={element?.city}
+              state={element?.state}
+              phone={element?.businessPhone}
+              photo={element.photo}
+              showModal={show}
+              handleClose={handleClose}
+              grabEmail={grabEmail}
+              handleShow={() => handleShow(element.email)}
+              handleCloseMessage={handleCloseMessage}
+              handleShowMessage={() => handleShowMessage(element.email)}
+              showMessageModal={showMessageModal}
+              secondParty={element.email}
+            />
+          ))
+        ) : searchMatches() === false && searchState && search ? (
+          <Alert>Search term was not found</Alert>
+        ) : (
           businesses
             .flat()
             .filter((biz) => biz.email !== user.email)
@@ -128,39 +194,6 @@ const Vendors = ({ user }) => {
                 showMessageModal={showMessageModal}
               />
             ))
-        ) : searchState && generalSearch.length > 0 ? (
-          generalSearch.map((element, index) => (
-            <BusinessCard
-              ratingScore={
-                averageRating(allRatings, element.email)
-                  .map((r) => r?.ratingStars)
-                  .reduce((y, z) => y + z, 0) /
-                averageRating(allRatings, element.email).length.toFixed(1)
-              }
-              key={index}
-              user={user}
-              businessCategory={element.category}
-              businessEmailAddress={element.email}
-              businessName={element.businessName}
-              address={element.address}
-              city={element?.city}
-              state={element?.state}
-              phone={element?.businessPhone}
-              photo={element.photo}
-              showModal={show}
-              handleClose={handleClose}
-              grabEmail={grabEmail}
-              handleShow={() => handleShow(element.email)}
-              handleCloseMessage={handleCloseMessage}
-              handleShowMessage={() => handleShowMessage(element.email)}
-              showMessageModal={showMessageModal}
-              secondParty={element.email}
-            />
-          ))
-        ) : (
-          <Alert variant="primary" className="fw-semibold col-12">
-            Please search vendors with appropriate terms.
-          </Alert>
         )}
       </div>
     </Container>

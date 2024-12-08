@@ -1,25 +1,24 @@
 import { Form } from "react-bootstrap";
-import { Book, BookFill, CalendarFill, StarFill } from "react-bootstrap-icons";
+import { Book, BookFill, StarFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
 import { getHost } from "../../helpers/getHost";
 
-function AddRatings({ show, handleClose, businessName, user, secondParty }) {
+function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
   const [ratingsTitle, setRatingsTitle] = useState("");
-  const [ratingsDate, setRatingsDate] = useState("");
   const [ratingStars, setRatingStars] = useState(0);
   const [ratingsContent, setRatingsContent] = useState("");
 
   const formData = {
     ratingStars: ratingStars,
     ratingsContent: ratingsContent,
-    ratingsDate: ratingsDate,
     ratingsTitle: ratingsTitle,
   };
 
   const postObject = Object.assign(formData, {
+    ratingsDate: new Date(Date.now()).toDateString(),
     clientUID: user.uid,
     ratedBy: user.email,
     ratingsOwner: secondParty,
@@ -47,7 +46,7 @@ function AddRatings({ show, handleClose, businessName, user, secondParty }) {
       >
         <Modal.Header closeButton>
           <Modal.Title className="h6">
-            <StarFill /> Ratings for: {businessName}
+            <StarFill /> Ratings for: {businessEmail}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -76,19 +75,6 @@ function AddRatings({ show, handleClose, businessName, user, secondParty }) {
               onChange={(e) => setRatingsTitle(e.target.value)}
             />
 
-            <Form.Label className="fw-bold" htmlFor="ratingsDate">
-              <CalendarFill /> Date
-            </Form.Label>
-            <input
-              type="date"
-              id="ratingsDate"
-              className="py-1 px-1 form-control"
-              value={ratingsDate}
-              onChange={(e) => setRatingsDate(e.target.value)}
-              min={new Date().toLocaleDateString()}
-              max={new Date().toLocaleDateString()}
-            />
-
             <Form.Label className="fw-bold" htmlFor="ratingsContent">
               <BookFill /> Content
             </Form.Label>
@@ -113,10 +99,7 @@ function AddRatings({ show, handleClose, businessName, user, secondParty }) {
             className="custom-pry-border custom-pry rounded-3"
             onClick={handleSubmit}
             disabled={
-              ratingStars === 0 ||
-              ratingsContent === "" ||
-              ratingsDate === "" ||
-              ratingsTitle === ""
+              ratingStars === 0 || ratingsContent === "" || ratingsTitle === ""
             }
           >
             Send

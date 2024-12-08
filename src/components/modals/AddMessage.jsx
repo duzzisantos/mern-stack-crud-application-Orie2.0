@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { Book, BookFill, CalendarFill, PenFill } from "react-bootstrap-icons";
+import { Book, BookFill, PenFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
@@ -8,17 +8,15 @@ import { getHost } from "../../helpers/getHost";
 
 function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
   const [messageSubject, setMessageSubject] = useState("");
-  const [messageDate, setMessageDate] = useState("");
-
   const [messageContent, setMessageContent] = useState("");
 
   const formData = {
     messageBody: messageContent,
-    sendDate: messageDate,
     subject: messageSubject,
   };
 
   const postObject = Object.assign(formData, {
+    sendDate: new Date(Date.now()).toDateString(),
     clientUID: user.uid,
     sender: user.email,
     receiver: businessEmail,
@@ -63,18 +61,6 @@ function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
               onChange={(e) => setMessageSubject(e.target.value)}
             />
 
-            <Form.Label className="fw-bold" htmlFor="messageDate">
-              <CalendarFill /> Date
-            </Form.Label>
-            <input
-              type="date"
-              id="messageDate"
-              className="py-1 px-1 form-control"
-              value={messageDate}
-              onChange={(e) => setMessageDate(e.target.value)}
-              min={new Date().toLocaleDateString()}
-              max={new Date().toLocaleDateString()}
-            />
             <Form.Label className="fw-bold" htmlFor="messageContent">
               <BookFill /> Message
             </Form.Label>
@@ -99,11 +85,7 @@ function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
             className="custom-pry-border custom-pry rounded-3"
             type="submit"
             onClick={handleSubmit}
-            disabled={
-              messageContent === "" ||
-              messageDate === "" ||
-              messageSubject === ""
-            }
+            disabled={messageContent === "" || messageSubject === ""}
           >
             Send
           </Button>
