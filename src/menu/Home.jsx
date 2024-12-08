@@ -13,10 +13,10 @@ import getNarrowSearch from "../api/useNarrowSearch";
 import useGetAllRatings from "../api/useGetAllRatings";
 import RenderResults from "../components/landing-page/RenderResults";
 import useGetGroupedBusinesses from "../api/useGetGroupedBusinesses";
+import Skeleton from "../reusable-comps/Skeleton";
 
 const Home = ({ user }) => {
   const [search, setSearch] = useState("");
-
   const [searchState, setSearchState] = useState(false);
   const [city, setCity] = useState("");
   const [region, setRegion] = useState("");
@@ -80,8 +80,10 @@ const Home = ({ user }) => {
     return output;
   };
 
+  console.log(user);
+
   return (
-    <div className="col-12 px-0 custom-pry-color">
+    <div className="col-12 px-0 custom-pry-color overflow-x-hidden">
       {!user && window.location.pathname === "/" ? (
         <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top bg-light">
           <Container className="d-flex justify-content-between bg-light">
@@ -168,6 +170,15 @@ const Home = ({ user }) => {
           grabEmail={grabEmail}
           handleCloseMessage={handleCloseMessage}
           handleShowMessage={handleShowMessage}
+          handleReset={() => {
+            setNarrowSearch([]);
+            setRegion("");
+            setCity("");
+            setCategory("");
+            setSearchState(false);
+            setGeneralSearch([]);
+            setSearch("");
+          }}
         />
       </section>
       <section
@@ -177,9 +188,13 @@ const Home = ({ user }) => {
         <h2 className="fw-bold">Popular categories</h2>
         <div className="col-9 justify-content-center bottom-0 h-100">
           <div className="d-flex flex-wrap gap-3 text-center mt-3">
-            {categories.map((el, i) => (
-              <SuggestionBoxes key={i} title={el} />
-            ))}
+            {categories.length === 0 ? (
+              <Skeleton />
+            ) : (
+              categories.map((el, i) => (
+                <SuggestionBoxes key={i} title={el} user={user} />
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -191,9 +206,13 @@ const Home = ({ user }) => {
         <h2 className="fw-bold">Popular regions</h2>
         <div className="col-9 justify-content-center bottom-0 h-100">
           <div className="d-flex flex-wrap gap-3 text-center mt-3">
-            {regions.map((el, i) => (
-              <SuggestionBoxes key={i} title={el} />
-            ))}
+            {regions.length === 0 ? (
+              <Skeleton />
+            ) : (
+              regions.map((el, i) => (
+                <SuggestionBoxes key={i} title={el} user={user} />
+              ))
+            )}
           </div>
         </div>
       </section>

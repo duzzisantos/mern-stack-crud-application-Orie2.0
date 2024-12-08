@@ -167,8 +167,9 @@ button[role="tab"] {
 }
 
 /* Create a class for the shake animation */
-.shake-on-hover:hover {
-  animation: shake 0.5s linear;
+.card-hover:hover {
+  cursor: pointer !important;
+  border: 1px solid #153f66 !important;
 }
 
 @keyframes bigger {

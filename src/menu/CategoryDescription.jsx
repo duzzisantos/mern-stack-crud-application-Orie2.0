@@ -6,11 +6,10 @@ const CategoryDescription = () => {
   return (
     <Container className="col-12 p-3 custom-pry-color">
       <div className="px-4 mx-2">
-        <h1 className="fs-3 fw-bold col-9">View Categories</h1>
+        <h1 className="fs-3 fw-bold col-9">{state}</h1>
       </div>
       <div className="col-12 justify-content-center bottom-0 h-100">
         <section className=" ps-4 gap-3 mt-3">
-          <h2 className="h4 mx-2">{state}</h2>
           <div className="d-flex flex-column gap-3 p-2">
             <article className="col-12 p-4 shadow-sm">
               <h3 className="h5">Lorem {state}</h3>
