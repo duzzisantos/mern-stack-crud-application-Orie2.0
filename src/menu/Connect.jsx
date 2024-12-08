@@ -14,6 +14,8 @@ import useGetAllUserContent from "../api/useGetUserPosts";
 import ConnectSideMenu from "../components/ConnectSideMenu";
 import { List } from "react-bootstrap-icons";
 import Skeleton from "../reusable-comps/Skeleton";
+import { advertContent } from "../advertContent";
+import AdvertBox from "../reusable-comps/AdvertBox";
 
 const Connect = ({ user }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -171,10 +173,23 @@ const Connect = ({ user }) => {
                       secondPartyEmail={item.userEmail}
                     />
                   ))}
-              <div className="py-2 px-4 my-3 rounded-0">
-                <span className="smaller-text custom-pry-color fw-semibold">
-                  Advert
+              <div className="py my-2 rounded-0">
+                <span className="smaller-text custom-pry-color fw-normal">
+                  Sponsored
                 </span>
+                <div className="my-2 d-flex flex-column gap-3">
+                  {advertContent.map((el, index) => {
+                    const { title, content, image } = el;
+                    return (
+                      <AdvertBox
+                        key={index}
+                        title={title}
+                        content={content}
+                        image={image}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </section>
