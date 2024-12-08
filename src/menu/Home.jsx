@@ -104,7 +104,7 @@ const Home = ({ user }) => {
               </a>
               <a
                 href="/login"
-                className="text-decoration-none custom-pry-color"
+                className="text-decoration-none custom-pry text-light btn btn-sm fw-bold"
               >
                 Login
               </a>

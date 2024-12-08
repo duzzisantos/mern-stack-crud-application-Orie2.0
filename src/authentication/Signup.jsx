@@ -7,7 +7,7 @@ import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
-import loginPage from "../images/dugam-print.png";
+import loginPage from "../images/konigsstrasse.jpg";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -99,6 +99,7 @@ const Signup = () => {
             </div>
             <Button
               size="md"
+              disabled={password === "" || email === "" || name === ""}
               className="mt-4 d-block bg-primary-subtle text-dark border-0"
               onClick={() => {
                 register();

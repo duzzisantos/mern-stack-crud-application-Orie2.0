@@ -4,7 +4,7 @@ import { ArrowLeft } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import loginPage from "../images/dugam-print.png";
+import loginPage from "../images/konigsstrasse.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -67,6 +67,7 @@ const Login = () => {
                 navigate("/home");
               }}
               title="Login"
+              disabled={password === "" || email === ""}
             >
               Login
             </Button>
