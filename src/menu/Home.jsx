@@ -80,6 +80,8 @@ const Home = ({ user }) => {
     return output;
   };
 
+  console.log(user);
+
   return (
     <div className="col-12 px-0 custom-pry-color overflow-x-hidden">
       {!user && window.location.pathname === "/" ? (
@@ -190,11 +192,7 @@ const Home = ({ user }) => {
               <Skeleton children={"Categories loading..."} />
             ) : (
               categories.map((el, i) => (
-                <SuggestionBoxes
-                  key={i}
-                  title={el}
-                  user={token ?? user.accessToken}
-                />
+                <SuggestionBoxes key={i} title={el} user={user} />
               ))
             )}
           </div>
@@ -212,11 +210,7 @@ const Home = ({ user }) => {
               <Skeleton children={"Regions loading..."} />
             ) : (
               regions.map((el, i) => (
-                <SuggestionBoxes
-                  key={i}
-                  title={el}
-                  user={token ?? user.accessToken}
-                />
+                <SuggestionBoxes key={i} title={el} user={user} />
               ))
             )}
           </div>
