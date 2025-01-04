@@ -16,7 +16,7 @@ const SuggestionBoxes = ({ title, user }) => {
           <a href="/login" className="text-decoration-none">
             Explore
           </a>
-        ) : (
+        ) : user ? (
           <Button
             variant="transparent"
             className="text-primary border-0"
@@ -24,7 +24,7 @@ const SuggestionBoxes = ({ title, user }) => {
           >
             Explore
           </Button>
-        )}
+        ) : null}
       </CardBody>
     </Card>
   );

@@ -44,7 +44,10 @@ function App() {
                 <Route path="register" element={<Register user={user} />} />
                 <Route path="vendors" element={<Vendors user={user} />} />
                 <Route path="connect" element={<Connect user={user} />} />
-                <Route path="categories" element={<Categories />}></Route>
+                <Route
+                  path="categories"
+                  element={<Categories user={user} />}
+                ></Route>
                 <Route
                   path="view-categories"
                   element={<CategoryDescription />}
