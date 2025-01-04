@@ -1,7 +1,9 @@
 import { useState, useMemo, useCallback } from "react";
 import useGetBusinesses from "../api/useGetBusinesses";
+import useGetRegions from "../api/useGetRegion";
 export const useVendorItems = (user, state) => {
   const { businesses } = useGetBusinesses(user?.accessToken);
+  const { regions } = useGetRegions(user?.accessToken);
 
   //Return businesses according to category
   const vendors = useCallback(() => {
@@ -13,6 +15,11 @@ export const useVendorItems = (user, state) => {
     });
     return result;
   }, [businesses, state]);
+
+  //return unique business category list
+  const vendorCategories = useCallback(() => {
+    return [...new Set(businesses.flat().map((el) => el.category))];
+  }, [businesses]);
 
   //define table columns
   // eslint-disable-next-line no-unused-vars
@@ -44,6 +51,8 @@ export const useVendorItems = (user, state) => {
     colDefs,
     rowSelection,
     vendors,
+    vendorCategories,
+    regions,
     pagination,
     pageSize,
     pageSizeSelector,

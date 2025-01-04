@@ -1,19 +1,16 @@
 import React from "react";
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
-import { useVendorItems } from "../hooks/useVendorItems";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const VendorListByCategory = ({ user, state }) => {
-  const {
-    vendors,
-    rowSelection,
-    colDefs,
-    pageSize,
-    pageSizeSelector,
-    pagination,
-  } = useVendorItems(user, state);
-
+const VendorListByCategory = ({
+  vendors,
+  colDefs,
+  rowSelection,
+  pagination,
+  pageSize,
+  pageSizeSelector,
+}) => {
   return (
     <div style={{ height: 500 }}>
       <AgGridReact
