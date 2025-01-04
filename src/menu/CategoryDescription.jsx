@@ -1,7 +1,8 @@
 import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import ShoppingLady from "../images/shopping-lady.jpg";
-const CategoryDescription = () => {
+import VendorListByCategory from "../tables/VendorListByCategory";
+const CategoryDescription = ({ user }) => {
   const { state } = useLocation();
 
   return (
@@ -58,6 +59,10 @@ const CategoryDescription = () => {
               </article>
             </div>
           </div>
+        </section>
+        <section className="mt-5 ps-3 mx-3 gap-3">
+          <h3 className="fw-bold my-3">Vendors in {state}</h3>
+          <VendorListByCategory user={user} state={state} />
         </section>
       </div>
     </Container>

@@ -22,6 +22,7 @@ function App() {
   const [user] = useAuthState(auth);
   const { pathname } = window.location;
 
+  //wrap everything with a user context to avoid too many prop drills
   return (
     <BrowserRouter>
       <div className="App vh-100">
@@ -50,7 +51,7 @@ function App() {
                 ></Route>
                 <Route
                   path="view-categories"
-                  element={<CategoryDescription />}
+                  element={<CategoryDescription user={user} />}
                 />
                 <Route path="admin/*" element={<Admin user={user} />} />
                 <Route
