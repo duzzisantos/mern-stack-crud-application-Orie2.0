@@ -12,7 +12,7 @@ const VendorListByCategory = ({
   pageSizeSelector,
 }) => {
   return (
-    <div style={{ height: 500 }}>
+    <div style={{ height: 500 }} className="table-small">
       <AgGridReact
         rowData={vendors()}
         columnDefs={colDefs}

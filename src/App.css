@@ -237,6 +237,14 @@ button[role="tab"] {
   #customer-hero {
     display: none !important;
   }
+
+  .stack-categories {
+    flex-wrap: wrap !important;
+  }
+
+  .table-small {
+    width: max-content !important;
+  }
 }
 
 @media screen and (max-width: 800px) {

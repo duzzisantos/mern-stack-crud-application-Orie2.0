@@ -65,35 +65,26 @@ const CategoryDescription = ({ user }) => {
               vendors as you surf through.
             </article>
 
-            <div className="col-12 d-flex flex-lg-row flex-sm-column gap-1 shadow-sm">
+            <div className="col-12 d-flex flex-lg-row flex-sm-column stack-categories gap-1 shadow-sm">
               <article className="col-lg-6 col-sm-12 col-md-10 p-4">
                 <h5>{currentState} introduction</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Asperiores explicabo beatae praesentium, odio error voluptatibus
-                recusandae voluptate eius officiis pariatur nulla doloremque
-                enim, aspernatur totam tempora veniam excepturi expedita
-                aperiam? Necessitatibus distinctio, labore voluptas laboriosam
-                fuga in iusto obcaecati temporibus vitae excepturi velit quis
-                reprehenderit accusamus minima magni aperiam dignissimos nam
-                error placeat vel dicta hic libero autem officiis. Alias!
-                Dolorem hic voluptatem nobis adipisci repudiandae accusamus quas
-                odit facilis, officiis incidunt totam cum tenetur neque
-                molestias vel aliquam ex quod magnam dolor sequi maiores
-                explicabo itaque ipsam corrupti. Sint?
+                Find businesses and services faster than ever before. Easily
+                search, compare, and connect with trusted providers. Access a
+                comprehensive directory for local and global needs. Save time
+                with instant results and tailored recommendations. Perfect for
+                personal use or boosting your business visibility. Discover
+                reviews, contact details, and more in one place. Join the Dugam
+                community today and simplify your search.
               </article>
               <article className="col-lg-6 col-sm-12 col-md-10 p-4">
                 <h5>{currentState} more information</h5>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-                dicta obcaecati nobis, harum quaerat aut ab expedita ea
-                sapiente, enim consequuntur at, error saepe quibusdam voluptates
-                atque? Illo, rerum tempore. Ratione culpa eos non quae soluta
-                inventore possimus magni quidem eius, quod molestias
-                praesentium, minima, in ipsa. Neque doloribus cum dicta
-                molestias qui aperiam. Assumenda unde minus ea laboriosam eum.
-                Illo tempora aliquam ipsum repudiandae? Rem atque velit quis
-                corrupti, esse rerum reiciendis distinctio deserunt qui modi
-                molestiae omnis aperiam repellat quia alias reprehenderit cum
-                minus! Facere culpa molestias sunt.
+                Quickly find businesses and services near you. Search smarter
+                with a streamlined, user-friendly experience. From local shops
+                to global providers, it's all here. Compare options, read
+                reviews, and make informed decisions. Boost your business by
+                connecting with new customers. Save time and effort with Dugam’s
+                powerful search tools. Join thousands already discovering more
+                with Dugam. Start exploring today—Dugam makes it simple.
               </article>
             </div>
           </div>
