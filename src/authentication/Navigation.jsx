@@ -72,7 +72,7 @@ const Navigation = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      className="py-1 custom-pry py-4"
+      className="py-1 custom-pry py-2"
       sticky="top"
     >
       <Container className="col-lg-9 col-sm-12 pe-0">

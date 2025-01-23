@@ -154,10 +154,6 @@ button[role="tab"] {
   border-radius: 10px;
 }
 
-.rating-stars {
-  color: #fddf7c !important;
-}
-
 /* Define the keyframes for the shake animation */
 @keyframes shake {
   0% {
