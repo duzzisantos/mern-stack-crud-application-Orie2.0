@@ -26,7 +26,7 @@ const MessagesTemplate = ({
         <h2 className="fs-6 fw-bold text-capitalize">{subject}</h2>
         <div className="d-flex vstack gap-1 smaller-text text-secondary">
           {sender === user.email ? (
-            <small className="text-info fw-bold">Sent</small>
+            <small className="text-primary fw-bold">Sent</small>
           ) : (
             <small className="text-primary fw-bold">Received</small>
           )}
@@ -46,7 +46,7 @@ const MessagesTemplate = ({
               size="sm"
               about="To reply a message"
               title="Reply message"
-              className={`custom-pry rounded-3 custom-pry-border`}
+              className={`custom-pry rounded-3 text-dark custom-pry-border`}
               onClick={() => setShow(!show)}
             >
               Follow up

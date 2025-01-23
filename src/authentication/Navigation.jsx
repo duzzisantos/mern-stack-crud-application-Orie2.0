@@ -72,45 +72,41 @@ const Navigation = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      className="py-1 custom-pry"
+      className="py-1 custom-pry py-4"
       sticky="top"
     >
       <Container className="col-lg-9 col-sm-12 pe-0">
-        <Navbar.Brand
-          as={Link}
-          to="home"
-          className="fs-5 text-light mx-1 fw-bold"
-        >
-          Dugam {"   "}
+        <Navbar.Brand as={Link} to="home" className="fw-bold mx-0">
+          Dugam{"   "}
         </Navbar.Brand>
         <Navbar.Toggle
-          className="text-bg-light me-sm-2 me-md-2 btn-outline-light text-light"
+          className="text-bg-light me-sm-2 me-md-2 btn-outline-light"
           id="hamburger"
         />
         <Navbar.Collapse>
           <Nav className="me-auto flex-lg-row flex-md-column flex-sm-column">
-            <Nav.Link as={Link} to="home" className="text-light">
+            <Nav.Link as={Link} to="home">
               <HouseUpFill /> Home
             </Nav.Link>
-            <Nav.Link as={Link} to="register" className="text-light">
+            <Nav.Link as={Link} to="register">
               <PencilSquare /> Add Business
             </Nav.Link>
-            <Nav.Link as={Link} to="vendors" className="text-light">
+            <Nav.Link as={Link} to="vendors">
               <CartCheckFill /> Vendors
             </Nav.Link>
-            <Nav.Link as={Link} to="connect" className="text-light">
+            <Nav.Link as={Link} to="connect">
               <PlusCircleFill /> Connect
             </Nav.Link>
-            <Nav.Link as={Link} to="categories" className="text-light">
+            <Nav.Link as={Link} to="categories">
               <Window /> Categories
             </Nav.Link>
-            <Nav.Link as={Link} to="admin" className="text-light">
+            <Nav.Link as={Link} to="admin">
               <BuildingUp /> My Business
             </Nav.Link>
           </Nav>
 
           <NavDropdown
-            className="mx-lg-auto col-sm-2 col-md-1 text-light p-2"
+            className="mx-lg-auto col-lg-3 col-sm-2 col-md-2 p-2"
             title="Profile"
           >
             <div className="p-2 smaller-text mx-1">
@@ -122,7 +118,7 @@ const Navigation = () => {
               </p>
               <Button
                 size="sm"
-                className="btn btn-secondary text-light mx-auto w-100 btn-outline-danger border-0"
+                className="btn btn-warning mx-auto w-100 border-0"
                 onClick={() => {
                   logout();
                   navigate("/");

@@ -156,7 +156,7 @@ const Connect = ({ user }) => {
             </div>
           </section>
           <section className=" mt-3 mb-5 px-0 shadow-sm vstack rounded-top-2">
-            <div className="bg-primary-subtle rounded-top bg-opacity-10 w-100 px-3 py-2">
+            <div className="rounded-top bg-opacity-10 w-100 px-3 py-2">
               <h2 className="fs-6 fw-semibold">Suggestions</h2>
             </div>
             <div className="col-12 px-3 gap-3 vstack">
@@ -174,8 +174,14 @@ const Connect = ({ user }) => {
                     />
                   ))}
               <div className="py my-2 rounded-0">
-                <span className="smaller-text custom-pry-color fw-normal">
-                  Sponsored
+                <span className="smaller-text fw-normal">
+                  Sponsored{" "}
+                  <button
+                    className="rounded-5 bg-transparent border-0 fw-bolder"
+                    title="These are sponsored content from our channel partners"
+                  >
+                    ?
+                  </button>
                 </span>
                 <div className="my-2 d-flex flex-column gap-3">
                   {advertContent.map((el, index) => {

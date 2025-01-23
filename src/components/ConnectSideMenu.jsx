@@ -7,9 +7,7 @@ function ConnectSideMenu({ children, show, setShow }) {
     <>
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className="custom-pry-color fw-bolder">
-            Connect
-          </Offcanvas.Title>
+          <Offcanvas.Title className=" fw-bolder">Connect</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>{children}</Offcanvas.Body>
       </Offcanvas>

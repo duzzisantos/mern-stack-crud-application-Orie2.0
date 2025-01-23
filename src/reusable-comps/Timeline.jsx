@@ -71,7 +71,7 @@ const Timeline = ({
   const hasLikes = likes?.some((content) => content.isLiked);
 
   return (
-    <Card className="p-2 col-12 border-0 shadow-sm rounded-0 custom-pry-color">
+    <Card className="p-2 col-12 border-0 shadow-sm rounded-0">
       <fieldset className="d-flex flex-column px-2">
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-start hstack gap-3">
@@ -95,17 +95,12 @@ const Timeline = ({
             <div className="d-flex flex-column">
               <small className="fw-bold mt-2">
                 {authorName} {"  "}
-                <CheckCircleFill
-                  className="custom-pry-color"
-                  title={`${authorName} is verified`}
-                />
+                <CheckCircleFill title={`${authorName} is verified`} />
               </small>
 
               <div className={`d-flex gap-${businessCategory ? "2" : "0"}`}>
                 {" "}
-                <small className="custom-pry-color">
-                  {businessCategory ?? ""}
-                </small>
+                <small>{businessCategory ?? ""}</small>
                 {businessCategory && isEdited ? " | " : ""}
                 {isEdited && <small className="text-secondary">Edited</small>}
               </div>

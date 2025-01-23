@@ -82,7 +82,7 @@ function AddMessage({ show, handleClose, businessName, businessEmail, user }) {
             Cancel
           </Button>
           <Button
-            className="custom-pry-border custom-pry rounded-3"
+            className="custom-pry-border custom-pry text-dark rounded-3"
             type="submit"
             onClick={handleSubmit}
             disabled={messageContent === "" || messageSubject === ""}

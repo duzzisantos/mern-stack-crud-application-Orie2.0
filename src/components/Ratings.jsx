@@ -22,7 +22,7 @@ const RatingsTemplate = ({
 
       <small>
         {[...Array(ratingStars).keys()].map((item) => (
-          <StarFill key={item} className="text-warning" />
+          <StarFill key={item} className="custom-pry-color" />
         ))}
       </small>
       <p>{ratingsContent}</p>

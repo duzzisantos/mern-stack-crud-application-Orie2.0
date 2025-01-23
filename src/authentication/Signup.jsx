@@ -7,7 +7,7 @@ import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import axios from "axios";
 import { getHost } from "../helpers/getHost";
-import loginPage from "../images/konigsstrasse.jpg";
+import loginPage from "../images/shopping-lady.jpg";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -58,13 +58,7 @@ const Signup = () => {
       </div>
 
       <Row className="custom-pry">
-        <Col
-          lg={3}
-          md={6}
-          sm={12}
-          xs={12}
-          className="border-end border-5 border-success-subtle border-top"
-        >
+        <Col lg={3} md={6} sm={12} xs={12}>
           <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-light">
             <div className="justify-content-start d-flex flex-column">
               <h3 className="fw-bold">Sign up to Dugam</h3>
@@ -100,7 +94,7 @@ const Signup = () => {
             <Button
               size="md"
               disabled={password === "" || email === "" || name === ""}
-              className="mt-4 d-block bg-primary-subtle text-dark border-0"
+              className="mt-4 d-block bg-dark border-0"
               onClick={() => {
                 register();
                 handleRegisterClient();
@@ -109,10 +103,13 @@ const Signup = () => {
             >
               Signup
             </Button>
-            <a href="/login" className="btn btn-outline-light mt-4">
+            <a
+              href="/login"
+              className="btn bg-transparent border text-dark border-dark mt-4"
+            >
               Already have an account? Login
             </a>{" "}
-            <article className="mt-5 text-light">
+            <article className="mt-5">
               <h2 className="h6 fw-bold">About Dugam</h2>
               Dugam is a business directory platform that connects potential and
               actual buyers with registered vendors. It seeks to provide a

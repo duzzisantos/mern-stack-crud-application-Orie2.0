@@ -46,7 +46,9 @@ const ManageFollowers = ({
                   />
                 ))
             ) : (
-              <Alert className="border-0">No messages to see yet.</Alert>
+              <Alert variant="warning" className="border-0">
+                No messages to see yet.
+              </Alert>
             )}
           </Tab>
         </Tabs>

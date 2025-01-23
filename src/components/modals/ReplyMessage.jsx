@@ -82,7 +82,7 @@ function ReplyMessage({
             Cancel
           </Button>
           <Button
-            className="custom-pry-border custom-pry"
+            className="custom-pry-border text-dark custom-pry"
             onClick={handleSubmit}
             disabled={replyBody === "" || repliedBy === ""}
           >

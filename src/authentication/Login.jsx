@@ -27,13 +27,7 @@ const Login = () => {
         </a>
       </div>
       <Row className="custom-pry">
-        <Col
-          lg={3}
-          md={6}
-          sm={12}
-          xs={12}
-          className="border-end border-5 border-success-subtle border-top"
-        >
+        <Col lg={3} md={6} sm={12} xs={12}>
           <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-light">
             <div className="justify-content-start d-flex flex-column">
               <h1 className="fw-bold h3">Login to Dugam</h1>
@@ -61,7 +55,7 @@ const Login = () => {
 
             <Button
               size="md"
-              className="mt-4 d-block bg-primary-subtle text-dark border-0"
+              className="mt-4 d-block bg-dark border-0"
               onClick={() => {
                 logInWithEmailAndPassword(email, password);
                 navigate("/home");
@@ -72,11 +66,14 @@ const Login = () => {
               Login
             </Button>
 
-            <a className="btn btn-outline-light mt-4" href={`/signup`}>
+            <a
+              className="btn bg-transparent text-dark border border-dark mt-4"
+              href={`/signup`}
+            >
               Don't have an account?
             </a>
 
-            <article className="mt-5 text-light">
+            <article className="mt-5">
               <h2 className="h6 fw-bold">About Dugam</h2>
               Dugam is a business directory platform that connects potential and
               actual buyers with registered vendors. It seeks to provide a

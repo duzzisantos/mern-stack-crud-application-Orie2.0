@@ -96,7 +96,7 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
             Cancel
           </Button>
           <Button
-            className="custom-pry-border custom-pry rounded-3"
+            className="custom-pry-border custom-pry text-dark  rounded-3"
             onClick={handleSubmit}
             disabled={
               ratingStars === 0 || ratingsContent === "" || ratingsTitle === ""

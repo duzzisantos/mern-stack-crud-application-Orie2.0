@@ -94,15 +94,12 @@ const Home = ({ user }) => {
             </Navbar.Brand>
             <Navbar.Toggle />
             <Nav className="fw-bold hstack gap-3">
-              <a
-                href="/signup"
-                className="text-decoration-none custom-pry-color"
-              >
+              <a href="/signup" className="text-decoration-none text-dark">
                 Signup
               </a>
               <a
                 href="/login"
-                className="text-decoration-none custom-pry text-light btn btn-sm fw-bold"
+                className="text-decoration-none custom-pry btn btn-sm fw-bold"
               >
                 Login
               </a>

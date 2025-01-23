@@ -30,10 +30,10 @@ const Admin = ({ user }) => {
     );
   };
 
-  const commonClass = "pt-3 card-hover shadow-lg rounded border-5 border-info";
+  const commonClass = "pt-3 card-hover shadow-sm rounded border-5 border-info";
 
   return (
-    <Container className="col-lg-9 col-sm-12 p-3 custom-pry-color">
+    <Container className="col-lg-9 col-sm-12 p-3">
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
 
       <Row

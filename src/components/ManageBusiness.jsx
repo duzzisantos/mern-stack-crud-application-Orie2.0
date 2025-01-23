@@ -31,7 +31,7 @@ const ManageBusiness = ({ commonBiggerBoxclasses, biz, ratings, user }) => {
       <div className="px-2">
         <Tabs className="mb-3">
           <Tab eventKey="details" title="Details">
-            <Card className="border-0 custom-pry-color">
+            <Card className="border-0">
               <Card.Header className="d-flex justify-content-between bg-transparent border rounded-0">
                 <h6>Manage General Details</h6>
                 <Button

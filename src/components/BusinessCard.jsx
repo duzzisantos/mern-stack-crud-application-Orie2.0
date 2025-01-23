@@ -39,7 +39,7 @@ const BusinessCard = ({
       <Card
         className={`col-lg-${
           isModal ? 12 : 4
-        } col-sm-12  shadow-sm border-0  rounded-0 custom-pry-color shake-on-hover business-card`}
+        } col-sm-12  shadow-sm border-0  rounded-0  shake-on-hover business-card`}
         style={{ height: "fit-content" }}
       >
         <Card.Header className="bg-transparent border-0 d-flex hstack justify-content-between">
@@ -50,7 +50,7 @@ const BusinessCard = ({
         <Card.Body>
           <section className="border-4 border-bottom border-primary-subtle mb-2">
             <Button
-              className="btn btn-sm bg-primary-subtle custom-pry-color border-0 mb-2"
+              className="btn btn-sm bg-warning text-dark  border-0 mb-2"
               onClick={() => setShowImages(!showImages)}
             >
               <ImageFill /> View Photos
@@ -81,7 +81,7 @@ const BusinessCard = ({
             <div className="d-flex justify-content-end gap-2 mt-4">
               <Button
                 size="sm"
-                className="custom-pry px-2 custom-pry-border rounded-3"
+                className="custom-pry px-2 custom-pry-border text-dark rounded-3"
                 onClick={handleShowMessage}
               >
                 Send message

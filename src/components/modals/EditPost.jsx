@@ -76,9 +76,7 @@ const EditPost = ({
           size="lg"
         >
           <Modal.Header closeButton>
-            <Modal.Title className="custom-pry-color h5">
-              Editing post
-            </Modal.Title>
+            <Modal.Title className=" text-dark h5">Editing post</Modal.Title>
           </Modal.Header>
           <Modal.Body className="custom-pry-color">
             <Form className="p-0 rounded-2 mb-2 vstack gap-2">
@@ -127,7 +125,7 @@ const EditPost = ({
                 <Button
                   size="sm"
                   type="button"
-                  className="custom-pry text-light border-0 rounded-3"
+                  className="custom-pry text-dark border-0 rounded-3"
                   disabled={fileSize > 100000 || message === ""}
                   onClick={handleSubmit}
                 >

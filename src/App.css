@@ -3,12 +3,15 @@
 
 * {
   font-family: "Helvetica Neue", "Arial", sans-serif;
+  color: black;
 }
+
 .App {
   height: fit-content;
   width: 100%;
   color: rgba(0, 0, 0, 0.9) !important;
 }
+
 .not-allowed-cursor {
   cursor: not-allowed !important;
 }
@@ -21,19 +24,19 @@
 }
 
 .custom-pry {
-  background-color: #153f66 !important;
+  background-color: #ffd400 !important;
 }
 
 .custom-pry-border {
-  border: 1.5px solid #153f66 !important;
+  border: 1.5px solid #ffd400 !important;
 }
 
 .custom-pry-color {
-  color: #153f66 !important;
+  color: #ffd400;
 }
 
 .custom-link:hover {
-  color: #153f66 !important;
+  color: #ffd400 !important;
 }
 
 .social-button-1:hover {
@@ -64,6 +67,10 @@
   height: fit-content !important;
 }
 
+.nav-tabs .nav-link {
+  color: black !important;
+}
+
 li {
   list-style-type: none !important;
 }
@@ -72,7 +79,7 @@ ul ol {
   list-style-type: circle !important;
 }
 button[role="tab"] {
-  color: #153f66 !important;
+  color: #ffc400 !important;
   border-radius: 0% !important;
 }
 
@@ -147,6 +154,10 @@ button[role="tab"] {
   border-radius: 10px;
 }
 
+.rating-stars {
+  color: #fddf7c !important;
+}
+
 /* Define the keyframes for the shake animation */
 @keyframes shake {
   0% {
@@ -169,7 +180,7 @@ button[role="tab"] {
 /* Create a class for the shake animation */
 .card-hover:hover {
   cursor: pointer !important;
-  border: 1px solid #153f66 !important;
+  border: 1px solid #ffc400 !important;
 }
 
 @keyframes bigger {

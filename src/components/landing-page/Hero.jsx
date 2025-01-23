@@ -1,4 +1,4 @@
-import Hero from "../../images/konigsstrasse.jpg";
+import Hero from "../../images/shopping-lady.jpg";
 
 const HeroArea = () => {
   return (
@@ -13,7 +13,7 @@ const HeroArea = () => {
       }}
       className="d-flex flex-column justify-content-center align-items-center bottom-0"
     >
-      <h1 className="text-center text-light fw-bolder">
+      <h1 className="text-center text-white fw-bolder">
         Start connecting with vendors from your city or region today.
       </h1>
     </div>

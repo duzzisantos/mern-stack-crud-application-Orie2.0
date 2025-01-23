@@ -84,7 +84,7 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className=" col-lg-12 col-sm-12 p-3 custom-pry-color">
+    <Container className=" col-lg-12 col-sm-12 p-3">
       <h1 className="fs-3 fw-bold col-9 mx-4">Vendors</h1>
 
       <div className="justify-content-center align-items-center bottom-0 d-flex">
@@ -106,7 +106,7 @@ const Vendors = ({ user }) => {
             />
             <div className="mt-3 hstack gap-2">
               <Button
-                className="custom-pry custom-pry-border rounded-3"
+                className="custom-pry custom-pry-border text-dark rounded-3"
                 onClick={handleVendorSearch}
                 disabled={search === ""}
               >

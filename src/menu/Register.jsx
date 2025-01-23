@@ -113,7 +113,7 @@ const Register = ({ user }) => {
   const fileSize = getBase64Size(converted);
 
   return (
-    <Container fluid className="col-lg-9 col-sm-12 p-3 custom-pry-color">
+    <Container fluid className="col-lg-9 col-sm-12 p-3">
       <h1 className="fs-3 fw-bold">Add Business</h1>
       <div className="py-3 d-flex justify-content-center">
         <Form
@@ -334,7 +334,7 @@ const Register = ({ user }) => {
           <Col className="hstack gap-2">
             <Button
               type="submit"
-              className="custom-pry rounded-3 custom-pry-border"
+              className="custom-pry rounded-3 custom-pry-border text-dark"
               disabled={Object.values(vendor).every((el) => !el)}
             >
               Submit
@@ -342,7 +342,7 @@ const Register = ({ user }) => {
             <input
               title="Reset"
               type="reset"
-              className="btn bg-transparent custom-pry-color custom-pry-border rounded-3"
+              className="btn bg-transparent custom-pry-border rounded-3"
               onClick={() => setVendor("")}
             />
           </Col>

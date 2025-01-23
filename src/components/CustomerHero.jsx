@@ -40,14 +40,14 @@ const CustomerHero = ({
           <small className="fs-6">
             <BuildingsFill /> {businessName}
           </small>
-          <small className="custom-pry-color fs-6">
+          <small className=" fs-6">
             <BriefcaseFill /> {category ?? "Not assigned yet"}
           </small>
           <div className="d-flex flex-column gap-2">
             <small className="fs-6">
               <Button
                 variant="transaparent"
-                className=" custom-pry-color"
+                className=" "
                 onClick={() =>
                   navigate(`/account-follow`, { state: "followers" })
                 }
@@ -61,7 +61,7 @@ const CustomerHero = ({
             <small className="fs-6">
               <Button
                 variant="transaparent"
-                className=" custom-pry-color"
+                className=" "
                 onClick={() =>
                   navigate(`/account-follow`, { state: "following" })
                 }
