@@ -1,8 +1,9 @@
 import { Alert, Tab, Tabs } from "react-bootstrap";
-// import UserContentTemplate from "./UserContent";
+import UserContentTemplate from "./UserContent";
 import ContentPhotos from "./ContentPhotos";
 import MessagesTemplate from "./DisplayMessages";
 import Replies from "./Replies";
+import CustomerPhotoGrid from "./CustomerPhotoGrid";
 
 const ManageFollowers = ({
   commonBiggerBoxclasses,
@@ -15,7 +16,7 @@ const ManageFollowers = ({
       <h2 className={"text-start fs-6 fw-bold mx-2 mb-4"}>Manage Content</h2>
       <div className="px-2">
         <Tabs className="mb-3">
-          {/* <Tab eventKey="content" title="Content">
+          <Tab eventKey="content" title="Content">
             {content[0]?.map((item, index) => (
               <UserContentTemplate
                 key={index}
@@ -23,9 +24,10 @@ const ManageFollowers = ({
                 contentImage={""}
               />
             ))}
-          </Tab> */}
+          </Tab>
           <Tab eventKey="photos" title="Photos">
             <ContentPhotos content={content} user={user} />
+            <CustomerPhotoGrid user={user} />
           </Tab>
           <Tab eventKey="messages" title="Messages">
             {messages.flat()?.length > 0 ? (

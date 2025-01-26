@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { getHost } from "../helpers/getHost";
+import { X } from "react-bootstrap-icons";
 
 const ContentPhotos = ({ user }) => {
   const [status, setStatus] = useState(0);
@@ -34,16 +35,18 @@ const ContentPhotos = ({ user }) => {
       });
   }
   return (
-    <Form className="d-flex flex-column vstack gap-2 shadow-sm rounded-2">
-      <Form.Label htmlFor="image">Upload photo:</Form.Label>
+    <Form className="d-flex flex-column vstack gap-2 rounded-2">
+      <Form.Label htmlFor="image" className="btn btn-dark btn-sm w-25">
+        Upload photo
+      </Form.Label>
+
       <Form.Control
         type="file"
         id="image"
-        className="rounded-0"
+        className="rounded-0 visually-hidden"
         name="image"
         accept=".jpeg, .jpg, .png"
         onChange={handleUpload}
-        max
       />
       <div className="d-flex justify-content-between">
         {" "}
@@ -65,7 +68,7 @@ const ContentPhotos = ({ user }) => {
               onClick={() => setShow(false)}
               className="bg-transparent btn btn-sm text-dark"
             >
-              X
+              <X />
             </button>
           </div>
         ) : null}

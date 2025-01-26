@@ -245,6 +245,10 @@ button[role="tab"] {
   .table-small {
     width: max-content !important;
   }
+
+  .photo-grid {
+    justify-content: center !important;
+  }
 }
 
 @media screen and (max-width: 800px) {
