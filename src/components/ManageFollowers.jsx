@@ -25,7 +25,7 @@ const ManageFollowers = ({
             ))}
           </Tab> */}
           <Tab eventKey="photos" title="Photos">
-            <ContentPhotos content={content} />
+            <ContentPhotos content={content} user={user} />
           </Tab>
           <Tab eventKey="messages" title="Messages">
             {messages.flat()?.length > 0 ? (

@@ -1,12 +1,76 @@
-import { Alert } from "react-bootstrap";
+import axios from "axios";
+import { useState } from "react";
+import { Form } from "react-bootstrap";
+import { getHost } from "../helpers/getHost";
 
-const ContentPhotos = ({ content }) => {
+const ContentPhotos = ({ user }) => {
+  const [status, setStatus] = useState(0);
+  const [show, setShow] = useState(false);
+
+  function handleUpload(e) {
+    const file = e.target.files[0];
+    const form = new FormData();
+
+    form.append("image", file);
+
+    axios
+      .post(`${getHost()}/api/upload-image?clientID=${user?.uid}`, form, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.status !== 200 || res.status !== 201) {
+          setStatus(res.status);
+        } else {
+          setStatus(res.status);
+        }
+
+        setShow(true);
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setShow(true);
+      });
+  }
   return (
-    <div className="d-flex flex-column vstack gap-2 shadow-sm rounded-2">
-      <Alert variant="warning" className="border-0">
-        Photo management coming soon. Watch this space!
-      </Alert>
-    </div>
+    <Form className="d-flex flex-column vstack gap-2 shadow-sm rounded-2">
+      <Form.Label htmlFor="image">Upload photo:</Form.Label>
+      <Form.Control
+        type="file"
+        id="image"
+        className="rounded-0"
+        name="image"
+        accept=".jpeg, .jpg, .png"
+        onChange={handleUpload}
+        max
+      />
+      <div className="d-flex justify-content-between">
+        {" "}
+        <Form.Text>
+          Max Upload 100 KB. (Only JPG/JPEG and PNG are accepted.)
+        </Form.Text>
+        {show ? (
+          <div
+            className={`alert alert-${
+              status !== 200 ? "danger" : "success"
+            } w-25 p-2 hstack d-flex justify-content-between`}
+          >
+            <span>
+              {status !== 200
+                ? "Error uploading data."
+                : "Success uploading data"}
+            </span>{" "}
+            <button
+              onClick={() => setShow(false)}
+              className="bg-transparent btn btn-sm text-dark"
+            >
+              X
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </Form>
   );
 };
 

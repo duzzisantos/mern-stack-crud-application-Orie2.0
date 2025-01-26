@@ -3,6 +3,7 @@ import "react-bootstrap";
 import axios from "axios";
 import "../App.css";
 import { Button, Col, Container, Form } from "react-bootstrap";
+
 import { optionsArray } from "../helpers/hardCodedData";
 import {
   BriefcaseFill,
@@ -15,11 +16,8 @@ import {
   PersonPlusFill,
   ShieldFillCheck,
   TelephoneInbound,
-  Upload,
 } from "react-bootstrap-icons";
 import { getHost } from "../helpers/getHost";
-import { encodeImageAsURL } from "../helpers/stringHelpers";
-import { getBase64Size } from "../helpers/getBase64Size";
 
 const Register = ({ user }) => {
   const [userId, setUserId] = useState("");
@@ -53,9 +51,6 @@ const Register = ({ user }) => {
     getCustomer();
   }, [user]);
 
-  //Form input states for updating user account with newly registered business
-  const [converted, setConverted] = useState("");
-
   const [vendor, setVendor] = useState({
     businessID: `${Date.now()}`,
     firstName: "",
@@ -74,7 +69,6 @@ const Register = ({ user }) => {
   const formData = Object.assign(vendor, {
     userId: userId,
     userEmail: userEmail,
-    photos: [{ image: converted }],
     userName: userName,
   });
 
@@ -109,8 +103,6 @@ const Register = ({ user }) => {
       .then((res) => console.log(res.statusText))
       .catch((err) => console.warn(err.message));
   };
-
-  const fileSize = getBase64Size(converted);
 
   return (
     <Container fluid className="col-lg-9 col-sm-12 p-3">
@@ -308,29 +300,7 @@ const Register = ({ user }) => {
               <option key={index}>{item}</option>
             ))}
           </Form.Select>
-          <Form.Label htmlFor="image-register">
-            <Upload /> Upload photo:
-          </Form.Label>
 
-          <Form.Control
-            type="file"
-            id="image-register"
-            className="rounded-0"
-            name="image"
-            accept=".jpeg, .jpg, .png"
-            onChange={() => encodeImageAsURL("image-register", setConverted)}
-          />
-          <div className="d-flex justify-content-between">
-            {" "}
-            <Form.Text>
-              Max Upload 100 KB. (Only JPG/JPEG and PNG are accepted.)
-            </Form.Text>
-            {fileSize > 100000 && (
-              <div className="bg-warning-subtle px-2 rounded-2">
-                File cannot exceed 100 KB.
-              </div>
-            )}
-          </div>
           <Col className="hstack gap-2">
             <Button
               type="submit"
