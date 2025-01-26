@@ -59,9 +59,9 @@ const Signup = () => {
 
       <Row className="custom-pry">
         <Col lg={3} md={6} sm={12} xs={12}>
-          <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-light">
-            <div className="justify-content-start d-flex flex-column">
-              <h3 className="fw-bold">Sign up to Dugam</h3>
+          <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-dark">
+            <h3 className="fw-bold">Sign up to Dugam</h3>
+            <div className="justify-content-start d-flex flex-column mb-2">
               <Form.Label htmlFor="fullName">Full Name</Form.Label>
               <Form.Control
                 type="text"
@@ -71,7 +71,7 @@ const Signup = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="justify-content-start d-flex flex-column">
+            <div className="justify-content-start d-flex flex-column mb-2">
               <Form.Label htmlFor="email">Email</Form.Label>
               <Form.Control
                 type="text"

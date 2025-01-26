@@ -238,7 +238,8 @@ button[role="tab"] {
     display: none !important;
   }
 
-  .stack-categories {
+  .stack-categories,
+  .replied-by {
     flex-wrap: wrap !important;
   }
 

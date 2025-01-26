@@ -28,9 +28,9 @@ const Login = () => {
       </div>
       <Row className="custom-pry">
         <Col lg={3} md={6} sm={12} xs={12}>
-          <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-light">
-            <div className="justify-content-start d-flex flex-column">
-              <h1 className="fw-bold h3">Login to Dugam</h1>
+          <Form className="p-4 rounded-0 vh-100 mx-3 custom-pry text-dark">
+            <h1 className="fw-bold h3 ">Login to Dugam</h1>
+            <div className="justify-content-start d-flex flex-column mb-2">
               <Form.Label htmlFor="login-email">Email</Form.Label>
               <Form.Control
                 type="text"
