@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Modal, Row } from "react-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeroArea from "../components/landing-page/Hero";
@@ -24,6 +24,7 @@ const Home = ({ user }) => {
   const [generalSearch, setGeneralSearch] = useState([]);
   const [narrowSearch, setNarrowSearch] = useState([]);
   const [show, setShow] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
 
@@ -40,6 +41,7 @@ const Home = ({ user }) => {
     event.preventDefault();
     setSearchState(true);
     setValidated(true);
+    setShowResult(true);
     return getGeneralSearch(setGeneralSearch, search, token);
   };
 
@@ -47,6 +49,7 @@ const Home = ({ user }) => {
     event.preventDefault();
     setSearchState(true);
     setValidatedNarrow(true);
+    setShowResult(true);
     return getNarrowSearch(setNarrowSearch, region, city, category, token);
   };
 
@@ -144,39 +147,6 @@ const Home = ({ user }) => {
       </Row>
 
       <section
-        className="d-flex flex-lg-row flex-sm-column flex-wrap py-3"
-        style={{ height: "fit-content" }}
-      >
-        <RenderResults
-          city={city}
-          category={category}
-          region={region}
-          search={search}
-          searchState={searchState}
-          allRatings={allRatings}
-          cleansedData={cleansedData}
-          narrowSearch={narrowSearch}
-          generalSearch={generalSearch}
-          user={user}
-          show={show}
-          handleClose={handleClose}
-          handleShow={handleShow}
-          showMessageModal={showMessageModal}
-          grabEmail={grabEmail}
-          handleCloseMessage={handleCloseMessage}
-          handleShowMessage={handleShowMessage}
-          handleReset={() => {
-            setNarrowSearch([]);
-            setRegion("");
-            setCity("");
-            setCategory("");
-            setSearchState(false);
-            setGeneralSearch([]);
-            setSearch("");
-          }}
-        />
-      </section>
-      <section
         className="py-5 gap-3 d-flex justify-content-center align-items-center bottom-0  flex-column bg-light"
         style={{ height: "fit-content" }}
       >
@@ -211,6 +181,92 @@ const Home = ({ user }) => {
           </div>
         </div>
       </section>
+      {showResult ? (
+        <Modal
+          size="xl"
+          show={showResult}
+          onHide={() => setShowResult(!showResult)}
+          backdrop="static"
+          keyboard={false}
+          fullscreen
+        >
+          <Modal.Header closeButton closeVariant="dark">
+            <Modal.Title className="h6">Search for businesses</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {/** Refactor this to be modular */}
+            <div className="col-12">
+              <FindCustomers
+                validated={validated}
+                validatedNarrow={validatedNarrow}
+                setSearch={setSearch}
+                groupedData={grouped}
+                search={search}
+                regions={regions}
+                cities={cities}
+                categories={categories}
+                setCategories={setCategory}
+                setRegion={setRegion}
+                setCity={setCity}
+                category={category}
+                city={city}
+                region={region}
+                handleGeneralSearch={handleGeneralSearch}
+                handleNarrowSearch={handleNarrowSearch}
+                handleResetGeneral={() => {
+                  setGeneralSearch([]);
+                  setSearch("");
+                  setSearchState(false);
+                }}
+                handleResetNarrow={() => {
+                  setNarrowSearch([]);
+                  setRegion("");
+                  setCity("");
+                  setCategory("");
+                  setSearchState(false);
+                }}
+              />
+            </div>
+            <RenderResults
+              city={city}
+              category={category}
+              region={region}
+              search={search}
+              searchState={searchState}
+              allRatings={allRatings}
+              cleansedData={cleansedData}
+              narrowSearch={narrowSearch}
+              generalSearch={generalSearch}
+              user={user}
+              show={show}
+              handleClose={handleClose}
+              handleShow={handleShow}
+              showMessageModal={showMessageModal}
+              grabEmail={grabEmail}
+              handleCloseMessage={handleCloseMessage}
+              handleShowMessage={handleShowMessage}
+              handleReset={() => {
+                setNarrowSearch([]);
+                setRegion("");
+                setCity("");
+                setCategory("");
+                setSearchState(false);
+                setGeneralSearch([]);
+                setSearch("");
+              }}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="transparent"
+              className="custom-pry-border text-dark"
+              onClick={() => setShowResult(!showResult)}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      ) : null}
     </div>
   );
 };

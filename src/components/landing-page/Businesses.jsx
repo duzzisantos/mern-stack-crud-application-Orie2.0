@@ -15,7 +15,7 @@ const Businesses = ({
   data,
 }) => {
   return (
-    <div className="col-12 py-5 d-flex justify-content-center gap-2 flex-lg-row flex-sm-column flex-wrap">
+    <div className="col-12 p-3 d-flex justify-content-start gap-2 flex-lg-row flex-sm-column flex-wrap">
       {narrowSearch.length > 0
         ? narrowSearch.map((entity) => (
             <BusinessCard

@@ -2,12 +2,13 @@ import { Alert } from "react-bootstrap";
 
 const Replies = ({ replies }) => {
   return (
-    <div className="col-12 justify-content-start  d-flex flex-column ">
+    <div className="col-12 justify-content-start bg-white p-4 mt-4 border border-2 border-secondary-subtle rounded-2 d-flex flex-column ">
+      <strong>Responses </strong>
       {replies?.length > 0 ? (
         replies?.map((element) => (
           <div
             key={element._id}
-            className=" col-10 my-2 border-top p-2 text-secondary"
+            className=" col-10 my-2 border-bottom p-2 text-secondary"
           >
             <div className="hstack gap-2">
               <small className="fw-semibold text-dark">

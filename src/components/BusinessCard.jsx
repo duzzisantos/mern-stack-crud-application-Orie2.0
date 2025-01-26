@@ -123,6 +123,7 @@ const BusinessCard = ({
           handleClose={() => setShowImages(!showImages)}
           businessName={businessName}
           photo={photo}
+          user={user}
         />
       )}
     </>

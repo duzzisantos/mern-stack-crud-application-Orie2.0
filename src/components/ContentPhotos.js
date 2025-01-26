@@ -37,7 +37,7 @@ const ContentPhotos = ({ user }) => {
   return (
     <Form className="d-flex flex-column vstack gap-2 rounded-2">
       <Form.Label htmlFor="image" className="btn btn-dark btn-sm w-25">
-        Upload photo
+        Upload
       </Form.Label>
 
       <Form.Control

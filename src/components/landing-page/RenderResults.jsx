@@ -22,22 +22,29 @@ function RenderResults({
     (search || searchState) &&
     (generalSearch.length > 0 || narrowSearch.length > 0);
 
+  const contentLength = narrowSearch.length ?? generalSearch.length;
+
   if (isSuccess) {
     return (
-      <Businesses
-        data={allRatings}
-        ratingScore={cleansedData}
-        narrowSearch={narrowSearch}
-        generalSearch={generalSearch}
-        user={user}
-        showModal={show}
-        handleShow={handleShow}
-        handleClose={handleClose}
-        showMessageModal={showMessageModal}
-        grabEmail={grabEmail}
-        handleCloseMessage={handleCloseMessage}
-        handleShowMessage={handleShowMessage}
-      />
+      <div className="bg-light mt-5 p-3">
+        <h6 className="mx-3">
+          {contentLength} Result{contentLength > 1 ? "s" : ""}
+        </h6>
+        <Businesses
+          data={allRatings}
+          ratingScore={cleansedData}
+          narrowSearch={narrowSearch}
+          generalSearch={generalSearch}
+          user={user}
+          showModal={show}
+          handleShow={handleShow}
+          handleClose={handleClose}
+          showMessageModal={showMessageModal}
+          grabEmail={grabEmail}
+          handleCloseMessage={handleCloseMessage}
+          handleShowMessage={handleShowMessage}
+        />
+      </div>
     );
   } else if (search && searchState) {
     return (
