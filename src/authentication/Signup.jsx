@@ -42,6 +42,18 @@ const Signup = () => {
       .catch((err) => console.log(err.message));
   };
 
+  const handleRegistrationProcess = () => {
+    register();
+
+    setTimeout(() => {
+      return handleRegisterClient();
+    }, 2000);
+
+    setTimeout(() => {
+      return navigate("/register");
+    }, 2500);
+  };
+
   useEffect(() => {
     if (loading) {
       return;
@@ -95,11 +107,7 @@ const Signup = () => {
               size="md"
               disabled={password === "" || email === "" || name === ""}
               className="mt-4 d-block bg-dark border-0"
-              onClick={() => {
-                register();
-                handleRegisterClient();
-                navigate("/register");
-              }}
+              onClick={handleRegistrationProcess}
             >
               Signup
             </Button>
