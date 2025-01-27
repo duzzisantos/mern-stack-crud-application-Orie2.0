@@ -106,7 +106,7 @@ const Signup = () => {
             <Button
               size="md"
               disabled={password === "" || email === "" || name === ""}
-              className="mt-4 d-block bg-dark border-0"
+              className="mt-4 d-block custom-pry-btn rounded-0 border-0"
               onClick={handleRegistrationProcess}
             >
               Signup

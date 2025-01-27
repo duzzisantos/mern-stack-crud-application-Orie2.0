@@ -13,13 +13,13 @@ const SuggestionBoxes = ({ title, user }) => {
       <h3 className="fs-5 fw-bold text-capitalize">{title}</h3>
       <CardBody>
         {user === null || user === undefined ? (
-          <a href="/login" className="text-decoration-none">
+          <a href="/login" className="text-decoration-none custom-pry-text">
             Explore
           </a>
         ) : user ? (
           <Button
             variant="transparent"
-            className="text-primary border-0"
+            className="custom-pry-text border-0"
             onClick={handleVisit}
           >
             Explore

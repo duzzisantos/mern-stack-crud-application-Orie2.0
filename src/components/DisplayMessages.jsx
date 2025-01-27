@@ -46,7 +46,7 @@ const MessagesTemplate = ({
               size="sm"
               about="To reply a message"
               title="Reply message"
-              className={`custom-pry rounded-3 text-dark custom-pry-border`}
+              className={`custom-pry-btn rounded-0 border-0`}
               onClick={() => setShow(!show)}
             >
               Follow up
@@ -54,7 +54,7 @@ const MessagesTemplate = ({
             <Button
               size="sm"
               variant="transparent"
-              className="custom-pry-color custom-pry-border rounded-3"
+              className="custom-pry-bordered-btn rounded-0"
               onClick={() => {
                 setShowReplies(!showReplies);
                 setWhichReply(id);

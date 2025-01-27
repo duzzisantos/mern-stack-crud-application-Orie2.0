@@ -39,6 +39,20 @@
   color: #ffd400 !important;
 }
 
+.custom-pry-btn {
+  background-color: #0678b1 !important;
+  border: 1px solid transparent !important;
+}
+
+.custom-pry-bordered-btn {
+  background-color: transparent;
+  border: 2px solid #0678b1 !important;
+}
+
+.custom-pry-text {
+  color: #0678b1 !important;
+}
+
 .social-button-1:hover {
   color: rgb(206, 28, 28) !important;
 }

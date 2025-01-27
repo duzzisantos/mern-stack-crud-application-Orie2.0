@@ -288,13 +288,13 @@ const EditBusiness = ({ user, show, handleClose }) => {
           <Col className="hstack gap-2">
             <Button
               type="submit"
-              className="custom-pry text-dark rounded-3 custom-pry-border"
+              className="custom-pry text-dark rounded-0 custom-pry-border"
             >
               Submit
             </Button>
             <Button
               onClick={handleClose}
-              className="rounded-3 bg-transparent text-dark custom-pry-border"
+              className="rounded-0 bg-transparent text-dark custom-pry-border"
             >
               Close
             </Button>

@@ -1,4 +1,4 @@
-import { Spinner, Alert, Button } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import Businesses from "./Businesses";
 
 function RenderResults({
@@ -48,10 +48,7 @@ function RenderResults({
     );
   } else if (search && searchState) {
     return (
-      <Alert
-        variant="info"
-        className="w-75 mx-auto justify-content-start d-flex hstack gap-5 border-0"
-      >
+      <div className="mt-3">
         <Spinner />
         If loading persists, it could be that your search item was not found.{" "}
         <Button
@@ -61,7 +58,7 @@ function RenderResults({
         >
           Reset
         </Button>
-      </Alert>
+      </div>
     );
   }
 }

@@ -55,7 +55,7 @@ const Login = () => {
 
             <Button
               size="md"
-              className="mt-4 d-block bg-dark border-0"
+              className="mt-4 d-block custom-pry-btn rounded-0 border-0"
               onClick={() => {
                 logInWithEmailAndPassword(email, password);
                 navigate("/home");

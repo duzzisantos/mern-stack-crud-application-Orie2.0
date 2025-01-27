@@ -15,8 +15,8 @@ const Vendors = ({ user }) => {
   const [show, setShow] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const [grabEmail, setGrabEmail] = useState("");
-  const { businesses } = useGetBusinesses(user.accessToken);
-  const { allRatings } = useGetAllRatings(user.accessToken);
+  const { businesses } = useGetBusinesses(user?.accessToken);
+  const { allRatings } = useGetAllRatings(user?.accessToken);
 
   const handleClose = () => {
     setShow(false);
@@ -38,7 +38,7 @@ const Vendors = ({ user }) => {
 
   const handleVendorSearch = () => {
     setSearchState(true);
-    return getGeneralSearch(setGeneralSearch, search, user.accessToken);
+    return getGeneralSearch(setGeneralSearch, search, user?.accessToken);
   };
 
   const averageRating = (data, userEmail) => {
@@ -54,7 +54,7 @@ const Vendors = ({ user }) => {
   };
 
   const searchMatches = () => {
-    const matches = businesses.flat().some((element) => {
+    const matches = businesses?.flat()?.some((element) => {
       const {
         address,
         businessName,
@@ -68,15 +68,15 @@ const Vendors = ({ user }) => {
       } = element;
 
       return (
-        search.toLowerCase().includes(address.toLowerCase()) ||
-        search.toLowerCase().includes(businessPhone.toLowerCase()) ||
-        search.toLowerCase().includes(businessName.toLowerCase()) ||
-        search.toLowerCase().includes(category.toLowerCase()) ||
-        search.toLowerCase().includes(city.toLowerCase()) ||
-        search.toLowerCase().includes(email.toLowerCase()) ||
-        search.toLowerCase().includes(firstName.toLowerCase()) ||
-        search.toLowerCase().includes(lastName.toLowerCase()) ||
-        search.toLowerCase().includes(state.toLowerCase())
+        search.toLowerCase().includes(address?.toLowerCase()) ||
+        search.toLowerCase().includes(businessPhone?.toLowerCase()) ||
+        search.toLowerCase().includes(businessName?.toLowerCase()) ||
+        search.toLowerCase().includes(category?.toLowerCase()) ||
+        search.toLowerCase().includes(city?.toLowerCase()) ||
+        search.toLowerCase().includes(email?.toLowerCase()) ||
+        search.toLowerCase().includes(firstName?.toLowerCase()) ||
+        search.toLowerCase().includes(lastName?.toLowerCase()) ||
+        search.toLowerCase().includes(state?.toLowerCase())
       );
     });
 
@@ -84,7 +84,7 @@ const Vendors = ({ user }) => {
   };
 
   return (
-    <Container className=" col-lg-12 col-sm-12 p-3">
+    <Container className=" col-lg-12 col-sm-12" style={{ paddingTop: "80px" }}>
       <h1 className="fs-3 fw-bold col-9 mx-4">Vendors</h1>
 
       <div className="justify-content-center align-items-center bottom-0 d-flex">
@@ -106,14 +106,14 @@ const Vendors = ({ user }) => {
             />
             <div className="mt-3 hstack gap-2">
               <Button
-                className="custom-pry custom-pry-border text-dark rounded-3"
+                className="custom-pry custom-pry-border text-dark rounded-0"
                 onClick={handleVendorSearch}
                 disabled={search === ""}
               >
                 Search
               </Button>
               <Button
-                className="bg-transparent custom-pry-border text-dark rounded-3"
+                className="bg-transparent custom-pry-border text-dark rounded-0"
                 onClick={() => setSearchState(false)}
               >
                 Reset
@@ -128,9 +128,9 @@ const Vendors = ({ user }) => {
         style={{ height: "fit-content" }}
       >
         {businesses.flat().length === 0 ? (
-          <Skeleton children={"Vendors are loading..."} />
+          <Skeleton children={""} />
         ) : searchState && generalSearch.length === 0 ? (
-          <Skeleton children={"Vendors are loading..."} />
+          <Skeleton children={""} />
         ) : searchState && generalSearch.length > 0 ? (
           generalSearch.map((element, index) => (
             <BusinessCard

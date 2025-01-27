@@ -9,7 +9,7 @@ const AdvertBox = ({ title, content, image }) => {
         <Card.Text>
           <small>{content}</small>
         </Card.Text>
-        <Button size="sm" className="custom-pry-border custom-pry text-dark">
+        <Button size="sm" className="custom-pry-btn rounded-0 text-light">
           Discover
         </Button>
       </Card.Body>

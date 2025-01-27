@@ -105,7 +105,7 @@ const ConnectWritePost = ({ user, authorName, refetch }) => {
                 {" "}
                 <Form.Text>Max Upload 100 KB.</Form.Text>
                 {fileSize > 100000 && (
-                  <div className="bg-warning-subtle px-2 rounded-2">
+                  <div className="text-danger px-2 rounded-2">
                     File cannot exceed 100 KB.
                   </div>
                 )}
@@ -115,20 +115,29 @@ const ConnectWritePost = ({ user, authorName, refetch }) => {
                 <Button
                   size="sm"
                   type="button"
-                  className="custom-pry text-dark border-0 rounded-3"
+                  className="custom-pry text-dark border-0 rounded-0"
                   disabled={fileSize > 100000 || message === ""}
                   onClick={handleSubmit}
                 >
                   Post
                 </Button>
-                <Button
-                  size="sm"
-                  variant="transparent"
-                  className="rounded-3 custom-pry-border"
-                  onClick={() => setShow(false)}
-                >
-                  Close
-                </Button>
+                <div className="hstack gap-2">
+                  <Button
+                    size="sm"
+                    className="rounded-0 border-0 custom-pry-btn text-light"
+                    onClick={() => setShow(false)}
+                  >
+                    Clear
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="transparent"
+                    className="rounded-0 custom-pry-border"
+                    onClick={() => setShow(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
               </div>
             </Form>
           </Modal.Body>

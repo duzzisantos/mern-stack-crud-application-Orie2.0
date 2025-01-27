@@ -8,8 +8,11 @@ export const useVendorItems = (user, state) => {
   //Return businesses according to category
   const vendors = useCallback(() => {
     const result = [];
-    businesses.flat().forEach((business) => {
-      if (business.category.includes(state) || business.state.includes(state)) {
+    businesses?.flat().forEach((business) => {
+      if (
+        business?.category?.includes(state) ||
+        business?.state?.includes(state)
+      ) {
         result.push(business);
       }
     });
@@ -18,7 +21,7 @@ export const useVendorItems = (user, state) => {
 
   //return unique business category list
   const vendorCategories = useCallback(() => {
-    return [...new Set(businesses.flat().map((el) => el.category))];
+    return [...new Set(businesses?.flat().map((el) => el.category))];
   }, [businesses]);
 
   //define table columns

@@ -33,7 +33,7 @@ const Admin = ({ user }) => {
   const commonClass = "pt-3 card-hover shadow-sm rounded border-5 border-info";
 
   return (
-    <Container className="col-lg-9 col-sm-12 p-3">
+    <Container className="col-lg-9 col-sm-12" style={{ paddingTop: "80px" }}>
       <h1 className="fs-3 fw-bold text-start">My Business</h1>
 
       <Row
@@ -79,12 +79,12 @@ const Admin = ({ user }) => {
       </Row>
       <Row id="manage-wrapper gap-3" className="mt-4">
         {!rating.length && !biz[0]?.length ? (
-          <Skeleton children={"Business information loading..."} />
+          <Skeleton children={""} />
         ) : (
           <ManageBusiness biz={biz[0]} user={user} ratings={rating} />
         )}
         {!followers.length && !messages.length && !userContent.length ? (
-          <Skeleton children={"Followers information loading..."} />
+          <Skeleton children={""} />
         ) : (
           <ManageFollowers
             followers={followers}

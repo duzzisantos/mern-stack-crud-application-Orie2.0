@@ -36,7 +36,10 @@ const ContentPhotos = ({ user }) => {
   }
   return (
     <Form className="d-flex flex-column vstack gap-2 rounded-2">
-      <Form.Label htmlFor="image" className="btn btn-dark btn-sm w-25">
+      <Form.Label
+        htmlFor="image"
+        className="btn custom-pry-btn rounded-0 btn-sm text-light w-25"
+      >
         Upload
       </Form.Label>
 

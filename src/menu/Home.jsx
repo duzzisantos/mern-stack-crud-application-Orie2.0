@@ -84,9 +84,12 @@ const Home = ({ user }) => {
   };
 
   return (
-    <div className="col-12 px-0 custom-pry-color overflow-x-hidden">
+    <div
+      className="col-12 px-0 custom-pry-color  overflow-x-hidden"
+      style={{ paddingTop: "50px" }}
+    >
       {!user && window.location.pathname === "/" ? (
-        <Navbar className="w-100 py-1 shadow-sm position-sticky sticky-top bg-light">
+        <Navbar className="w-100 py-1 shadow-sm mt-0 fixed-top bg-light">
           <Container className="d-flex justify-content-between bg-light">
             <Navbar.Brand
               as={Link}
@@ -154,7 +157,7 @@ const Home = ({ user }) => {
         <div className="col-9 justify-content-center bottom-0 h-100">
           <div className="d-flex flex-wrap gap-3 text-center mt-3">
             {categories.length === 0 ? (
-              <Skeleton children={"Categories loading..."} />
+              <Skeleton children={""} />
             ) : (
               categories.map((el, i) => (
                 <SuggestionBoxes key={i} title={el} user={user} />
@@ -172,7 +175,7 @@ const Home = ({ user }) => {
         <div className="col-9 justify-content-center bottom-0 h-100">
           <div className="d-flex flex-wrap gap-3 text-center mt-3">
             {regions.length === 0 ? (
-              <Skeleton children={"Regions loading..."} />
+              <Skeleton children={""} />
             ) : (
               regions.map((el, i) => (
                 <SuggestionBoxes key={i} title={el} user={user} />
@@ -191,7 +194,7 @@ const Home = ({ user }) => {
           fullscreen
         >
           <Modal.Header closeButton closeVariant="dark">
-            <Modal.Title className="h6">Search for businesses</Modal.Title>
+            <Modal.Title className="h5">Search for businesses</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {/** Refactor this to be modular */}
@@ -259,7 +262,7 @@ const Home = ({ user }) => {
           <Modal.Footer>
             <Button
               variant="transparent"
-              className="custom-pry-border text-dark"
+              className="custom-pry-border rounded-0 text-dark"
               onClick={() => setShowResult(!showResult)}
             >
               Close

@@ -71,7 +71,7 @@ const FindCustomers = ({
 
           <Col className="w-75 hstack mt-3">
             <Button
-              className="custom-pry text-dark custom-pry-border rounded-3"
+              className="custom-pry text-dark custom-pry-border rounded-0"
               onClick={handleGeneralSearch}
               type="submit"
               disabled={search === ""}
@@ -79,7 +79,7 @@ const FindCustomers = ({
               Search
             </Button>
             <Button
-              className="custom-pry-border bg-transparent text-dark rounded-3 mx-2"
+              className="custom-pry-border bg-transparent text-dark rounded-0 mx-2"
               onClick={handleResetGeneral}
             >
               Reset
@@ -155,14 +155,14 @@ const FindCustomers = ({
         <Col className="w-75 mx-auto hstack gap-2 mt-3">
           <Button
             type="submit"
-            className="custom-pry custom-pry-border text-dark rounded-3"
+            className="custom-pry custom-pry-border text-dark rounded-0"
             onClick={handleNarrowSearch}
             disabled={city === "" || region === "" || category === ""}
           >
             Go
           </Button>
           <Button
-            className="custom-pry-border bg-transparent text-dark rounded-3"
+            className="custom-pry-border bg-transparent text-dark rounded-0"
             onClick={handleResetNarrow}
           >
             Reset

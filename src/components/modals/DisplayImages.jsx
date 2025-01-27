@@ -51,7 +51,7 @@ function DisplayImages({ show, handleClose, businessName, photo }) {
           </small>
           <Button
             variant="transparent"
-            className="border border-secondary"
+            className="border border-secondary rounded-0"
             onClick={handleClose}
           >
             Close

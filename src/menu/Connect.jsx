@@ -56,13 +56,13 @@ const Connect = ({ user }) => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: "80px" }}>
       {allPosts.length === 0 ? (
         <div
           className="d-flex bottom-0 justify-content-center align-items-center mx-5"
           style={{ height: "100vh" }}
         >
-          <Skeleton children={"Posts and user content are loading..."} />
+          <Skeleton children={""} />
         </div>
       ) : (
         <Container
@@ -73,7 +73,7 @@ const Connect = ({ user }) => {
           <div id="show-side-menu" className="d-none">
             <Button
               variant="transparent"
-              className="custom-pry-color border mt-3 mx-2 fw-bold"
+              className="custom-pry-color rounded-0 border mt-3 mx-2 fw-bold"
               onClick={() => setShowMenu(true)}
             >
               Expand <List />
@@ -219,7 +219,7 @@ const Connect = ({ user }) => {
           }
         />
       )}
-    </>
+    </div>
   );
 };
 

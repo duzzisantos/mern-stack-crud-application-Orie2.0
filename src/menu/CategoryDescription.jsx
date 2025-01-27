@@ -28,7 +28,10 @@ const CategoryDescription = ({ user }) => {
   };
 
   return (
-    <Container className="col-12 p-3 custom-pry-color">
+    <Container
+      className="col-12 custom-pry-color"
+      style={{ paddingTop: "80px" }}
+    >
       <div className="px-4 mx-2">
         <h1 className="fs-3 fw-bold col-9">{currentState}</h1>
 

@@ -76,13 +76,13 @@ function ReplyMessage({
         <Modal.Footer>
           <Button
             variant="transparent"
-            className="custom-pry-border rounded-3 custom-pry-color"
+            className="custom-pry-border rounded-0 custom-pry-color"
             onClick={handleClose}
           >
             Cancel
           </Button>
           <Button
-            className="custom-pry-border text-dark custom-pry"
+            className="custom-pry-border text-dark custom-pry rounded-0"
             onClick={handleSubmit}
             disabled={replyBody === "" || repliedBy === ""}
           >

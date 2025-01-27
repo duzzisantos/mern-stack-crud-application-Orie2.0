@@ -90,13 +90,13 @@ function AddRatings({ show, handleClose, businessEmail, user, secondParty }) {
         <Modal.Footer>
           <Button
             variant="transparent"
-            className="custom-pry-border rounded-3"
+            className="custom-pry-border rounded-0"
             onClick={handleClose}
           >
             Cancel
           </Button>
           <Button
-            className="custom-pry-border custom-pry text-dark  rounded-3"
+            className="custom-pry-border custom-pry text-dark rounded-0"
             onClick={handleSubmit}
             disabled={
               ratingStars === 0 || ratingsContent === "" || ratingsTitle === ""

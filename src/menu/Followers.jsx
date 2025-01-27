@@ -45,7 +45,10 @@ const Followers = ({ user }) => {
   };
 
   return (
-    <Container className="h-100 col-9 p-3 box-fit custom-pry-color">
+    <Container
+      className="h-100 col-9 box-fit custom-pry-color"
+      style={{ paddingTop: "80px" }}
+    >
       <section className="d-flex flex-column gap-3">
         <h1 className="fs-3 fw-bold text-start">Account Information</h1>
         <Tabs defaultActiveKey={state ?? "followers"} className="mb-1">

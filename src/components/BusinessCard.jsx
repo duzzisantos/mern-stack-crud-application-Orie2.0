@@ -38,7 +38,7 @@ const BusinessCard = ({
     <>
       <Card
         className={`col-lg-${
-          isModal ? 12 : 4
+          isModal ? 12 : 3
         } col-sm-12  shadow-sm border-0  rounded-0  shake-on-hover business-card`}
         style={{ height: "fit-content" }}
       >
@@ -50,13 +50,14 @@ const BusinessCard = ({
         <Card.Body>
           <section className="border-4 border-bottom border-primary-subtle mb-2">
             <Button
-              className="btn btn-sm bg-warning text-dark  border-0 mb-2"
+              variant="transparent"
+              className="btn-sm custom-pry-bordered-btn text-dark mb-2 rounded-0"
               onClick={() => setShowImages(!showImages)}
             >
               <ImageFill /> View Photos
             </Button>
           </section>
-          <ul className="lh-lg" style={{ height: "200px" }}>
+          <ul className="lh-lg" style={{ height: "250px" }}>
             <li>
               <BriefcaseFill className="text-dark" /> Category:{" "}
               {businessCategory}
@@ -78,10 +79,10 @@ const BusinessCard = ({
             </li>
           </ul>
           {!user || user.email === businessEmailAddress ? null : ( //do not allow ratings on the home page if current client is not logged in or if rendered card pertains to current client
-            <div className="d-flex justify-content-end gap-2 mt-4">
+            <div className="d-flex justify-content-end gap-2 mt-auto">
               <Button
                 size="sm"
-                className="custom-pry px-2 custom-pry-border text-dark rounded-3"
+                className="custom-pry-btn px-2  text-light rounded-0"
                 onClick={handleShowMessage}
               >
                 Send message
@@ -89,7 +90,7 @@ const BusinessCard = ({
               <Button
                 size="sm"
                 variant="transparent"
-                className="custom-pry-border px-2 rounded-3"
+                className="custom-pry-bordered-btn px-2 rounded-0"
                 onClick={handleShow}
               >
                 Add rating

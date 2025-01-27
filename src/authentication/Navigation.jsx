@@ -72,8 +72,7 @@ const Navigation = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      className="py-1 custom-pry py-2"
-      sticky="top"
+      className="py-1 custom-pry py-2 fixed-top"
     >
       <Container className="col-lg-9 col-sm-12 pe-0">
         <Navbar.Brand as={Link} to="home" className="fw-bold mx-0">
@@ -118,7 +117,7 @@ const Navigation = () => {
               </p>
               <Button
                 size="sm"
-                className="btn btn-warning mx-auto w-100 border-0"
+                className="custom-pry-btn rounded-0 mx-auto w-100 border-0"
                 onClick={() => {
                   logout();
                   navigate("/");

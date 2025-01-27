@@ -125,7 +125,7 @@ const EditPost = ({
                 <Button
                   size="sm"
                   type="button"
-                  className="custom-pry text-dark border-0 rounded-3"
+                  className="custom-pry text-dark border-0 rounded-0"
                   disabled={fileSize > 100000 || message === ""}
                   onClick={handleSubmit}
                 >
@@ -134,7 +134,7 @@ const EditPost = ({
                 <Button
                   size="sm"
                   variant="transparent"
-                  className="rounded-3 custom-pry-border"
+                  className="rounded-0 custom-pry-border"
                   onClick={() => setShow(false)}
                 >
                   Close
