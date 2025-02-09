@@ -38,7 +38,7 @@ const BusinessCard = ({
     <>
       <Card
         className={`col-lg-${
-          isModal ? 12 : 3
+          isModal ? 12 : 5
         } col-sm-12  shadow-sm border-0  rounded-0  shake-on-hover business-card`}
         style={{ height: "fit-content" }}
       >
@@ -48,7 +48,7 @@ const BusinessCard = ({
           </Card.Title>
         </Card.Header>
         <Card.Body>
-          <section className="border-4 border-bottom border-primary-subtle mb-2">
+          <section className="border-4 border-bottom  mb-2">
             <Button
               variant="transparent"
               className="btn-sm custom-pry-bordered-btn text-dark mb-2 rounded-0"

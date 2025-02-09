@@ -110,7 +110,7 @@ const Followers = ({ user }) => {
                     <Button
                       variant="transparent"
                       className="custom-pry-color"
-                      onClick={() => handleUnfollow(user, element)}
+                      onClick={() => handleUnfollow(user, element, token)}
                       title="Unfollow"
                     >
                       <XLg /> Unfollow

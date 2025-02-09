@@ -95,7 +95,7 @@ const ManageBusiness = ({ commonBiggerBoxclasses, biz, ratings, user }) => {
                   />
                 ))
               ) : (
-                <Alert>
+                <Alert variant="warning" className="p-2 border-0">
                   You currently have no ratings. Please check again later.
                 </Alert>
               )}

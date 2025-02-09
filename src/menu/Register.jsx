@@ -62,7 +62,6 @@ const Register = ({ user }) => {
     email: "",
     businessPhone: "",
     category: "",
-    imageId: `${Date.now() + 200}`,
   });
 
   //Merge vendor filled form Object with identifying data for querying
@@ -70,6 +69,7 @@ const Register = ({ user }) => {
     userId: userId,
     userEmail: userEmail,
     userName: userName,
+    clientUID: user.uid,
   });
 
   const uid = {

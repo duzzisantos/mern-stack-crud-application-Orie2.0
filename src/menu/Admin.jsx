@@ -63,7 +63,7 @@ const Admin = ({ user }) => {
             <StarFill className="text-warning fs-1" /> Average Rating
           </small>
           {!rating.length ? (
-            <Skeleton />
+            <p className="h5 mt-4">0</p>
           ) : (
             <p className="mt-4 h5">
               {isNaN(averageRating()) ? 0 : averageRating().toFixed(1)}
@@ -78,7 +78,7 @@ const Admin = ({ user }) => {
         </Col>
       </Row>
       <Row id="manage-wrapper gap-3" className="mt-4">
-        {!rating.length && !biz[0]?.length ? (
+        {!user ? (
           <Skeleton children={""} />
         ) : (
           <ManageBusiness biz={biz[0]} user={user} ratings={rating} />

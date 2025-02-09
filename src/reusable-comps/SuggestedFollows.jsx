@@ -15,10 +15,10 @@ const SuggestedFollows = ({
 }) => {
   return (
     <Card className="p-2 gap-2 border-0 shadow-sm rounded-0">
-      <small className="text-dark">
+      <small>
         <BuildingsFill /> {businessName ?? "My Business Limited"}
       </small>
-      <small className="custom-pry-color">
+      <small>
         <BriefcaseFill /> {category ?? "Financial"}
       </small>
       <div className="d-flex justify-content-start gap-2">

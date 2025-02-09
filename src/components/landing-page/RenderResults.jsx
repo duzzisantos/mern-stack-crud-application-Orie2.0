@@ -22,12 +22,12 @@ function RenderResults({
     (search || searchState) &&
     (generalSearch.length > 0 || narrowSearch.length > 0);
 
-  const contentLength = narrowSearch.length ?? generalSearch.length;
+  const contentLength = narrowSearch.length || generalSearch.length;
 
   if (isSuccess) {
     return (
       <div className="bg-light mt-5 p-3">
-        <h6 className="mx-3">
+        <h6 className="mx-3 text-primary">
           {contentLength} Result{contentLength > 1 ? "s" : ""}
         </h6>
         <Businesses

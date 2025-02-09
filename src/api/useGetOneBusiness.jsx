@@ -8,7 +8,7 @@ const useGetOneBusiness = (user, token) => {
     const getOneBusiness = async () => {
       try {
         const response = await axios.get(
-          `${getHost()}/api/register/business-entity?clientUID=${user.uid}`,
+          `${getHost()}/api/register/business-entity?clientUID=${user?.uid}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
